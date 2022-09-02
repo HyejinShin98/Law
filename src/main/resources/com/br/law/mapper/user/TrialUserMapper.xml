@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.law.mapper.user.TrialUserMapper">
+
+	<!-- <select id="login" resultType="com.br.law.vo.User">
+		SELECT * FROM tb_001 WHERE user_id = #{user_id} AND user_password = #{user_password}
+	 </select>-->
+	
+	<select id="login" resultType="com.br.law.vo.User">
+		SELECT * FROM tb_001 WHERE  user_id= #{user_id} AND user_pw=#{user_pw}
+	</select>
+	
+	<select id="example" resultType="com.br.law.vo.User">
+		SELECT * FROM tb_001 WHERE user_id = 'user' AND user_pw= 'user'
+	</select>
+	
+	<select id="userins" resultType="com.br.law.vo.User">
+		select * from tb_001 
+	</select>
+	
+
+</mapper>
+
