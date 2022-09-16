@@ -57,6 +57,7 @@ public class HomeController {
 		//이제 되겠지
 		
 		//우진 바보
+		//ddd
 		
 		return "home";
 	}
