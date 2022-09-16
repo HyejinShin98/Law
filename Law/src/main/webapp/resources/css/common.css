@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.btn-pointer {
+	cursor: pointer;
+}
+
+.msg {
+	font-size: small;
+	color: #FF2424;
+}

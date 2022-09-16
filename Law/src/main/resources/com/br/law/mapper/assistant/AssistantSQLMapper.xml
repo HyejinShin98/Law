@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.law.mapper.assistant.AssistantSQLMapper">
+		
+	<select id="ApplicantList" resultType="map">
+	
+		SELECT * FROM TB_001 t1,TB_002 t2,TB_005 t5, TB_006 t6, TB_007 t7, TB_008 t8,TB_011 t11
+		WHERE
+		t1.USER_PROPER_NUM = t5.USER_PROPER_NUM AND
+		t2.ANNOUNCE_PROPER_NUM = t5.ANNOUNCE_PROPER_NUM AND 
+		t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM AND
+		t5.APLCN_DTLS_PROPER_NUM = t6.APLCN_DTLS_PROPER_NUM AND 
+		t6.APLCN_DTLS_PROPER_NUM = t7.APLCN_DTLS_PROPER_NUM AND
+		t7.APLCN_DTLS_PROPER_NUM = t8.APLCN_DTLS_PROPER_NUM 
+		ORDER BY t5.APLCN_DTLS_PROPER_NUM DESC  
+		  		
+	</select>
+
+	
+	<select id="ApplicantDetails" resultType="map">
+	
+		SELECT * FROM TB_001 t1,TB_005 t5, TB_006 t6, TB_007 t7,TB_011 t11
+		WHERE
+		t5.APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num} and   
+		t1.USER_PROPER_NUM = t5.USER_PROPER_NUM AND
+		t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM AND
+		t5.APLCN_DTLS_PROPER_NUM = t6.APLCN_DTLS_PROPER_NUM AND 
+		t6.APLCN_DTLS_PROPER_NUM = t7.APLCN_DTLS_PROPER_NUM
+		ORDER BY t5.APLCN_DTLS_PROPER_NUM DESC 
+
+	</select>
+	
+	<select id="certificate" resultType="map">
+		SELECT * FROM TB_008 WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
+	
+	
+	<insert id="evaluationApplicants">
+		insert into TB_013 values(
+		TB_013_seq.nextval,
+		#{aplcn_dtls_proper_num},
+		#{admin_proper_num},
+		#{all_carrer_score},
+		#{jrsdc_carrer_score},
+		#{office_score},
+		#{personality_score},
+		#{interview_score},
+		#{certificate_score},
+		#{evaluate_score},
+		#{judge_recom_score},
+		#{review_etc}
+		)
+	</insert>
+	
+	<update id="accept">
+		UPDATE TB_005 SET APLCN_DTLS_STS = 'accept'WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+		AND
+		(SELECT sum(ALL_CARRER_SCORE+JRSDC_CARRER_SCORE+OFFICE_SCORE+PERSONALITY_SCORE+INTERVIEW_SCORE+CERTIFICATE_SCORE+EVALUATE_SCORE+JUDGE_RECOM_SCORE) FROM TB_013 t13
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}) >= 40
+		
+	</update>
+	
+	<update id="referral">
+		UPDATE TB_005 SET APLCN_DTLS_STS = 'referral' WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+		AND
+		(SELECT sum(ALL_CARRER_SCORE+JRSDC_CARRER_SCORE+OFFICE_SCORE+PERSONALITY_SCORE+INTERVIEW_SCORE+CERTIFICATE_SCORE+EVALUATE_SCORE+JUDGE_RECOM_SCORE) FROM TB_013 t13
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}) &lt; 40
+	</update>
+	
+	
+	
+</mapper>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.br.law.mapper.user.TrialUserMapper">
+
+	<!-- <select id="login" resultType="com.br.law.vo.User">
+		SELECT * FROM tb_001 WHERE user_id = #{user_id} AND user_password = #{user_password}
+	 </select>-->
+	
+	<select id="login" resultType="com.br.law.vo.Tb_001">
+		SELECT * FROM tb_001 WHERE  user_id= #{user_id} AND user_pw=#{user_pw}
+	</select>
+	
+	<select id="example" resultType="com.br.law.vo.Tb_001">
+		SELECT * FROM tb_001 WHERE user_id = 'user' AND user_pw= 'user'
+	</select>
+	
+	<select id="seluser" resultType="com.br.law.vo.Tb_001">
+		select * from tb_001 
+	</select>
+
+	<select id="selectMyInfo" resultType="com.br.law.vo.Tb_001">
+		select * from tb_001 where user_proper_num = #{user_proper_num}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="modifyMyInfo">
+		UPDATE TB_001 SET
+			USER_EMAIL = #{user_email, jdbcType=VARCHAR},
+			USER_PHONE = #{user_phone, jdbcType=VARCHAR},
+			USER_JOB = #{user_job, jdbcType=VARCHAR},
+			USER_AR = #{user_ar, jdbcType=VARCHAR},
+			USER_AR_ZONECODE = #{user_ar_zonecode, jdbcType=VARCHAR},
+			USER_AR_JIBUN = #{user_ar_jibun, jdbcType=VARCHAR},
+			USER_AR_DETAIL = #{user_ar_detail, jdbcType=VARCHAR},
+			USER_BANK = #{user_bank, jdbcType=VARCHAR},
+			USER_BANK_ACCOUNT = #{user_bank_account, jdbcType=VARCHAR},
+			USER_BANK_HOLDER = #{user_bank_holder, jdbcType=VARCHAR}
+		WHERE USER_PROPER_NUM = #{user_proper_num}
+	</update>
+
+	<!-- 비밀번호 변경 -->
+	<update id="modifyPassword">
+		UPDATE TB_001 SET
+			USER_PW = #{new_pw}
+		WHERE USER_PROPER_NUM = #{user_proper_num}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<update id="withdrawal">
+		UPDATE TB_001 SET
+			USER_DELETE_YN = 'Y'
+		WHERE USER_PROPER_NUM = #{user_proper_num}
+	</update>
+	
+	<!-- 나의 등재신청 내역 전체 간단정보 리스트 검색 -->
+	<select id="selectMyApplicationList" resultType="map">
+		SELECT ROWNUM, a.* FROM
+			(SELECT 
+				t1.USER_PROPER_NUM,
+				t2.ANNOUNCE_PROPER_NUM,
+				t5.APLCN_DTLS_PROPER_NUM,
+				t5.COURT_PROPER_NUM ,
+				t5.APLCN_DTLS_STS ,
+				t5.APLCN_DTLS_DATE ,
+				t10.TRIAL_FCLTT_DESCRIPTION ,
+				t11.COURT_NAME 
+			FROM tb_001 t1, TB_002 t2, tb_005 t5, tb_010 t10, tb_011 t11
+			WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+			AND t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM 
+			AND t2.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM 
+			AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM
+			AND t1.USER_PROPER_NUM = #{user_proper_num}
+			ORDER BY t5.APLCN_DTLS_DATE DESC) a
+	</select>
+	
+	<!-- 나의 등재신청 내역 상세보기 -->
+	<select id="selectMyApplication" resultType="map">
+		SELECT * FROM tb_001 t1, TB_002 t2, tb_005 t5, tb_010 t10, tb_011 t11
+		WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+		AND t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM 
+		AND t2.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM 
+		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM
+		AND t5.APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</select>
+	
+	
+</mapper>
+
