@@ -54,6 +54,10 @@ public class HomeController {
 		
 		// 220902 commit test 2
 		
+		//이제 되겠지
+		
+		//
+		
 		return "home";
 	}
 	
