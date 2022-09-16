@@ -18,7 +18,7 @@ import com.br.law.vo.Tb_001;
 @RequestMapping("/user/*")
 public class TrialUserController {
 
-	// git test
+	// git test 
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TrialUserController.class);
 	
 	@Autowired
