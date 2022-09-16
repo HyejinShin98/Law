@@ -33,31 +33,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		// git commit test
-		//안녕 44444
-		// git connit test 1
-		// woojin git commit test 
-		// git commit test 2
-		// git commit do 
-		// git commit 1128
+		// git commit test 22.09.16 
 		
-		// 히히 망할
-		
-		//안녕 1140
-		//안녕 1139
-		
-		//내 작업물 이거야
-		// 오늘 점심 뭐먹지
-		
-		
-		//안녕 3333
-		
-		// 220902 commit test 2
-		
-		//이제 되겠지
-		
-		//우진 바보
-		//ddd
 		
 		return "home";
 	}
