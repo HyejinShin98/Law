@@ -112,4 +112,8 @@ public class ApplicationRegistrationService {
 	public List<Tb_002> asd() {
 		return applicationRegistrationMapper.asd();
 	}
+	
+	public int registerOverLabCheck(String param) {
+		return  applicationRegistrationMapper.registerOverLabCheck(param);
+	}
 }

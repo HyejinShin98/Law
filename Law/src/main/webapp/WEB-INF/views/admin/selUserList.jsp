@@ -13,7 +13,7 @@
 	 <%--  --%>
 	 
 	 
-		<div class="col container-fluid" style="width : 1600px;">
+		<div class="col container-fluid" style="width : 850px;">
 	<div class="row">
 		<jsp:include page="../common/header.jsp"></jsp:include>
 		<div class="col-2">

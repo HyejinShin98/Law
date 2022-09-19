@@ -190,4 +190,8 @@ INSERT INTO tb_006 values(
 <select id="asd" resultType="com.br.law.vo.Tb_002">
 	select * from tb_002
 </select>
+
+<select id ="registerOverLabCheck" resultType="int">
+	select count(*) from tb_001 where user_id=#{user_id}
+</select>
 </mapper>

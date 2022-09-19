@@ -36,7 +36,7 @@ public class TrialAdminController {
 	@RequestMapping("logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:../admin/loginAdmin";
+		return "redirect:../user/main";
 	}
 	
 	@RequestMapping("boardAdmin")

@@ -52,6 +52,7 @@ public interface ApplicationRegistrationMapper {
 	
 	public List<Tb_002> asd();
 	
+	public int registerOverLabCheck(String param);
 
 	
 	
