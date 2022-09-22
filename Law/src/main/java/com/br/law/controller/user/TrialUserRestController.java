@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
+import com.br.law.vo.Tb_005;
 
 @RestController
 @RequestMapping("/user/*")
@@ -102,5 +103,57 @@ public class TrialUserRestController {
 		return map;
 	}
 	
+	@RequestMapping("modifyUserDetail")
+	public Map<String, Object> modifyUserDetail(Tb_001 user) {
+		//System.out.println("modifyUserDetail ~~~~~~~~~~~~~~~~~~~~~~~~ : " + user);
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			
+			if(trialMainService.modifyMyInfo(user) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+			} else {
+				
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+			
+			
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyUserDetail ERROR! user_proper_num : " + user.getUser_proper_num());
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	@RequestMapping("modifyTableFive")
+	public Map<String, Object> modifyTableFive(Tb_005 param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			
+			if(trialMainService.modifyTableFive(param) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+			} else {
+				
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+			
+			
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyTableFive ERROR! aplcn_dtls_proper_num : " + param.getAplcn_dtls_proper_num());
+			e.printStackTrace();
+		}
+		
+		
+		return map;
+	}
 	
 }

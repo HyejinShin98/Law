@@ -36,7 +36,6 @@ public class RestApplicationRegistrationAdminController {
 		map.put("aplcn_dtls_proper_num", aplcn_dtls_proper_num);
 		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(map);
 		
-		
 		map.put("map", param);
 		map.put("result", "success");
 		logger.info("맵확인 : " + param);

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <title>마이페이지</title>
 <script src="../resources/js/common.js"></script>
-<script type="text/javascript" src="../resources/js/userDetailList.js"></script>
+<script type="text/javascript" src="../resources/js/myApplication.js"></script>
 <script type="text/javascript">
 	var errMsg = '${errorMsg}';
 	var userNo = '${aplcn_dtls_proper_num}';
@@ -21,7 +21,7 @@
 		// 실행 시 가장 먼저 에러메세지 유무 확인
 		showErrMsg(errMsg);
 		
-		tableOneInfo();
+		userDetailWrite();
 		
 		// 버튼 클릭시 렌더링
 		var navClassName ='nav-btn';
@@ -34,7 +34,7 @@
 				
 				switch(addId){
 					case 'oneTab' : 
-						tableOneInfo();
+						userDetailWrite();
 						break;
 					case 'fiveTab' : 
 						tableFiveInfo();
@@ -65,10 +65,10 @@
 			<jsp:include page="./myPageNav.jsp"></jsp:include>
 		</div>
 		<div class="col-9 mt-4 px-5 mx-5">
-		
+	
 		<div class="row border-bottom border-2 border-secondary py-2">
 			<div class="col">
-				<span class="fw-bold fs-4 text-secondary">나의 등재신청 상세</span>
+				<span class="fw-bold fs-4 text-secondary">나의 등재신청 작성</span>
 			</div>	
 		</div>
 			
@@ -84,11 +84,6 @@
 			<div id="nav-info" class="col"></div>
 		</div> 
 		
-		<div class="row">
-			<div class="col text-end">
-				<button class="btn btn-primary" onclick="location.href='./myApplication'">목록</button>
-			</div>
-		</div>
 		
 		
 		</div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.law.mapper.user.TrialUserMapper;
 import com.br.law.vo.Tb_001;
+import com.br.law.vo.Tb_005;
 
 @Service
 public class TrialUserService {
@@ -83,6 +84,10 @@ public class TrialUserService {
 	
 	public Map<String, Object> getMyApplication(int aplcn_dtls_proper_num) {
 		return trialMainMapper.selectMyApplication(aplcn_dtls_proper_num);
+	}
+	
+	public int modifyTableFive(Tb_005 param) {
+		return trialMainMapper.modifyTableFive(param);
 	}
 	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드

@@ -70,10 +70,10 @@
 					  			<td>
 					  				<c:choose>
 					  					<c:when test="${item.aplcn_dtls_sts eq '작성중' or item.aplcn_dtls_sts eq '서류보완필요'}">
-					  						<button type="button" class="btn btn-warning btn-sm text-white" onclick="location.href='./myApplicationWrite'">작성</button>
+					  						<button type="button" class="btn btn-warning btn-sm text-white" onclick="location.href='./myApplicationWrite?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}'">작성</button>
 					  					</c:when>
 					  					<c:otherwise>
-					  						<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./myApplicationDetail?aplcn_num=${item.aplcn_dtls_proper_num}';">보기</button>
+					  						<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./myApplicationDetail?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}';">보기</button>
 					  					</c:otherwise>
 					  				</c:choose>
 					  			</td>
