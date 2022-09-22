@@ -33,4 +33,17 @@
 	</beans:bean>
 	
 	
+	<!-- 인터셉터 설정... 필터 개념... -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/userDetail"/>
+			<mapping path="/admin/**"/>
+		
+			<!-- <mapping path="/board/**"/>
+			<exclude-mapping path="/board/mainPage"/>
+			<exclude-mapping path="/board/readContentPage"/>-->
+			<beans:bean class="com.br.law.interceptor.SessionInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>	
+	
 </beans:beans>
