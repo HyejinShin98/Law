@@ -9,7 +9,7 @@
 </head>
 <body>
 공고내역 선택지
-
+<!--  -->
 	<c:forEach items="${asd}" var="data">
 		<a href="../user/announcementProcess?announce_proper_num=${data.announce_proper_num }">
 		  <h1>구간</h1>

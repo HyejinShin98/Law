@@ -38,7 +38,7 @@ for(let i=0; i<values.length; i++) {
 } */
 
 
-
+/*  */
 function checkListId(){
 	var check = document.getElementById("checkId").value;
 	console.log(check);

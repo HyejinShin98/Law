@@ -6,7 +6,7 @@
 <html>
 <head>
 <script type="text/javascript">
-
+/*  */
 function getUserDetail(){
 	document.getElementbyId
 	

@@ -22,7 +22,7 @@ public class ApplicationRegistrationService {
 
 	@Autowired
 	private ApplicationRegistrationMapper applicationRegistrationMapper;
-	
+	//
 	
 	public void userIns(Tb_001 param) {
 		applicationRegistrationMapper.userIns(param);

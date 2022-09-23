@@ -44,7 +44,7 @@
 			<beans:bean class="com.br.law.interceptor.SessionInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>	
-	
+	<!--  -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/selUserList"/>

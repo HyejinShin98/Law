@@ -19,7 +19,7 @@ public class RestApplicationRegistrationUserController {
 
 	@Autowired
 	ApplicationRegistrationService applicationRegistrationService;
-	
+	//
 	@RequestMapping("registerOverLabCheck")
 	public HashMap<String, Object> registerOverLabCheck(@RequestParam("user_id")String user_id){
 		System.out.println("aaa" +  user_id);

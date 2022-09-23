@@ -19,7 +19,7 @@ public class ApplicationRegistrationAdminService {
 
 	@Autowired
 	ApplicationRegistrationAdminMapper applicationRegistrationAdminMapper;
-	
+	//
 	public List<Map<String, Object>> selUserList(){
 		return applicationRegistrationAdminMapper.selUserList();
 	}

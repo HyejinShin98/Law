@@ -42,6 +42,7 @@ function cutOff(elementId){
 	var el =  document.getElementById(elementId);
 	el.readOnly= true;
 }
+/*  */
 /* 예 누를경우 경력내용 활성화 */
 function cutOn(elementId){
 	var el =  document.getElementById(elementId);

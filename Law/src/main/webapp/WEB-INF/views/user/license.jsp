@@ -5,7 +5,7 @@
 <html>
 <head>
 <script type="text/javascript">
-
+/*  */
 function getUserDetail(){
 
 	document.getElementById("s1").value='${eight.crtfc_type}'; 

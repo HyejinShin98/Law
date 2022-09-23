@@ -33,7 +33,7 @@ public class ApplicationRegistrationAdminController {
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ApplicationRegistrationAdminController.class);
 	
-
+//
 	
 	@RequestMapping("selUserList")
 	public String selUserList(Model model) {
