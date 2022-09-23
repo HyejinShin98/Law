@@ -22,64 +22,68 @@
 		<img src="../resources/img/sub_topimg.gif">
 		
 		<!-- 페이지 내용 -->
-		<div class="row">
+		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
-			<div class="col-3">
-				<jsp:include page="../common/localNav.jsp"></jsp:include>
-			</div>
+			<jsp:include page="../common/localNav.jsp"></jsp:include>
+			
 			<!-- 본문 -->
-			<div class="col">
-				<div class="row">
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe;font-weight: bold;">감정인등재공고</span>
+					</div>
+				</div>
+				<!-- 타이틀 -->
+				<div class="row mb-3">
 					<div class="col">
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col"><h3>재판조력자 등재공고 페이지</h3></div>
-						</div>
-						
-						<!-- 서치박스 -->
-						<div class="row mt-3">
-							<div class="col bg-light text-dark">서치박스</div>
-							<div class="col-4"></div>
-						</div>
-						
-						<!--게시글부분-->
-						<div class="row mt-3">
-							<div class="col-4 bg-primary p-2 text-dark bg-opacity-10 text-center">제목</div>
-							<div class="col-3 bg-primary p-2 text-dark bg-opacity-10 text-center">모집기간</div>
-							<div class="col-1 bg-primary p-2 text-dark bg-opacity-10 text-center">진행여부</div>
-							<div class="col-1"></div>
-						</div>
-						<div class="row mt-1">
-							<c:forEach items="${trialAssistantDataList}" var="trialAssistantDataList" >
-								<div class="col-4 mt-1 text-center" style="border-bottom: 1px solid #bcbcbc;"><a style="text-decoration: none" href="./trialAssistantRegisterReadBoard?announce_proper_num=${trialAssistantDataList.tb_002.announce_proper_num}">${trialAssistantDataList.tb_002.announce_title }</a></div>
-								<div class="col-3 mt-1 text-center" style="border-bottom: 1px solid #bcbcbc;"><fmt:formatDate value="${trialAssistantDataList.tb_002.announce_start_date}" pattern="yyyy-MM-dd"/>
-								~<fmt:formatDate value="${trialAssistantDataList.tb_002.announce_end_date}" pattern="yyyy-MM-dd"/>
-								</div>
-								<div class="col-1 mt-1 text-center" style="border-bottom: 1px solid #bcbcbc;">
-									<c:set var="now" value="<%=new java.util.Date()%>" />
-									<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyMMdd" /></c:set>
-									<c:set var="endDate"><fmt:formatDate value="${trialAssistantDataList.tb_002.announce_end_date}" pattern="yyMMdd" /></c:set>
-									<c:choose>
-										<c:when test="${endDate >= nowDate}">
-											진행
-										</c:when>
-										<c:otherwise>
-											기간만료							
-										</c:otherwise>
-									</c:choose>
-								</div>
-								<div class="col-1"></div>
-							</c:forEach>
-						</div>	
-						<!-- 게시믈 부분 끝 -->
-						<c:if test="${!empty admin}">
-						<div class="row mt-3">
-							<div class="col-7"></div>
-							<div class="col">
-								<a class="btn btn-primary" href="./trialAssistantRegisterWriteBoard">글쓰기</a>
-							</div>
-						</div>
-						</c:if>
+						<img src="../resources/img/Notice/h3_ogi410.gif">
+					</div>
+				</div>
+				<!-- 주의사항 -->
+				<div class="row m-3">
+					<div class="col card" style="font-size: 11px;">
+						<div><span style="color: #f36109;"> 모집기간 </span><span>을 꼭 확인해 주십시오.</span></div>
+					</div>
+				</div>
+				<!-- 테이블 -->
+				<div class="row m-3" style="font-size: 12px;">
+					<div class="col border-top border-2 border-secondary">
+						<table class="table">
+							<colgroup>
+								<col>
+								<col width="15%">
+								<col width="12%">
+							</colgroup>
+						  <thead class="text-center">
+						    <tr>
+						      <th scope="col">제목</th>
+						      <th scope="col">모집기간</th>
+						      <th scope="col">진행여부</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<c:forEach items="${trialAssistantDataList}" var="trialAssistantDataList" >
+						  		<tr>
+						  			<td><a style="text-decoration: none" href="./trialAssistantRegisterReadBoard?announce_proper_num=${trialAssistantDataList.tb_002.announce_proper_num}">${trialAssistantDataList.tb_002.announce_title }</a></td>
+						  			<td class="text-center"><fmt:formatDate value="${trialAssistantDataList.tb_002.announce_start_date}" pattern="yyyy.MM.dd"/>~<fmt:formatDate value="${trialAssistantDataList.tb_002.announce_end_date}" pattern="yyyy.MM.dd"/></td>
+						  			<td class="text-center">
+						  				<c:set var="now" value="<%=new java.util.Date()%>" />
+										<c:set var="nowDate"><fmt:formatDate value="${now}" pattern="yyMMdd" /></c:set>
+										<c:set var="endDate"><fmt:formatDate value="${trialAssistantDataList.tb_002.announce_end_date}" pattern="yyMMdd" /></c:set>
+										<c:choose>
+											<c:when test="${endDate >= nowDate}">
+												진행
+											</c:when>
+											<c:otherwise>
+												기간만료							
+											</c:otherwise>
+										</c:choose>
+						  			</td>
+						  		</tr>	
+						  	</c:forEach>
+						  </tbody>
+						</table>
 					</div>
 				</div>
 			</div>

@@ -15,52 +15,59 @@
 <title>공지사항</title>
 </head>
 <body>
-	<div class="col container-fluid" style="width: 1600px;">
-		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
-			<div class="col-2">
-				<jsp:include page="../common/localNav.jsp"></jsp:include>
-			</div>
-			<div class="col">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col"><h3>공지사항페이지</h3></div>
-				</div>
-				
-				<!-- 서치박스 -->
-				<div class="row mt-3">
-				
-					<div class="col bg-light text-dark">서치박스</div>
-					<div class="col-4"></div>
-				</div>
-				<!-- 서치박스 끝 -->
-				<!--게시글부분-->
-				<div class="row mt-3">
-					<div class="col-5 bg-primary p-2 text-dark bg-opacity-10 text-center">제목</div>
-					<div class="col-2 bg-primary p-2 text-dark bg-opacity-10 text-center">작성일자</div>
-					<div class="col-2"></div>
-				</div>
-				<div class="row mt-1">
-					<c:forEach items="${noticeDataList }" var="noticeDataList" >
-						<div class="col-5 mt-1 text-center" style="border-bottom: 1px solid #bcbcbc;"><a style="text-decoration: none" href="./noticeReadBoard?notice_proper_num=${noticeDataList.tb_003.notice_proper_num}">${noticeDataList.tb_003.notice_title }</a></div>
-						<div class="col-2 mt-1 text-center" style="border-bottom: 1px solid #bcbcbc;"><fmt:formatDate value="${noticeDataList.tb_003.notice_date }" pattern="yyyy-MM-dd"/></div>
-						<div class="col-2 mt-1"></div>
-						
-						
-					</c:forEach>
-				</div>	
-				<!-- 게시믈 부분 끝 -->
-				<c:if test="${!empty admin}">
-				<div class="row mt-3">
-					<div class="col-7"></div>
-					<div class="col">
-						<a class="btn btn-primary" href="./noticeWriteBoard">글쓰기</a>
+	<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+			<!-- 사이드 네비바 -->
+			<jsp:include page="../common/localNav.jsp"></jsp:include>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe;font-weight: bold;">공지사항</span>
 					</div>
 				</div>
-				</c:if>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+				<!-- 타이틀 -->
+				<div class="row mb-3">
+					<div class="col">
+						<img src="../resources/img/Notice/h3_ogi420.gif">
+					</div>
+				</div>
+				<!-- 테이블 -->
+				<div class="row m-3" style="font-size: 12px;">
+					<div class="col border-top border-2 border-secondary">
+						<table class="table">
+							<colgroup>
+								<col width="75%">
+								<col width="15%">
+							</colgroup>
+						  <thead class="text-center">
+						    <tr>
+						      <th scope="col">제목</th>
+						      <th scope="col">작성일</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<c:forEach items="${noticeDataList }" var="noticeDataList" >
+						  		<tr>
+						  			<td><a style="text-decoration: none" href="./noticeReadBoard?notice_proper_num=${noticeDataList.tb_003.notice_proper_num}">${noticeDataList.tb_003.notice_title }</a></td>
+						  			<td class="text-center"><fmt:formatDate value="${noticeDataList.tb_003.notice_date }" pattern="yyyy-MM-dd"/></td>
+						  		</tr>	
+						  	</c:forEach>
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 </body>
 <script
