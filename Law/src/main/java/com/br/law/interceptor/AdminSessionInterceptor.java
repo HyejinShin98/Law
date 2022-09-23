@@ -15,7 +15,7 @@ public class AdminSessionInterceptor implements HandlerInterceptor{
 		if(request.getSession().getAttribute("admin") == null) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert('관리자 로그인이 필요합니다 !'); location.href='../../law/admin/login'; </script> ");
+			out.print("<script>alert('관리자 로그인이 필요합니다 !'); location.href='../user/main' </script> ");
 			out.flush();
 			out.close();
 			
