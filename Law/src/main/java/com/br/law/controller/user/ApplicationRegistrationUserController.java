@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.br.law.service.member.NoticeService;
 import com.br.law.service.user.ApplicationRegistrationService;
 import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
@@ -38,13 +39,16 @@ public class ApplicationRegistrationUserController {
 	
 	@Autowired
 	private TrialUserService trialUserService; 
+	@Autowired
+	private NoticeService noticeService;
 	
 	@Autowired
 	private ApplicationRegistrationService applicationRegistrationService;
 	
 	
 	@RequestMapping("user/main")
-	public String main() {
+	public String main(Model model) {
+		model.addAttribute("noticeDataList", noticeService.getNoticeBoard());
 		return"user/main";
 	}
 	
