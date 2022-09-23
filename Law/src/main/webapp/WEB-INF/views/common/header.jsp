@@ -71,7 +71,7 @@
 						</a>
 					</div>
 					<div class="col">
-						<a href="../user/myApplication">
+						<a href="../user/myInfo">
 							<span>My Page</span>
 						</a>
 					</div>
