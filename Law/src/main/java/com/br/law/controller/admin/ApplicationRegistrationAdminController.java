@@ -64,51 +64,7 @@ public class ApplicationRegistrationAdminController {
 		return "admin/selUserListDetail";
 	}
 	
-	@RequestMapping("fileDownLoadProcess")
-	public String fileDownLoadProcess(HttpServletResponse response, 
-			@Param("aplcn_dtls_proper_num")int aplcn_dtls_proper_num,
-			@Param("aplcn_atch_file_proper_num")int aplcn_atch_file_proper_num) {
-		//유저 넘버
-		int fiveNo =  applicationRegistrationAdminService.userDetailPk(aplcn_dtls_proper_num);
-		//유저 정보
-		Tb_001 one = applicationRegistrationAdminService.getUserNameAndPk(fiveNo);
-		
-		Tb_009 nine = applicationRegistrationAdminService.noForUploadFileSel(aplcn_atch_file_proper_num);
-		
-
-		
-		String userNo = Integer.toString(fiveNo);
-		String userName = one.getUser_name();
-		String sum = userNo + userName;
-		System.out.println("확인방법?" + sum);
-		
-//		String uploadPath = Paths.get("C:", "uploadFiles", sum).toString();
-
-		
-		String filename = nine.getOriginal_file_name();
-		
-		File file = new File(nine.getFile_path());
-
-		try {
-			byte[] data = FileUtils.readFileToByteArray(file);
-			
-			response.setContentType("application/octet-stream");
-			response.setContentLength(data.length);
-			response.setHeader("Content-Transfer-Encoding", "binary");
-			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(filename, "UTF-8") + "\";");
-
-			response.getOutputStream().write(data);
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
-
-		} catch (IOException e) {
-			throw new RuntimeException("파일 다운로드에 실패하였습니다.");
-
-		} catch (Exception e) {
-			throw new RuntimeException("시스템에 문제가 발생하였습니다.");
-		}
-		return "admin/fileDownLoadProcess";
-	}
+	
 	
 	//불합격 상태 변경 프로세스
 	@RequestMapping("upFailProcess")
@@ -155,6 +111,55 @@ public class ApplicationRegistrationAdminController {
 	public String companionProcess(int aplcn_dtls_proper_num) {
 		applicationRegistrationAdminService.companionUp(aplcn_dtls_proper_num);
 		return "redirect:../admin/selUserList";
+	}
+	
+	@RequestMapping("fileDownLoadProcess")
+	public String fileDownLoadProcess(HttpServletResponse response, 
+			@Param("aplcn_dtls_proper_num")int aplcn_dtls_proper_num,
+			@Param("aplcn_atch_file_proper_num")int aplcn_atch_file_proper_num) {
+		Map<String, Object> map = new HashMap<>();
+		//유저 넘버
+		int fiveNo =  applicationRegistrationAdminService.userDetailPk(aplcn_dtls_proper_num);
+		//유저 정보
+		Tb_001 one = applicationRegistrationAdminService.getUserNameAndPk(fiveNo);
+		
+		Tb_009 nine = applicationRegistrationAdminService.noForUploadFileSel(aplcn_atch_file_proper_num);
+		
+
+		
+		String userNo = Integer.toString(fiveNo);
+		String userName = one.getUser_name();
+		String sum = userNo + userName;
+		System.out.println("확인방법?" + sum);
+		
+//		String uploadPath = Paths.get("C:", "uploadFiles", sum).toString();
+
+		
+		String filename = nine.getOriginal_file_name();
+		
+		File file = new File(nine.getFile_path());
+
+		try {
+			byte[] data = FileUtils.readFileToByteArray(file);
+			
+			response.setContentType("application/octet-stream");
+			response.setContentLength(data.length);
+			response.setHeader("Content-Transfer-Encoding", "binary");
+			response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(filename, "UTF-8") + "\";");
+
+			response.getOutputStream().write(data);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+
+		} catch (IOException e) {
+			throw new RuntimeException("파일 다운로드에 실패하였습니다.");
+
+		} catch (Exception e) {
+			throw new RuntimeException("시스템에 문제가 발생하였습니다.");
+		}
+		map.put("result", "success");
+		
+		return "admin/fileDownLoadProcess";
 	}
 	
 	

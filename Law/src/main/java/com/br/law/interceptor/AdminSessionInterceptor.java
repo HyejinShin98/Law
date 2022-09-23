@@ -7,18 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-public class SessionInterceptor implements HandlerInterceptor{
+public class AdminSessionInterceptor implements HandlerInterceptor{
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception /*ModelAndViewDefiningException*/{
 		
 		System.out.println("인터셉터 확인용");
-		if(request.getSession().getAttribute("user") == null) {
-//			ModelAndView mv = new ModelAndView();
-//			mv.setViewName("user/main");//이게 null일 경우 이페이지로 이동
-//			throw new ModelAndViewDefiningException(mv);
+		if(request.getSession().getAttribute("admin") == null) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert('로그인이 필요합니다 !'); location.href='../../law/user/login'; </script> ");
+			out.print("<script>alert('관리자 로그인이 필요합니다 !'); location.href='../../law/admin/login'; </script> ");
 			out.flush();
 			out.close();
 			

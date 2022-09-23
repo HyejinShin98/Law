@@ -113,7 +113,16 @@ public class ApplicationRegistrationService {
 		return applicationRegistrationMapper.asd();
 	}
 	
-	public int registerOverLabCheck(String param) {
-		return  applicationRegistrationMapper.registerOverLabCheck(param);
+	public boolean registerOverLabCheck(String param) {
+		System.out.println("param" + param);
+		if(applicationRegistrationMapper.registerOverLabCheck(param) > 0 ) {
+			//중복 아이디가 존재함
+			return true;
+		}else {
+			//중복 아이디가 없음
+			return false;
+		}
+		
 	}
+	
 }

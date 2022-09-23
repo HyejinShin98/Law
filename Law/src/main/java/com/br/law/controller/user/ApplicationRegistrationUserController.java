@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -31,6 +33,9 @@ public class ApplicationRegistrationUserController {
 
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TrialUserController.class);
 	
+	
+
+	
 	@Autowired
 	private TrialUserService trialUserService; 
 	
@@ -49,7 +54,7 @@ public class ApplicationRegistrationUserController {
 	}
 	//회원가입
 	@RequestMapping("applicationRegistration")
-	public String applicationRegistration() {	
+	public String applicationRegistration(HttpSession session, Model model){	
 		return"user/applicationRegistration";
 	}
 	
@@ -67,6 +72,7 @@ public class ApplicationRegistrationUserController {
 		model.addAttribute("asd", list);
 		System.out.println("어논 : " + model);
 		
+		
 		return "user/announcement";
 	}
 	
@@ -76,13 +82,13 @@ public class ApplicationRegistrationUserController {
 		System.out.println(((Tb_002)session.getAttribute("two")).getAnnounce_proper_num());
 		return "redirect:../user/userDetail";
 	}
-	
-	
-	@RequestMapping("userDetail")
-	public String userDetail(Model model, HttpSession session, Tb_005 param) {
-		int announce_proper_num = ((Tb_002)session.getAttribute("two")).getAnnounce_proper_num();
-		int user_proper_num = ((Tb_001)session.getAttribute("user")).getUser_proper_num();
 		
+	@RequestMapping("userDetail")
+	public String userDetail(Model model, HttpSession session, Tb_005 param, HttpServletRequest request){
+		int announce_proper_num = ((Tb_002)session.getAttribute("two")).getAnnounce_proper_num();
+		Tb_001 user = (Tb_001)session.getAttribute("user");
+		
+		int user_proper_num = user.getUser_proper_num();
 		//카운트
 		int alpa = applicationRegistrationService.userDetailCount(user_proper_num, announce_proper_num);
 		int beta = applicationRegistrationService.duplicate(announce_proper_num, user_proper_num);
@@ -106,6 +112,8 @@ public class ApplicationRegistrationUserController {
 		}
 		return "user/userDetail";
 	}
+	
+	
 	
 	
 	@RequestMapping("userDetailInsProcess")
@@ -281,7 +289,7 @@ public class ApplicationRegistrationUserController {
 			if(!userFolder.exists()) {
 				userFolder.mkdirs();
 			}
-			
+			//개별 insert
 			try {
 				file.transferTo(new File(path + userNo + userName + "/" + nameFile));
 				System.out.println("테스트 : " + path + userNo + userName + nameFile);
@@ -330,6 +338,7 @@ public class ApplicationRegistrationUserController {
 //		return "user/example";
 //	}
 	
+		
 	
 	
 }

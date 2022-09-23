@@ -50,7 +50,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../user/login">공인인증서 등 로그인</a></li>
-                        <li><a class="dropdown-item" href="../user/announcement">등재신청</a></li>
+                        <li><a class="dropdown-item" href="../member/trialAssistantRegisterBoard">등재신청</a></li>
                         <li><a class="dropdown-item" href="../user/applicationRegistration">기본정보 회원가입</a></li>
                     </ul>
                   </li>              

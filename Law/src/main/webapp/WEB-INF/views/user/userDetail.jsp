@@ -4,10 +4,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
+window.addEventListener("DOMContentLoaded", function() {
+	// 실행 시 가장 먼저 에러메세지 유무 확인
+	/* loginCheck(); */
+	
+});
 
+var isLogined = true;
+
+/* function loginCheck(){
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			if(jsonObj.data == false){
+					alert("로그인을 해주세요");
+					window.location.href="../user/login";
+					
+					isLogined = false;
+					
+					return false;
+				}
+			}
+		}
+	
+	
+xhr.open("get" , "isLogin" , false); //리퀘스트 세팅..
+//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+xhr.send(); //AJAX로 리퀘스트함..		
+} */
+
+/* 아니오 누를경우 경력내용 비활성화 */
+function cutOff(elementId){
+	var el =  document.getElementById(elementId);
+	el.readOnly= true;
+}
+/* 예 누를경우 경력내용 활성화 */
+function cutOn(elementId){
+	var el =  document.getElementById(elementId);
+	el.readOnly= false;
+}
+/* 임시저장 */
 function getUserDetail(){
-	document.getElementById("s2").value=${five.court_proper_num}; 
+	document.getElementById("s2").value='${five.court_proper_num}'; 
 	
 	document.getElementById("s4").value='${five.ligtn_case_carer_etc}'; 
 	
@@ -19,23 +61,36 @@ function getUserDetail(){
 	
 	if('${five.ligtn_case_carer_yn}' == 'y'){
 		document.getElementById("s31").checked = true;
+		document.getElementById("s4").readOnly = false;
 	}else{
 		document.getElementById("s32").checked = true;
+		document.getElementById("s4").readOnly = true;
 	}
 	if('${five.insrn_indst_carer_yn}' == 'y'){
 		document.getElementById("s51").checked = true;
+		document.getElementById("s6").readOnly = false;
 	}else{
 		document.getElementById("s52").checked = true;
+		document.getElementById("s6").readOnly = true;
 	}
 	if('${five.criminal_penalty_carer_yn}' == 'y'){
 		document.getElementById("s71").checked = true;
+		document.getElementById("s8").readOnly = false;
 	}else{
 		document.getElementById("s72").checked = true;
+		document.getElementById("s8").readOnly = true;
 	}
-	
-
 }
- 
+function didUseBoard(eleId1, eleId2){
+		var yes = document.getElementById(eleId1);
+		var no = document.getElementById(eleId2);
+		if(yes == null || no == null){
+			alert("예, 아니오를 입력해 주세요");
+		}
+}
+
+
+
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -163,23 +218,25 @@ function getUserDetail(){
                 <tr>
                     <th colspan="4" scope="col" >소송사건 당사자 경력</th>
                     <td scope="col">
-                    <input type="radio" id="s31" name="ligtn_case_carer_yn" value='y'> 예 
-                    <input type="radio"  id="s32" name="ligtn_case_carer_yn" value='n'> 아니오 
+                    <input type="radio" id="s31" onclick="cutOn('s4');" name="ligtn_case_carer_yn" value='y'> 예 
+                    <input type="radio" id="s32" onclick="cutOff('s4');" name="ligtn_case_carer_yn" value='n'> 아니오 
                     </td>
                     <td scope="col"></td>
-                    <td scope="col"><textarea id="s4" name="ligtn_case_carer_etc" cols="80"></textarea></td>
+                    <td scope="col"><textarea id="s4" onclick="didUseBoard('s31', 's32')" name="ligtn_case_carer_etc" cols="80" ></textarea></td>
                 </tr>
                 <tr>
                     <th colspan="4" scope="col" >보험업계 자문 경력</th>
-                    <td scope="col"><input type="radio" id="s51" name="insrn_indst_carer_yn" value='y'> 예 <input type="radio"  id="s52" name="insrn_indst_carer_yn" value='n'> 아니오 </td>
+                    <td scope="col"><input type="radio" id="s51" onclick="cutOn('s6');"  name="insrn_indst_carer_yn" value='y'> 예 
+                    	<input type="radio" onclick="cutOff('s6');" id="s52" name="insrn_indst_carer_yn" value='n'> 아니오 </td>
                     <td scope="col"></td>
-                    <td scope="col"><textarea id="s6" name="insrn_indst_carer_etc"   cols="80"></textarea></td>
+                    <td scope="col"><textarea id="s6" onclick="didUseBoard('s51', 's52')" name="insrn_indst_carer_etc"   cols="80"></textarea></td>
                 </tr>
                 <tr>
                     <th colspan="4" scope="col" >형사처벌 받은 경력</th>
-                    <td scope="col"><input type="radio" id="s71" name="criminal_penalty_carer_yn" value='y'> 예 <input type="radio" id="s72" name="criminal_penalty_carer_yn" value='n'> 아니오 </td>
+                    <td scope="col"><input type="radio" id="s71" onclick="cutOn('s8');" name="criminal_penalty_carer_yn" value='y'> 예
+                     <input type="radio" id="s72" onclick="cutOff('s8', );" name="criminal_penalty_carer_yn" value='n'> 아니오 </td>
                     <td scope="col"></td>
-                    <td scope="col"><textarea id="s8" name="criminal_penalty_carer_etc"   cols="80"></textarea></td>
+                    <td scope="col"><textarea id="s8" onclick="didUseBoard('s71', 's72')" name="criminal_penalty_carer_etc" cols="80"></textarea></td>
                 </tr>
                 </tbody>
             </table>
