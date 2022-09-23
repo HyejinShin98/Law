@@ -132,7 +132,7 @@ public class TrialUserRestController {
 	@RequestMapping("modifyTableFive")
 	public Map<String, Object> modifyTableFive(Tb_005 param) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		System.out.println("modifyTableFive param : " + param);
 		try {
 			
 			if(trialMainService.modifyTableFive(param) > 0) {

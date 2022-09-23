@@ -19,17 +19,19 @@ function changeBtn(addId, navClassName){
 	addBtn.classList.add("fw-bold");
 }
 
+// 유무 체크 시 disabled 처리함수
 function disabledToggle(flag, id) {
 	if(flag == 'y') { // 유 체크
 		document.getElementById(id).disabled = false;	
 	} else if(flag == 'n') { // 무 체크
-		document.getElementById(id).disabled = true;	
+		document.getElementById(id).disabled = true;
+		document.getElementById(id).value = "";	
 	}
 }
 
 
 
-
+// 작성완료 버튼 시 실행함수
 function application() {
 	var msg = "작성 완료하시겠습니까? 이후 수정이 불가합니다.";
 	if(confirm(msg)) {
@@ -40,7 +42,7 @@ function application() {
 	
 }
 
-// 입력값 공백체크
+// 입력값 공백체크 함수
 function chkValEmpty() {
 	var result = true;
 	var infoBox = document.getElementById("nav-info");
@@ -57,7 +59,6 @@ function chkValEmpty() {
 			}
 		}
 	}
-	
 	return result;
 }
 
@@ -66,8 +67,8 @@ function tableOnefrmSubmit() {
 	if(!chkValEmpty()) {
 		return;
 	} else {
-		var frmData = $("#tableOneFrm").serialize();
 		
+		var frmData = $("#tableOneFrm").serialize();
 		$.ajax({
 			url: "./modifyUserDetail",
 			method: "post",
@@ -84,11 +85,14 @@ function tableOnefrmSubmit() {
 
 // 신청정보 submit
 function tableFiveFrmSubmit() {
-var frmData = $("#tableFiveFrm").serialize();
-console.log(frmData);
 	if(!chkValEmpty()) {
 		return;
 	} else {
+	
+		document.getElementById("ligtn_case_carer_etc").disabled = false;
+		document.getElementById("insrn_indst_carer_etc").disabled = false;
+		document.getElementById("criminal_penalty_carer_etc").disabled = false;
+		
 		var frmData = $("#tableFiveFrm").serialize();
 		$.ajax({
 			url: "./modifyTableFive",
@@ -1035,7 +1039,7 @@ function tableFiveInfo(){
                 var properNum = document.createElement("input");
                 properNum.type = "hidden";
                 properNum.value = jsonObj.map.APLCN_DTLS_PROPER_NUM;
-                properNum.name = "aplcn_atls_proper_num";
+                properNum.name = "aplcn_dtls_proper_num";
                 tableFiveFrm.appendChild(properNum);
                 
                 commentListBox.appendChild(rowBox);

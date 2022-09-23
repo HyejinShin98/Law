@@ -245,7 +245,7 @@ function tableOneInfo(){
                 
             }
     }
-        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo + "&aplcn_dtls_sts=examination"); //리퀘스트 세팅..
 		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..		
 }

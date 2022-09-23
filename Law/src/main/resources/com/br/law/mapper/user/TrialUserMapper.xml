@@ -115,18 +115,12 @@
 	<!-- 등재신청 신청상세 수정 -->
 	<update id="modifyTableFive">
 		UPDATE TB_005 SET
-			LIGTN_CASE_CARER_YN = #{ligtn_case_carer_yn},
-			INSRN_INDST_CARER_YN = #{insrn_indst_carer_yn},
-			CRIMINAL_PENALTY_CARER_YN = #{criminal_penalty_carer_yn},
-			<if test="ligtn_case_carer_etc != null and ligtn_case_carer_etc != ''">
-				LIGTN_CASE_CARER_ETC = #{ligtn_case_carer_etc},
-			</if>
-			<if test="insrn_indst_carer_etc != null and insrn_indst_carer_etc != ''">
-				INSRN_INDST_CARER_ETC = #{insrn_indst_carer_etc},
-			</if>
-			<if test="criminal_penalty_carer_etc != null and criminal_penalty_carer_etc != ''">
-				CRIMINAL_PENALTY_CARER_ETC = #{criminal_penalty_carer_etc}
-			</if>
+			LIGTN_CASE_CARER_YN = #{ligtn_case_carer_yn}
+			, INSRN_INDST_CARER_YN = #{insrn_indst_carer_yn}
+			, CRIMINAL_PENALTY_CARER_YN = #{criminal_penalty_carer_yn}
+			, LIGTN_CASE_CARER_ETC = #{ligtn_case_carer_etc}
+			, INSRN_INDST_CARER_ETC = #{insrn_indst_carer_etc}
+			, CRIMINAL_PENALTY_CARER_ETC = #{criminal_penalty_carer_etc}
 		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
 	</update>
 	

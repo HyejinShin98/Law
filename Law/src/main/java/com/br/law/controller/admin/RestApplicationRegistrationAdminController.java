@@ -30,10 +30,11 @@ public class RestApplicationRegistrationAdminController {
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RestApplicationRegistrationAdminController.class);
 	
 	@RequestMapping("selTableOne")
-	public Map<String, Object> selTableOne(int aplcn_dtls_proper_num) {
+	public Map<String, Object> selTableOne(int aplcn_dtls_proper_num, String aplcn_dtls_sts) {
 		Map<String, Object> map = new HashMap<String, Object>();
 	
 		map.put("aplcn_dtls_proper_num", aplcn_dtls_proper_num);
+		map.put("aplcn_dtls_sts", aplcn_dtls_sts);
 		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(map);
 		
 		map.put("map", param);

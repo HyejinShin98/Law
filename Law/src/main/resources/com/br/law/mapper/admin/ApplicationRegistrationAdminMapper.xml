@@ -25,8 +25,10 @@
 	AND t5.APLCN_DTLS_PROPER_NUM = t8.APLCN_DTLS_PROPER_NUM 
 	and t2.trial_fcltt_proper_num  = t10.trial_fcltt_proper_num 
 	and t5.court_proper_num  = t11.court_proper_num 
-	and t5.aplcn_dtls_sts = 'examination'
-	<if test="aplcn_dtls_proper_num != null">
+	<if test="aplcn_dtls_sts != null and aplcn_dtls_sts != ''">
+		and t5.aplcn_dtls_sts = #{aplcn_dtls_sts}
+	</if>
+	<if test="aplcn_dtls_proper_num != null and aplcn_dtls_proper_num != ''">
 		and t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</if>
 </select>
