@@ -3,6 +3,7 @@ package com.br.law.controller.user;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,9 @@ public class TrialUserController {
 	}
 	
 	@RequestMapping("loginProcess")
-	public String loginProcess(HttpSession session, @RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+	public String loginProcess(HttpSession session, HttpServletRequest request,
+			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+		
 		Tb_001 user = new Tb_001();
 		user.setUser_id(id);
 		user.setUser_pw(pw);
@@ -41,7 +44,7 @@ public class TrialUserController {
 			return"user/login";
 		}else {
 			session.setAttribute("user", user);
-			return "redirect:../user/main";
+			return "redirect:" + request.getHeader("referer");
 		}
 	}
 	

@@ -28,35 +28,7 @@
 
 
 </style>
-<script>
-
-    //로그인 Chk
-    function chkID(){
-    	var formData = new FormData(document.getElementById("chkID"));
-    	var formBox = document.getElementById("chkID");
-    	
-    	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-        xhr.onreadystatechange = function () {
-			if(xhr.readyState == 4 && xhr.status == 200){
-                var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-                
-                if(jsonObj.admin){
-                	formBox.setAttribute("action","../admin/loginProcess");
-                	console.log(formBox);
-                }else{
-                	formBox.setAttribute("action","../user/loginProcess");
-                	console.log(formBox);
-                }
-                formBox.submit();
-            }
-        }
-        
-        xhr.open("post" , "../member/chkID"); //리퀘스트 세팅..
-//         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post 
-        xhr.send(formData); //AJAX로 리퀘스트함..
-        
-    }
-    
+<script>   
     
     //답정너 - 가져가 붙이면됨..
     function templeteAjax(){

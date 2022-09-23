@@ -1,5 +1,6 @@
 package com.br.law.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,9 @@ public class TrialAdminController {
 	}
 	
 	@RequestMapping("loginProcess")
-	public String loginProcess(HttpSession session,@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+	public String loginProcess(HttpSession session, HttpServletRequest request,
+			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+		
 		Tb_015 param = new Tb_015();
 		param.setAdmin_id(id);
 		param.setAdmin_pw(pw);
@@ -35,7 +38,7 @@ public class TrialAdminController {
 			return"admin/loginAdmin";
 		}else {
 			session.setAttribute("admin", admin);
-			return "redirect:../user/main";
+			return "redirect:" + request.getHeader("referer");
 		}
 	}
 	@RequestMapping("logout")
