@@ -1,122 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-</head>
-<body>
- <!--  -->
-        
-        <nav class="navbar navbar-expand-lg bg-light pb-5">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="../user/main"><img src="../resources/img/캡처4.PNG"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     재판조력자로그인
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../user/login">로그인</a></li>
-                        <li><a class="dropdown-item" href="../user/logout">로그아웃</a></li>
-                        <li><a class="dropdown-item" href="#">회원가입</a></li>
-                        <li><a class="dropdown-item" href="#">아이디찾기</a></li>
-                        <li><a class="dropdown-item" href="#">비밀번호찾기</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     관리자로그인
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/exampleProcess">로그인</a></li>
-                        <li><a class="dropdown-item" href="../admin/logout">로그아웃</a></li>
-                        <li><a class="dropdown-item" href="#">회원가입</a></li>
-                        <li><a class="dropdown-item" href="#">아이디찾기</a></li>
-                        <li><a class="dropdown-item" href="#">비밀번호찾기</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     재판조력자 등재신청
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../user/login">공인인증서 등 로그인</a></li>
-                        <li><a class="dropdown-item" href="../member/trialAssistantRegisterBoard">등재신청</a></li>
-                        <li><a class="dropdown-item" href="../user/applicationRegistration">기본정보 회원가입</a></li>
-                    </ul>
-                  </li>              
-                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     마이페이지
-                    </a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="../user/myApplication">나의 등재신청 내역</a></li>
-                    <li><a class="dropdown-item" href="../user/myActive">나의 활동 내역</a></li>
-                    <li><a class="dropdown-item" href="../user/identityVerificate">내정보</a></li>
-                    <li><a class="dropdown-item" href="../user/myPause">중자/해제신청 관리</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     게시글관리
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="../member/trialAssistantRegisterBoard">재판조력자 등재공고</a></li>
-                        <li><a class="dropdown-item" href="#">재판조력자 제도안내</a></li>
-                        <li><a class="dropdown-item" href="#">제판조력자 신청절차안내</a></li>
-                        <li><a class="dropdown-item" href="../member/noticeBoard">공지사항</a></li>
-                        <li><a class="dropdown-item" href="#">FAQ</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     현황조회(관리자)
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/statusAdmin">등재신청자 조회</a></li>
-                        <li><a class="dropdown-item" href="#">보완요청자 조회</a></li>
-                        <li><a class="dropdown-item" href="../admin/selUserList">승인/등록자 조회</a></li>
-                        <li><a class="dropdown-item" href="#">명단 삭제자 조회</a></li>
-                        <li><a class="dropdown-item" href="#">부적격자 조회</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     게시글관리(관리자)
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../admin/boardAdmin">공지사항</a></li>
-                        <li><a class="dropdown-item" href="#">FAQ</a></li>
-                        <li><a class="dropdown-item" href="#">신청절차</a></li>
-                        <li><a class="dropdown-item" href="#">등재공고</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        재판조력자관리(관리자)
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="../admin/managementEvaluationtable">평정 기준표 관리</a></li>
-                      <li><a class="dropdown-item" href="../admin/searchCondition">조건별 조회</a></li>
-                      <li><a class="dropdown-item" href="../admin/applicantManagement">신청자 조회</a></li>
-                      <li><a class="dropdown-item" href="../admin/evaluationApplicantsList">신청자 심사</a></li>
-                      <li><a class="dropdown-item" href="#">평정 기준표 심사</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-     
-</body>
-</html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div id="header" class="row align-items-center" style="height: 90px;">
+	<div class="col-auto">
+		<a class="navbar-brand" href="../user/main"><img src="../resources/img/Main/로고.png"></a>
+	</div> 
+	<div class="col">
+		<!-- 홈, 로그인 -->	
+		<div class="row text-center justify-content-end my-2" style="font-size: 11px;">
+			<div class="col-3">
+				<div class="row">
+					<div class="col-2">
+						<a href="../user/main">
+							<span>홈</span>
+						</a>
+					</div>
+					<c:choose>
+						<c:when test="${!empty admin || !empty user}">
+							<div class="col">
+								<a href="../user/logout">
+									<span>로그아웃</span>
+								</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="col">
+								<a data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+									<span>로그인</span>
+								</a>
+							</div>
+							<div class="col">
+								<a href="#">
+									<span>회원가입</span>
+								</a>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
+		</div>
+		<!-- 메뉴 -->
+		<div class="row text-center align-items-center my-2" style="font-size: 15px;">
+			<c:choose>
+				<c:when test="${!empty admin}">
+					<div class="col">
+						<a href="#">
+							<span>현황조회</span>
+						</a>
+					</div>
+					<div class="col">
+						<a href="../admin/managementEvaluationtable">
+							<span>재판조력자관리</span>
+						</a>
+					</div>
+					<div class="col">
+						<a href="../member/trialAssistantRegisterBoard">
+							<span>게시글관리</span>
+						</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="col">
+						<a href="../member/trialAssistantRegisterBoard">
+							<span>감정인등재신청</span>
+						</a>
+					</div>
+					<div class="col">
+						<a href="#">
+							<span>감정인신청안내</span>
+						</a>
+					</div>
+					<div class="col">
+						<a href="../user/myApplication">
+							<span>My Page</span>
+						</a>
+					</div>
+					<div class="col">
+						<a href="../member/noticeBoard">
+							<span>공지사항</span>
+						</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<!-- 전체메뉴보기 -->	
+			<div class="col">
+				<a data-bs-toggle="collapse" href="#collapseAllMeru" role="button" aria-expanded="false" aria-controls="collapseAllMeru">
+		        	전체메뉴보기
+		      	</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="collapseAllMeru" class="collapse">
+	<div>
+		일단 확인용
+	</div>
+</div>
+<!-- 로그인 Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<!-- 로그인 박스 -->
+		<div class="row text-center pt-3">
+			<div class="col align-self-center p-3">
+				<!-- 아이디 비밀번호 입력 -->
+				<form id="chkID" method="post">
+					<div class="row">
+						<div class = "col-1 pe-3 fs-3">
+							<i class="bi bi-person-circle"></i>
+						</div>
+						<div class="col ps-3 form-control-lg d-grid">
+							<input name="inputId" type="text" placeholder="아이디를 입력해주세요.">
+						</div>
+					</div>
+					<div class="row">
+						<div class = "col-1 pe-3 fs-3">
+							<i class="bi bi-file-lock"></i>
+						</div>
+						<div class="col ps-3 form-control-lg d-grid">
+							<input name="inputPw" type="password" placeholder="비밀번호를 입력해주세요.">
+						</div>
+					</div>
+					<!-- 로그인 버튼 -->
+					<div class="row py-2">
+						<div class="col d-grid">
+							<a type="button" class = "btn btn-primary" onclick="chkID()">로그인</a>
+						</div>
+					</div>
+				</form>
+				<!-- 회원가입 & 아이디 비밀번호 찾기 -->
+				<div class="row rink_box py-2 text-center text-decoration-none">
+					<div class="col">
+						<a class = "text-secondary" href="./#"> 아이디 찾기 </a>
+					</div>
+					<div class="col">
+						<a class = "text-secondary" href="./#"> 비밀번호 찾기 </a>
+					</div>
+					<div class="col">
+						<a class = "text-secondary" href="./registerPage"> 회원가입 </a>
+					</div>
+				</div>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+   
    

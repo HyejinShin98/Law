@@ -16,8 +16,8 @@
 </head>
 <body>
 	<div class="col container-fluid" style="width: 1600px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
 		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
 			<div class="col-2">
 				<jsp:include page="../common/localNav.jsp"></jsp:include>
 			</div>

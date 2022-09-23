@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+#header a {
+	color: rgba(38, 47, 59); 
+	text-decoration:none;
+}
+
 .btn-pointer {
 	cursor: pointer;
 }

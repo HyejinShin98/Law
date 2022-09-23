@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
@@ -30,8 +31,12 @@ public class TrialUserController {
 	}
 	
 	@RequestMapping("loginProcess")
-	public String loginProcess(HttpSession session, Tb_001 param) {
-		Tb_001 user = trialMainService.login(param);
+	public String loginProcess(HttpSession session, @RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+		Tb_001 user = new Tb_001();
+		user.setUser_id(id);
+		user.setUser_pw(pw);
+		user = trialMainService.login(user);
+		
 		if(user == null) {
 			return"user/login";
 		}else {
