@@ -27,16 +27,36 @@
 	<!-- 회원정보 수정 -->
 	<update id="modifyMyInfo">
 		UPDATE TB_001 SET
-			USER_EMAIL = #{user_email, jdbcType=VARCHAR},
-			USER_PHONE = #{user_phone, jdbcType=VARCHAR},
-			USER_JOB = #{user_job, jdbcType=VARCHAR},
-			USER_AR = #{user_ar, jdbcType=VARCHAR},
-			USER_AR_ZONECODE = #{user_ar_zonecode, jdbcType=VARCHAR},
-			USER_AR_JIBUN = #{user_ar_jibun, jdbcType=VARCHAR},
-			USER_AR_DETAIL = #{user_ar_detail, jdbcType=VARCHAR},
-			USER_BANK = #{user_bank, jdbcType=VARCHAR},
-			USER_BANK_ACCOUNT = #{user_bank_account, jdbcType=VARCHAR},
-			USER_BANK_HOLDER = #{user_bank_holder, jdbcType=VARCHAR}
+			<if test="user_email != null and user_email != ''">
+				USER_EMAIL = #{user_email, jdbcType=VARCHAR},
+			</if>
+			<if test="user_phone != null and user_email != ''">
+				USER_PHONE = #{user_phone, jdbcType=VARCHAR},
+			</if>
+			<if test="user_job != null and user_job != ''">
+				USER_JOB = #{user_job, jdbcType=VARCHAR},
+			</if>
+			<if test="user_ar != null and user_ar != ''">
+				USER_AR = #{user_ar, jdbcType=VARCHAR},
+			</if>
+			<if test="user_ar_zonecode != null and user_ar_zonecode != ''">
+				USER_AR_ZONECODE = #{user_ar_zonecode, jdbcType=VARCHAR},
+			</if>
+			<if test="user_ar_jibun != null and user_ar_jibun != ''">
+				USER_AR_JIBUN = #{user_ar_jibun, jdbcType=VARCHAR},
+			</if>
+			<if test="user_ar_detail != null and user_ar_detail != ''">
+				USER_AR_DETAIL = #{user_ar_detail, jdbcType=VARCHAR},
+			</if>
+			<if test="user_bank != null and user_bank != ''">
+				USER_BANK = #{user_bank, jdbcType=VARCHAR},
+			</if>
+			<if test="user_bank_account != null and user_bank_account != ''">
+				USER_BANK_ACCOUNT = #{user_bank_account, jdbcType=VARCHAR},
+			</if>
+			<if test="user_bank_holder != null and user_bank_holder != ''">
+				USER_BANK_HOLDER = #{user_bank_holder, jdbcType=VARCHAR}
+			</if>
 		WHERE USER_PROPER_NUM = #{user_proper_num}
 	</update>
 
@@ -84,6 +104,33 @@
 		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM
 		AND t5.APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
 	</select>
+	
+	<!-- 등재신청 상태 변경 -->
+	<update id="updateApplicationStatus">
+		UPDATE TB_005 SET
+			APLCN_DTLS_STS = #{aplcn_dtls_sts}
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<!-- 등재신청 신청상세 수정 -->
+	<update id="modifyTableFive">
+		UPDATE TB_005 SET
+			LIGTN_CASE_CARER_YN = #{ligtn_case_carer_yn},
+			INSRN_INDST_CARER_YN = #{insrn_indst_carer_yn},
+			CRIMINAL_PENALTY_CARER_YN = #{criminal_penalty_carer_yn},
+			<if test="ligtn_case_carer_etc != null and ligtn_case_carer_etc != ''">
+				LIGTN_CASE_CARER_ETC = #{ligtn_case_carer_etc},
+			</if>
+			<if test="insrn_indst_carer_etc != null and insrn_indst_carer_etc != ''">
+				INSRN_INDST_CARER_ETC = #{insrn_indst_carer_etc},
+			</if>
+			<if test="criminal_penalty_carer_etc != null and criminal_penalty_carer_etc != ''">
+				CRIMINAL_PENALTY_CARER_ETC = #{criminal_penalty_carer_etc}
+			</if>
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
+	
+	
 	
 	
 </mapper>

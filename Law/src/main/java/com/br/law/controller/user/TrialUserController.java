@@ -151,32 +151,23 @@ public class TrialUserController {
 	// TODO: 보류
 	// 마이페이지 - 나의 등재신청 내역 이어 작성하기
 	@RequestMapping("/myApplicationWrite")
-	public String myApplicationWrite(HttpSession session, Model model) {
+	public String myApplicationWrite(HttpSession session, Model model, int aplcn_dtls_proper_num) {
 		
-		try {
-			
-		} catch (Exception e) {
-			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));		
-		}
+		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
+		model.addAttribute("aplcn_dtls_proper_num", aplcn_dtls_proper_num);
+
 		return "user/myApplicationWrite";
 	}
 	
 	// 마이페이지 - 나의 등재신청 내역 상세보기
 	@RequestMapping("/myApplicationDetail")
-	public String myApplicationDetail(HttpSession session, Model model, int aplcn_num) {
+	public String myApplicationDetail(HttpSession session, Model model, int aplcn_dtls_proper_num) {
 		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 		
-		try {
-			Map<String, Object> myAplcn = trialMainService.getMyApplication(aplcn_num);
-			LOGGER.info("myApplicationRead success! " + myAplcn);
-			model.addAttribute("myAplcn", myAplcn);
-		} catch (Exception e) {
-			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));
-		}
-		
+		model.addAttribute("aplcn_dtls_proper_num", aplcn_dtls_proper_num);
 		return "user/myApplicationDetail";
 	}
-
+	
 	// 마이페이지 - 나의 활동 내역
 	@RequestMapping("/myActive")
 	public String myActive(HttpSession session, Model model) {

@@ -245,7 +245,7 @@ function tableOneInfo(){
                 
             }
     }
-        xhr.open("get" , "selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..		
 }
@@ -377,7 +377,7 @@ function tableFiveInfo(){
 
             }
     }
-		 xhr.open("get" , "selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+		 xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..			
 }
@@ -527,7 +527,7 @@ function tableSixInfo(){
             }
 			
     }
-        xhr.open("get" , "selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..	
 }
@@ -764,7 +764,7 @@ function tableSevenInfo(){
                 commentListBox.appendChild(rowBox);
             }
     }
-        xhr.open("get" , "selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..	
 }
@@ -892,7 +892,7 @@ function tableEightInfo(){
                 commentListBox.appendChild(rowBox);
             }
     }
-        xhr.open("get" , "selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..	
 }
@@ -1028,7 +1028,7 @@ function tableNineInfo(){
                 
             }
     }
-        xhr.open("get" , "fileList?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/fileList?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..	
 }
