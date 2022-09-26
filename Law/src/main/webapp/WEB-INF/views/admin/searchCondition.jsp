@@ -8,28 +8,27 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
   <title>	평점 관리표 </title>
-	 <script type="text/javascript">
-	 
-	 function categoryChange(e) {
-			var good_a = ["측량", "문서", "경매", "통역인", "번역인", "통번역인", "의사", "회계사"];
-			var target = document.getElementById("good");
-
-			if(e.value == "a") var d = good_a;
-			else if(e.value == "b") var d = good_b;
-			else if(e.value == "c") var d = good_c;
-
-			target.options.length = 0;
-
-			for (x in d) {
-				var opt = document.createElement("option");
-				opt.value = d[x];
-				opt.innerHTML = d[x];
-				target.appendChild(opt);
-			}	
+<script type="text/javascript">
+function selectCategory(e){
+	console.log(e);
+	console.log(e.value);
+	
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			
 		}
+	};
+	
+	xhr.open("get" , "../testapi/test5"); //리퀘스트 세팅..
+	//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+	xhr.send(); //AJAX로 리퀘스트함..
+	
+}
 
-  	 </script> 
 
+</script>
 
 </head>
 <body>
@@ -40,7 +39,7 @@
 			<jsp:include page="../common/assistantAdminNav.jsp"></jsp:include>
 		</div>
 		<div class="col">
-			<select onchange="categoryChange(this)">
+			<select onchange="selectCategory(this)">
 				<option>조건을 선택해주세요</option>
 				<option value="a">조력자별 조회</option>
 				<option value="b">기간별 조회</option>
@@ -51,9 +50,7 @@
 				<option>조건을 선택해주세요</option>
 			</select>
 		
-		<c:if >
-		
-		</c:if>
+	
 			<table class="table">
 				  <thead>
 				    <tr>

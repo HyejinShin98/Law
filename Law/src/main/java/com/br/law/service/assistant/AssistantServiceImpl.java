@@ -60,5 +60,17 @@ public class AssistantServiceImpl {
 		
 	}
 	
+	public List<Map<String, Object>> announce(){
+		List<Map<String, Object>> announceName = assistantSQLMapper.announce();
+		
+		return announceName;
+	}
+	
+	public List<Map<String, Object>> trial_fcltt(){
+		List<Map<String, Object>> trial_fcltt_name = assistantSQLMapper.TRIAL_FCLTT_NAME();
+		
+		return trial_fcltt_name;
+	}
+	
 	
 }

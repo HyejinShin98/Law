@@ -73,7 +73,16 @@ public class AssistantController {
 	}
 	
 	@RequestMapping("searchCondition")
-	public String SearchCondition() {
+	public String SearchCondition(Model model) {
+		
+		List<Map<String, Object>> applicantManagementList= assistantServiceImpl.allApplicantManagement();	
+		model.addAttribute("applicantManagementList", applicantManagementList);
+		
+		List<Map<String, Object>> announceList = assistantServiceImpl.announce();
+		model.addAttribute("announce", announceList);
+		
+		List<Map<String, Object>> trial_fclttList = assistantServiceImpl.trial_fcltt();
+		model.addAttribute("trial", trial_fclttList);
 		
 		return "admin/searchCondition";
 	}
