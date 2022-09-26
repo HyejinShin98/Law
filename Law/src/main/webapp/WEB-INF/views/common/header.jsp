@@ -66,7 +66,7 @@
 						</a>
 					</div>
 					<div class="col">
-						<a href="#">
+						<a href="../member/systemGuide">
 							<span>감정인신청안내</span>
 						</a>
 					</div>

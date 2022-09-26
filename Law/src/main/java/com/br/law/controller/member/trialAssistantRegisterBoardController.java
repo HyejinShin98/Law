@@ -20,6 +20,18 @@ public class trialAssistantRegisterBoardController {
 	
 	@Autowired
 	private NoticeService noticeService;
+	
+	//감정인 제도안내
+	@RequestMapping("systemGuide")
+	public String systemGuide() {
+		return "member/systemGuide";
+	}
+	
+	@RequestMapping("processGuide")
+	public String processGuide() {
+		return "member/processGuide";
+	}
+	
 
 	@RequestMapping("trialAssistantRegisterBoard")
 	public String trialAssistantRegisterBoard(Model model , HttpSession session) {

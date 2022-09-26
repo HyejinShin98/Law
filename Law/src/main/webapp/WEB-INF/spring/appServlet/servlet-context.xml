@@ -36,6 +36,8 @@
 	<!-- 인터셉터 설정... 필터 개념... -->
 	<interceptors>
 		<interceptor>
+			<mapping path="/user/applicationClause"/>
+			<mapping path="/user/applicationDisqualification"/>
 			<mapping path="/user/userDetail"/>
 			<mapping path="/user/fileUpload"/>
 			<mapping path="/user/license"/>
