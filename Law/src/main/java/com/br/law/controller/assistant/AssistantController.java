@@ -57,24 +57,16 @@ public class AssistantController {
 	@RequestMapping("applicantManagementDetail")
 	public String ApplicantManagementDetail(Model model,int aplcn_dtls_proper_num){
 		Map<String, Object> user = new HashMap<String, Object>();
+		 
+		Map<String, Object> userInfo = assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
+		model.addAttribute("userInfo", userInfo); 
 		
-		/*
-		 * int userNo = Integer.parseInt(request.getParameter("aplcn_dtls_proper_num"));
-		 * System.out.println(userNo); user.put("aplcn_dtls_proper_num", userNo);
-		 * System.out.println("유저" + user);
-		 * 
-		 * Map<String, Object> userInfo =
-		 * assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
-		 * model.addAttribute("userInfo", userInfo); System.out.println("유저인포" +
-		 * assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num));
-		 * Map<String, Object> map =
-		 * assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
-		 * model.addAttribute("certificateList", map); System.out.println("자격증" +
-		 * assistantServiceImpl.certificateList(aplcn_dtls_proper_num)); Map<String,
-		 * Object> map2 = assistantServiceImpl.uploadfile(aplcn_dtls_proper_num);
-		 * model.addAttribute("uploadfile", map2); System.out.println("파ㅏ일" +
-		 * assistantServiceImpl.uploadfile(aplcn_dtls_proper_num));
-		 */
+		List<Map<String, Object>> map = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
+		
+		List<Map<String,Object>> map2 = assistantServiceImpl.uploadfile(aplcn_dtls_proper_num);
+		model.addAttribute("uploadfile", map2); System.out.println("파ㅏ일" +
+		assistantServiceImpl.uploadfile(aplcn_dtls_proper_num));
+	
 		
 		
 		return "admin/applicantManagementDetail";
@@ -101,28 +93,16 @@ public class AssistantController {
 		Map<String, Object> user = new HashMap<String, Object>();
 		int userNo = Integer.parseInt(request.getParameter("aplcn_dtls_proper_num"));
 		user.put("aplcn_dtls_proper_num", userNo);
-		System.out.println(userNo);
-		System.out.println("유저" + user);
-		
 		model.addAttribute("map", user);
-//		Map<String, Object> userInfo = assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
-//		model.addAttribute("userInfo", userInfo);
-//		System.out.println("유저인포" + assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num));
-//		
-//		Map<String, Object> map = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
-//		model.addAttribute("certificateList", map);
-//		System.out.println("자격증" + assistantServiceImpl.certificateList(aplcn_dtls_proper_num));
-//		
-//		List<Tb_009> map2 = applicationRegistrationAdminService.uploadFileSel(userNo);
-//		model.addAttribute("uploadfiale", map2);
-//		
-//		
-//		Map<String, Object> userInfo = assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
-//		model.addAttribute("userInfo", userInfo);
-//		
-////		Map<String, Object> certificateList = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
-////		System.out.println(certificateList);
-////		model.addAttribute("certificateList", certificateList);
+		
+		Map<String, Object> userInfo = assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
+		model.addAttribute("userInfo", userInfo);
+		
+		List<Tb_009> map = applicationRegistrationAdminService.uploadFileSel(userNo);
+		model.addAttribute("uploadfiale", map);
+				
+		List<Map<String, Object>> certificateList = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
+		model.addAttribute("certificateList", certificateList);
 		
 		
 		return "admin/evaluationApplicants";

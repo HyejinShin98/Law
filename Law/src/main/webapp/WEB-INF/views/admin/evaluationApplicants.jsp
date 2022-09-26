@@ -13,6 +13,23 @@
 <script type="text/javascript" src="../resources/js/applicantDetail.js"></script>
 <script type="text/javascript">
 
+function calculationtest(){
+	all_carrer_score = parseInt(score.all_carrer_score.value);
+ 	jrsdc_carrer_score = parseInt(score.jrsdc_carrer_score.value);
+	office_score = parseInt(score.office_score.value);
+ 	personality_score = parseInt(score.personality_score.value);
+	interview_score = parseInt(score.interview_score.value);
+	certificate_score = parseInt(score.certificate_score.value);
+	evaluate_score = parseInt(score.evaluate_score.value);
+	judge_recom_score =  parseInt(score.judge_recom_score.value);			
+
+ 	score.total1.value = all_carrer_score+jrsdc_carrer_score+office_score+personality_score+interview_score + certificate_score;
+
+ 	score.total2.value = all_carrer_score+jrsdc_carrer_score+office_score+personality_score+interview_score + certificate_score+evaluate_score + judge_recom_score;
+	
+	
+
+}
 var userNo = ${map.aplcn_dtls_proper_num}
 
 window.addEventListener("DOMContentLoaded" , function (){
