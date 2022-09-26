@@ -35,12 +35,17 @@ public class AssistantServiceImpl {
 	
 	public List<Map<String, Object>> certificateList(int aplcn_dtls_proper_num){
 		List<Map<String, Object>> certificateList = assistantSQLMapper.certificate(aplcn_dtls_proper_num);
+		System.out.println(certificateList);
 		
-		
-		return certificateList;	
+		return certificateList;
 		
 	}
 	
+	public List<Map<String, Object>> uploadfile(int aplcn_dtls_proper_num){
+		List<Map<String, Object>> uploadfileList = assistantSQLMapper.uploadFile(aplcn_dtls_proper_num);
+		
+		return uploadfileList; 
+	}
 	public void evaluation(Tb_013 tb_013) {
 		assistantSQLMapper.evaluationApplicants(tb_013);
 	}
@@ -54,5 +59,6 @@ public class AssistantServiceImpl {
 		 assistantSQLMapper.referral(aplcn_dtls_proper_num);
 		
 	}
+	
 	
 }

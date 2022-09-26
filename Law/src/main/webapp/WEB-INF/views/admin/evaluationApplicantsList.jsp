@@ -34,7 +34,7 @@
 				  <tbody>
 				  
 				  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
-				  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'examination'}">
+				  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'evaluationCp'}">
 				    <tr>
 				      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
 				      <td><a href="evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>

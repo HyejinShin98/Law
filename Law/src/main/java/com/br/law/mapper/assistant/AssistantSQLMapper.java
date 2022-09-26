@@ -13,5 +13,7 @@ public interface AssistantSQLMapper {
 	public void evaluationApplicants(Tb_013 tb_013);
 	public void accept(int aplcn_dtls_proper_num);
 	public void referral(int aplcn_dtls_proper_num);
+	public List<Map<String, Object>> uploadFile(int aplcn_dtls_proper_num);
+	
 	
 }
