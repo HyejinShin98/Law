@@ -618,7 +618,7 @@ function tableOneInfo(){
 		검토의견 : <input type="text" name="review_etc">
 		
 	
-		<button input type="submit" type="button" class="btn btn-primary">작성하기</button>
+		<button type="submit" type="button" class="btn btn-primary">작성하기</button>
 				
 		
 		
