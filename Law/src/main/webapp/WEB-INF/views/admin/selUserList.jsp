@@ -70,16 +70,16 @@
 								  </thead>
 								  <tbody>
 								  <c:forEach items="${list}" var="data">
-								    <tr>
-							     	  <td> ${data.APLCN_DTLS_PROPER_NUM }</td>
-								      <td><a href="../admin/selUserListDetail?aplcn_dtls_proper_num=${data.APLCN_DTLS_PROPER_NUM }">${data.USER_NAME}</a></td>
-								      <td>${data.COURT_NAME}</td>
-								      <td>${data.USER_EMAIL}</td>
-								      <td><fmt:formatDate value="${data.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
-								      <td>${data.TRIAL_FCLTT_SBCLS_CODE }</td>
-								      <td>${data.APLCN_DTLS_STS }</td>
-								    </tr>
-								    </c:forEach>
+									    <tr onclick="location.href='../admin/selUserListDetail?aplcn_dtls_proper_num=${data.APLCN_DTLS_PROPER_NUM }'">
+								     	  <td> ${data.APLCN_DTLS_PROPER_NUM }</td>
+									      <td>${data.USER_NAME}</td>
+									      <td>${data.COURT_NAME}</td>
+									      <td>${data.USER_EMAIL}</td>
+									      <td><fmt:formatDate value="${data.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
+									      <td>${data.TRIAL_FCLTT_SBCLS_CODE }</td>
+									      <td>${data.APLCN_DTLS_STS }</td>
+									      </tr>
+				    			</c:forEach>
 								  </tbody>
 								</table>
 						</form>

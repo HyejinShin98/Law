@@ -110,3 +110,8 @@ table.list.vline td.last,table.list.vline th.last{
 td .title{
 	font-weight:bold;
 }
+
+/* 등재신청 */
+span.point{
+	color:#f36109;
+}

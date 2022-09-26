@@ -156,7 +156,7 @@ ${seven.work_position}<br>
             		<button type="submit" formaction="careerUpProcess" formmethod="get">업데이트</button>
             	</c:when>
             	<c:otherwise>
-            		<button type="submit" formaction="careerInsProcess" formmethod="get">인설트</button>
+            		<button type="submit"  formaction="careerInsProcess" formmethod="get">인설트</button>
             	</c:otherwise>
              </c:choose>
         </form>

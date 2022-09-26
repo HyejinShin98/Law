@@ -6,7 +6,6 @@
 <html>
 <head>
 <script type="text/javascript">
-/*  */
 function getUserDetail(){
 	document.getElementbyId
 	
@@ -46,6 +45,39 @@ function changeForDate(date){
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
 
+function checkList(){
+	
+	let result = true;
+	
+	let check = document.getElementsByTagName("input");
+	
+	let ss = document.getElementById("ss");
+	// 메세지 초기화
+	let msg = document.getElementsByClassName('msg');
+	for(e of msg) {
+		e.innerText = '';
+	}
+	
+	// 공백검사
+	for(let i=0; i<check.length; i++) {
+		let box = check[i].parentNode.parentNode.parentNode;
+		let msg = box.getElementsByClassName('msg');
+		
+		if(check[i].value == '') {
+			for(e of msg) {
+				e.innerText = '필수입력입니다.';
+				result = false;
+			}
+		}
+	}
+	if(result){
+		ss.submit();
+		alert("oo");
+	}else{
+		alert("nn");
+	}
+}
+
 </script>
 
 <meta charset="UTF-8">
@@ -54,10 +86,7 @@ function changeForDate(date){
 <title>Insert title here</title>
 </head>
 <body>
-${count} 하이<br> 
-${six.aplcn_dtls_proper_num}보이냐<br>
-${six.edctn_degree}<br>
-	  <div class="col container-fluid" style="width : 1500px;">
+	  <div class="col container-fluid" style="width : 960px;">
             <div class="row mt-4 mx-5">
                    <div class="col">
                        <div class="row">STEP 1</div>
@@ -87,7 +116,14 @@ ${six.edctn_degree}<br>
                 <div class="col border-bottom mt-5">
                     <div class="row ms-0 mb-2">학력사항</div>
                 </div>
-                <form name="form1">
+                <c:choose>
+            		<c:when test="${!empty count}">
+	            		<form id="ss" action="./univUpProcess">
+	            	</c:when>
+	            	<c:otherwise>
+	            		<form id="ss" action="./univInsProcess">
+	            	</c:otherwise>
+       			</c:choose>		
 				<c:if test="${!empty count}">
 					<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
 				</c:if>
@@ -96,42 +132,47 @@ ${six.edctn_degree}<br>
                         <tbody>
                           <tr>
                             <th scope="row" class="table-active">학교명</th>
-                            <td><div class="col"><input type="text" id="s1" name="edctn_school_name"></div></td>
+                            <td><div class="col"><input type="text" id="s1" name="edctn_school_name"><span class="msg"></span></div></td>
                             <td class="table-active">최종학력</td>
-                            <td><div class="col"><input type="radio" id="s61" name="edctn_final_yn" value='y'>맞음
-                            	<div class="col"><input type="radio" id="s62" name="edctn_final_yn" value='n'>아님
-                            </div>
+                            <td><div class="col"><input type="radio" id="s61" name="edctn_final_yn" value='y' >맞음 <span class="msg"></span></div>
+                            	<div class="col"><input type="radio" id="s62" name="edctn_final_yn" value='n' >아님 <span class="msg"></span></div>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row" class="table-active">학과(전공)</th>
-                            <td><div class="col"><input type="text" id="s2" name="edctn_major"></div></td>
+                            <td><div class="col"><input type="text" id="s2"  name="edctn_major" ><span class="msg"></span></div></td>
                             <td class="table-active">학위</td>
-                            <td><div class="col">
-                                <select id="s3" name="edctn_degree">
+                            <td><div class="col-4">
+                                	<select id="s3" name="edctn_degree"> 
                                         <option value="graduation">졸업</option>
                                         <option value="Attending">재학</option>
                                         <option value="absence">휴학</option>
                                         <option value="dropout">중퇴</option>
                                         <option value="expel">퇴학</option>
-                                </select>
+                                	</select>
+                                	<div class="col"><span class="msg"></span></div>
                                 </div>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row" class="table-active">입학 년월</th>
-                            <td><div class="col"><input type="date" id="s4" name="edctn_admsn_date"></div></td>
+                            <td><div class="col"><input type="date" id="s4" name="edctn_admsn_date"></div>
+                            	<div class="col"><span class="msg"></span></div>
+                            </td>
                             <td class="table-active">졸업 년월</td>
-                            <td><div class="col"><input type="date" id="s5" name="edctn_grdtn_date"></div></td>
-                          </tr>     
+                            <td><div class="col"><input type="date" id="s5" name="edctn_grdtn_date"></div>
+                            <div class="col"><span class="msg"></span></div>
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
+                      <div class="row"><a onclick="checkList();">확인용 </a></div>
                        <c:choose>
 		            	<c:when test="${!empty count}">
-		            		<button type="submit" formaction="univUpProcess" formmethod="get">업데이트</button>
+		            		<a type="button" onclick="checkList();">업데이트</a>
 		            	</c:when>
 		            	<c:otherwise>
-		            		<button type="submit" formaction="univInsProcess" formmethod="get">인설트</button>
+		            		<a type="button" onclick="checkList();">인설트</a>
 		            	</c:otherwise>
             			</c:choose>		
                 </div>
