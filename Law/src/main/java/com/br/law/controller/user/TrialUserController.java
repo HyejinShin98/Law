@@ -82,6 +82,7 @@ public class TrialUserController {
 			Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 			chkLoginSession(session);
 			model.addAttribute("user", sessionUser);
+			session.removeAttribute("identityVerificate");
 			
 		} catch(Exception e) {
 			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));
@@ -97,7 +98,11 @@ public class TrialUserController {
 		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 		
 		try {
-			chkLoginSession(session);
+			Boolean isPwChk = (Boolean)session.getAttribute("identityVerificate");
+			if(isPwChk == null) {
+				return "redirect:./identityVerificate";
+			}
+			
 			
 			Tb_001 user = trialMainService.getMyInfo(sessionUser.getUser_proper_num());
 			model.addAttribute("user", user);
@@ -176,17 +181,18 @@ public class TrialUserController {
 		return "user/myApplicationDetail";
 	}
 	
-	// 마이페이지 - 나의 활동 내역
+	// 마이페이지 - 나의 활동 내역 
 	@RequestMapping("/myActive")
 	public String myActive(HttpSession session, Model model) {
 		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 		
 		try {
-			chkLoginSession(session);
-			model.addAttribute("user", null);
-			
+			List<Map<String, Object>> activeList = trialMainService.getMyActiveList(sessionUser.getUser_proper_num());
+			model.addAttribute("activeList", activeList);
+			LOGGER.info("TrialUserController myActive SUCCESS! user : " + activeList);
 		} catch(Exception e) {
 			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));
+			LOGGER.error("TrialUserController myActive ERROR! user : " + sessionUser);
 		}
 		
 		return "user/myActive";

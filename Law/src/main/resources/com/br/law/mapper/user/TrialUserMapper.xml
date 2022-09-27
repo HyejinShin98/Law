@@ -171,6 +171,15 @@
 		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
 	</update>
 	
+	<!-- 나의 활동내역 리스트 -->
+	<select id="selectMyActiveList" resultType="map">
+		SELECT ROWNUM, a.* FROM
+			(SELECT 
+				t11.COURT_NAME, t12.CHOSEN_DATE, t12.ATTENDANCE_DATE, t12.ACT_COMPLETE_YN 
+			FROM TB_011 t11, TB_012 t12 
+			WHERE t11.COURT_PROPER_NUM = t12.COURT_proper_num AND t12.user_proper_num = #{user_proper_num}
+			ORDER BY t12.CHOSEN_DATE DESC) a
+	</select>
 	
 </mapper>
 

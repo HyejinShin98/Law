@@ -110,6 +110,9 @@ public class TrialUserService {
 		return trialMainMapper.modifyTableNine(param);
 	}
 	
+	public List<Map<String, Object>> getMyActiveList(int user_proper_num) {
+		return trialMainMapper.selectMyActiveList(user_proper_num);
+	}	
 	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드
 	private String convertAplcnStsToKorean(String aplcn_dtls_sts) {

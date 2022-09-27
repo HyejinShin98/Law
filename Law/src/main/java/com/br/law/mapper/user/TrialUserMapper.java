@@ -55,5 +55,7 @@ public interface TrialUserMapper {
 	// 나의 등재신청 첨부파일정보 수정
 	public int modifyTableNine(Tb_009 param);
 	
+	// 나의 활동내역 리스트
+	public List<Map<String, Object>> selectMyActiveList(int user_proper_num);
 
 }
