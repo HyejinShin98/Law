@@ -30,14 +30,13 @@ window.addEventListener("DOMContentLoaded", function() {
 
 function modifyPassword() {
 	
-	if(!chkVal()) {
-		return;
-	}
+	if(!chkVal()) return;
 	
 	let param = {
 			user_proper_num : '${user.user_proper_num}',
 			new_pw : document.getElementById('new_pw').value
 	}
+	
 	$.ajax({
 		url: './modifyPasswordProcess',
 		method: 'post',
@@ -83,10 +82,7 @@ function chkVal() {
 		}
 	}
 	
-	if(!result){
-		return false;
-	}
-	
+	if(!result) return false;
 	
 	// 현재 비밀번호 일치 검사
 	let myCurrPwd = '${user.user_pw}';
@@ -101,9 +97,7 @@ function chkVal() {
 		}
 	}
 	
-	if(!result) {
-		return false;
-	}
+	if(!result) return false;
 	
 	
 	// 새 비밀번호 일치 검사

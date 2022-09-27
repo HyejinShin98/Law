@@ -19,6 +19,19 @@ function changeBtn(addId, navClassName){
 	addBtn.classList.add("fw-bold");
 }
 
+function setDateInput(dateVal) {
+	var date = new Date(dateVal);
+	var yyyy = date.getFullYear();
+	
+	var month = parseInt(date.getMonth()+1);
+	var mm = month > 9 ? month : '0' + month;
+	
+	var day = date.getDate();
+	var dd = day > 9 ? day : '0' + day;
+	
+	return yyyy + '-' + mm + '-' + dd; 
+}
+
 // 유무 체크 시 disabled 처리함수
 function disabledToggle(flag, id) {
 	if(flag == 'y') { // 유 체크
@@ -1062,8 +1075,25 @@ function tableSixInfo(){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-   
+   	
+   				var txtRow = document.createElement("div");
+                txtRow.classList.add("row");
+                txtRow.classList.add("mx-0");
+                txtRow.classList.add("border-bottom");
+                txtRow.classList.add("pb-4");
+                rowBox.appendChild(txtRow);
                 
+                var txtCol = document.createElement("div");
+                txtCol.classList.add("col");
+                txtRow.appendChild(txtCol);
+                
+                var txtSpan = document.createElement("span");
+                txtSpan.innerText = "* 모든 값은 필수입력입니다.";
+                txtSpan.classList.add("text-danger");
+                txtSpan.classList.add("fw-bold");
+                txtCol.appendChild(txtSpan);
+                
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -1079,11 +1109,9 @@ function tableSixInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
+				*/
 
                 //table시작
-
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
                 tableRow.classList.add("mx-0");
@@ -1104,7 +1132,7 @@ function tableSixInfo(){
                 colGroupOne.setAttribute("width", "15%");
                 colGroup.appendChild(colGroupOne);
 
-                var colGroup = document.createElement("col");
+                var colGroupTwo = document.createElement("col");
                 colGroupTwo.setAttribute("width", "35%");
                 colGroup.appendChild(colGroupTwo);
 
@@ -1127,10 +1155,17 @@ function tableSixInfo(){
                 theadTrTh1.classList.add("table-light");
                 theadTrTh1.innerText="학교명";
                 theadTr.appendChild(theadTrTh1);
-
+				
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
                 theadTr.appendChild(theadTrTd1);
+
+				var inputSchoolName = document.createElement("input");
+				inputSchoolName.type = "text";
+				inputSchoolName.classList.add("form-control");
+				inputSchoolName.value = jsonObj.map.EDCTN_SCHOOL_NAME;
+				inputSchoolName.id = "edctn_school_name";
+				inputSchoolName.name = "edctn_school_name";
+				theadTrTd1.appendChild(inputSchoolName);
 
                 var theadTrTh2 = document.createElement("th");
                 theadTrTh2.classList.add("text-center");
@@ -1139,8 +1174,15 @@ function tableSixInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
                 theadTr.appendChild(theadTrTd2);
+
+				var inputEdctnMajor = document.createElement("input");
+				inputEdctnMajor.type = "text";
+				inputEdctnMajor.classList.add("form-control");
+				inputEdctnMajor.value = jsonObj.map.EDCTN_MAJOR;
+				inputEdctnMajor.id = "edctn_major";
+				inputEdctnMajor.name = "edctn_major";
+				theadTrTd2.appendChild(inputEdctnMajor);
 
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
@@ -1155,8 +1197,16 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
                 bodyTr1.appendChild(bodyTr1Td1);
+
+				var inputEdctnAdmsnDate = document.createElement("input");
+				inputEdctnAdmsnDate.type = "date";
+				inputEdctnAdmsnDate.classList.add("form-control");
+				console.log(jsonObj.map.EDCTN_ADMSN_DATE);
+				inputEdctnAdmsnDate.value = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
+				inputEdctnAdmsnDate.id = "edctn_admsn_date";
+				inputEdctnAdmsnDate.name = "edctn_admsn_date";
+				bodyTr1Td1.appendChild(inputEdctnAdmsnDate);
 
                 var bodyTr1Th2 = document.createElement("th");
                 bodyTr1Th2.classList.add("text-center");
@@ -1165,8 +1215,15 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
                 bodyTr1.appendChild(bodyTr1Td2);
+                
+                var inputEdctnGrdtnDate = document.createElement("input");
+                inputEdctnGrdtnDate.type = "date";
+                inputEdctnGrdtnDate.classList.add("form-control");
+                inputEdctnGrdtnDate.value = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
+                inputEdctnGrdtnDate.id = "edctn_grdtn_date";
+                inputEdctnGrdtnDate.name = "edctn_grdtn_date";
+                bodyTr1Td2.appendChild(inputEdctnGrdtnDate);
 
                 var bodyTr2 = document.createElement("tr");
                 tbody.appendChild(bodyTr2);
@@ -1178,8 +1235,15 @@ function tableSixInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText="적어";
                 bodyTr2.appendChild(bodyTr2Td1);
+                
+                var inputEdctnDegree = document.createElement("input");
+                inputEdctnDegree.type = "text";
+                inputEdctnDegree.classList.add("form-control");
+                inputEdctnDegree.value = jsonObj.map.EDCTN_DEGREE;
+                inputEdctnDegree.id = "edctn_degree";
+                inputEdctnDegree.name = "edctn_degree";
+                bodyTr2Td1.appendChild(inputEdctnDegree);
 
                 var bodyTr2Th2 = document.createElement("th");
                 bodyTr2Th2.innerText="최종학력";
@@ -1188,8 +1252,60 @@ function tableSixInfo(){
                 bodyTr2.appendChild(bodyTr2Th2);
 
                 var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText="적어";
                 bodyTr2.appendChild(bodyTr2Td2);
+                
+                
+                // 220923 hyejin 추가
+                var inputEdctnFinalYBox = document.createElement("div");
+                inputEdctnFinalYBox.classList.add("form-check");
+                inputEdctnFinalYBox.style.float = "left";
+                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
+				bodyTr2Td2.appendChild(inputEdctnFinalYBox);
+				
+				var inputEdctnFinalY = document.createElement("input");
+				inputEdctnFinalY.classList.add("form-check-input");
+				inputEdctnFinalY.type = "radio";
+				inputEdctnFinalY.name = "edctn_final_yn";
+				inputEdctnFinalY.id = "edctn_final_y";
+				inputEdctnFinalY.marginRight = "5px";
+				inputEdctnFinalYBox.appendChild(inputEdctnFinalY);
+				
+				var labelEdctnFinalY = document.createElement("label");
+				labelEdctnFinalY.classList.add("form-check-label");
+				labelEdctnFinalY.setAttribute("for", "edctn_final_y");
+				labelEdctnFinalY.innerText = "예";
+				inputEdctnFinalYBox.appendChild(labelEdctnFinalY);
+				
+				
+				var inputEdctnFinalNBox = document.createElement("div");
+				inputEdctnFinalNBox.classList.add("form-check");
+				inputEdctnFinalNBox.style.float = "left";
+				inputEdctnFinalNBox.style.marginTop = "5px";
+				bodyTr2Td2.appendChild(inputEdctnFinalNBox);
+				
+				var inputEdctnFinalN = document.createElement("input");
+				inputEdctnFinalN.classList.add("form-check-input");
+				inputEdctnFinalN.type = "radio";
+				inputEdctnFinalN.name = "edctn_final_yn";
+				inputEdctnFinalN.id = "edctn_final_n";
+				inputEdctnFinalN.style.marginRight = "5px";
+				inputEdctnFinalNBox.appendChild(inputEdctnFinalN);
+				
+				var labelEdctnFinalN = document.createElement("label");
+				labelEdctnFinalN.classList.add("form-check-label");
+				labelEdctnFinalN.setAttribute("for", "edctn_final_n");
+				labelEdctnFinalN.innerText = "아니오";
+				inputEdctnFinalNBox.appendChild(labelEdctnFinalN);
+				
+				// 최종학력 체크
+				var edctnFinalVal = jsonObj.map.EDCTN_FINAL_YN;
+				console.log("최종학력인가 ? " + edctnFinalVal);
+				if(edctnFinalVal == 'y') {
+					inputEdctnFinalY.checked = true;
+				} else if(edctnFinalVal == 'n') {
+					inputEdctnFinalN.checked = true;
+				}
+                
 
                 commentListBox.appendChild(rowBox);
                 
