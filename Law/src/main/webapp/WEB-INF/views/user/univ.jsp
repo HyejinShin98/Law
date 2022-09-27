@@ -5,6 +5,53 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<title>Insert title here</title>
+<style>
+body{
+	height: 100%;
+	width: 100%;
+	font-size: 11px;
+}
+
+.imm{
+	width: auto;
+}
+.us-text{
+	position: absolute;
+	top:15%;
+	left:3%;
+	font-size: 12px;
+}
+.us-image{
+	position: relative;
+	width: 100%;
+	margin: 10px auto;
+}
+.text{
+	font-size: 14px;
+}
+.notice .cont li{
+	margin:2px 4px 2px 4px;
+	padding:2px 0 0 0;
+}
+.contentsinbox h4{
+		clear:both; 
+		font-size:12px;
+		font-weight:bold;
+		letter-spacing:-1px;
+		line-height:1.3em;
+		padding:0 11px;
+		margin:5px 0;
+		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
+}
+
+
+</style>
 <script type="text/javascript">
 function getUserDetail(){
 	document.getElementbyId
@@ -79,36 +126,69 @@ function checkList(){
 }
 
 </script>
-
-<meta charset="UTF-8">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<title>Insert title here</title>
 </head>
 <body>
-	  <div class="col container-fluid" style="width : 960px;">
-            <div class="row mt-4 mx-5">
-                   <div class="col">
-                       <div class="row">STEP 1</div>
-                       <div class="row ">기본정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 2</div>
-                       <div class="row ">학력정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 3</div>
-                       <div class="row ">경력정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 4</div>
-                       <div class="row ">자격증정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 5</div>
-                       <div class="row ">증빙서류첨부</div>
-                   </div>
-               </div>
+	  <div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+			<!-- 사이드 네비바 -->
+			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
+				<div class="list-group list-group-flush">
+					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
+				</div>
+			</div>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end loc">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 감정인등재신청 > </span><span style="color: #72a8fe;font-weight: bold;">개인정보 수집 동의</span>
+					</div>
+				</div>
+				
+				<!-- 감정인 등재신청 그림 -->
+				<div class="row mb-2 mt-4">
+					<div class="col">
+						<img src="../resources/img/applicationRegistration/h3_ogi210 (1).gif">
+					</div>
+				</div>
+				
+				<div class="row" style="margin-right: 15px; margin-left: 12px;">
+					<div class="col notice px-0">
+						<div class="cont">
+							<ul class="ps-0">
+								<li style=" font-size: 11px"class="form-control py-2 ps-2"> 
+								<img src="../resources/img/applicationRegistration/icon_notice.gif">
+								<span class="point">현재 지원한 등재공고</span>를 다시 한 번 확인 하신 후 아래 정보를 순서대로 입력하여 주십시오.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+							
+				<!-- 현재 지원한 등재공고 그림 -->
+				<div class="row mb-4">
+					<div class="col us-image">
+							<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_gamjung.gif" alt="" />
+						<div class="us-text">
+							<p><span style="color: #72a8fe;">현재 지원한 등재공고 : </span> <span style="color: white">2023년도 감정인 명단 등재 희망자 모집</span></p>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- 스텝 그림-->
+				<div class="row mt-2">
+		            <div class="col">
+		            	<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_stepgamjung.gif">
+		            </div>
+		        </div>
                <!-- 고정 -->
                
 

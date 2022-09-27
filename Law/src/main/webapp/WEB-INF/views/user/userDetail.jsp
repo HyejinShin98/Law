@@ -172,7 +172,7 @@ function didUseBoard(eleId1, eleId2, eleId3){
 				</div>
 				
 				<!-- 감정인 등재신청 그림 -->
-				<div class="row mb-2">
+				<div class="row my-4">
 					<div class="col">
 						<img src="../resources/img/applicationRegistration/h3_ogi210 (1).gif">
 					</div>
@@ -200,20 +200,60 @@ function didUseBoard(eleId1, eleId2, eleId3){
 						</div>
 					</div>
 				</div>
+					<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
+						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat;"></div>
+						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat;"></div>
+						<div class="col"></div>
+						<div class="col"></div>
+						<div class="col"></div>
+					</div>
 				
 				
-				<!-- 스텝 그림-->
+				<!-- <div class="row" style="height: 63.5px; ">
+					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
+						<div class="row">
+							<div class="col">
+								<p class="my-0">STEP1</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<p>기본정보</p>
+							</div>
+						</div>
+						
+						공란
+						<div class="row">
+						</div>
+					</div>
+					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
+					</div>
+					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
+					</div>
+					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
+					</div>
+					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
+					</div>
+				</div> -->
+				
+				
+				 <!-- 스텝 그림-->
+				 <!--
 				<div class="row mt-2">
-		            <div class="col">
+					<div class="col">
+					<div style="position: relative;">
 		            	<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_stepgamjung.gif">
+	            	</div>
+		            
+		            <div style="position: absolute; top:600px; left: 25%;">
+		            	<img src="../resources/img/applicationRegistration/stepgamjung_02.gif">
 		            </div>
-		        </div>
+		            </div>
+		        </div> -->
 				<!-- 여긴 위에 -->
 	
 			<form name="form1">
-				<c:if test="${!empty count}">
-					<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
-				</c:if>
+				
 				<div class="contentsinbox">
 				
 		        <div class="row border-bottom mt-5 mx-0">
@@ -261,7 +301,7 @@ function didUseBoard(eleId1, eleId2, eleId3){
 		            </div>
 		        </div>
 		        <div class="row border-bottom mt-5">
-		            <div class="col ms-0 mb-2">활동경력</div>
+		            <div class="col ms-0 mb-2"><h4>활동경력</h4></div>
 		        </div>
 		        <div class="row">
 		            <div class="col container">
@@ -298,14 +338,25 @@ function didUseBoard(eleId1, eleId2, eleId3){
 			                </tr>
 			                </tbody>
 			            </table>
-			            <c:choose>
-			            	<c:when test="${!empty count}">
-			            		<button type="submit" formaction="userDetailUpProcess" formmethod="get">업데이트</button>
-			            	</c:when>
-			            	<c:otherwise>
-			            		<button type="submit" formaction="userDetailInsProcess" formmethod="get">인설트</button>
-			            	</c:otherwise>
-			            </c:choose>		
+			            <div class="row ">
+			            	<div class="col">
+			            		 <c:if test="${!empty count}">
+									<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
+								</c:if>
+			            	</div>
+			            	<div class="col">
+			            		  <c:choose>
+			            			<c:when test="${!empty count}">
+			            				<button type="submit" formaction="userDetailUpProcess" formmethod="get">업데이트</button>
+			            			</c:when>
+			            			<c:otherwise>
+			            				<button type="submit" formaction="userDetailInsProcess" formmethod="get">인설트</button>
+			            			</c:otherwise>
+			           			 </c:choose>		
+			            	</div>
+			            </div>
+			           
+			          
 		            </div>
 				</div>
 				</div>
