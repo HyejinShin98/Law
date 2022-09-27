@@ -201,8 +201,8 @@ function didUseBoard(eleId1, eleId2, eleId3){
 					</div>
 				</div>
 					<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
-						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat;"></div>
-						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat;"></div>
+						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat; margin-top:13px;"></div>
+						<div class="col"></div>
 						<div class="col"></div>
 						<div class="col"></div>
 						<div class="col"></div>
