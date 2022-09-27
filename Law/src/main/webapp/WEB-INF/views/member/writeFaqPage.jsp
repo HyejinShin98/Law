@@ -12,28 +12,63 @@
 		<title>Write FAQ Page</title>
 	</head>
 	<body>
-		<jsp:include page="../common/header.jsp"></jsp:include>
-		
-		<div id="wrapper">
-			<div class="row" id="title"><h2>FAQ 글쓰기</h2></div>
-			<div class="row" id="contents">
-				<div class="col"></div>
-				<div class="col">
-					<form action="./writeFaqProcess" method="post" enctype="multipart/form-data">
-						제목 : <input name="faq_ask_content" type="text"><br>
-						답변 :
-						<textarea name="faq_ask_comment"></textarea>
-						
-						<input type="submit" value="글쓰기">
-					</form>
-				</div>
-			</div>
+		<div class="col container-fluid" style="width: 960px;">
+			<jsp:include page="../common/header.jsp"></jsp:include>
+			<img src="../resources/img/sub_topimg.gif">
+			
 			<div class="row">
-				<div class="col"></div>
-				<div class="col"></div>
-				<div class="col"></div>
+				<!-- 사이드 네비바 -->
+				<div class="col-3">
+					<jsp:include page="../common/localNav.jsp"></jsp:include>
+				</div>
+				
+				<div class="col">
+					<div class="row">
+						<div class="col"><h2>FAQ 관리 페이지</h2></div>
+					
+					<div class="row">
+						<div class="col" style="background: #f8f9fa">관리자 FAQ 작성 페이지입니다.</div>
+					</div>
+						
+					<div class="row">
+						<div class="col">
+								<div class="row" id="contents">
+									<div class="col">
+											<form action="./writeFaqProcess" method="post" enctype="multipart/form-data">
+												<div class="col d-grid">
+													<input name="faq_ask_content" type="text" placeholder="제목을 입력해주세요."><br>
+												</div>
+												<div class="col d-grid"></div>
+													<textarea name="faq_ask_comment" placeholder="답변을 입력해주세요."></textarea>
+												<input type="submit" class="btn btn-primary" value="글쓰기">
+											</form>
+									</div>
+									</div>
+									<div class="row">
+										<div class="col"></div>
+										<div class="col"></div>
+										<div class="col"></div>
+									</div>
+								
+								
+								
+							</div>
+					</div>	
+						
+						
+
+						
+						
+					</div>
+				</div>
+				
+				
 			</div>
+			
+			
 		</div>
+		
+		
 		
 		
 		<jsp:include page="../common/footer.jsp"></jsp:include>
