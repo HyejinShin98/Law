@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Tb_012 {
 	private int act_proper_num;
+	private int court_proper_num;
 	private int user_proper_num;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date chosen_date;
@@ -15,10 +16,11 @@ public class Tb_012 {
 	public Tb_012() {
 		super();
 	}
-	public Tb_012(int act_proper_num, int user_proper_num, Date chosen_date, Date attendance_date,
+	public Tb_012(int act_proper_num, int court_proper_num, int user_proper_num, Date chosen_date, Date attendance_date,
 			String act_complete_yn) {
 		super();
 		this.act_proper_num = act_proper_num;
+		this.court_proper_num = court_proper_num;
 		this.user_proper_num = user_proper_num;
 		this.chosen_date = chosen_date;
 		this.attendance_date = attendance_date;
@@ -29,6 +31,12 @@ public class Tb_012 {
 	}
 	public void setAct_proper_num(int act_proper_num) {
 		this.act_proper_num = act_proper_num;
+	}
+	public int getCourt_proper_num() {
+		return court_proper_num;
+	}
+	public void setCourt_proper_num(int court_proper_num) {
+		this.court_proper_num = court_proper_num;
 	}
 	public int getUser_proper_num() {
 		return user_proper_num;
@@ -58,6 +66,7 @@ public class Tb_012 {
 	@Override
 	public String toString() {
 		return "[Tb_012] " + "act_proper_num : " + act_proper_num + 
+				", court_proper_num : "+ court_proper_num +
 				", chosen_date : "+ chosen_date +
 				", attendance_date" + attendance_date + 
 				", act_complete_yn" + act_complete_yn ;
