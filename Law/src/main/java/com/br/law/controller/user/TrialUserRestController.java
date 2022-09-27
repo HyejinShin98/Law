@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
 import com.br.law.vo.Tb_005;
+import com.br.law.vo.Tb_006;
+import com.br.law.vo.Tb_007;
+import com.br.law.vo.Tb_008;
+import com.br.law.vo.Tb_009;
 
 @RestController
 @RequestMapping("/user/*")
@@ -132,7 +136,7 @@ public class TrialUserRestController {
 	@RequestMapping("modifyTableFive")
 	public Map<String, Object> modifyTableFive(Tb_005 param) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("modifyTableFive param : " + param);
+		//System.out.println("modifyTableFive param : " + param);
 		try {
 			
 			if(trialMainService.modifyTableFive(param) > 0) {
@@ -155,5 +159,95 @@ public class TrialUserRestController {
 		
 		return map;
 	}
+	
+	@RequestMapping("modifyTableSix")
+	public Map<String, Object> modifyTableSix(Tb_006 param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			if(trialMainService.modifyTableSix(param) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+				LOGGER.info("trialMainServie modifyTableSix Success! Tb_006 : " + param.toString());
+			} else {
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyTableSix ERROR! aplcn_dtls_proper_num : " + param.getAplcn_dtls_proper_num());
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping("modifyTableSeven")
+	public Map<String, Object> modifyTableSeven(Tb_007 param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			if(trialMainService.modifyTableSeven(param) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+				LOGGER.info("trialMainServie modifyTableSeven Success! Tb_007 : " + param.toString());
+			} else {
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyTableSeven ERROR! aplcn_dtls_proper_num : " + param.getAplcn_dtls_proper_num());
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping("modifyTableEight")
+	public Map<String, Object> modifyTableEight(Tb_008 param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		LOGGER.debug("modifyTableEight Tb_008 : " + param);
+		
+		try {
+			if(trialMainService.modifyTableEight(param) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+				LOGGER.info("trialMainServie modifyTableEight Success! Tb_008 : " + param.toString());
+			} else {
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyTableEight ERROR! aplcn_dtls_proper_num : " + param.getAplcn_dtls_proper_num());
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@RequestMapping("modifyTableNine")
+	public Map<String, Object> modifyTableNine(Tb_009 param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		try {
+			if(trialMainService.modifyTableNine(param) > 0) {
+				map.put("result", "success");
+				map.put("msg", "저장되었습니다");
+				LOGGER.info("trialMainServie modifyTableNine Success! Tb_009 : " + param.toString());
+			} else {
+				map.put("result", "fail");
+				map.put("msg", "저장에 실패하였습니다.");
+			}
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			LOGGER.error("trialMainService modifyTableNine ERROR! aplcn_dtls_proper_num : " + param.getAplcn_dtls_proper_num());
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
 	
 }

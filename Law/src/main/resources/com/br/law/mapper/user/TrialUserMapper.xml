@@ -124,7 +124,52 @@
 		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
 	</update>
 	
+	<!-- 등재신청 학력정보 수정 -->
+	<update id="modifyTableSix">
+		UPDATE TB_006 SET
+			EDCTN_SCHOOL_NAME = #{edctn_school_name}
+			, EDCTN_MAJOR = #{edctn_major}
+			, EDCTN_DEGREE = #{edctn_degree}
+			, EDCTN_ADMSN_DATE = #{edctn_admsn_date}
+			, EDCTN_GRDTN_DATE = #{edctn_grdtn_date}
+			, EDCTN_FINAL_YN = #{edctn_final_yn}
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
 	
+	<!-- 등재신청 경력정보 수정 -->
+	<update id="modifyTableSeven">
+		UPDATE TB_007 SET
+			COMPANY_NAME = #{company_name}
+			, CARER_TYPE = #{carer_type}
+			, WORK_START_DATE = #{work_start_date}
+			, WORK_END_DATE = #{work_end_date}
+			, WORK_DESCRIPTION = #{work_description}
+			, WORK_DEPARTMENT = #{work_department}
+			, WORK_POSITION = #{work_position}
+			, CARER_DESCRIPTION = #{carer_description}
+			, SPECIAL_NOTE_DESCRIPTION = #{special_note_description}
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<!-- 등재신청 자격증정보 수정 -->
+	<update id="modifyTableEight">
+		UPDATE TB_008 SET
+			CRTFC_TYPE = #{crtfc_type}
+			, ISSUE_AGENCY = #{issue_agency}
+			, CRTFC_NUMBER = #{crtfc_number}
+			, ISSUE_DATE = #{issue_date}
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
+	
+	<!-- 등재신청 첨부파일정보 수정 -->
+	<update id="modifyTableNine">
+		UPDATE TB_009 SET
+			FILE_CODE = #{file_code}
+			, FILE_TYPE = #{file_type}
+			, ORIGINAL_FILE_NAME = #{original_file_name}
+			, FILE_PATH = #{file_path}
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</update>
 	
 	
 </mapper>

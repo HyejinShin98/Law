@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import com.br.law.mapper.user.TrialUserMapper;
 import com.br.law.vo.Tb_001;
 import com.br.law.vo.Tb_005;
+import com.br.law.vo.Tb_006;
+import com.br.law.vo.Tb_007;
+import com.br.law.vo.Tb_008;
+import com.br.law.vo.Tb_009;
 
 @Service
 public class TrialUserService {
@@ -89,6 +93,23 @@ public class TrialUserService {
 	public int modifyTableFive(Tb_005 param) {
 		return trialMainMapper.modifyTableFive(param);
 	}
+	
+	public int modifyTableSix(Tb_006 param) {
+		return trialMainMapper.modifyTableSix(param);
+	}
+	
+	public int modifyTableSeven(Tb_007 param) {
+		return trialMainMapper.modifyTableSeven(param);
+	}
+	
+	public int modifyTableEight(Tb_008 param) {
+		return trialMainMapper.modifyTableEight(param);
+	}
+	
+	public int modifyTableNine(Tb_009 param) {
+		return trialMainMapper.modifyTableNine(param);
+	}
+	
 	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드
 	private String convertAplcnStsToKorean(String aplcn_dtls_sts) {

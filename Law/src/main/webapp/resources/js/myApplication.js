@@ -114,6 +114,7 @@ function tableFiveFrmSubmit() {
 			dataType: "json",
 		}).done(function(obj) {
 			alert(obj.msg);
+			tableFiveInfo();
 		
 		}).fail(function() { })
 	
@@ -121,16 +122,86 @@ function tableFiveFrmSubmit() {
 }
 
 // 학력정보 submit
-function tableSixFrmSubmit() {}
+function tableSixFrmSubmit() {
+	if(!chkValEmpty()) {
+		return;
+	} else {
+		var frmData = $("#tableSixFrm").serialize();
+		console.log("tableSixFrm : " + frmData);
+		$.ajax({
+			url: "./modifyTableSix",
+			method: "post",
+			data: frmData,
+			dataType: "json",
+		}).done(function(obj) {
+			alert(obj.msg);
+			tableSixInfo();
+		}).fail(function() {})
+	}
+}
+
 
 // 경력정보 submit
-function tableSevenFrmSubmit() {}
+function tableSevenFrmSubmit() {
+	if(!chkValEmpty()) {
+		return;
+	} else {
+		var frmData = $("#tableSevenFrm").serialize();
+		//console.log("tableSevenFrm : " + frmData);
+		$.ajax({
+			url: "./modifyTableSeven",
+			method: "post",
+			data: frmData,
+			dataType: "json",		
+		}).done(function(obj) {
+			alert(obj.msg);
+			tableSevenInfo();
+		
+		}).fail(function() {})
+		
+	}
+	
+}
 
 // 자격증정보 submit
-function tableEightFrmSubmit() {}
+function tableEightFrmSubmit() {
+	if(!chkValEmpty()) {
+		return;
+	} else {
+		var frmData = $("#tableEightFrm").serialize();
+		//console.log("tableEightFrm : " + frmData);
+		$.ajax({
+			url: "./modifyTableEight",
+			method: "post",
+			data: frmData,
+			dataType: "json",		
+		}).done(function(obj) {
+			alert(obj.msg);
+			tableEightInfo();
+		
+		}).fail(function() {})
+	}
+}
 
 // 첨부파일정보 submit
-function tableNineFrmSubmit() {}
+function tableNineFrmSubmit() {
+	if(!chkValEmpty()) {
+		return;
+	} else {
+		var frmData = $("#tableNineFrm").serialize();
+		//console.log("tableNineFrm : " + frmData);
+		$.ajax({
+			url: "./modifyTableNine",
+			method: "post",
+			data: frmData,
+			dataType: "json",		
+		}).done(function(obj) {
+			alert(obj.msg);
+			tableNineInfo();
+		
+		}).fail(function() {})
+	}
+}
 
 
 
@@ -607,7 +678,9 @@ function userDetailWrite(){
 	                submitBtn.classList.add("btn");
 	                submitBtn.classList.add("btn-primary");
 	                submitBtn.classList.add("mx-2");
+	                submitBtn.classList.add("frmSubmit");
 	                
+	                submitBtn.id = "tableOneFrm";
 	                submitBtn.type = "button";
 	                submitBtn.innerText = "저장";
 	                submitBtn.setAttribute("onclick", "tableOnefrmSubmit();");
@@ -650,412 +723,433 @@ function tableFiveInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				var data = jsonObj.map;
 
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
+				
+				
+				if(data != null && data != undefined) {
 
-                var rowBox = document.createElement("div");
-                rowBox.classList.add("row");
-
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
+	                var rowBox = document.createElement("div");
+	                rowBox.classList.add("row");
 	
-				/*
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-				*/
-				
-                var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-				tableRow.classList.add("mx-0");
-				tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-
-				var tableFiveFrm = document.createElement("form");
-				tableFiveFrm.id = "tableFiveFrm";
-				tableFiveFrm.name = "tableFiveFrm";
-				tableRow.appendChild(tableFiveFrm);
-
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableFiveFrm.appendChild(table);
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupOne = document.createElement("col");
-                colGroupOne.setAttribute("width", "20%");
-                colGroup.appendChild(colGroupOne);
-                
-                var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "20%");
-                colGroup.appendChild(colGroupTwo);
-
-                var colGroupThree = document.createElement("col");
-                colGroupThree.setAttribute("width", "60%");
-                colGroup.appendChild(colGroupThree);
-
-                // var colGroupThree = document.createElement("col");
-                // colGroupThree.setAttribute("width", "15%");
-                // colGroup.appendChild(colGroupThree);
-
-                // var colGroupFour = document.createElement("col");
-                // colGroupFour.setAttribute("width", "35%");
-                // colGroup.appendChild(colGroupFout);
-
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-
-                var bodyTr1 = document.createElement("tr");
-                bodyTr1.setAttribute("rowspan", "2");
-                bodyTr1.setAttribute("scope", "row");
-                bodyTr1.classList.add("text-center");
-                bodyTr1.classList.add("border-2");
-                bodyTr1.classList.add("style", "line-height:100px");
-                tbody.appendChild(bodyTr1);
-
-                var bodyTr1Th1 = document.createElement("th");
-                bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="소송사건 당사자 경력";
-                bodyTr1.appendChild(bodyTr1Th1);
-
-				var bodyTr1Td1 = document.createElement("td");
-				bodyTr1.appendChild(bodyTr1Td1);
-				
-				var inputYesLigtnBox = document.createElement("div");
-				inputYesLigtnBox.classList.add("form-check");
-				inputYesLigtnBox.style.float = "left";
-				inputYesLigtnBox.style.margin = "5px 20px 0px 50px";
-				bodyTr1Td1.appendChild(inputYesLigtnBox);
-				
-				var inputYesLigtn = document.createElement("input");
-				inputYesLigtn.classList.add("form-check-input");
-				inputYesLigtn.type = "radio";
-				inputYesLigtn.name = "ligtn_case_carer_yn";
-				inputYesLigtn.id = "ligtn_case_carer_y";
-				inputYesLigtn.value = "y";
-				inputYesLigtn.style.float = "none";
-				inputYesLigtn.style.marginRight = "5px";
-				inputYesLigtn.setAttribute("onclick", "disabledToggle('y', 'ligtn_case_carer_etc');");
-				inputYesLigtnBox.appendChild(inputYesLigtn);
-				
-				var labelYesLigtn = document.createElement("label");
-				labelYesLigtn.classList.add("form-check-label");
-				labelYesLigtn.for = "ligtn_case_carer_y";
-				labelYesLigtn.innerText = "유";
-				inputYesLigtnBox.appendChild(labelYesLigtn);
-				
-				var inputNoLigtnBox = document.createElement("div");
-				inputNoLigtnBox.classList.add("form-check");
-				inputNoLigtnBox.style.float = "left";
-				inputNoLigtnBox.style.marginTop = "5px";
-				bodyTr1Td1.appendChild(inputNoLigtnBox);
-				
-				var inputNoLigtn = document.createElement("input");
-				inputNoLigtn.classList.add("form-check-input");
-				inputNoLigtn.type = "radio";
-				inputNoLigtn.name = "ligtn_case_carer_yn";
-				inputNoLigtn.id = "ligtn_case_carer_n";
-				inputNoLigtn.value = "n";
-				inputNoLigtn.style.float = "none";
-				inputNoLigtn.style.marginRight = "5px";
-				inputNoLigtn.setAttribute("onclick", "disabledToggle('n', 'ligtn_case_carer_etc');");
-				inputNoLigtnBox.appendChild(inputNoLigtn);
-				
-				var labelNoLigtn = document.createElement("label");
-				labelNoLigtn.classList.add("form-check-label");
-				labelNoLigtn.for = "ligtn_case_carer_n";
-				labelNoLigtn.innerText = "무";
-				inputNoLigtnBox.appendChild(labelNoLigtn);
-				
-                var bodyTr1Td2 = document.createElement("td");
-                //bodyTr1Td2.innerText=jsonObj.map.LIGTN_CASE_CARER_ETC;
-                bodyTr1.appendChild(bodyTr1Td2);
-                
-                var InputligtnCaseCarerEtc = document.createElement("input");
-                InputligtnCaseCarerEtc.id = "ligtn_case_carer_etc";
-                InputligtnCaseCarerEtc.name = "ligtn_case_carer_etc";
-                InputligtnCaseCarerEtc.classList.add("form-control");
-                
-                InputligtnCaseCarerEtc.value = jsonObj.map.LIGTN_CASE_CARER_ETC; 
-                var ligtnCaseCarerEtc =  jsonObj.map.LIGTN_CASE_CARER_ETC
-                if(ligtnCaseCarerEtc == "" || ligtnCaseCarerEtc == undefined) {
-	                InputligtnCaseCarerEtc.value = ""; 
-                } else {
-	                InputligtnCaseCarerEtc.value = ligtnCaseCarerEtc; 
-                }
-                
-                bodyTr1Td2.appendChild(InputligtnCaseCarerEtc);
-
-				var ligtn_case_carer_yn = jsonObj.map.LIGTN_CASE_CARER_YN;
-				console.log("ligtn_case_carer_yn : " + ligtn_case_carer_yn);
-				if(ligtn_case_carer_yn == 'y') {
-					inputYesLigtn.checked = true;
-					InputligtnCaseCarerEtc.disabled = false;
-				} else if(ligtn_case_carer_yn == 'n') {
-					inputNoLigtn.checked = true;
-					InputligtnCaseCarerEtc.disabled = true;
-				} 
-				
-                // var bodyTr1Th2 = document.createElement("th");
-                // bodyTr1Th2.classList.add("text-center");
-                // bodyTr1Th2.classList.add("table-light");
-                // bodyTr1Th2.innerText="보험업계 경력 내용";
-                // bodyTr1.appendChild(bodyTr1Th2);
-
-                // var bodyTr1Td2 = document.createElement("td");
-                // bodyTr1Td2.innerText = "적으셈";
-                // bodyTr1.appendChild(bodyTr1Td2);
-
-                var bodyTr2 = document.createElement("tr");
-                bodyTr2.setAttribute("rowspan", "2");
-                bodyTr2.setAttribute("scope", "row");
-                bodyTr2.setAttribute("style", "line_height:100px");
-                bodyTr2.classList.add("text-center");
-                bodyTr2.classList.add("border-2");
-                tbody.appendChild(bodyTr2);
-
-                var bodyTr2Th1 = document.createElement("th");
-                bodyTr2Th1.classList.add("table-light");
-                bodyTr2Th1.innerText ="보험업계 경력";
-                bodyTr2.appendChild(bodyTr2Th1);
-				
-				var bodyTr2Td1 = document.createElement("td");
-				bodyTr2.appendChild(bodyTr2Td1);
-				
-				var inputYesInsrnBox = document.createElement("div");
-				inputYesInsrnBox.classList.add("form-check");
-				inputYesInsrnBox.style.float = "left";
-				inputYesInsrnBox.style.margin = "0px 20px 0px 50px";
-				bodyTr2Td1.appendChild(inputYesInsrnBox);
-				
-				var inputYesInsrn = document.createElement("input");
-				inputYesInsrn.classList.add("form-check-input");
-				inputYesInsrn.type = "radio";
-				inputYesInsrn.name = "insrn_indst_carer_yn";
-				inputYesInsrn.id = "insrn_indst_carer_y";
-				inputYesInsrn.value = "y";
-				inputYesInsrn.style.float = "none";
-				inputYesInsrn.style.marginRight = "5px";
-				inputYesInsrn.setAttribute("onclick", "disabledToggle('y', 'insrn_indst_carer_etc');");
-				inputYesInsrnBox.appendChild(inputYesInsrn);
-				
-				var labelYesInsrn = document.createElement("label");
-				labelYesInsrn.classList.add("form-check-label");
-				labelYesInsrn.for = "insrn_indst_carer_y";
-				labelYesInsrn.innerText = "유";
-				inputYesInsrnBox.appendChild(labelYesInsrn);
-				
-				var inputNoInsrnBox = document.createElement("div");
-				inputNoInsrnBox.classList.add("form-check");
-				inputNoInsrnBox.style.float = "left";
-				bodyTr2Td1.appendChild(inputNoInsrnBox);
-				
-				var inputNoInsrn = document.createElement("input");
-				inputNoInsrn.classList.add("form-check-input");
-				inputNoInsrn.type = "radio";
-				inputNoInsrn.name = "insrn_indst_carer_yn";
-				inputNoInsrn.id = "insrn_indst_carer_n";
-				inputNoInsrn.value = "n";
-				inputNoInsrn.style.float = "none";
-				inputNoInsrn.style.marginRight = "5px";
-				inputNoInsrn.setAttribute("onclick", "disabledToggle('n', 'insrn_indst_carer_etc');");
-				inputNoInsrnBox.appendChild(inputNoInsrn);
-				
-				var labelNoInsrn = document.createElement("label");
-				labelNoInsrn.classList.add("form-check-label");
-				labelNoInsrn.for = "insrn_indst_carer_n";
-				labelNoInsrn.innerText = "무";
-				inputNoInsrnBox.appendChild(labelNoInsrn);
-				
-                var bodyTr2Td2 = document.createElement("td");
-                //bodyTr2Td2.innerText=jsonObj.map.INSRN_INDST_CARER_ETC;
-                bodyTr2.appendChild(bodyTr2Td2);
-                
-                var InputInsrnIndstCarerEtc = document.createElement("input");
-                InputInsrnIndstCarerEtc.id = "insrn_indst_carer_etc";
-                InputInsrnIndstCarerEtc.name = "insrn_indst_carer_etc";
-                InputInsrnIndstCarerEtc.classList.add("form-control");
-                var insrnIndstCarerEtc =  jsonObj.map.INSRN_INDST_CARER_ETC
-                if(insrnIndstCarerEtc == "" || insrnIndstCarerEtc == undefined) {
-	                InputInsrnIndstCarerEtc.value = ""; 
-                } else {
-	                InputInsrnIndstCarerEtc.value = insrnIndstCarerEtc; 
-                }
-                bodyTr2Td2.appendChild(InputInsrnIndstCarerEtc);
-
-				// 유무 체크
-                var insrn_indst_carer_yn = jsonObj.map.INSRN_INDST_CARER_YN;
-				console.log("insrn_indst_carer_yn : " + insrn_indst_carer_yn);
-				if(insrn_indst_carer_yn == 'y') {
-					inputYesInsrn.checked = true;
-					InputInsrnIndstCarerEtc.disabled = false;
-				} else if(insrn_indst_carer_yn == 'n') {
-					inputNoInsrn.checked = true;
-					InputInsrnIndstCarerEtc.disabled = true;
-				} 
-
-				//////////////////
-				/*
-				var insrn_indst_carer_yn = jsonObj.map.INSRN_INDST_CARER_YN;
-				if(insrn_indst_carer_yn == 'y') {
-					inputNoInsrn.checked = false;
-					inputYesInsrn.checked = true;
-					document.querySelector("input[name='insrn_indst_carer_yn']").value = 'y'
+	                
+	                var subNab1 = document.createElement("div");
+	                subNab1.classList.add("row");
+	                subNab1.classList.add("mx-0");
+	                subNab1.classList.add("border-bottom");
+	                subNab1.classList.add("pb-4");
+	                rowBox.appendChild(subNab1);
+		
+					/*
+	                var subNab1Span = document.createElement("span");
+	                subNab1Span.innerText="기본정보";
+	                subNab1.appendChild(subNab1Span);
+	
+	                var subNab1SpanFromI = document.createElement("i");
+	                subNab1SpanFromI.classList.add("bi");
+	                subNab1SpanFromI.classList.add("bi-circle-fill");
+	                subNab1Span.appendChild(subNab1SpanFromI);
+					*/
 					
-				} else if(insrn_indst_carer_yn == 'n') {
-					inputNoInsrn.checked = true;
-					inputYesInsrn.checked = false;
-					document.querySelector("input[name='insrn_indst_carer_yn']").value = 'n'
-				} 
+	                var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+					tableRow.classList.add("mx-0");
+					tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+	
+					var tableFiveFrm = document.createElement("form");
+					tableFiveFrm.id = "tableFiveFrm";
+					tableFiveFrm.name = "tableFiveFrm";
+					tableRow.appendChild(tableFiveFrm);
+	
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableFiveFrm.appendChild(table);
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+	
+	                var colGroupOne = document.createElement("col");
+	                colGroupOne.setAttribute("width", "20%");
+	                colGroup.appendChild(colGroupOne);
+	                
+	                var colGroupTwo = document.createElement("col");
+	                colGroupTwo.setAttribute("width", "20%");
+	                colGroup.appendChild(colGroupTwo);
+	
+	                var colGroupThree = document.createElement("col");
+	                colGroupThree.setAttribute("width", "60%");
+	                colGroup.appendChild(colGroupThree);
+	
+	                // var colGroupThree = document.createElement("col");
+	                // colGroupThree.setAttribute("width", "15%");
+	                // colGroup.appendChild(colGroupThree);
+	
+	                // var colGroupFour = document.createElement("col");
+	                // colGroupFour.setAttribute("width", "35%");
+	                // colGroup.appendChild(colGroupFout);
+	
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+	
+	                var bodyTr1 = document.createElement("tr");
+	                bodyTr1.setAttribute("rowspan", "2");
+	                bodyTr1.setAttribute("scope", "row");
+	                bodyTr1.classList.add("text-center");
+	                bodyTr1.classList.add("border-2");
+	                bodyTr1.classList.add("style", "line-height:100px");
+	                tbody.appendChild(bodyTr1);
+	
+	                var bodyTr1Th1 = document.createElement("th");
+	                bodyTr1Th1.classList.add("table-light");
+	                bodyTr1Th1.innerText="소송사건 당사자 경력";
+	                bodyTr1.appendChild(bodyTr1Th1);
+	
+					var bodyTr1Td1 = document.createElement("td");
+					bodyTr1.appendChild(bodyTr1Td1);
+					
+					var inputYesLigtnBox = document.createElement("div");
+					inputYesLigtnBox.classList.add("form-check");
+					inputYesLigtnBox.style.float = "left";
+					inputYesLigtnBox.style.margin = "5px 20px 0px 50px";
+					bodyTr1Td1.appendChild(inputYesLigtnBox);
+					
+					var inputYesLigtn = document.createElement("input");
+					inputYesLigtn.classList.add("form-check-input");
+					inputYesLigtn.type = "radio";
+					inputYesLigtn.name = "ligtn_case_carer_yn";
+					inputYesLigtn.id = "ligtn_case_carer_y";
+					inputYesLigtn.value = "y";
+					inputYesLigtn.style.float = "none";
+					inputYesLigtn.style.marginRight = "5px";
+					inputYesLigtn.setAttribute("onclick", "disabledToggle('y', 'ligtn_case_carer_etc');");
+					inputYesLigtnBox.appendChild(inputYesLigtn);
+					
+					var labelYesLigtn = document.createElement("label");
+					labelYesLigtn.classList.add("form-check-label");
+					labelYesLigtn.for = "ligtn_case_carer_y";
+					labelYesLigtn.innerText = "유";
+					inputYesLigtnBox.appendChild(labelYesLigtn);
+					
+					var inputNoLigtnBox = document.createElement("div");
+					inputNoLigtnBox.classList.add("form-check");
+					inputNoLigtnBox.style.float = "left";
+					inputNoLigtnBox.style.marginTop = "5px";
+					bodyTr1Td1.appendChild(inputNoLigtnBox);
+					
+					var inputNoLigtn = document.createElement("input");
+					inputNoLigtn.classList.add("form-check-input");
+					inputNoLigtn.type = "radio";
+					inputNoLigtn.name = "ligtn_case_carer_yn";
+					inputNoLigtn.id = "ligtn_case_carer_n";
+					inputNoLigtn.value = "n";
+					inputNoLigtn.style.float = "none";
+					inputNoLigtn.style.marginRight = "5px";
+					inputNoLigtn.setAttribute("onclick", "disabledToggle('n', 'ligtn_case_carer_etc');");
+					inputNoLigtnBox.appendChild(inputNoLigtn);
+					
+					var labelNoLigtn = document.createElement("label");
+					labelNoLigtn.classList.add("form-check-label");
+					labelNoLigtn.for = "ligtn_case_carer_n";
+					labelNoLigtn.innerText = "무";
+					inputNoLigtnBox.appendChild(labelNoLigtn);
+					
+	                var bodyTr1Td2 = document.createElement("td");
+	                //bodyTr1Td2.innerText=jsonObj.map.LIGTN_CASE_CARER_ETC;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var InputligtnCaseCarerEtc = document.createElement("input");
+	                InputligtnCaseCarerEtc.id = "ligtn_case_carer_etc";
+	                InputligtnCaseCarerEtc.name = "ligtn_case_carer_etc";
+	                InputligtnCaseCarerEtc.classList.add("form-control");
+	                
+	                InputligtnCaseCarerEtc.value = jsonObj.map.LIGTN_CASE_CARER_ETC; 
+	                var ligtnCaseCarerEtc =  jsonObj.map.LIGTN_CASE_CARER_ETC
+	                if(ligtnCaseCarerEtc == "" || ligtnCaseCarerEtc == undefined) {
+		                InputligtnCaseCarerEtc.value = ""; 
+	                } else {
+		                InputligtnCaseCarerEtc.value = ligtnCaseCarerEtc; 
+	                }
+	                
+	                bodyTr1Td2.appendChild(InputligtnCaseCarerEtc);
+	
+					var ligtn_case_carer_yn = jsonObj.map.LIGTN_CASE_CARER_YN;
+					console.log("ligtn_case_carer_yn : " + ligtn_case_carer_yn);
+					if(ligtn_case_carer_yn == 'y') {
+						inputYesLigtn.checked = true;
+						InputligtnCaseCarerEtc.disabled = false;
+					} else if(ligtn_case_carer_yn == 'n') {
+						inputNoLigtn.checked = true;
+						InputligtnCaseCarerEtc.disabled = true;
+					} 
+					
+	                // var bodyTr1Th2 = document.createElement("th");
+	                // bodyTr1Th2.classList.add("text-center");
+	                // bodyTr1Th2.classList.add("table-light");
+	                // bodyTr1Th2.innerText="보험업계 경력 내용";
+	                // bodyTr1.appendChild(bodyTr1Th2);
+	
+	                // var bodyTr1Td2 = document.createElement("td");
+	                // bodyTr1Td2.innerText = "적으셈";
+	                // bodyTr1.appendChild(bodyTr1Td2);
+	
+	                var bodyTr2 = document.createElement("tr");
+	                bodyTr2.setAttribute("rowspan", "2");
+	                bodyTr2.setAttribute("scope", "row");
+	                bodyTr2.setAttribute("style", "line_height:100px");
+	                bodyTr2.classList.add("text-center");
+	                bodyTr2.classList.add("border-2");
+	                tbody.appendChild(bodyTr2);
+	
+	                var bodyTr2Th1 = document.createElement("th");
+	                bodyTr2Th1.classList.add("table-light");
+	                bodyTr2Th1.innerText ="보험업계 경력";
+	                bodyTr2.appendChild(bodyTr2Th1);
+					
+					var bodyTr2Td1 = document.createElement("td");
+					bodyTr2.appendChild(bodyTr2Td1);
+					
+					var inputYesInsrnBox = document.createElement("div");
+					inputYesInsrnBox.classList.add("form-check");
+					inputYesInsrnBox.style.float = "left";
+					inputYesInsrnBox.style.margin = "0px 20px 0px 50px";
+					bodyTr2Td1.appendChild(inputYesInsrnBox);
+					
+					var inputYesInsrn = document.createElement("input");
+					inputYesInsrn.classList.add("form-check-input");
+					inputYesInsrn.type = "radio";
+					inputYesInsrn.name = "insrn_indst_carer_yn";
+					inputYesInsrn.id = "insrn_indst_carer_y";
+					inputYesInsrn.value = "y";
+					inputYesInsrn.style.float = "none";
+					inputYesInsrn.style.marginRight = "5px";
+					inputYesInsrn.setAttribute("onclick", "disabledToggle('y', 'insrn_indst_carer_etc');");
+					inputYesInsrnBox.appendChild(inputYesInsrn);
+					
+					var labelYesInsrn = document.createElement("label");
+					labelYesInsrn.classList.add("form-check-label");
+					labelYesInsrn.for = "insrn_indst_carer_y";
+					labelYesInsrn.innerText = "유";
+					inputYesInsrnBox.appendChild(labelYesInsrn);
+					
+					var inputNoInsrnBox = document.createElement("div");
+					inputNoInsrnBox.classList.add("form-check");
+					inputNoInsrnBox.style.float = "left";
+					bodyTr2Td1.appendChild(inputNoInsrnBox);
+					
+					var inputNoInsrn = document.createElement("input");
+					inputNoInsrn.classList.add("form-check-input");
+					inputNoInsrn.type = "radio";
+					inputNoInsrn.name = "insrn_indst_carer_yn";
+					inputNoInsrn.id = "insrn_indst_carer_n";
+					inputNoInsrn.value = "n";
+					inputNoInsrn.style.float = "none";
+					inputNoInsrn.style.marginRight = "5px";
+					inputNoInsrn.setAttribute("onclick", "disabledToggle('n', 'insrn_indst_carer_etc');");
+					inputNoInsrnBox.appendChild(inputNoInsrn);
+					
+					var labelNoInsrn = document.createElement("label");
+					labelNoInsrn.classList.add("form-check-label");
+					labelNoInsrn.for = "insrn_indst_carer_n";
+					labelNoInsrn.innerText = "무";
+					inputNoInsrnBox.appendChild(labelNoInsrn);
+					
+	                var bodyTr2Td2 = document.createElement("td");
+	                //bodyTr2Td2.innerText=jsonObj.map.INSRN_INDST_CARER_ETC;
+	                bodyTr2.appendChild(bodyTr2Td2);
+	                
+	                var InputInsrnIndstCarerEtc = document.createElement("input");
+	                InputInsrnIndstCarerEtc.id = "insrn_indst_carer_etc";
+	                InputInsrnIndstCarerEtc.name = "insrn_indst_carer_etc";
+	                InputInsrnIndstCarerEtc.classList.add("form-control");
+	                var insrnIndstCarerEtc =  jsonObj.map.INSRN_INDST_CARER_ETC
+	                if(insrnIndstCarerEtc == "" || insrnIndstCarerEtc == undefined) {
+		                InputInsrnIndstCarerEtc.value = ""; 
+	                } else {
+		                InputInsrnIndstCarerEtc.value = insrnIndstCarerEtc; 
+	                }
+	                bodyTr2Td2.appendChild(InputInsrnIndstCarerEtc);
+	
+					// 유무 체크
+	                var insrn_indst_carer_yn = jsonObj.map.INSRN_INDST_CARER_YN;
+					console.log("insrn_indst_carer_yn : " + insrn_indst_carer_yn);
+					if(insrn_indst_carer_yn == 'y') {
+						inputYesInsrn.checked = true;
+						InputInsrnIndstCarerEtc.disabled = false;
+					} else if(insrn_indst_carer_yn == 'n') {
+						inputNoInsrn.checked = true;
+						InputInsrnIndstCarerEtc.disabled = true;
+					} 
+	
+					//////////////////
+					/*
+					var insrn_indst_carer_yn = jsonObj.map.INSRN_INDST_CARER_YN;
+					if(insrn_indst_carer_yn == 'y') {
+						inputNoInsrn.checked = false;
+						inputYesInsrn.checked = true;
+						document.querySelector("input[name='insrn_indst_carer_yn']").value = 'y'
+						
+					} else if(insrn_indst_carer_yn == 'n') {
+						inputNoInsrn.checked = true;
+						inputYesInsrn.checked = false;
+						document.querySelector("input[name='insrn_indst_carer_yn']").value = 'n'
+					} 
+					
+					if(insrn_indst_carer_yn_val == 'y') {
+						InputInsrnIndstCarerEtc.disabled = false;
+					} else if(insrn_indst_carer_yn_val == 'n') {
+						InputInsrnIndstCarerEtc.disabled = true;
+					}
+					
+					var checkValInsrn = document.querySelector("input[name='insrn_indst_carer_yn']:checked").value;
+					if(checkValInsrn == 'y') {
+						InputInsrnIndstCarerEtc.disabled = false;
+					} else if(checkValInsrn == 'n') {
+						InputInsrnIndstCarerEtc.disabled = true;				
+					}
+					*//////////////////////////////
+					
+	                var bodyTr3 = document.createElement("tr");
+	                bodyTr3.setAttribute("rowspan", "2");
+	                bodyTr3.setAttribute("scope", "row");
+	                bodyTr3.classList.add("text-center");
+	                bodyTr3.classList.add("border-2");
+	                //bodyTr3.setAttribute("style", "line-height:100px");
+	                tbody.appendChild(bodyTr3);
+	
+	                var bodyTr3Th1 = document.createElement("th");
+	                bodyTr3Th1.classList.add("table-light");
+	                bodyTr3Th1.innerText="형사처벌 경력";
+	                bodyTr3.appendChild(bodyTr3Th1);
+	                
+	                var bodyTr3Td1 = document.createElement("td");
+	                bodyTr3.appendChild(bodyTr3Td1);
+	                
+	                var inputYesCriBox = document.createElement("div");
+	                inputYesCriBox.classList.add("form-check");
+	                inputYesCriBox.style.float = "left";
+	                inputYesCriBox.style.margin = "0px 20px 0px 50px";
+	                bodyTr3Td1.appendChild(inputYesCriBox);
+	                
+	                var inputYesCri = document.createElement("input");
+	                inputYesCri.classList.add("form-check-input");
+	                inputYesCri.type = "radio";
+	                inputYesCri.name = "criminal_penalty_carer_yn";
+	                inputYesCri.id = "criminal_penalty_carer_y";
+	                inputYesCri.value = "y";
+	                inputYesCri.style.float = "none";
+	                inputYesCri.style.marginRight = "5px";
+	                inputYesCri.setAttribute("onclick", "disabledToggle('y', 'criminal_penalty_carer_etc');");
+	                inputYesCriBox.appendChild(inputYesCri);
+	                
+	                var labelYesCri = document.createElement("label");
+	                labelYesCri.classList.add("form-check-label");
+	                labelYesCri.for = "criminal_penalty_carer_y";
+	                labelYesCri.innerText = "유";
+	                inputYesCriBox.appendChild(labelYesCri);
+	                
+	                var inputNoCriBox = document.createElement("div");
+					inputNoCriBox.classList.add("form-check");
+					inputNoCriBox.style.float = "left";
+					bodyTr3Td1.appendChild(inputNoCriBox);
+					
+					var inputNoCri = document.createElement("input");
+					inputNoCri.classList.add("form-check-input");
+					inputNoCri.type = "radio";
+					inputNoCri.name = "criminal_penalty_carer_yn";
+					inputNoCri.id = "criminal_penalty_carer_ n";
+					inputNoCri.value = "n";
+					inputNoCri.style.float = "none";
+					inputNoCri.style.marginRight = "5px";
+					inputNoCri.setAttribute("onclick", "disabledToggle('n', 'criminal_penalty_carer_etc');");
+					inputNoCriBox.appendChild(inputNoCri);
+					
+					var labelNoCri = document.createElement("label");
+					labelNoCri.classList.add("form-check-label");
+					labelNoCri.for = "criminal_penalty_carer_n";
+					labelNoCri.innerText = "무";
+					inputNoCriBox.appendChild(labelNoCri);
+					
+					var bodyTr3Td2 = document.createElement("td");
+	                bodyTr3.appendChild(bodyTr3Td2);
+	                
+	               	var inputCriPenCarerEtc = document.createElement("input");
+	               	inputCriPenCarerEtc.id = "criminal_penalty_carer_etc";
+	               	inputCriPenCarerEtc.name = "criminal_penalty_carer_etc";
+	               	inputCriPenCarerEtc.classList.add("form-control");
+	               	var criPenCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
+	               	if(criPenCarerEtc == "" || criPenCarerEtc == undefined) {
+	               		inputCriPenCarerEtc.value = "";
+	               	} else {
+	               		inputCriPenCarerEtc.value = criPenCarerEtc; 
+	               	}
+	               	bodyTr3Td2.appendChild(inputCriPenCarerEtc);
+					
+					// 유무 체크
+	                var criminal_penalty_carer_yn = jsonObj.map.CRIMINAL_PENALTY_CARER_YN;
+					console.log("criminal_penalty_carer_yn : " + criminal_penalty_carer_yn);
+					if(criminal_penalty_carer_yn == 'y') {
+						inputYesCri.checked = true;
+						inputCriPenCarerEtc.disabled = false;
+					} else if(criminal_penalty_carer_yn == 'n') {
+						inputNoCri.checked = true;
+						inputCriPenCarerEtc.disabled = true;
+					} 
+					
+					// 저장버튼
+					var submitRow = document.createElement("div");
+	                submitRow.classList.add("row");
+	                submitRow.classList.add("text-center");
+	                tableFiveFrm.appendChild(submitRow);
+	                
+	                var submitCol = document.createElement("div");
+	                submitCol.classList.add("col");
+	                submitRow.appendChild(submitCol);
 				
-				if(insrn_indst_carer_yn_val == 'y') {
-					InputInsrnIndstCarerEtc.disabled = false;
-				} else if(insrn_indst_carer_yn_val == 'n') {
-					InputInsrnIndstCarerEtc.disabled = true;
-				}
-				
-				var checkValInsrn = document.querySelector("input[name='insrn_indst_carer_yn']:checked").value;
-				if(checkValInsrn == 'y') {
-					InputInsrnIndstCarerEtc.disabled = false;
-				} else if(checkValInsrn == 'n') {
-					InputInsrnIndstCarerEtc.disabled = true;				
-				}
-				*//////////////////////////////
-				
-                var bodyTr3 = document.createElement("tr");
-                bodyTr3.setAttribute("rowspan", "2");
-                bodyTr3.setAttribute("scope", "row");
-                bodyTr3.classList.add("text-center");
-                bodyTr3.classList.add("border-2");
-                //bodyTr3.setAttribute("style", "line-height:100px");
-                tbody.appendChild(bodyTr3);
-
-                var bodyTr3Th1 = document.createElement("th");
-                bodyTr3Th1.classList.add("table-light");
-                bodyTr3Th1.innerText="형사처벌 경력";
-                bodyTr3.appendChild(bodyTr3Th1);
-                
-                var bodyTr3Td1 = document.createElement("td");
-                bodyTr3.appendChild(bodyTr3Td1);
-                
-                var inputYesCriBox = document.createElement("div");
-                inputYesCriBox.classList.add("form-check");
-                inputYesCriBox.style.float = "left";
-                inputYesCriBox.style.margin = "0px 20px 0px 50px";
-                bodyTr3Td1.appendChild(inputYesCriBox);
-                
-                var inputYesCri = document.createElement("input");
-                inputYesCri.classList.add("form-check-input");
-                inputYesCri.type = "radio";
-                inputYesCri.name = "criminal_penalty_carer_yn";
-                inputYesCri.id = "criminal_penalty_carer_y";
-                inputYesCri.value = "y";
-                inputYesCri.style.float = "none";
-                inputYesCri.style.marginRight = "5px";
-                inputYesCri.setAttribute("onclick", "disabledToggle('y', 'criminal_penalty_carer_etc');");
-                inputYesCriBox.appendChild(inputYesCri);
-                
-                var labelYesCri = document.createElement("label");
-                labelYesCri.classList.add("form-check-label");
-                labelYesCri.for = "criminal_penalty_carer_y";
-                labelYesCri.innerText = "유";
-                inputYesCriBox.appendChild(labelYesCri);
-                
-                var inputNoCriBox = document.createElement("div");
-				inputNoCriBox.classList.add("form-check");
-				inputNoCriBox.style.float = "left";
-				bodyTr3Td1.appendChild(inputNoCriBox);
-				
-				var inputNoCri = document.createElement("input");
-				inputNoCri.classList.add("form-check-input");
-				inputNoCri.type = "radio";
-				inputNoCri.name = "criminal_penalty_carer_yn";
-				inputNoCri.id = "criminal_penalty_carer_ n";
-				inputNoCri.value = "n";
-				inputNoCri.style.float = "none";
-				inputNoCri.style.marginRight = "5px";
-				inputNoCri.setAttribute("onclick", "disabledToggle('n', 'criminal_penalty_carer_etc');");
-				inputNoCriBox.appendChild(inputNoCri);
-				
-				var labelNoCri = document.createElement("label");
-				labelNoCri.classList.add("form-check-label");
-				labelNoCri.for = "criminal_penalty_carer_n";
-				labelNoCri.innerText = "무";
-				inputNoCriBox.appendChild(labelNoCri);
-				
-				var bodyTr3Td2 = document.createElement("td");
-                bodyTr3.appendChild(bodyTr3Td2);
-                
-               	var inputCriPenCarerEtc = document.createElement("input");
-               	inputCriPenCarerEtc.id = "criminal_penalty_carer_etc";
-               	inputCriPenCarerEtc.name = "criminal_penalty_carer_etc";
-               	inputCriPenCarerEtc.classList.add("form-control");
-               	var criPenCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
-               	if(criPenCarerEtc == "" || criPenCarerEtc == undefined) {
-               		inputCriPenCarerEtc.value = "";
-               	} else {
-               		inputCriPenCarerEtc.value = criPenCarerEtc; 
-               	}
-               	bodyTr3Td2.appendChild(inputCriPenCarerEtc);
-				
-				// 유무 체크
-                var criminal_penalty_carer_yn = jsonObj.map.CRIMINAL_PENALTY_CARER_YN;
-				console.log("criminal_penalty_carer_yn : " + criminal_penalty_carer_yn);
-				if(criminal_penalty_carer_yn == 'y') {
-					inputYesCri.checked = true;
-					inputCriPenCarerEtc.disabled = false;
-				} else if(criminal_penalty_carer_yn == 'n') {
-					inputNoCri.checked = true;
-					inputCriPenCarerEtc.disabled = true;
-				} 
-				
-				// 저장버튼
-				var submitRow = document.createElement("div");
-                submitRow.classList.add("row");
-                submitRow.classList.add("text-center");
-                tableFiveFrm.appendChild(submitRow);
-                
-                var submitCol = document.createElement("div");
-                submitCol.classList.add("col");
-                submitRow.appendChild(submitCol);
-			
-                var submitBtn = document.createElement("button");
-                submitBtn.classList.add("btn");
-                submitBtn.classList.add("btn-primary");
-                submitBtn.classList.add("mx-2");
-                
-                submitBtn.type = "button";
-                submitBtn.innerText = "저장";
-                submitBtn.setAttribute("onclick", "tableFiveFrmSubmit();");
-                submitCol.appendChild(submitBtn);
-                
-	            var finalSubmitBtn = document.createElement("button");
-                finalSubmitBtn.classList.add("btn");
-                finalSubmitBtn.classList.add("btn-outline-primary");
-                finalSubmitBtn.innerText = "작성완료";
-                finalSubmitBtn.setAttribute("onclick", "application();");
-                submitCol.appendChild(finalSubmitBtn);    
-                
-                var properNum = document.createElement("input");
-                properNum.type = "hidden";
-                properNum.value = jsonObj.map.APLCN_DTLS_PROPER_NUM;
-                properNum.name = "aplcn_dtls_proper_num";
-                tableFiveFrm.appendChild(properNum);
-                
-                commentListBox.appendChild(rowBox);
+	                var submitBtn = document.createElement("button");
+	                submitBtn.classList.add("btn");
+	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("mx-2");
+	                submitBtn.classList.add("frmSubmit");
+		                
+	                submitBtn.id = "tableFiveFrm";
+	                submitBtn.type = "button";
+	                submitBtn.innerText = "저장";
+	                submitBtn.setAttribute("onclick", "tableFiveFrmSubmit();");
+	                submitCol.appendChild(submitBtn);
+	                
+		            var finalSubmitBtn = document.createElement("button");
+	                finalSubmitBtn.classList.add("btn");
+	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.innerText = "작성완료";
+	                finalSubmitBtn.setAttribute("onclick", "application();");
+	                submitCol.appendChild(finalSubmitBtn);    
+	                
+	                var properNum = document.createElement("input");
+	                properNum.type = "hidden";
+	                properNum.value = jsonObj.map.APLCN_DTLS_PROPER_NUM;
+	                properNum.name = "aplcn_dtls_proper_num";
+	                tableFiveFrm.appendChild(properNum);
+	                
+	                commentListBox.appendChild(rowBox);
+	                
+                } else {	// 등재신청 결과값 null일 때
+                	var errMsgRow = document.createElement("div");
+                	errMsgRow.classList.add("row");
+                	
+                	var errMsgCol = document.createElement("div");
+                	errMsgCol.classList.add("col");
+                	errMsgRow.appendChild(errMsgCol);
+                	
+                	var errMsgSpan = document.createElement("span");
+                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+                	errMsgCol.appendChild(errMsgSpan);
+                	
+                	commentListBox.appendChild(errMsgRow);
+                }
 
             }
     }
@@ -1069,245 +1163,305 @@ function tableSixInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				var data = jsonObj.map;
 
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
-                var rowBox = document.createElement("div");
-                rowBox.classList.add("row");
-   	
-   				var txtRow = document.createElement("div");
-                txtRow.classList.add("row");
-                txtRow.classList.add("mx-0");
-                txtRow.classList.add("border-bottom");
-                txtRow.classList.add("pb-4");
-                rowBox.appendChild(txtRow);
+				if(data != null && data != undefined) {
+	                var rowBox = document.createElement("div");
+	                rowBox.classList.add("row");
+	   	
+	   				var txtRow = document.createElement("div");
+	                txtRow.classList.add("row");
+	                txtRow.classList.add("mx-0");
+	                txtRow.classList.add("border-bottom");
+	                txtRow.classList.add("pb-4");
+	                rowBox.appendChild(txtRow);
+	                
+	                var txtCol = document.createElement("div");
+	                txtCol.classList.add("col");
+	                txtRow.appendChild(txtCol);
+	                
+	                var txtSpan = document.createElement("span");
+	                txtSpan.innerText = "* 모든 값은 필수입력입니다.";
+	                txtSpan.classList.add("text-danger");
+	                txtSpan.classList.add("fw-bold");
+	                txtCol.appendChild(txtSpan);
+	                
+	                /*
+	                var subNab1 = document.createElement("div");
+	                subNab1.classList.add("row");
+	                subNab1.classList.add("mx-0");
+	                subNab1.classList.add("border-bottom");
+	                subNab1.classList.add("pb-4");
+	                rowBox.appendChild(subNab1);
+	
+	                var subNab1Span = document.createElement("span");
+	                subNab1Span.innerText="기본정보";
+	                subNab1.appendChild(subNab1Span);
+	
+	                var subNab1SpanFromI = document.createElement("i");
+	                subNab1SpanFromI.classList.add("bi");
+	                subNab1SpanFromI.classList.add("bi-circle-fill");
+	                subNab1Span.appendChild(subNab1SpanFromI);
+					*/
+	
+	                //table시작
+	                var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+	                tableRow.classList.add("mx-0");
+	                tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+	
+					var tableSixFrm = document.createElement("form");
+	                tableSixFrm.id = "tableSixFrm";
+	                tableSixFrm.name = "tableSixFrm";
+	                tableRow.appendChild(tableSixFrm);
+	
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableSixFrm.appendChild(table);
+	
+	                //여기까진 같음
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+	
+	                var colGroupOne = document.createElement("col");
+	                colGroupOne.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupOne);
+	
+	                var colGroupTwo = document.createElement("col");
+	                colGroupTwo.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupTwo);
+	
+	                var colGroupThree = document.createElement("col");
+	                colGroupThree.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupThree);
+	
+	                var colGroupFour = document.createElement("col");
+	                colGroupFour.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupFour);
+	
+	                var thead = document.createElement("thead");
+	                table.appendChild(thead);
+	
+	                var theadTr = document.createElement("tr");
+	                thead.appendChild(theadTr);
+	
+	                var theadTrTh1 = document.createElement("th");
+	                theadTrTh1.classList.add("text-center");
+	                theadTrTh1.classList.add("table-light");
+	                theadTrTh1.innerText="학교명";
+	                theadTr.appendChild(theadTrTh1);
+					
+	                var theadTrTd1 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd1);
+	
+					var inputSchoolName = document.createElement("input");
+					inputSchoolName.type = "text";
+					inputSchoolName.classList.add("form-control");
+					inputSchoolName.value = jsonObj.map.EDCTN_SCHOOL_NAME;
+					inputSchoolName.id = "edctn_school_name";
+					inputSchoolName.name = "edctn_school_name";
+					theadTrTd1.appendChild(inputSchoolName);
+	
+	                var theadTrTh2 = document.createElement("th");
+	                theadTrTh2.classList.add("text-center");
+	                theadTrTh2.classList.add("table-light");
+	                theadTrTh2.innerText="학과전공";
+	                theadTr.appendChild(theadTrTh2);
+	
+	                var theadTrTd2 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd2);
+	
+					var inputEdctnMajor = document.createElement("input");
+					inputEdctnMajor.type = "text";
+					inputEdctnMajor.classList.add("form-control");
+					inputEdctnMajor.value = jsonObj.map.EDCTN_MAJOR;
+					inputEdctnMajor.id = "edctn_major";
+					inputEdctnMajor.name = "edctn_major";
+					theadTrTd2.appendChild(inputEdctnMajor);
+	
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+	
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+	
+	                var bodyTr1Th1 = document.createElement("th");
+	                bodyTr1Th1.classList.add("text-center");
+	                bodyTr1Th1.classList.add("table-light");
+	                bodyTr1Th1.innerText="입학일";
+	                bodyTr1.appendChild(bodyTr1Th1);
+	
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td1);
+	
+					var inputEdctnAdmsnDate = document.createElement("input");
+					inputEdctnAdmsnDate.type = "date";
+					inputEdctnAdmsnDate.classList.add("form-control");
+					console.log(jsonObj.map.EDCTN_ADMSN_DATE);
+					inputEdctnAdmsnDate.value = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
+					inputEdctnAdmsnDate.id = "edctn_admsn_date";
+					inputEdctnAdmsnDate.name = "edctn_admsn_date";
+					bodyTr1Td1.appendChild(inputEdctnAdmsnDate);
+	
+	                var bodyTr1Th2 = document.createElement("th");
+	                bodyTr1Th2.classList.add("text-center");
+	                bodyTr1Th2.classList.add("table-light");
+	                bodyTr1Th2.innerText="종료일";
+	                bodyTr1.appendChild(bodyTr1Th2);
+	
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var inputEdctnGrdtnDate = document.createElement("input");
+	                inputEdctnGrdtnDate.type = "date";
+	                inputEdctnGrdtnDate.classList.add("form-control");
+	                inputEdctnGrdtnDate.value = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
+	                inputEdctnGrdtnDate.id = "edctn_grdtn_date";
+	                inputEdctnGrdtnDate.name = "edctn_grdtn_date";
+	                bodyTr1Td2.appendChild(inputEdctnGrdtnDate);
+	
+	                var bodyTr2 = document.createElement("tr");
+	                tbody.appendChild(bodyTr2);
+	
+	                var bodyTr2Th1 = document.createElement("th");
+	                bodyTr2Th1.classList.add("text-center");
+	                bodyTr2Th1.classList.add("table-light");
+	                bodyTr2Th1.innerText="학위";
+	                bodyTr2.appendChild(bodyTr2Th1);
+	
+	                var bodyTr2Td1 = document.createElement("td");
+	                bodyTr2.appendChild(bodyTr2Td1);
+	                
+	                var inputEdctnDegree = document.createElement("input");
+	                inputEdctnDegree.type = "text";
+	                inputEdctnDegree.classList.add("form-control");
+	                inputEdctnDegree.value = jsonObj.map.EDCTN_DEGREE;
+	                inputEdctnDegree.id = "edctn_degree";
+	                inputEdctnDegree.name = "edctn_degree";
+	                bodyTr2Td1.appendChild(inputEdctnDegree);
+	
+	                var bodyTr2Th2 = document.createElement("th");
+	                bodyTr2Th2.innerText="최종학력";
+	                bodyTr2Th2.classList.add("text-center");
+	                bodyTr2Th2.classList.add("table-light");
+	                bodyTr2.appendChild(bodyTr2Th2);
+	
+	                var bodyTr2Td2 = document.createElement("td");
+	                bodyTr2.appendChild(bodyTr2Td2);
+	                
+	                
+	                // 220923 hyejin 추가
+	                var inputEdctnFinalYBox = document.createElement("div");
+	                inputEdctnFinalYBox.classList.add("form-check");
+	                inputEdctnFinalYBox.style.float = "left";
+	                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
+					bodyTr2Td2.appendChild(inputEdctnFinalYBox);
+					
+					var inputEdctnFinalY = document.createElement("input");
+					inputEdctnFinalY.classList.add("form-check-input");
+					inputEdctnFinalY.type = "radio";
+					inputEdctnFinalY.name = "edctn_final_yn";
+					inputEdctnFinalY.id = "edctn_final_y";
+					inputEdctnFinalY.value = "y";
+					inputEdctnFinalY.marginRight = "5px";
+					inputEdctnFinalYBox.appendChild(inputEdctnFinalY);
+					
+					var labelEdctnFinalY = document.createElement("label");
+					labelEdctnFinalY.classList.add("form-check-label");
+					labelEdctnFinalY.setAttribute("for", "edctn_final_y");
+					labelEdctnFinalY.innerText = "예";
+					inputEdctnFinalYBox.appendChild(labelEdctnFinalY);
+					
+					
+					var inputEdctnFinalNBox = document.createElement("div");
+					inputEdctnFinalNBox.classList.add("form-check");
+					inputEdctnFinalNBox.style.float = "left";
+					inputEdctnFinalNBox.style.marginTop = "5px";
+					bodyTr2Td2.appendChild(inputEdctnFinalNBox);
+					
+					var inputEdctnFinalN = document.createElement("input");
+					inputEdctnFinalN.classList.add("form-check-input");
+					inputEdctnFinalN.type = "radio";
+					inputEdctnFinalN.name = "edctn_final_yn";
+					inputEdctnFinalN.id = "edctn_final_n";
+					inputEdctnFinalN.value = "n";
+					inputEdctnFinalN.style.marginRight = "5px";
+					inputEdctnFinalNBox.appendChild(inputEdctnFinalN);
+					
+					var labelEdctnFinalN = document.createElement("label");
+					labelEdctnFinalN.classList.add("form-check-label");
+					labelEdctnFinalN.setAttribute("for", "edctn_final_n");
+					labelEdctnFinalN.innerText = "아니오";
+					inputEdctnFinalNBox.appendChild(labelEdctnFinalN);
+					
+					// 최종학력 체크
+					var edctnFinalVal = jsonObj.map.EDCTN_FINAL_YN;
+					//console.log("최종학력인가 ? " + edctnFinalVal);
+					if(edctnFinalVal == 'y') {
+						inputEdctnFinalY.checked = true;
+					} else if(edctnFinalVal == 'n') {
+						inputEdctnFinalN.checked = true;
+					}
+					
+					var properNum = document.createElement("input");
+					properNum.type = "hidden";
+					properNum.value = jsonObj.map.APLCN_DTLS_PROPER_NUM;
+					properNum.id = "aplcn_dtls_proper_num";
+					properNum.name = "aplcn_dtls_proper_num";
+					tableSixFrm.appendChild(properNum);
+	                
+	                // 저장버튼
+	                var submitRow = document.createElement("div");
+	                submitRow.classList.add("row");
+	                submitRow.classList.add("text-center");
+	                tableSixFrm.appendChild(submitRow);
+	                
+	                var submitCol = document.createElement("div");
+	                submitCol.classList.add("col");
+	                submitRow.appendChild(submitCol);
+	                
+	                var submitBtn = document.createElement("button");
+	                submitBtn.classList.add("btn");
+	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("mx-2");
+	                submitBtn.classList.add("frmSubmit");
+		                
+		            submitBtn.id = "tableOneFrm";
+	                submitBtn.type = "button";
+	                submitBtn.innerText = "저장";
+	                submitBtn.setAttribute("onclick", "tableSixFrmSubmit();")
+	                submitCol.appendChild(submitBtn);
+	                
+	                var finalSubmitBtn = document.createElement("button");
+	                finalSubmitBtn.classList.add("btn");
+	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.innerText = "작성완료";
+	                finalSubmitBtn.setAttribute("onclick", "application();");
+	                submitCol.appendChild(finalSubmitBtn);
+	
+	                commentListBox.appendChild(rowBox);
+	                
+                } else {	// 등재신청 결과 null일때
+                	var errMsgRow = document.createElement("div");
+                	errMsgRow.classList.add("row");
+                	
+                	var errMsgCol = document.createElement("div");
+                	errMsgCol.classList.add("col");
+                	errMsgRow.appendChild(errMsgCol);
+                	
+                	var errMsgSpan = document.createElement("span");
+                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+                	errMsgCol.appendChild(errMsgSpan);
+                	
+                	commentListBox.appendChild(errMsgRow);
                 
-                var txtCol = document.createElement("div");
-                txtCol.classList.add("col");
-                txtRow.appendChild(txtCol);
-                
-                var txtSpan = document.createElement("span");
-                txtSpan.innerText = "* 모든 값은 필수입력입니다.";
-                txtSpan.classList.add("text-danger");
-                txtSpan.classList.add("fw-bold");
-                txtCol.appendChild(txtSpan);
-                
-                /*
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-				*/
-
-                //table시작
-                var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-
-                //여기까진 같음
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupOne = document.createElement("col");
-                colGroupOne.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupOne);
-
-                var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupTwo);
-
-                var colGroupThree = document.createElement("col");
-                colGroupThree.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupThree);
-
-                var colGroupFour = document.createElement("col");
-                colGroupFour.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupFour);
-
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-
-                var theadTr = document.createElement("tr");
-                thead.appendChild(theadTr);
-
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.classList.add("text-center");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="학교명";
-                theadTr.appendChild(theadTrTh1);
-				
-                var theadTrTd1 = document.createElement("td");
-                theadTr.appendChild(theadTrTd1);
-
-				var inputSchoolName = document.createElement("input");
-				inputSchoolName.type = "text";
-				inputSchoolName.classList.add("form-control");
-				inputSchoolName.value = jsonObj.map.EDCTN_SCHOOL_NAME;
-				inputSchoolName.id = "edctn_school_name";
-				inputSchoolName.name = "edctn_school_name";
-				theadTrTd1.appendChild(inputSchoolName);
-
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.classList.add("text-center");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="학과전공";
-                theadTr.appendChild(theadTrTh2);
-
-                var theadTrTd2 = document.createElement("td");
-                theadTr.appendChild(theadTrTd2);
-
-				var inputEdctnMajor = document.createElement("input");
-				inputEdctnMajor.type = "text";
-				inputEdctnMajor.classList.add("form-control");
-				inputEdctnMajor.value = jsonObj.map.EDCTN_MAJOR;
-				inputEdctnMajor.id = "edctn_major";
-				inputEdctnMajor.name = "edctn_major";
-				theadTrTd2.appendChild(inputEdctnMajor);
-
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-                var bodyTr1Th1 = document.createElement("th");
-                bodyTr1Th1.classList.add("text-center");
-                bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="입학일";
-                bodyTr1.appendChild(bodyTr1Th1);
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1.appendChild(bodyTr1Td1);
-
-				var inputEdctnAdmsnDate = document.createElement("input");
-				inputEdctnAdmsnDate.type = "date";
-				inputEdctnAdmsnDate.classList.add("form-control");
-				console.log(jsonObj.map.EDCTN_ADMSN_DATE);
-				inputEdctnAdmsnDate.value = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
-				inputEdctnAdmsnDate.id = "edctn_admsn_date";
-				inputEdctnAdmsnDate.name = "edctn_admsn_date";
-				bodyTr1Td1.appendChild(inputEdctnAdmsnDate);
-
-                var bodyTr1Th2 = document.createElement("th");
-                bodyTr1Th2.classList.add("text-center");
-                bodyTr1Th2.classList.add("table-light");
-                bodyTr1Th2.innerText="종료일";
-                bodyTr1.appendChild(bodyTr1Th2);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1.appendChild(bodyTr1Td2);
-                
-                var inputEdctnGrdtnDate = document.createElement("input");
-                inputEdctnGrdtnDate.type = "date";
-                inputEdctnGrdtnDate.classList.add("form-control");
-                inputEdctnGrdtnDate.value = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
-                inputEdctnGrdtnDate.id = "edctn_grdtn_date";
-                inputEdctnGrdtnDate.name = "edctn_grdtn_date";
-                bodyTr1Td2.appendChild(inputEdctnGrdtnDate);
-
-                var bodyTr2 = document.createElement("tr");
-                tbody.appendChild(bodyTr2);
-
-                var bodyTr2Th1 = document.createElement("th");
-                bodyTr2Th1.classList.add("text-center");
-                bodyTr2Th1.classList.add("table-light");
-                bodyTr2Th1.innerText="학위";
-                bodyTr2.appendChild(bodyTr2Th1);
-
-                var bodyTr2Td1 = document.createElement("td");
-                bodyTr2.appendChild(bodyTr2Td1);
-                
-                var inputEdctnDegree = document.createElement("input");
-                inputEdctnDegree.type = "text";
-                inputEdctnDegree.classList.add("form-control");
-                inputEdctnDegree.value = jsonObj.map.EDCTN_DEGREE;
-                inputEdctnDegree.id = "edctn_degree";
-                inputEdctnDegree.name = "edctn_degree";
-                bodyTr2Td1.appendChild(inputEdctnDegree);
-
-                var bodyTr2Th2 = document.createElement("th");
-                bodyTr2Th2.innerText="최종학력";
-                bodyTr2Th2.classList.add("text-center");
-                bodyTr2Th2.classList.add("table-light");
-                bodyTr2.appendChild(bodyTr2Th2);
-
-                var bodyTr2Td2 = document.createElement("td");
-                bodyTr2.appendChild(bodyTr2Td2);
-                
-                
-                // 220923 hyejin 추가
-                var inputEdctnFinalYBox = document.createElement("div");
-                inputEdctnFinalYBox.classList.add("form-check");
-                inputEdctnFinalYBox.style.float = "left";
-                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
-				bodyTr2Td2.appendChild(inputEdctnFinalYBox);
-				
-				var inputEdctnFinalY = document.createElement("input");
-				inputEdctnFinalY.classList.add("form-check-input");
-				inputEdctnFinalY.type = "radio";
-				inputEdctnFinalY.name = "edctn_final_yn";
-				inputEdctnFinalY.id = "edctn_final_y";
-				inputEdctnFinalY.marginRight = "5px";
-				inputEdctnFinalYBox.appendChild(inputEdctnFinalY);
-				
-				var labelEdctnFinalY = document.createElement("label");
-				labelEdctnFinalY.classList.add("form-check-label");
-				labelEdctnFinalY.setAttribute("for", "edctn_final_y");
-				labelEdctnFinalY.innerText = "예";
-				inputEdctnFinalYBox.appendChild(labelEdctnFinalY);
-				
-				
-				var inputEdctnFinalNBox = document.createElement("div");
-				inputEdctnFinalNBox.classList.add("form-check");
-				inputEdctnFinalNBox.style.float = "left";
-				inputEdctnFinalNBox.style.marginTop = "5px";
-				bodyTr2Td2.appendChild(inputEdctnFinalNBox);
-				
-				var inputEdctnFinalN = document.createElement("input");
-				inputEdctnFinalN.classList.add("form-check-input");
-				inputEdctnFinalN.type = "radio";
-				inputEdctnFinalN.name = "edctn_final_yn";
-				inputEdctnFinalN.id = "edctn_final_n";
-				inputEdctnFinalN.style.marginRight = "5px";
-				inputEdctnFinalNBox.appendChild(inputEdctnFinalN);
-				
-				var labelEdctnFinalN = document.createElement("label");
-				labelEdctnFinalN.classList.add("form-check-label");
-				labelEdctnFinalN.setAttribute("for", "edctn_final_n");
-				labelEdctnFinalN.innerText = "아니오";
-				inputEdctnFinalNBox.appendChild(labelEdctnFinalN);
-				
-				// 최종학력 체크
-				var edctnFinalVal = jsonObj.map.EDCTN_FINAL_YN;
-				console.log("최종학력인가 ? " + edctnFinalVal);
-				if(edctnFinalVal == 'y') {
-					inputEdctnFinalY.checked = true;
-				} else if(edctnFinalVal == 'n') {
-					inputEdctnFinalN.checked = true;
-				}
-                
-
-                commentListBox.appendChild(rowBox);
+                }
                 
             }
 			
@@ -1322,231 +1476,292 @@ function tableSevenInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				var data = jsonObj.map;
 
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
-                var rowBox = document.createElement("div");
-                rowBox.classList.add("row"); 
+				if(data != null && data != undefined) {
+	                var rowBox = document.createElement("div");
+	                rowBox.classList.add("row"); 
+	                
+	                var subNab1 = document.createElement("div");
+	                subNab1.classList.add("row");
+	                subNab1.classList.add("mx-0");
+	                subNab1.classList.add("border-bottom");
+	                subNab1.classList.add("pb-4");
+	                rowBox.appendChild(subNab1);
+	
+	                //table시작
+	
+	                var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+	                tableRow.classList.add("mx-0");
+	                tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+					
+					var tableSevenFrm = document.createElement("form");
+					tableSevenFrm.id = "tableSevenFrm";
+					tableSevenFrm.name = "tableSevenFrm";
+					rowBox.appendChild(tableSevenFrm);
+	
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableSevenFrm.appendChild(table);
+	
+	                //여기까진 같음
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+	
+	                var colGroupOne = document.createElement("col");
+	                colGroupOne.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupOne);
+	
+	                var colGroupTwo = document.createElement("col");
+	                colGroupTwo.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupTwo);
+	
+	                var colGroupThree = document.createElement("col");
+	                colGroupThree.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupThree);
+	
+	                var colGroupFour = document.createElement("col");
+	                colGroupFour.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupFour);
+	
+	                var thead = document.createElement("thead");
+	                table.appendChild(thead);
+	
+	                var theadTr = document.createElement("tr");
+	                thead.appendChild(theadTr);
+	
+	                var theadTrTh1 = document.createElement("th");
+	                theadTrTh1.classList.add("text-center");
+	                theadTrTh1.classList.add("table-light");
+	                theadTrTh1.innerText="회사/활동기관";
+	                theadTr.appendChild(theadTrTh1);
+	
+	                var theadTrTd1 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd1);
+	                
+	                var inputCompanyName = document.createElement("input");
+	                inputCompanyName.classList.add("form-control");
+	                inputCompanyName.type = "text";
+	                inputCompanyName.id = "company_name";
+	                inputCompanyName.name = "company_name";
+	                inputCompanyName.value = jsonObj.map.COMPANY_NAME;
+	                theadTrTd1.appendChild(inputCompanyName);
+	
+	                var theadTrTh2 = document.createElement("th");
+	                theadTrTh2.classList.add("text-center");
+	                theadTrTh2.classList.add("table-light");
+	                theadTrTh2.innerText="경력 구분";
+	                theadTr.appendChild(theadTrTh2);
+	
+	                var theadTrTd2 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd2);
+	                
+	                var inputCarerType = document.createElement("input");
+	                inputCarerType.classList.add("form-control");
+	                inputCarerType.type = "text";
+	                inputCarerType.id = "carer_type";
+	                inputCarerType.name = "carer_type";
+	                inputCarerType.value = jsonObj.map.CARER_TYPE;
+	                theadTrTd2.appendChild(inputCarerType);
+	
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+	
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+	
+	                var bodyTr1Th1 = document.createElement("th");
+	                bodyTr1Th1.classList.add("text-center");
+	                bodyTr1Th1.classList.add("table-light");
+	                bodyTr1Th1.innerText="근무 시작 일자";
+	                bodyTr1.appendChild(bodyTr1Th1);
+	
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td1);
+	                
+	                var inputWorkStartDate = document.createElement("input");
+	                inputWorkStartDate.classList.add("form-control");
+	                inputWorkStartDate.type = "date";
+	                inputWorkStartDate.id = "work_start_date";
+	                inputWorkStartDate.name = "work_start_date";
+	                inputWorkStartDate.value = setDateInput(jsonObj.map.WORK_START_DATE);
+	                bodyTr1Td1.appendChild(inputWorkStartDate);
+	
+	                var bodyTr1Th2 = document.createElement("th");
+	                bodyTr1Th2.classList.add("text-center");
+	                bodyTr1Th2.classList.add("table-light");
+	                bodyTr1Th2.innerText="근무 종료 일자";
+	                bodyTr1.appendChild(bodyTr1Th2);
+	
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td2);
+	
+					var inputWorkEndDate = document.createElement("input");
+	                inputWorkEndDate.classList.add("form-control");
+	                inputWorkEndDate.type = "date";
+	                inputWorkEndDate.id = "work_end_date";
+	                inputWorkEndDate.name = "work_end_date";
+	                inputWorkEndDate.value = setDateInput(jsonObj.map.WORK_END_DATE);
+	                bodyTr1Td2.appendChild(inputWorkEndDate);
+	
+	                var bodyTr2 = document.createElement("tr");
+	                tbody.appendChild(bodyTr2);
+	
+	                var bodyTr2Th1 = document.createElement("th");
+	                bodyTr2Th1.classList.add("text-center");
+	                bodyTr2Th1.classList.add("table-light");
+	                bodyTr2Th1.innerText="직책";
+	                bodyTr2.appendChild(bodyTr2Th1);
+	
+	                var bodyTr2Td1 = document.createElement("td");
+	                bodyTr2.appendChild(bodyTr2Td1);
+	                
+	                var inputWorkPosition = document.createElement("input");
+	                inputWorkPosition.classList.add("form-control");
+	                inputWorkPosition.type = "text";
+	                inputWorkPosition.id = "work_position";
+	                inputWorkPosition.name = "work_position";
+	                inputWorkPosition.value = jsonObj.map.WORK_POSITION;
+	                bodyTr2Td1.appendChild(inputWorkPosition);
+	
+	                var bodyTr2Th2 = document.createElement("th");
+	                bodyTr2Th2.innerText="부서";
+	                bodyTr2Th2.classList.add("text-center");
+	                bodyTr2Th2.classList.add("table-light");
+	                bodyTr2.appendChild(bodyTr2Th2);
+	
+	                var bodyTr2Td2 = document.createElement("td");
+	                bodyTr2.appendChild(bodyTr2Td2);
+	
+					var inputWorkDepartment = document.createElement("input");
+	                inputWorkDepartment.classList.add("form-control");
+	                inputWorkDepartment.type = "text";
+	                inputWorkDepartment.id = "work_department";
+	                inputWorkDepartment.name = "work_department";
+	                inputWorkDepartment.value = jsonObj.map.WORK_DEPARTMENT;
+	                bodyTr2Td2.appendChild(inputWorkDepartment);
+	
+	                var bodyTr3 = document.createElement("tr");
+	                tbody.appendChild(bodyTr3);
+	
+	                var bodyTr3Th = document.createElement("th");
+	                bodyTr3Th.classList.add("text-center");
+	                bodyTr3Th.classList.add("table-light");
+	                bodyTr3Th.innerText="수행 업무";
+	                bodyTr3.appendChild(bodyTr3Th);
+	
+	                var bodyTr3Td = document.createElement("td");
+	                bodyTr3Td.setAttribute("colspan", "3");
+	                bodyTr3.appendChild(bodyTr3Td);
+	
+					var inputWorkDescription = document.createElement("input");
+	                inputWorkDescription.classList.add("form-control");
+	                inputWorkDescription.type = "text";
+	                inputWorkDescription.id = "work_description";
+	                inputWorkDescription.name = "work_description";
+	                inputWorkDescription.value = jsonObj.map.WORK_DESCRIPTION;
+	                bodyTr3Td.appendChild(inputWorkDescription);
+	
+					var bodyTr4 = document.createElement("tr");
+	                tbody.appendChild(bodyTr4);
+	
+	                var bodyTr4Th = document.createElement("th");
+	                bodyTr4Th.classList.add("text-center");
+	                bodyTr4Th.classList.add("table-light");
+	                bodyTr4Th.innerText="활동경력";
+	                bodyTr4.appendChild(bodyTr4Th);
+	
+	                var bodyTr4Td = document.createElement("td");
+	                bodyTr4Td.setAttribute("colspan", "3");
+	                bodyTr4.appendChild(bodyTr4Td);
+	
+					var inputCarerDesc = document.createElement("textarea");
+	                inputCarerDesc.classList.add("form-control");
+	                inputCarerDesc.id = "carer_description";
+	                inputCarerDesc.name = "carer_description";
+	                inputCarerDesc.value = jsonObj.map.CARER_DESCRIPTION;
+	                bodyTr4Td.appendChild(inputCarerDesc);
+	                
+	                var bodyTr5 = document.createElement("tr");
+	                tbody.appendChild(bodyTr5);
+	
+	                var bodyTr5Th = document.createElement("th");
+	                bodyTr5Th.classList.add("text-center");
+	                bodyTr5Th.classList.add("table-light");
+	                bodyTr5Th.innerText="활동경력";
+	                bodyTr5.appendChild(bodyTr5Th);
+	
+	                var bodyTr5Td = document.createElement("td");
+	                bodyTr5Td.setAttribute("colspan", "3");
+	                bodyTr5.appendChild(bodyTr5Td);
+	
+					var inputSpecialNoteDesc = document.createElement("textarea");
+	                inputSpecialNoteDesc.classList.add("form-control");
+	                inputSpecialNoteDesc.id = "special_note_description";
+	                inputSpecialNoteDesc.name = "special_note_description";
+	                inputSpecialNoteDesc.value = jsonObj.map.SPECIAL_NOTE_DESCRIPTION;
+	                bodyTr5Td.appendChild(inputSpecialNoteDesc);
+	                
+	                var properNum = document.createElement("input");
+	                properNum.id = "aplcn_dtls_proper_num";
+	                properNum.name = "aplcn_dtls_proper_num";
+	                properNum.value = jsonObj.map.APLCN_DTLS_PROPER_NUM;
+	                properNum.type = "hidden";
+	                tableSevenFrm.appendChild(properNum);
+					
+	                // 저장버튼
+	                var submitRow = document.createElement("div");
+	                submitRow.classList.add("row");
+	                submitRow.classList.add("text-center");
+	                tableSevenFrm.appendChild(submitRow);
+	                
+	                var submitCol = document.createElement("div");
+	                submitCol.classList.add("col");
+	                submitRow.appendChild(submitCol);
+	                
+	                var submitBtn = document.createElement("button");
+	                submitBtn.classList.add("btn");
+	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("mx-2");
+	                submitBtn.classList.add("frmSubmit");
+	                
+	                submitBtn.id = "tableSevenFrm";
+	                submitBtn.type = "button";
+	                submitBtn.innerText = "저장";
+	                submitBtn.setAttribute("onclick", "tableSevenFrmSubmit();");
+	                submitCol.appendChild(submitBtn);
+	                
+	                var finalSubmitBtn = document.createElement("button");
+	                finalSubmitBtn.classList.add("btn");
+	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.innerText = "작성완료";
+	                finalSubmitBtn.setAttribute("onclick", "application();");
+	                submitCol.appendChild(finalSubmitBtn);
+	                
+	                commentListBox.appendChild(rowBox);
+	                
+                } else {	// 등재신청 결과 null 일때
+                	var errMsgRow = document.createElement("div");
+                	errMsgRow.classList.add("row");
+                	
+                	var errMsgCol = document.createElement("div");
+                	errMsgCol.classList.add("col");
+                	errMsgRow.appendChild(errMsgCol);
+                	
+                	var errMsgSpan = document.createElement("span");
+                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+                	errMsgCol.appendChild(errMsgSpan);
+                	
+                	commentListBox.appendChild(errMsgRow);
                 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
-                //table시작
-
-                var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-
-                //여기까진 같음
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupOne = document.createElement("col");
-                colGroupOne.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupOne);
-
-                var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupTwo);
-
-                var colGroupThree = document.createElement("col");
-                colGroupThree.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupThree);
-
-                var colGroupFour = document.createElement("col");
-                colGroupFour.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupFour);
-
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-
-                var theadTr = document.createElement("tr");
-                thead.appendChild(theadTr);
-
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.classList.add("text-center");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="회사/활동기관";
-                theadTr.appendChild(theadTrTh1);
-
-                var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
-                theadTr.appendChild(theadTrTd1);
-
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.classList.add("text-center");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="경력 구분";
-                theadTr.appendChild(theadTrTh2);
-
-                var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
-                theadTr.appendChild(theadTrTd2);
-
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-                var bodyTr1Th1 = document.createElement("th");
-                bodyTr1Th1.classList.add("text-center");
-                bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="근무 시작 일자";
-                bodyTr1.appendChild(bodyTr1Th1);
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
-                bodyTr1.appendChild(bodyTr1Td1);
-
-                var bodyTr1Th2 = document.createElement("th");
-                bodyTr1Th2.classList.add("text-center");
-                bodyTr1Th2.classList.add("table-light");
-                bodyTr1Th2.innerText="근무 종료 일자";
-                bodyTr1.appendChild(bodyTr1Th2);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
-                bodyTr1.appendChild(bodyTr1Td2);
-
-                var bodyTr2 = document.createElement("tr");
-                tbody.appendChild(bodyTr2);
-
-                var bodyTr2Th1 = document.createElement("th");
-                bodyTr2Th1.classList.add("text-center");
-                bodyTr2Th1.classList.add("table-light");
-                bodyTr2Th1.innerText="직책";
-                bodyTr2.appendChild(bodyTr2Th1);
-
-                var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText="적어";
-                bodyTr2.appendChild(bodyTr2Td1);
-
-                var bodyTr2Th2 = document.createElement("th");
-                bodyTr2Th2.innerText="부서";
-                bodyTr2Th2.classList.add("text-center");
-                bodyTr2Th2.classList.add("table-light");
-                bodyTr2.appendChild(bodyTr2Th2);
-
-                var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText="적어";
-                bodyTr2.appendChild(bodyTr2Td2);
-
-
-                var bodyTr3 = document.createElement("tr");
-                tbody.appendChild(bodyTr3);
-
-                var bodyTr3Th = document.createElement("th");
-                bodyTr3Th.classList.add("text-center");
-                bodyTr3Th.classList.add("table-light");
-                bodyTr3Th.innerText="수행 업무";
-                bodyTr3.appendChild(bodyTr3Th);
-
-                var bodyTr3Td = document.createElement("td");
-                bodyTr3Td.setAttribute("colspan", "3");
-                bodyTr3Td.innerText="적으셈";
-                bodyTr3.appendChild(bodyTr3Td);
-
-
-                //기본정보 네비
-                var subNab2 = document.createElement("div");
-                subNab2.classList.add("row");
-                subNab2.classList.add("mx-0");
-                subNab2.classList.add("border-bottom");
-                subNab2.classList.add("pb-4");
-                rowBox.appendChild(subNab2);
-
-                var subNab2Span = document.createElement("span");
-                subNab2Span.innerText="기본정보";
-                subNab2.appendChild(subNab2Span);
-
-                var subNab2SpanFromI = document.createElement("i");
-                subNab2SpanFromI.classList.add("bi");
-                subNab2SpanFromI.classList.add("bi-circle-fill");
-                subNab2Span.appendChild(subNab2SpanFromI);
-
-                //테이블 시작
-
-                var tableRow2 = document.createElement("div");
-                rowBox.appendChild(tableRow2);
-
-                var table2 = document.createElement("table");
-                table2.classList.add("table");
-                table2.classList.add("table-bordereed");
-                tableRow2.appendChild(table2);
-
-                var colGroup2 = document.createElement("colgroup");
-                table2.appendChild(colGroup2);
-
-                var colGroupOne2 = document.createElement("col");
-                colGroupOne2.setAttribute("width", "20%");
-                colGroup2.appendChild(colGroupOne2);
-
-                var colGroupTwo2 = document.createElement("col");
-                colGroupTwo2.setAttribute("width", "80%");
-                colGroup2.appendChild(colGroupTwo2);
-
-                var thead2 = document.createElement("thead");
-                table2.appendChild(thead2);
-
-                var thead2Tr1 = document.createElement("tr");
-                thead2Tr1.setAttribute("rowspan", "2");
-                thead2Tr1.setAttribute("scope", "row");
-                thead2Tr1.setAttribute("style", "line-height:100px");
-                thead2.appendChild(thead2Tr1);
-
-                var thead2Tr1Th1 = document.createElement("th");
-                thead2Tr1Th1.classList.add("table-light");
-                thead2Tr1Th1.classList.add("text-center");
-                thead2Tr1Th1.innerText="활동경력";
-                thead2Tr1.appendChild(thead2Tr1Th1);
-
-                var thead2Tr1Td1 = document.createElement("td");
-                thead2Tr1Td1.innerText= "적으셈";
-                thead2Tr1.appendChild(thead2Tr1Td1);
-
-                var thead2Tr2 = document.createElement("tr");
-                thead2Tr2.classList.add("text-cneter");
-                thead2Tr2.setAttribute("rowspan", "2");
-                thead2Tr2.setAttribute("scope", "row");
-                thead2Tr2.setAttribute("style", "line-height:100px");
-                thead2.appendChild(thead2Tr2);
-
-                var thead2Tr2Th1 = document.createElement("th");
-                thead2Tr2Th1.classList.add("table-light");
-                thead2Tr2Th1.classList.add("text-center");
-                thead2Tr2Th1.innerText="특이사항";
-                thead2Tr2.appendChild(thead2Tr2Th1);
-
-                var thead2Tr2Td1 = document.createElement("hd");
-                thead2Tr2Td1.innerText="적으셈";
-                thead2Tr2.appendChild(thead2Tr2Td1);
-
-                commentListBox.appendChild(rowBox);
+                }
             }
     }
         xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
@@ -1559,122 +1774,197 @@ function tableEightInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				var data = jsonObj.map;
 
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
-                var rowBox = document.createElement("div");
-                rowBox.classList.add("row");
-                
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
-
-                //table시작
-
-                var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-
-                //여기까진 같음
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupOne = document.createElement("col");
-                colGroupOne.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupOne);
-
-                var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupTwo);
-
-                var colGroupThree = document.createElement("col");
-                colGroupThree.setAttribute("width", "15%");
-                colGroup.appendChild(colGroupThree);
-
-                var colGroupFour = document.createElement("col");
-                colGroupFour.setAttribute("width", "35%");
-                colGroup.appendChild(colGroupFour);
-
-
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-
-                var theadTr = document.createElement("tr");
-                thead.appendChild(theadTr);
-
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.classList.add("text-center");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="자격증 종목";
-                theadTr.appendChild(theadTrTh1);
-
-                var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
-                theadTr.appendChild(theadTrTd1);
-
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.classList.add("text-center");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="발급기관";
-                theadTr.appendChild(theadTrTh2);
-
-                var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
-                theadTr.appendChild(theadTrTd2);
-
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-                var bodyTr1Th1 = document.createElement("th");
-                bodyTr1Th1.classList.add("text-center");
-                bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="자격증 번호";
-                bodyTr1.appendChild(bodyTr1Th1);
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
-                bodyTr1.appendChild(bodyTr1Td1);
-
-                var bodyTr1Th2 = document.createElement("th");
-                bodyTr1Th2.classList.add("text-center");
-                bodyTr1Th2.classList.add("table-light");
-                bodyTr1Th2.innerText="발급일";
-                bodyTr1.appendChild(bodyTr1Th2);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
-                bodyTr1.appendChild(bodyTr1Td2);
-
-                
-                commentListBox.appendChild(rowBox);
+				if(data != null && data != undefined) {
+	                var rowBox = document.createElement("div");
+	                rowBox.classList.add("row");
+	                
+	                
+	                var subNab1 = document.createElement("div");
+	                subNab1.classList.add("row");
+	                subNab1.classList.add("mx-0");
+	                subNab1.classList.add("border-bottom");
+	                subNab1.classList.add("pb-4");
+	                rowBox.appendChild(subNab1);
+	
+	
+	                //table시작
+	
+	                var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+	                tableRow.classList.add("mx-0");
+	                tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+	                
+	                var tableEightFrm = document.createElement("form");
+	                tableEightFrm.id = "tableEightFrm";
+	                tableEightFrm.name = "tableEightFrm";
+	                rowBox.appendChild(tableEightFrm);
+	
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableEightFrm.appendChild(table);
+	
+	                //여기까진 같음
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+	
+	                var colGroupOne = document.createElement("col");
+	                colGroupOne.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupOne);
+	
+	                var colGroupTwo = document.createElement("col");
+	                colGroupTwo.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupTwo);
+	
+	                var colGroupThree = document.createElement("col");
+	                colGroupThree.setAttribute("width", "15%");
+	                colGroup.appendChild(colGroupThree);
+	
+	                var colGroupFour = document.createElement("col");
+	                colGroupFour.setAttribute("width", "35%");
+	                colGroup.appendChild(colGroupFour);
+	
+	
+	                var thead = document.createElement("thead");
+	                table.appendChild(thead);
+	
+	                var theadTr = document.createElement("tr");
+	                thead.appendChild(theadTr);
+	
+	                var theadTrTh1 = document.createElement("th");
+	                theadTrTh1.classList.add("text-center");
+	                theadTrTh1.classList.add("table-light");
+	                theadTrTh1.innerText="자격증 종목";
+	                theadTr.appendChild(theadTrTh1);
+	
+	                var theadTrTd1 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd1);
+	                
+	                var inputCrtfcType = document.createElement("input");
+	                inputCrtfcType.classList.add("form-control");
+	                inputCrtfcType.type = "text";
+	                inputCrtfcType.id = "crtfc_type";
+	                inputCrtfcType.name = "crtfc_type";
+	                inputCrtfcType.value = data.CRTFC_TYPE;
+	                theadTrTd1.appendChild(inputCrtfcType);
+	
+	                var theadTrTh2 = document.createElement("th");
+	                theadTrTh2.classList.add("text-center");
+	                theadTrTh2.classList.add("table-light");
+	                theadTrTh2.innerText="발급기관";
+	                theadTr.appendChild(theadTrTh2);
+	
+	                var theadTrTd2 = document.createElement("td");
+	                theadTr.appendChild(theadTrTd2);
+	                
+	                var inputIssueAgency = document.createElement("input");
+	                inputIssueAgency.classList.add("form-control");
+	                inputIssueAgency.type = "text";
+	                inputIssueAgency.id = "issue_agency";
+	                inputIssueAgency.name = "issue_agency";
+	                inputIssueAgency.value = data.ISSUE_AGENCY;
+	                theadTrTd2.appendChild(inputIssueAgency);
+	
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+	
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+	
+	                var bodyTr1Th1 = document.createElement("th");
+	                bodyTr1Th1.classList.add("text-center");
+	                bodyTr1Th1.classList.add("table-light");
+	                bodyTr1Th1.innerText="자격증 번호";
+	                bodyTr1.appendChild(bodyTr1Th1);
+	
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td1);
+	                
+	                var inputCrtfcNumber = document.createElement("input");
+	                inputCrtfcNumber.classList.add("form-control");
+	                inputCrtfcNumber.type = "text";
+	                inputCrtfcNumber.id = "crtfc_number";
+	                inputCrtfcNumber.name = "crtfc_number";
+	                inputCrtfcNumber.value = data.CRTFC_NUMBER;
+	                bodyTr1Td1.appendChild(inputCrtfcNumber);
+	
+	                var bodyTr1Th2 = document.createElement("th");
+	                bodyTr1Th2.classList.add("text-center");
+	                bodyTr1Th2.classList.add("table-light");
+	                bodyTr1Th2.innerText="발급일";
+	                bodyTr1.appendChild(bodyTr1Th2);
+	
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var inputIssueDate = document.createElement("input");
+	                inputIssueDate.classList.add("form-control");
+	                inputIssueDate.type = "date";
+	                inputIssueDate.id = "issue_date";
+	                inputIssueDate.name = "issue_date";
+	                inputIssueDate.value = setDateInput(data.ISSUE_DATE);
+	                bodyTr1Td2.appendChild(inputIssueDate);
+	                
+	                commentListBox.appendChild(rowBox);
+	                
+	                var properNum = document.createElement("input");
+	                properNum.type = "hidden";
+	                properNum.id = "aplcn_dtls_proper_num";
+	                properNum.name = "aplcn_dtls_proper_num";
+	                properNum.value = data.APLCN_DTLS_PROPER_NUM;
+	                tableEightFrm.appendChild(properNum);
+	                
+	                // 저장버튼
+	                var submitRow = document.createElement("div");
+	                submitRow.classList.add("row");
+	                submitRow.classList.add("text-center");
+	                tableEightFrm.appendChild(submitRow);
+	                
+	                var submitCol = document.createElement("div");
+	                submitCol.classList.add("col");
+	                submitRow.appendChild(submitCol);
+	                
+	                var submitBtn = document.createElement("button");
+	                submitBtn.classList.add("btn");
+	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("mx-2");
+	                submitBtn.classList.add("frmSubmit");
+	                
+	                submitBtn.id = "tableOneFrm";
+	                submitBtn.type = "button";
+	                submitBtn.innerText = "저장";
+	                submitBtn.setAttribute("onclick", "tableEightFrmSubmit();");
+	                submitCol.appendChild(submitBtn);
+	                
+	                var finalSubmitBtn = document.createElement("button");
+	                finalSubmitBtn.classList.add("btn");
+	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.innerText = "작성완료";
+	                finalSubmitBtn.setAttribute("onclick", "application();");
+	                submitCol.appendChild(finalSubmitBtn);
+	                
+	            } else {	// ajax 등재신청 결과값 null일 때
+	            	var errMsgRow = document.createElement("div");
+                	errMsgRow.classList.add("row");
+                	
+                	var errMsgCol = document.createElement("div");
+                	errMsgCol.classList.add("col");
+                	errMsgRow.appendChild(errMsgCol);
+                	
+                	var errMsgSpan = document.createElement("span");
+                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+                	errMsgCol.appendChild(errMsgSpan);
+                	
+                	commentListBox.appendChild(errMsgRow);	
+	            
+	            }
             }
     }
         xhr.open("get" , "../admin/selTableOne?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
@@ -1687,129 +1977,144 @@ function tableNineInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				var data = jsonObj.map;
 
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
-                var rowBox = document.createElement("div");
-                rowBox.classList.add("row");
-
- 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
-
-                //table시작
-
-                var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-
-                //여기까진 같음
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupOne = document.createElement("col");
-                colGroupOne.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupOne);
-
-                var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupTwo);
-
-                var colGroupThree = document.createElement("col");
-                colGroupThree.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupThree);
-
-               
-
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-
-                var theadTr = document.createElement("tr");
-                theadTr.classList.add("text-center");
-                thead.appendChild(theadTr);
-
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.setAttribute("scope", "col");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="첨부서류 분류 코드";
-                theadTr.appendChild(theadTrTh1);
-
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.setAttribute("scope", "col");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="첨부 서류 타입";
-                theadTr.appendChild(theadTrTh2);
-
-                var theadTrTh3 = document.createElement("th");
-                theadTrTh3.setAttribute("scope", "col");
-                theadTrTh3.classList.add("table-light");
-                theadTrTh3.innerText="파일 이름";
-                theadTr.appendChild(theadTrTh3);
-
-
-
-
-
-
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-				
-                
-               for(dataList of jsonObj){
-             
-                
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.classList.add("text-center");
-                bodyTr1Td1.innerText= dataList.file_type;
-                bodyTr1.appendChild(bodyTr1Td1);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.classList.add("text-center");
-                bodyTr1Td2.innerText = dataList.file_code;
-                bodyTr1.appendChild(bodyTr1Td2);
-
-                var bodyTr1Td3 = document.createElement("td");
-                bodyTr1.appendChild(bodyTr1Td3);
-                
-                var bodyTr1Td3A = document.createElement("a");
-                bodyTr1Td3A.classList.add("text-center");
-                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
-                bodyTr1Td3A.classList.add("text-decoration-none");
-                bodyTr1Td3A.innerText = dataList.original_file_name;
-                bodyTr1Td3.appendChild(bodyTr1Td3A);
-               }
-                
-                commentListBox.appendChild(rowBox);
-                
+				if(data != null && data != undefined) {
+	                var rowBox = document.createElement("div");
+	                rowBox.classList.add("row");
+	 
+	                var subNab1 = document.createElement("div");
+	                subNab1.classList.add("row");
+	                subNab1.classList.add("mx-0");
+	                subNab1.classList.add("border-bottom");
+	                subNab1.classList.add("pb-4");
+	                rowBox.appendChild(subNab1);
+	
+	                var subNab1Span = document.createElement("span");
+	                subNab1Span.innerText="기본정보";
+	                subNab1.appendChild(subNab1Span);
+	
+	                var subNab1SpanFromI = document.createElement("i");
+	                subNab1SpanFromI.classList.add("bi");
+	                subNab1SpanFromI.classList.add("bi-circle-fill");
+	                subNab1Span.appendChild(subNab1SpanFromI);
+	
+	                //기본정보 끝
+	
+	
+	                //table시작
+	
+	                var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+	                tableRow.classList.add("mx-0");
+	                tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+	
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableRow.appendChild(table);
+	
+	                //여기까진 같음
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+	
+	                var colGroupOne = document.createElement("col");
+	                colGroupOne.setAttribute("width", "25%");
+	                colGroup.appendChild(colGroupOne);
+	
+	                var colGroupTwo = document.createElement("col");
+	                colGroupTwo.setAttribute("width", "25%");
+	                colGroup.appendChild(colGroupTwo);
+	
+	                var colGroupThree = document.createElement("col");
+	                colGroupThree.setAttribute("width", "50%");
+	                colGroup.appendChild(colGroupThree);
+	
+	               
+	
+	                var thead = document.createElement("thead");
+	                table.appendChild(thead);
+	
+	                var theadTr = document.createElement("tr");
+	                theadTr.classList.add("text-center");
+	                thead.appendChild(theadTr);
+	
+	                var theadTrTh1 = document.createElement("th");
+	                theadTrTh1.setAttribute("scope", "col");
+	                theadTrTh1.classList.add("table-light");
+	                theadTrTh1.innerText="첨부서류 분류 코드";
+	                theadTr.appendChild(theadTrTh1);
+	
+	                var theadTrTh2 = document.createElement("th");
+	                theadTrTh2.setAttribute("scope", "col");
+	                theadTrTh2.classList.add("table-light");
+	                theadTrTh2.innerText="첨부 서류 타입";
+	                theadTr.appendChild(theadTrTh2);
+	
+	                var theadTrTh3 = document.createElement("th");
+	                theadTrTh3.setAttribute("scope", "col");
+	                theadTrTh3.classList.add("table-light");
+	                theadTrTh3.innerText="파일 이름";
+	                theadTr.appendChild(theadTrTh3);
+	
+	
+	
+	
+	
+	
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+					
+	                
+	               for(dataList of jsonObj){
+	             
+	                
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+	
+	
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1Td1.classList.add("text-center");
+	                bodyTr1Td1.innerText= dataList.file_type;
+	                bodyTr1.appendChild(bodyTr1Td1);
+	
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1Td2.classList.add("text-center");
+	                bodyTr1Td2.innerText = dataList.file_code;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	
+	                var bodyTr1Td3 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td3);
+	                
+	                var bodyTr1Td3A = document.createElement("a");
+	                bodyTr1Td3A.classList.add("text-center");
+	                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
+	                bodyTr1Td3A.classList.add("text-decoration-none");
+	                bodyTr1Td3A.innerText = dataList.original_file_name;
+	                bodyTr1Td3.appendChild(bodyTr1Td3A);
+	               }
+	                
+	                commentListBox.appendChild(rowBox);
+	                
+	              } else {	// ajax 등재신청 결과값 null일 때   
+	              	var errMsgRow = document.createElement("div");
+                	errMsgRow.classList.add("row");
+                	
+                	var errMsgCol = document.createElement("div");
+                	errMsgCol.classList.add("col");
+                	errMsgRow.appendChild(errMsgCol);
+                	
+                	var errMsgSpan = document.createElement("span");
+                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+                	errMsgCol.appendChild(errMsgSpan);
+                	
+                	commentListBox.appendChild(errMsgRow);
+	              }  
                 
             }
     }
