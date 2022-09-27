@@ -73,44 +73,13 @@ function cutOff(elementId){
 	var el =  document.getElementById(elementId);
 	el.readOnly= true;
 }
-/*  */
+
 /* 예 누를경우 경력내용 활성화 */
 function cutOn(elementId){
 	var el =  document.getElementById(elementId);
 	el.readOnly= false;
 }
-// /* 임시저장 */
-// function getUserDetail(){
-// 	document.getElementById("s2").value='${five.court_proper_num}'; 
-	
-// 	document.getElementById("s4").value='${five.ligtn_case_carer_etc}'; 
-	
-// 	document.getElementById("s6").value='${five.insrn_indst_carer_etc}'; 
-	
-// 	document.getElementById("s8").value='${five.criminal_penalty_carer_etc}'; 
-	
-// 	if('${five.ligtn_case_carer_yn}' == 'y'){
-// 		document.getElementById("s31").checked = true;
-// 		document.getElementById("s4").readOnly = false;
-// 	}else{
-// 		document.getElementById("s32").checked = true;
-// 		document.getElementById("s4").readOnly = true;
-// 	}
-// 	if('${five.insrn_indst_carer_yn}' == 'y'){
-// 		document.getElementById("s51").checked = true;
-// 		document.getElementById("s6").readOnly = false;
-// 	}else{
-// 		document.getElementById("s52").checked = true;
-// 		document.getElementById("s6").readOnly = true;
-// 	}
-// 	if('${five.criminal_penalty_carer_yn}' == 'y'){
-// 		document.getElementById("s71").checked = true;
-// 		document.getElementById("s8").readOnly = false;
-// 	}else{
-// 		document.getElementById("s72").checked = true;
-// 		document.getElementById("s8").readOnly = true;
-// 	}
-// }
+
 /* 아무것도 안누를시 경고창 */
 function didUseBoard(eleId1, eleId2, eleId3){
 		var yes = document.getElementById(eleId1).checked;
