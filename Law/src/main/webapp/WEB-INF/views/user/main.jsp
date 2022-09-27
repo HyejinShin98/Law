@@ -64,7 +64,7 @@
         <div class="col-6 border-bottom">
             <div class="row">
                  <div class="col" style="font-weight: bold;">공지사항</div>
-                 <div class="col text-end"><a href=""></a>더보기</div>
+                 <div class="col text-end"><a href="../member/noticeBoard" style="text-decoration: none; color:  rgba(33, 37, 41); font-weight: bold;">더보기</a></div>
             </div>
         </div>
     </div>

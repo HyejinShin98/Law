@@ -5,8 +5,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<meta charset="UTF-8">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<title>Insert title here</title>
+<style>
+body{
+	height: 100%;
+	width: 100%;
+	font-size: 11px;
+}
+
+.imm{
+	width: auto;
+}
+.us-text{
+	position: absolute;
+	top:15%;
+	left:3%;
+	font-size: 12px;
+}
+.us-image{
+	position: relative;
+	width: 100%;
+	margin: 10px auto;
+}
+.text{
+	font-size: 14px;
+}
+.notice .cont li{
+	margin:2px 4px 2px 4px;
+	padding:2px 0 0 0;
+}
+.contentsinbox h4{
+		clear:both; 
+		font-size:12px;
+		font-weight:bold;
+		letter-spacing:-1px;
+		line-height:1.3em;
+		padding:0 11px;
+		margin:5px 0;
+		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
+}
+
+
+</style>
 <script type="text/javascript">
-/*  */
 function getUserDetail(){
 	document.getElementbyId
 	
@@ -46,40 +92,103 @@ function changeForDate(date){
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
 
-</script>
+function checkList(){
+	
+	let result = true;
+	
+	let check = document.getElementsByTagName("input");
+	
+	let ss = document.getElementById("ss");
+	// 메세지 초기화
+	let msg = document.getElementsByClassName('msg');
+	for(e of msg) {
+		e.innerText = '';
+	}
+	
+	// 공백검사
+	for(let i=0; i<check.length; i++) {
+		let box = check[i].parentNode.parentNode.parentNode;
+		let msg = box.getElementsByClassName('msg');
+		
+		if(check[i].value == '') {
+			for(e of msg) {
+				e.innerText = '필수입력입니다.';
+				result = false;
+			}
+		}
+	}
+	if(result){
+		ss.submit();
+		alert("oo");
+	}else{
+		alert("nn");
+	}
+}
 
-<meta charset="UTF-8">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<title>Insert title here</title>
+</script>
 </head>
 <body>
-${count} 하이<br> 
-${six.aplcn_dtls_proper_num}보이냐<br>
-${six.edctn_degree}<br>
-	  <div class="col container-fluid" style="width : 1500px;">
-            <div class="row mt-4 mx-5">
-                   <div class="col">
-                       <div class="row">STEP 1</div>
-                       <div class="row ">기본정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 2</div>
-                       <div class="row ">학력정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 3</div>
-                       <div class="row ">경력정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 4</div>
-                       <div class="row ">자격증정보</div>
-                   </div>
-                   <div class="col border-start">
-                       <div class="row">STEP 5</div>
-                       <div class="row ">증빙서류첨부</div>
-                   </div>
-               </div>
+	  <div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+			<!-- 사이드 네비바 -->
+			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
+				<div class="list-group list-group-flush">
+					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
+				</div>
+			</div>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end loc">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 감정인등재신청 > </span><span style="color: #72a8fe;font-weight: bold;">개인정보 수집 동의</span>
+					</div>
+				</div>
+				
+				<!-- 감정인 등재신청 그림 -->
+				<div class="row mb-2 mt-4">
+					<div class="col">
+						<img src="../resources/img/applicationRegistration/h3_ogi210 (1).gif">
+					</div>
+				</div>
+				
+				<div class="row" style="margin-right: 15px; margin-left: 12px;">
+					<div class="col notice px-0">
+						<div class="cont">
+							<ul class="ps-0">
+								<li style=" font-size: 11px"class="form-control py-2 ps-2"> 
+								<img src="../resources/img/applicationRegistration/icon_notice.gif">
+								<span class="point">현재 지원한 등재공고</span>를 다시 한 번 확인 하신 후 아래 정보를 순서대로 입력하여 주십시오.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+							
+				<!-- 현재 지원한 등재공고 그림 -->
+				<div class="row mb-4">
+					<div class="col us-image">
+							<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_gamjung.gif" alt="" />
+						<div class="us-text">
+							<p><span style="color: #72a8fe;">현재 지원한 등재공고 : </span> <span style="color: white">2023년도 감정인 명단 등재 희망자 모집</span></p>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!-- 스텝 그림-->
+				<div class="row mt-2">
+		            <div class="col">
+		            	<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_stepgamjung.gif">
+		            </div>
+		        </div>
                <!-- 고정 -->
                
 
@@ -87,7 +196,14 @@ ${six.edctn_degree}<br>
                 <div class="col border-bottom mt-5">
                     <div class="row ms-0 mb-2">학력사항</div>
                 </div>
-                <form name="form1">
+                <c:choose>
+            		<c:when test="${!empty count}">
+	            		<form id="ss" action="./univUpProcess">
+	            	</c:when>
+	            	<c:otherwise>
+	            		<form id="ss" action="./univInsProcess">
+	            	</c:otherwise>
+       			</c:choose>		
 				<c:if test="${!empty count}">
 					<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
 				</c:if>
@@ -96,42 +212,47 @@ ${six.edctn_degree}<br>
                         <tbody>
                           <tr>
                             <th scope="row" class="table-active">학교명</th>
-                            <td><div class="col"><input type="text" id="s1" name="edctn_school_name"></div></td>
+                            <td><div class="col"><input type="text" id="s1" name="edctn_school_name"><span class="msg"></span></div></td>
                             <td class="table-active">최종학력</td>
-                            <td><div class="col"><input type="radio" id="s61" name="edctn_final_yn" value='y'>맞음
-                            	<div class="col"><input type="radio" id="s62" name="edctn_final_yn" value='n'>아님
-                            </div>
+                            <td><div class="col"><input type="radio" id="s61" name="edctn_final_yn" value='y' >맞음 <span class="msg"></span></div>
+                            	<div class="col"><input type="radio" id="s62" name="edctn_final_yn" value='n' >아님 <span class="msg"></span></div>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row" class="table-active">학과(전공)</th>
-                            <td><div class="col"><input type="text" id="s2" name="edctn_major"></div></td>
+                            <td><div class="col"><input type="text" id="s2"  name="edctn_major" ><span class="msg"></span></div></td>
                             <td class="table-active">학위</td>
-                            <td><div class="col">
-                                <select id="s3" name="edctn_degree">
+                            <td><div class="col-4">
+                                	<select id="s3" name="edctn_degree"> 
                                         <option value="graduation">졸업</option>
                                         <option value="Attending">재학</option>
                                         <option value="absence">휴학</option>
                                         <option value="dropout">중퇴</option>
                                         <option value="expel">퇴학</option>
-                                </select>
+                                	</select>
+                                	<div class="col"><span class="msg"></span></div>
                                 </div>
                             </td>
                           </tr>
                           <tr>
                             <th scope="row" class="table-active">입학 년월</th>
-                            <td><div class="col"><input type="date" id="s4" name="edctn_admsn_date"></div></td>
+                            <td><div class="col"><input type="date" id="s4" name="edctn_admsn_date"></div>
+                            	<div class="col"><span class="msg"></span></div>
+                            </td>
                             <td class="table-active">졸업 년월</td>
-                            <td><div class="col"><input type="date" id="s5" name="edctn_grdtn_date"></div></td>
-                          </tr>     
+                            <td><div class="col"><input type="date" id="s5" name="edctn_grdtn_date"></div>
+                            <div class="col"><span class="msg"></span></div>
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
+                      <div class="row"><a onclick="checkList();">확인용 </a></div>
                        <c:choose>
 		            	<c:when test="${!empty count}">
-		            		<button type="submit" formaction="univUpProcess" formmethod="get">업데이트</button>
+		            		<a type="button" onclick="checkList();">업데이트</a>
 		            	</c:when>
 		            	<c:otherwise>
-		            		<button type="submit" formaction="univInsProcess" formmethod="get">인설트</button>
+		            		<a type="button" onclick="checkList();">인설트</a>
 		            	</c:otherwise>
             			</c:choose>		
                 </div>

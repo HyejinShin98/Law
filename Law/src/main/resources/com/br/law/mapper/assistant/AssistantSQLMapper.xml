@@ -37,6 +37,18 @@
 	</select>
 	
 	
+	<select id="uploadFile" resultType="map">
+		select * from tb_009 where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
+	
+	<select id="announce" resultType="map">
+		SELECT ANNOUNCE_TITLE FROM TB_002	
+	</select>
+	
+	<select id="TRIAL_FCLTT_NAME" resultType="map">
+		SELECT TRIAL_FCLTT_DESCRIPTION FROM TB_010
+	</select>
+	
 	<insert id="evaluationApplicants">
 		insert into TB_013 values(
 		TB_013_seq.nextval,
@@ -68,7 +80,6 @@
 		(SELECT sum(ALL_CARRER_SCORE+JRSDC_CARRER_SCORE+OFFICE_SCORE+PERSONALITY_SCORE+INTERVIEW_SCORE+CERTIFICATE_SCORE+EVALUATE_SCORE+JUDGE_RECOM_SCORE) FROM TB_013 t13
 		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}) &lt; 40
 	</update>
-	
 	
 	
 </mapper>

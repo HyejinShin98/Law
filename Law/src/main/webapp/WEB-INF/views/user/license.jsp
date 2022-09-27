@@ -36,6 +36,9 @@ function changeForDate(date){
 	}
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
+
+
+
  
 </script>
 <meta charset="UTF-8">
@@ -120,7 +123,7 @@ ${eight.issue_agency}<br>
             		<button type="submit" formaction="licenseUpProcess" formmethod="get">업데이트</button>
             	</c:when>
             	<c:otherwise>
-            		<button type="submit" formaction="licenseInsProcess" formmethod="get">인설트</button>
+            		<button type="submit" onclick="checkList();" formaction="licenseInsProcess" formmethod="get">인설트</button>
             	</c:otherwise>
              	</c:choose>
         </form>

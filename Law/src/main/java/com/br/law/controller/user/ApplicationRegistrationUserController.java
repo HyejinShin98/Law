@@ -70,6 +70,19 @@ public class ApplicationRegistrationUserController {
 	
 	
 	//등재신청 시작
+	//등재신청 약관확인
+	@RequestMapping("applicationClause")
+	public String applicationClause() {
+		return "user/applicationClause";
+	}
+	
+	//등재신청 결격사유 확인
+	@RequestMapping("applicationDisqualification")
+	public String applicationDisqualification() {
+		return "user/applicationDisqualification";
+	}
+	
+	
 	@RequestMapping("announcement")
 	public String announcement(Model model) {
 		List<Tb_002> list = applicationRegistrationService.asd();

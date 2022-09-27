@@ -35,12 +35,17 @@ public class AssistantServiceImpl {
 	
 	public List<Map<String, Object>> certificateList(int aplcn_dtls_proper_num){
 		List<Map<String, Object>> certificateList = assistantSQLMapper.certificate(aplcn_dtls_proper_num);
+		System.out.println(certificateList);
 		
-		
-		return certificateList;	
+		return certificateList;
 		
 	}
 	
+	public List<Map<String, Object>> uploadfile(int aplcn_dtls_proper_num){
+		List<Map<String, Object>> uploadfileList = assistantSQLMapper.uploadFile(aplcn_dtls_proper_num);
+		
+		return uploadfileList; 
+	}
 	public void evaluation(Tb_013 tb_013) {
 		assistantSQLMapper.evaluationApplicants(tb_013);
 	}
@@ -54,5 +59,18 @@ public class AssistantServiceImpl {
 		 assistantSQLMapper.referral(aplcn_dtls_proper_num);
 		
 	}
+	
+	public List<Map<String, Object>> announce(){
+		List<Map<String, Object>> announceName = assistantSQLMapper.announce();
+		
+		return announceName;
+	}
+	
+	public List<Map<String, Object>> trial_fcltt(){
+		List<Map<String, Object>> trial_fcltt_name = assistantSQLMapper.TRIAL_FCLTT_NAME();
+		
+		return trial_fcltt_name;
+	}
+	
 	
 }

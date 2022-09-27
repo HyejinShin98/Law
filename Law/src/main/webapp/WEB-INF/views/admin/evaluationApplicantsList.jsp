@@ -1,61 +1,89 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<title> 신청자 조회 </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	
+<!-- 외부 css 로드  -->
+<link rel="stylesheet" type="text/css" href="../resources/css/common.css">
+<title>평정 기준표 관리</title>
+<style>
+	
+</style>
+<script>
 
+</script>
 </head>
 <body>
-<div class="col container-fluid" style="width : 1600px;">
-	<div class="row">
-		<jsp:include page="../common/header.jsp"></jsp:include>
-		<div class="col-2">
+<div class="container-fluid" style="width: 960px;">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	
+	<!-- 구분 이미지 -->
+	<img src="../resources/img/sub_topimg.gif">
+	
+	<!-- 페이지 내용 -->
+	<div class="row mt-2">
+		<!-- 사이드 네비바 -->
+		<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
 			<jsp:include page="../common/assistantAdminNav.jsp"></jsp:include>
 		</div>
-		<div class="col">
 		
-			<table class="table">
-				  <thead>
-				    <tr>
-				      <th scope="col">번호</th>
-				      <th scope="col">이름</th>
-				      <th scope="col">신청일</th>
-				      <th scope="col">신청현황</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  
-				  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
-				  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'examination'}">
-				    <tr>
-				      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
-				      <td><a href="evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>
-				      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
-				      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
-				    </tr>
-				    </c:if>
-				    </c:forEach>
-				    
-				  </tbody>
-				</table>
-				
-		
-				
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<!-- 본문 -->
+		<div class="col m-3">
+			<!-- 현재위치 -->
+			<div class="row text-end loc">
+				<div class="col" style="font-size: 11px;">
+					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">신청자 심사</span>
+				</div>
+			</div>
+			<!-- 타이틀 -->
+			<div class="row my-4">
+				<div class="col">
+					<img src="../resources/img/Admin/head_title_img.gif">
+					<span style="font-weight: bold;">신청자 심사</span>
+				</div>
+			</div>
+			
+			<!-- 안내 -->
+			<div class="contentsinbox">
+				<div class="row">
+					<div class="col">
+						<table class="table text-center">
+							  <thead>
+							    <tr>
+							      <th scope="col">번호</th>
+							      <th scope="col">이름</th>
+							      <th scope="col">신청일</th>
+							      <th scope="col">신청현황</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  
+							  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
+							  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'evaluationCp'}">
+							    <tr>
+							      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
+							      <td><a href="evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>
+							      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
+							      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
+							    </tr>
+							    </c:if>
+							   </c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-	
-	
-
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+</div>
 	
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

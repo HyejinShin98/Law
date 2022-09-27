@@ -15,61 +15,83 @@
 <title>공지사항 게시글 내용</title>
 </head>
 <body>
-	<div class="col container-fluid" style="width: 1600px;">
-		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
-			<div class="col-2">
-				<jsp:include page="../common/localNav.jsp"></jsp:include>
-			</div>
-			<div class="col">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col"><h3>공지사항 게시글 내용</h3></div>
-					<div class="col"></div>
+	<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+			<!-- 사이드 네비바 -->
+			<jsp:include page="../common/localNav.jsp"></jsp:include>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe;font-weight: bold;">공지사항</span>
+					</div>
+				</div>
+				<!-- 타이틀 -->
+				<div class="row mb-3">
+					<div class="col">
+						<img src="../resources/img/Notice/h3_ogi420.gif">
+					</div>
+				</div>
+				<!-- 테이블 -->
+				<div class="row m-3" style="font-size: 12px;">
+					<div class="col border-top border-2 border-secondary">
+						<table class="table">
+							<colgroup>
+						        <col width="17%">
+						        <col width="">
+						    </colgroup>
+						  	<tbody>
+							    <tr>
+							        <th scope="row">제목</th>
+							        <td>${noticeData.tb_003.notice_title }</td>
+							    </tr>
+							    <tr>
+							        <th scope="row">작성일</th>
+							        <td><fmt:formatDate value="${noticeData.tb_003.notice_date }" pattern="yyyy-MM-dd"/></td>
+							    </tr>
+							    <tr>
+							        <th scope="row" class="totalth text-center" colspan="4">내용</th>
+							    </tr>
+							    <tr>
+							        <td colspan="4">
+							        <div class="contentsview">
+							            <textarea rows="12" style="width: 100%; border: none; overflow: auto; font-size: 75%/1.4em; color: #747474"> ${noticeData.tb_003.notice_content }
+							            </textarea>
+							        </div>
+							        </td>
+							    </tr>
+						   	</tbody>
+						</table>
+					</div>
 				</div>
 				
-				<!-- 서치박스 -->
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col bg-light text-dark" style="">공지사항 게시글 내용</div>
-					<div class="col-4"></div>
-				</div>
-				<!-- 서치박스 끝 -->
-				<!--게시글부분-->
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col-5 bg-primary p-2 text-dark bg-opacity-10">제목: ${noticeData.tb_003.notice_title }</div>
-					<div class="col-1 bg-primary p-2 text-dark bg-opacity-10">${noticeData.noticeAdmin.admin_auth }</div>
-					<div class="col-1 bg-primary p-2 text-dark bg-opacity-10"><fmt:formatDate value="${noticeData.tb_003.notice_date }" pattern="yyyy-MM-dd"/></div>
-					<div class="col-4"> </div>
-				</div>
-				<div class="row mt-3">
-					
-				</div>
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col d-grid">${noticeData.tb_003.notice_content }</div>
-					<div class="col-4"> </div>
-				</div>
-				
-					
 				<!-- 게시믈 부분 끝 -->
-				<c:if test="${!empty admin && sessionAdmin.admin_proper_num == notice.tb_003.admin_proper_num}">
-				<div class="row mt-3">
-					<div class="col-6"></div>
-					<div class="col-1 d-grid">
-						<a class="btn btn-primary" href="./noticeUpdateBoard?notice_proper_num=${noticeData.tb_003.notice_proper_num }">수정</a>
-					</div>
-					<div class="col-1 d-grid">
-						<a class="btn btn-primary" href="./noticeDeleteProcess?notice_proper_num=${noticeData.tb_003.notice_proper_num }">삭제</a>
-					</div>
-				</div>
-				</c:if>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+	            <c:if test="${!empty admin && sessionAdmin.admin_proper_num == notice.tb_003.admin_proper_num}">
+		            <div class="row justify-content-end mt-3">
+		                <div class="col-2 d-grid">
+		                    <a class="btn btn-primary" href="./noticeUpdateBoard?notice_proper_num=${noticeData.tb_003.notice_proper_num }">수정</a>
+		                </div>
+		                <div class="col-2 d-grid">
+		                    <a class="btn btn-primary" href="./noticeDeleteProcess?notice_proper_num=${noticeData.tb_003.notice_proper_num }">삭제</a>
+		                </div>
+		            </div>
+	            </c:if>
+			</div>
 		</div>
-	</div>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 </body>
+
+
+
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

@@ -61,12 +61,12 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col">
-						<a href="../member/trialAssistantRegisterBoard">
+						<a href="../user/applicationClause">
 							<span>감정인등재신청</span>
 						</a>
 					</div>
 					<div class="col">
-						<a href="#">
+						<a href="../member/systemGuide">
 							<span>감정인신청안내</span>
 						</a>
 					</div>
@@ -156,6 +156,7 @@
 </div>
 
 <script>
+
     //로그인 Chk
     function chkID(){
     	var formData = new FormData(document.getElementById("chkID"));
