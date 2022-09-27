@@ -33,6 +33,7 @@ INSERT INTO tb_001 values(
 	tb_005_seq.nextval,
 	#{user_proper_num},
 	#{announce_proper_num},
+	#{trial_fcltt_proper_num},
 	#{court_proper_num},
 	#{ligtn_case_carer_yn},
 	#{ligtn_case_carer_etc},
@@ -145,13 +146,9 @@ INSERT INTO tb_006 values(
 )
 </insert>
 <select id ="userDetailSel" resultType="com.br.law.vo.Tb_005">
-	select
-	aplcn_dtls_proper_num, user_proper_num, announce_proper_num, court_proper_num,
-	ligtn_case_carer_yn, ligtn_case_carer_etc, insrn_indst_carer_yn, insrn_indst_carer_etc,
-	criminal_penalty_carer_yn, criminal_penalty_carer_etc, aplcn_dtls_sts, aplcn_dtls_date
-	from tb_005 
-			where user_proper_num = #{user_proper_num} 
-			and announce_proper_num = #{announce_proper_num}
+	select * from tb_005 
+	where user_proper_num = #{user_proper_num} 
+	and announce_proper_num = #{announce_proper_num}
 </select>
 <select id ="userDetailCount" resultType="int">
 	select count(*) from tb_005 where user_proper_num = #{user_proper_num} and announce_proper_num = #{announce_proper_num}
@@ -194,4 +191,29 @@ INSERT INTO tb_006 values(
 <select id ="registerOverLabCheck" resultType="int">
 	select count(*) from tb_001 where user_id=#{user_id}
 </select>
+
+<!-- 22.09.27 임병훈 추가 : 현재 모집 중인 재판조력자 추출 -->
+<select id="chkTodayFcltt" resultType="com.br.law.vo.Tb_010">
+	SELECT t2.* FROM TB_002 t, TB_010 t2 
+	WHERE t.TRIAL_FCLTT_PROPER_NUM = t2.TRIAL_FCLTT_PROPER_NUM
+	AND t.ANNOUNCE_START_DATE <![CDATA[ <= ]]> SYSDATE 
+	AND SYSDATE <![CDATA[ <= ]]> t.ANNOUNCE_END_DATE
+</select>
+
+<!-- 22.09.27 임병훈 추가 : 재판조력자 코드들로 기한내 공고 찾기 -->
+<select id="selectVoByCodes" resultType="com.br.law.vo.Tb_010">
+	SELECT * FROM tb_010
+	WHERE TRIAL_FCLTT_CLASIFI_CODE = #{trial_fcltt_clasifi_code}
+	AND  TRIAL_FCLTT_SBCLS_CODE = #{trial_fcltt_sbcls_code}
+</select>
+
+<!-- 22.09.27 임병훈 추가 : 기한내 공고 중 TB_010으로 TB_002 찾기 -->
+<select id="selectVoByTb_010" resultType="com.br.law.vo.Tb_002">
+	SELECT t.* FROM TB_002 t, TB_010 t2 
+	WHERE t.TRIAL_FCLTT_PROPER_NUM = t2.TRIAL_FCLTT_PROPER_NUM
+	AND t.ANNOUNCE_START_DATE <![CDATA[ <= ]]> SYSDATE 
+	AND SYSDATE <![CDATA[ <= ]]> t.ANNOUNCE_END_DATE
+	AND t2.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
+</select>
+
 </mapper>

@@ -1,8 +1,10 @@
 package com.br.law.service.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.br.law.vo.Tb_006;
 import com.br.law.vo.Tb_007;
 import com.br.law.vo.Tb_008;
 import com.br.law.vo.Tb_009;
+import com.br.law.vo.Tb_010;
 
 @Service
 public class ApplicationRegistrationService {
@@ -37,7 +40,9 @@ public class ApplicationRegistrationService {
 		return applicationRegistrationMapper.userDetailSel(param);
 	}//insert 시 session에 담음
 	public Tb_005 userDetailUp(Tb_005 param) {
+		System.out.println("업데이트 시작 왔니?");
 		applicationRegistrationMapper.userDetailUp(param);
+		System.out.println("업데이트 끝 왔니?");
 		return applicationRegistrationMapper.userDetailSel(param);
 	}// update 시 session에 담음
 	public Tb_005 userDetailSel(Tb_005 param) {
@@ -89,9 +94,7 @@ public class ApplicationRegistrationService {
 		return applicationRegistrationMapper.licenceCount(aplcn_dtls_proper_num);
 	}
 	
-	
 	public void uploadFilesIns(ArrayList<Tb_009> param) {
-		
 		for(Tb_009 nine : param) {
 			applicationRegistrationMapper.uploadFilesIns(nine);
 			System.out.println("service 여긴 들어오나? : " +  nine);
@@ -102,8 +105,6 @@ public class ApplicationRegistrationService {
 	public int duplicate(int paramOne, int paramTwo) {
 		return applicationRegistrationMapper.duplicate(paramOne, paramTwo);
 	}
-	
-	
 	
 	public List<Map<String, Object>> autocomplete(Map<String, Object> paramMap){
 		return applicationRegistrationMapper.autocomplete(paramMap);
@@ -123,6 +124,40 @@ public class ApplicationRegistrationService {
 			return false;
 		}
 		
+	}
+	
+	//22.09.27 임병훈 추가
+	//현재 모집 중인 재판조력자 리스트 추출
+	public ArrayList<Tb_010> chkFcltt(){
+		return applicationRegistrationMapper.chkTodayFcltt();
+	}
+	
+	//현재 모집 중인 재판조력자 리스트 중 중분류 추출
+	public ArrayList<String> searchMiddleLevel(ArrayList<Tb_010> list){
+		return (ArrayList<String>) list.stream()
+				.map(Tb_010::getTrial_fcltt_clasifi_code)
+				.distinct()
+				.collect(Collectors.toList());
+	}
+	
+	//현재 모집 중인 재판조력자 리스트 중 소분류 추출
+	public ArrayList<String> searchSmallLevel(ArrayList<Tb_010> list, String str){
+		return (ArrayList<String>) list.stream()
+				.filter(tb_010 -> tb_010.getTrial_fcltt_clasifi_code().equals(str))
+				.map(Tb_010::getTrial_fcltt_sbcls_code)
+				.distinct()
+				.collect(Collectors.toList());
+	}
+	
+	//임시저장 Ajax를 위한 Tb_010찾기 
+	public Tb_010 searchTb010ByTb010(Tb_010 tb_010) {
+		return applicationRegistrationMapper.selectVoByCodes(tb_010);
+	}
+	
+	//임시저장 Ajax를 위한 Tb_002찾기 
+	public Tb_002 searchTb002ByTb010(Tb_010 tb_010) {
+		tb_010 = applicationRegistrationMapper.selectVoByCodes(tb_010);
+		return applicationRegistrationMapper.selectVoByTb_010(tb_010);
 	}
 	
 }

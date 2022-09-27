@@ -86,6 +86,14 @@
 						</table>
 					</div>
 				</div>
+				<c:if test="${!empty admin}">
+					<div class="row m-3" style="font-size: 12px;">
+						<div class="col text-end">	
+							<a class="btn btn-primary btn-sm" href="../member/trialAssistantRegisterWriteBoard"> 글쓰기 </a>
+						</div>
+					</div>
+				</c:if>
+				<!-- 테이블 -->
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>

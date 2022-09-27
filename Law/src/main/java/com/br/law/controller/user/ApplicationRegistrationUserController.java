@@ -27,6 +27,7 @@ import com.br.law.vo.Tb_006;
 import com.br.law.vo.Tb_007;
 import com.br.law.vo.Tb_008;
 import com.br.law.vo.Tb_009;
+import com.br.law.vo.Tb_010;
 
 @Controller
 @RequestMapping("/user/*")
@@ -68,6 +69,20 @@ public class ApplicationRegistrationUserController {
 		return"redirect:../user/main";
 	}
 	
+	//등재신청 목록 출력
+	@RequestMapping("announcement")
+	public String announcement(Model model) {
+		List<Tb_002> list = applicationRegistrationService.asd();
+		model.addAttribute("asd", list);
+		return "user/announcement";
+	}
+	
+	//등재공고 > 등재신청 Process
+	@RequestMapping("announcementProcess")
+	public String announcementProcess(HttpSession session, Tb_002 param) {
+		session.setAttribute("two", param);
+		return "redirect:../user/userDetail";
+	}
 	
 	//등재신청 시작
 	//등재신청 약관확인
@@ -82,63 +97,20 @@ public class ApplicationRegistrationUserController {
 		return "user/applicationDisqualification";
 	}
 	
-	
-	@RequestMapping("announcement")
-	public String announcement(Model model) {
-		List<Tb_002> list = applicationRegistrationService.asd();
-		model.addAttribute("asd", list);
-		System.out.println("어논 : " + model);
-		
-		
-		return "user/announcement";
-	}
-	
-	@RequestMapping("announcementProcess")
-	public String announcementProcess(HttpSession session, Tb_002 param) {
-		session.setAttribute("two", param);
-		System.out.println(((Tb_002)session.getAttribute("two")).getAnnounce_proper_num());
-		return "redirect:../user/userDetail";
-	}
-		
+	//등재신청 신청자 정보
 	@RequestMapping("userDetail")
-	public String userDetail(Model model, HttpSession session, Tb_005 param, HttpServletRequest request){
-		int announce_proper_num = ((Tb_002)session.getAttribute("two")).getAnnounce_proper_num();
-		Tb_001 user = (Tb_001)session.getAttribute("user");
-		
-		int user_proper_num = user.getUser_proper_num();
-		//카운트
-		int alpa = applicationRegistrationService.userDetailCount(user_proper_num, announce_proper_num);
-		int beta = applicationRegistrationService.duplicate(announce_proper_num, user_proper_num);
-		param.setUser_proper_num(user_proper_num);
-		param.setAnnounce_proper_num(announce_proper_num);
-		
-		System.out.println("투 : " + announce_proper_num);
-		System.out.println("유저 : " + user_proper_num);
-		System.out.println("확인용 " + alpa);
-		if(beta != 0) {
-			return "redirect:../user/main";
-		}else {
-			//기존에 자료가 있다면 자료 값 불러옴 
-			if(alpa != 0) {
-				//자료가 없으면 불러오지 않음
-				Tb_005 five = applicationRegistrationService.userDetailSel(param);
-				model.addAttribute("five", five);
-				System.out.println("확인1 : " +  model);
-				model.addAttribute("count", alpa);
-			}
-		}
+	public String userDetail(){
 		return "user/userDetail";
 	}
 	
-	
-	
-	
 	@RequestMapping("userDetailInsProcess")
-	public String userDetailInsProcess(HttpSession session, Model model, Tb_005 param) {
-		int two = ((Tb_002)session.getAttribute("two")).getAnnounce_proper_num();
+	public String userDetailInsProcess(HttpSession session, Model model, Tb_005 param, Tb_010 tb_010) {
 		int userNo = ((Tb_001)session.getAttribute("user")).getUser_proper_num();
+		int two = applicationRegistrationService.searchTb002ByTb010(tb_010).getAnnounce_proper_num();
+		int ten = applicationRegistrationService.searchTb010ByTb010(tb_010).getTrial_fcltt_proper_num();
 		param.setUser_proper_num(userNo);
 		param.setAnnounce_proper_num(two);
+		param.setTrial_fcltt_proper_num(ten);
 		
 		Tb_005 five = applicationRegistrationService.userDetailIns(param);
 		session.setAttribute("five", five);
@@ -148,10 +120,12 @@ public class ApplicationRegistrationUserController {
 	
 	@RequestMapping("userDetailUpProcess")
 	public String userDetailUpProcess(HttpSession session, Model model, Tb_005 param) {
-		int two = ((Tb_002)session.getAttribute("two")).getAnnounce_proper_num();
 		int userNo = ((Tb_001)session.getAttribute("user")).getUser_proper_num();
 		param.setUser_proper_num(userNo);
-		param.setAnnounce_proper_num(two);
+		System.out.println("param 확인 : " + param.getAplcn_dtls_proper_num());
+		System.out.println("param 확인 : " + param.getUser_proper_num());
+		System.out.println("param 확인 : " + param.getCourt_proper_num());
+		System.out.println("param 확인 : " + param.getAnnounce_proper_num());
 		
 		Tb_005 five = applicationRegistrationService.userDetailUp(param);
 		session.setAttribute("five", five);

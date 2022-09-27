@@ -62,32 +62,11 @@ body{
 window.addEventListener("DOMContentLoaded", function() {
 	// 실행 시 가장 먼저 에러메세지 유무 확인
 	/* loginCheck(); */
+	callFcltt()
 	
 });
 
 var isLogined = true;
-
-/* function loginCheck(){
-	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	xhr.onreadystatechange = function () {
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-			if(jsonObj.data == false){
-					alert("로그인을 해주세요");
-					window.location.href="../user/login";
-					
-					isLogined = false;
-					
-					return false;
-				}
-			}
-		}
-	
-	
-xhr.open("get" , "isLogin" , false); //리퀘스트 세팅..
-//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
-xhr.send(); //AJAX로 리퀘스트함..		
-} */
 
 /* 아니오 누를경우 경력내용 비활성화 */
 function cutOff(elementId){
@@ -100,38 +79,38 @@ function cutOn(elementId){
 	var el =  document.getElementById(elementId);
 	el.readOnly= false;
 }
-/* 임시저장 */
-function getUserDetail(){
-	document.getElementById("s2").value='${five.court_proper_num}'; 
+// /* 임시저장 */
+// function getUserDetail(){
+// 	document.getElementById("s2").value='${five.court_proper_num}'; 
 	
-	document.getElementById("s4").value='${five.ligtn_case_carer_etc}'; 
+// 	document.getElementById("s4").value='${five.ligtn_case_carer_etc}'; 
 	
-	document.getElementById("s6").value='${five.insrn_indst_carer_etc}'; 
+// 	document.getElementById("s6").value='${five.insrn_indst_carer_etc}'; 
 	
-	document.getElementById("s8").value='${five.criminal_penalty_carer_etc}'; 
+// 	document.getElementById("s8").value='${five.criminal_penalty_carer_etc}'; 
 	
-	if('${five.ligtn_case_carer_yn}' == 'y'){
-		document.getElementById("s31").checked = true;
-		document.getElementById("s4").readOnly = false;
-	}else{
-		document.getElementById("s32").checked = true;
-		document.getElementById("s4").readOnly = true;
-	}
-	if('${five.insrn_indst_carer_yn}' == 'y'){
-		document.getElementById("s51").checked = true;
-		document.getElementById("s6").readOnly = false;
-	}else{
-		document.getElementById("s52").checked = true;
-		document.getElementById("s6").readOnly = true;
-	}
-	if('${five.criminal_penalty_carer_yn}' == 'y'){
-		document.getElementById("s71").checked = true;
-		document.getElementById("s8").readOnly = false;
-	}else{
-		document.getElementById("s72").checked = true;
-		document.getElementById("s8").readOnly = true;
-	}
-}
+// 	if('${five.ligtn_case_carer_yn}' == 'y'){
+// 		document.getElementById("s31").checked = true;
+// 		document.getElementById("s4").readOnly = false;
+// 	}else{
+// 		document.getElementById("s32").checked = true;
+// 		document.getElementById("s4").readOnly = true;
+// 	}
+// 	if('${five.insrn_indst_carer_yn}' == 'y'){
+// 		document.getElementById("s51").checked = true;
+// 		document.getElementById("s6").readOnly = false;
+// 	}else{
+// 		document.getElementById("s52").checked = true;
+// 		document.getElementById("s6").readOnly = true;
+// 	}
+// 	if('${five.criminal_penalty_carer_yn}' == 'y'){
+// 		document.getElementById("s71").checked = true;
+// 		document.getElementById("s8").readOnly = false;
+// 	}else{
+// 		document.getElementById("s72").checked = true;
+// 		document.getElementById("s8").readOnly = true;
+// 	}
+// }
 /* 아무것도 안누를시 경고창 */
 function didUseBoard(eleId1, eleId2, eleId3){
 		var yes = document.getElementById(eleId1).checked;
@@ -143,6 +122,157 @@ function didUseBoard(eleId1, eleId2, eleId3){
 			area.value = null;
 		}
 }
+
+//현재 모집 중인 감정분야만 선택가능하게 (중분류 표기)
+function callFcltt(){
+    	
+    var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+    		const selectBox1 = document.getElementById("s1");
+    		selectBox1.innerHTML = "";
+    		
+    		var optionBox1 = document.createElement('option');
+    		optionBox1.innerText = '선택';
+            selectBox1.appendChild(optionBox1);
+    		
+    		for(level of jsonObj.mLevel){
+	    		var optionBox = document.createElement('option');
+	            optionBox.setAttribute('value', level);
+	            optionBox.innerText = level;
+	            selectBox1.appendChild(optionBox);
+    		}
+        }
+    }
+    
+    xhr.open("get" , "../user/chkFcltt"); //리퀘스트 세팅..
+    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+    xhr.send(); //AJAX로 리퀘스트함..
+}
+
+//중분류에 따른 모집중인 소분류 표기
+function callSmallLevel(selectBox1){
+	
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+            console.log(jsonObj);
+            
+            const selectBox2 = document.getElementById("s1_detail");
+            selectBox2.innerHTML = "";
+    		
+    		var optionBox1 = document.createElement('option');
+    		optionBox1.innerText = '선택';
+    		selectBox2.appendChild(optionBox1);
+    		
+    		for(level of jsonObj.sLevel){
+	    		var optionBox = document.createElement('option');
+	            optionBox.setAttribute('value', level);
+	            optionBox.innerText = level;
+	            selectBox2.appendChild(optionBox);
+    		}
+            
+        }
+    }
+    
+    xhr.open("get" , "../user/callSmallLevel?mLevel=" + selectBox1.value); //리퀘스트 세팅..
+    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+    xhr.send(); //AJAX로 리퀘스트함..
+}
+
+//임시저장 Ajax
+function chkTempData(selectBox2){
+	const selectBox1 = document.getElementById("s1");
+    
+    var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+            
+            console.log(jsonObj);
+            console.log(jsonObj.result);
+            if(jsonObj.result == 'fail'){
+            	alert('이미 지원한 신청입니다.');
+            	location.href = "../user/main";
+            	
+            }else{
+	            var userDetailButtonBox = document.getElementById("userDetailButtonBox");
+	            userDetailButtonBox.innerHTML = "";
+	            
+	            if(jsonObj.alpa){
+		            if (confirm("임시저장된 정보들이 있습니다. 불러오시겠습니까 ? ")) {
+			            /* 임시저장 */
+			            jsonObj.tb_005.court_proper_num
+			           	document.getElementById("s2").value= jsonObj.tb_005.court_proper_num; 
+			           	document.getElementById("s4").value= jsonObj.tb_005.ligtn_case_carer_etc; 
+			           	document.getElementById("s6").value= jsonObj.tb_005.insrn_indst_carer_etc; 
+			           	document.getElementById("s8").value= jsonObj.tb_005.criminal_penalty_carer_etc; 
+			           	
+			           	if(jsonObj.tb_005.ligtn_case_carer_yn == 'y'){
+			           		document.getElementById("s31").checked = true;
+			           		document.getElementById("s4").readOnly = false;
+			           	}else{
+			           		document.getElementById("s32").checked = true;
+			           		document.getElementById("s4").readOnly = true;
+			           	}
+			           	if(jsonObj.tb_005.insrn_indst_carer_yn == 'y'){
+			           		document.getElementById("s51").checked = true;
+			           		document.getElementById("s6").readOnly = false;
+			           	}else{
+			           		document.getElementById("s52").checked = true;
+			           		document.getElementById("s6").readOnly = true;
+			           	}
+			           	if(jsonObj.tb_005.criminal_penalty_carer_yn == 'y'){
+			           		document.getElementById("s71").checked = true;
+			           		document.getElementById("s8").readOnly = false;
+			           	}else{
+			           		document.getElementById("s72").checked = true;
+			           		document.getElementById("s8").readOnly = true;
+			           	}
+		            }
+		            
+		            var hiddenInputBox = document.createElement('input');
+		            hiddenInputBox.setAttribute("type", "hidden");
+		            hiddenInputBox.setAttribute('name', "announce_proper_num");
+		            hiddenInputBox.setAttribute('value', jsonObj.tb_005.announce_proper_num);
+		            userDetailButtonBox.appendChild(hiddenInputBox);
+		            
+		            var hiddenInputBox2 = document.createElement('input');
+		            hiddenInputBox2.setAttribute("type", "hidden");
+		            hiddenInputBox2.setAttribute('name', "trial_fcltt_proper_num");
+		            hiddenInputBox2.setAttribute('value', jsonObj.tb_005.trial_fcltt_proper_num);
+		            userDetailButtonBox.appendChild(hiddenInputBox2);
+		            
+		            var buttonBox = document.createElement('button');
+		            buttonBox.setAttribute('type', "submit");
+		            buttonBox.setAttribute('formaction', "userDetailUpProcess");
+		            buttonBox.setAttribute('formmethod', "get");
+		            buttonBox.innerText = '업데이트';
+		            userDetailButtonBox.appendChild(buttonBox);
+		            
+	            }else{
+	            	
+	            	var buttonBox = document.createElement('button');
+	 	            buttonBox.setAttribute('type', "submit");
+	 	            buttonBox.setAttribute('formaction', "userDetailInsProcess");
+	 	            buttonBox.setAttribute('formmethod', "get");
+	 	            buttonBox.innerText = '인서트';
+	 	            userDetailButtonBox.appendChild(buttonBox);
+	            }
+            }
+            
+            
+        }
+    }
+    
+    xhr.open("get" , "../user/chkTempData?mLevel=" + selectBox1.value + "&sLevel=" + selectBox2.value); //리퀘스트 세팅..
+    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+    xhr.send(); //AJAX로 리퀘스트함..
+    
+}
+
 </script>
 <title>등재신청 기본정보</title>
 </head>
@@ -200,14 +330,13 @@ function didUseBoard(eleId1, eleId2, eleId3){
 						</div>
 					</div>
 				</div>
-					<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
-						<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat; margin-top:13px;"></div>
-						<div class="col"></div>
-						<div class="col"></div>
-						<div class="col"></div>
-						<div class="col"></div>
-					</div>
-				
+				<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
+					<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat; margin-top:13px;"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+					<div class="col"></div>
+				</div>
 				
 				<!-- <div class="row" style="height: 63.5px; ">
 					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
@@ -236,8 +365,7 @@ function didUseBoard(eleId1, eleId2, eleId3){
 					</div>
 				</div> -->
 				
-				
-				 <!-- 스텝 그림-->
+				<!-- 스텝 그림-->
 				 <!--
 				<div class="row mt-2">
 					<div class="col">
@@ -258,10 +386,42 @@ function didUseBoard(eleId1, eleId2, eleId3){
 				
 		        <div class="row border-bottom mt-5 mx-0">
 		        	<div class="col">
-			            
+			        	<h4>감정분야 및 세부구분선택</h4>  
 		        	</div>
 		        </div>
-		        <div class="row border-bottom mt-5 mx-0">
+		        
+		        <div class="row">
+		        	<div class="col container">
+			            <table class="table">
+			            	<colgroup>
+			            		<col width="25%">
+			            		<col width="20%">
+			            		<col width="55%">
+			            	</colgroup>
+			                <tbody>
+			                	<tr>
+		                    		<th scope="row" class="table-active"><span style="color : red;"> * </span> 감정분야 선택</th>
+				                    <td>
+				                        <div class="col">
+					                        <select id="s1" name="trial_fcltt_clasifi_code" onchange="callSmallLevel(this)">
+					                        </select>
+				                        </div>
+									</td>
+									<td>
+				                        <div class="col">
+					                        <select id="s1_detail" name="trial_fcltt_sbcls_code" onchange="chkTempData(this)">
+					                        </select>
+				                        </div>
+				                    </td>
+			                	</tr>
+			                </tbody>
+			            </table>
+					</div> 
+		        </div>
+		        
+		        
+		        
+		        <div class="row border-bottom mt-3 mx-0">
 		            <div class="col"><h4>희망법원선택</h4></div>
 		            <div class="col">* 한곳의 법원에서 부적격 판정 시 다른 법원에서도 부적격이 될 수 있습니다.</div>
 		        </div>
@@ -275,7 +435,7 @@ function didUseBoard(eleId1, eleId2, eleId3){
 			            	</colgroup>
 			                <tbody>
 			                <tr>
-			                    <th scope="row" class="table-active"><span style="color : red;"> * </span> 감정분야 선택</th>
+			                    <th scope="row" class="table-active"><span style="color : red;"> * </span> 희망법원 선택</th>
 			                    <td>
 			                        <div class="col">
 			                        <select id="s2" name="court_proper_num">
@@ -338,25 +498,11 @@ function didUseBoard(eleId1, eleId2, eleId3){
 			                </tr>
 			                </tbody>
 			            </table>
-			            <div class="row ">
-			            	<div class="col">
-			            		 <c:if test="${!empty count}">
-									<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
-								</c:if>
-			            	</div>
-			            	<div class="col">
-			            		  <c:choose>
-			            			<c:when test="${!empty count}">
-			            				<button type="submit" formaction="userDetailUpProcess" formmethod="get">업데이트</button>
-			            			</c:when>
-			            			<c:otherwise>
-			            				<button type="submit" formaction="userDetailInsProcess" formmethod="get">인설트</button>
-			            			</c:otherwise>
-			           			 </c:choose>		
+			            <div class="row justify-content-end">
+			            	<div id="userDetailButtonBox" class="col">
+	            				<button type="submit" formaction="userDetailInsProcess" formmethod="get">인설트</button>
 			            	</div>
 			            </div>
-			           
-			          
 		            </div>
 				</div>
 				</div>
@@ -364,9 +510,6 @@ function didUseBoard(eleId1, eleId2, eleId3){
 			</div>
 		</div>
 	</div>
-
-        
-
    
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
