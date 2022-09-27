@@ -31,10 +31,11 @@ public class TrialUserRestController {
 	public Map<String, Object> chkPassword(String user_pw, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		System.out.println("입력한 user_pw : " + user_pw);
+		//System.out.println("입력한 user_pw : " + user_pw);
 		
 		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 		if(sessionUser.getUser_pw().equals(user_pw)) {
+			session.setAttribute("identityVerificate", true);
 			map.put("result", "success");
 		} else {
 			map.put("result", "fail");

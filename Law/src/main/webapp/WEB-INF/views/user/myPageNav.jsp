@@ -4,7 +4,7 @@
 
 <div class="col">
 	<div class="list-group list-group-flush">
-		<a href="./myInfo" class="list-group-item list-group-item-action">내정보</a>
+		<a href="./identityVerificate" class="list-group-item list-group-item-action">내정보</a>
 		<a href="./myApplication" class="list-group-item list-group-item-action">나의 등재신청 내역</a>
 		<a href="./myActive" class="list-group-item list-group-item-action">나의 활동 내역</a>
 		<a href="./myPause" class="list-group-item list-group-item-action">중지/해제신청 관리</a>

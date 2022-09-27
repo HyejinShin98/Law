@@ -165,22 +165,20 @@ function tableSevenFrmSubmit() {
 
 // 자격증정보 submit
 function tableEightFrmSubmit() {
-	if(!chkValEmpty()) {
-		return;
-	} else {
-		var frmData = $("#tableEightFrm").serialize();
-		//console.log("tableEightFrm : " + frmData);
-		$.ajax({
-			url: "./modifyTableEight",
-			method: "post",
-			data: frmData,
-			dataType: "json",		
-		}).done(function(obj) {
-			alert(obj.msg);
-			tableEightInfo();
-		
-		}).fail(function() {})
-	}
+	// 자격증 정보 필수X
+
+	var frmData = $("#tableEightFrm").serialize();
+	//console.log("tableEightFrm : " + frmData);
+	$.ajax({
+		url: "./modifyTableEight",
+		method: "post",
+		data: frmData,
+		dataType: "json",		
+	}).done(function(obj) {
+		alert(obj.msg);
+		tableEightInfo();
+	
+	}).fail(function() {})
 }
 
 // 첨부파일정보 submit
@@ -1485,12 +1483,22 @@ function tableSevenInfo(){
 	                var rowBox = document.createElement("div");
 	                rowBox.classList.add("row"); 
 	                
-	                var subNab1 = document.createElement("div");
-	                subNab1.classList.add("row");
-	                subNab1.classList.add("mx-0");
-	                subNab1.classList.add("border-bottom");
-	                subNab1.classList.add("pb-4");
-	                rowBox.appendChild(subNab1);
+	                var txtRow = document.createElement("div");
+	                txtRow.classList.add("row");
+	                txtRow.classList.add("mx-0");
+	                txtRow.classList.add("border-bottom");
+	                txtRow.classList.add("pb-4");
+	                rowBox.appendChild(txtRow);
+	                
+	                var txtCol = document.createElement("div");
+	                txtCol.classList.add("col");
+	                txtRow.appendChild(txtCol);
+	                
+	                var txtSpan = document.createElement("span");
+	                txtSpan.innerText = "* 모든 값은 필수입력입니다.";
+	                txtSpan.classList.add("text-danger");
+	                txtSpan.classList.add("fw-bold");
+	                txtCol.appendChild(txtSpan);
 	
 	                //table시작
 	
@@ -1783,15 +1791,6 @@ function tableEightInfo(){
 	                var rowBox = document.createElement("div");
 	                rowBox.classList.add("row");
 	                
-	                
-	                var subNab1 = document.createElement("div");
-	                subNab1.classList.add("row");
-	                subNab1.classList.add("mx-0");
-	                subNab1.classList.add("border-bottom");
-	                subNab1.classList.add("pb-4");
-	                rowBox.appendChild(subNab1);
-	
-	
 	                //table시작
 	
 	                var tableRow = document.createElement("div");
@@ -1847,6 +1846,65 @@ function tableEightInfo(){
 	                var theadTrTd1 = document.createElement("td");
 	                theadTr.appendChild(theadTrTd1);
 	                
+					var crtfcTypeSelect = document.createElement("select");
+					crtfcTypeSelect.classList.add("form-select");
+					crtfcTypeSelect.id = "crtfc_type";
+					crtfcTypeSelect.name = "crtfc_type";
+					theadTrTd1.appendChild(crtfcTypeSelect);
+
+					var crtfcTypeOptionDefault = document.createElement("option");
+					crtfcTypeOptionDefault.id = "default";
+					crtfcTypeOptionDefault.innerText = "선택";
+					crtfcTypeSelect.appendChild(crtfcTypeOptionDefault);
+										
+					// TODO: 추후 option -> value 수정 필요
+					var crtfcTypeOption1 = document.createElement("option");
+					crtfcTypeOption1.value = "o1";
+					crtfcTypeOption1.innerText = "건축사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption1);
+					
+					var crtfcTypeOption2 = document.createElement("option");
+					crtfcTypeOption2.value = "o2";
+					crtfcTypeOption2.innerText = "가구제작산업기사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption2);
+					
+					var crtfcTypeOption3 = document.createElement("option");
+					crtfcTypeOption3.value = "o3";
+					crtfcTypeOption3.innerText = "가스기사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption3);
+					
+					var crtfcTypeOption4 = document.createElement("option");
+					crtfcTypeOption4.value = "o4";
+					crtfcTypeOption4.innerText = "건설기계설비기사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption4);
+	                
+	              	var crtfcTypeOption5 = document.createElement("option");
+					crtfcTypeOption5.value = "o5";
+					crtfcTypeOption5.innerText = "건축산업기사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption5);
+					
+					var crtfcTypeOption6 = document.createElement("option");
+					crtfcTypeOption6.value = "o6";
+					crtfcTypeOption6.innerText = "방재기사";
+					crtfcTypeSelect.appendChild(crtfcTypeOption6);
+					
+					// 입력했던 종목 selected
+					var crtfcType = data.CRTFC_TYPE;
+					console.log("crtfcType : " + crtfcType);
+					
+					if(crtfcType == null || crtfcType == undefined) {
+	                	crtfcTypeOptionDefault.selected = true;
+	                }
+					
+					var options = crtfcTypeSelect.getElementsByTagName("option");
+					for(option of options) {
+						if(crtfcType == option.value) {
+							option.selected = true;
+						}
+					}
+	                
+	                
+	                /*
 	                var inputCrtfcType = document.createElement("input");
 	                inputCrtfcType.classList.add("form-control");
 	                inputCrtfcType.type = "text";
@@ -1854,6 +1912,9 @@ function tableEightInfo(){
 	                inputCrtfcType.name = "crtfc_type";
 	                inputCrtfcType.value = data.CRTFC_TYPE;
 	                theadTrTd1.appendChild(inputCrtfcType);
+					*/
+	
+	
 	
 	                var theadTrTh2 = document.createElement("th");
 	                theadTrTh2.classList.add("text-center");
@@ -1986,27 +2047,8 @@ function tableNineInfo(){
 	                var rowBox = document.createElement("div");
 	                rowBox.classList.add("row");
 	 
-	                var subNab1 = document.createElement("div");
-	                subNab1.classList.add("row");
-	                subNab1.classList.add("mx-0");
-	                subNab1.classList.add("border-bottom");
-	                subNab1.classList.add("pb-4");
-	                rowBox.appendChild(subNab1);
-	
-	                var subNab1Span = document.createElement("span");
-	                subNab1Span.innerText="기본정보";
-	                subNab1.appendChild(subNab1Span);
-	
-	                var subNab1SpanFromI = document.createElement("i");
-	                subNab1SpanFromI.classList.add("bi");
-	                subNab1SpanFromI.classList.add("bi-circle-fill");
-	                subNab1Span.appendChild(subNab1SpanFromI);
-	
-	                //기본정보 끝
-	
-	
+	 
 	                //table시작
-	
 	                var tableRow = document.createElement("div");
 	                tableRow.classList.add("row");
 	                tableRow.classList.add("mx-0");

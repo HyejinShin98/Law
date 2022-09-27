@@ -71,7 +71,7 @@
 						</a>
 					</div>
 					<div class="col">
-						<a href="../user/myInfo">
+						<a href="../user/identityVerificate">
 							<span>My Page</span>
 						</a>
 					</div>
