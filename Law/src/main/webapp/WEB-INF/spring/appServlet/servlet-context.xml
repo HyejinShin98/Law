@@ -47,6 +47,14 @@
 			<mapping path="/user/license"/>
 			<mapping path="/user/univ"/>
 			<mapping path="/user/carrer"/>
+			<mapping path="/user/identityVerificate"/>
+			<mapping path="/user/myInfo"/>
+			<mapping path="/user/myInfo"/>
+			<mapping path="/user/modifyPassword"/>
+			<mapping path="/user/withdrawal"/>
+			<mapping path="/user/myApplication"/>
+			<mapping path="/user/myActive"/>
+			<mapping path="/user/myPause"/>
 			
 		<!-- 3 -->
 		
