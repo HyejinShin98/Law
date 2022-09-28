@@ -55,4 +55,11 @@ public class FaqController {
 		
 		return "redirect:./faqPage";
 	}
+	
+	@RequestMapping("updateContentPage")
+	public String updateContentPage(Tb_004 param) {
+		faqService.updateContent(param);
+		return "redirect:./faqPage";
+	}
+
 }

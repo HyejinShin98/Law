@@ -41,4 +41,8 @@ public class FaqServiceImpl {
 		faqSQLMapper.deleteByNo(faq_proper_num);
 	}
 	
+	public void updateContent(Tb_004 tb_004) {
+		faqSQLMapper.updateTitleAndContent(tb_004);
+	}
+	
 }

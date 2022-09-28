@@ -14,28 +14,34 @@
 <body>
 	<div class="col container-fluid" style="width: 960px;">
 		<jsp:include page="../common/header.jsp"></jsp:include>
+		
 		<img src="../resources/img/sub_topimg.gif">
 
 		<div class="row">
 			<!-- 사이드 네비바 -->
-			<div class="col-3">
-				<jsp:include page="../common/localNav.jsp"></jsp:include>
-			</div>
+			<jsp:include page="../common/localNav.jsp"></jsp:include>
 			
 			<div class="col">
 				<div class="row">
 					<div class="col">
-						<!-- FAQ 제목 -->
 						<div class="row">
 							<div class="col">
-								<img src="../resources/img/Faq/h3_ogi430.gif">
+								
 							</div>
 						</div>
-						
+						<!-- FAQ 제목 -->
+						<div class="row mt-5">
+							<div class="col"></div>
+							<div class="col-10">
+								<img src="../resources/img/Faq/h3_ogi430.gif">
+							</div>
+							<div class="col"></div>
+						</div>
 						
 						<!-- FAQ 리스트 -->
-						<div class="row">
-							<div class="col">
+						<div class="row mt-3">
+							<div class="col"></div>
+							<div class="col-10">
 								<c:forEach items="${dataList }" var="data">
 									<div class="accordion-item">
 										<h2 class="accordion-header" id="flush-heading${data.faq_proper_num }">
@@ -53,15 +59,21 @@
 									</div>
 								</c:forEach>
 
-						<!-- 글쓰기 버튼(관리자) -->
-						<div class="row">
-							<div class="col">
-								
-								<a class="btn btn-primary" href="./writeFaqPage">글쓰기</a>
-								
+								<!-- 글쓰기 버튼(관리자) -->
+								<div class="row">
+									<div class="col">
+										
+										<a class="btn btn-primary" href="./writeFaqPage">글쓰기</a>
+										
+										<c:if test="${!empty admin && admin == admin.admin_proper_num }">
+											<a href="./deleteContentProcess?board_no=${data.faq_proper_num }">삭제</a>
+											<a href="./updateContentPage?board_no=${data.faq_proper_num }">수정</a>
+										</c:if>
+									</div>
+								</div>
 							</div>
-						</div>
-						</div>
+						<div class="col"></div>
+						
 					</div>
 				</div>
 			</div>
