@@ -50,9 +50,11 @@ body{
 		margin:5px 0;
 		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
 }
-
-
 </style>
+<script type="text/javascript">
+
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>

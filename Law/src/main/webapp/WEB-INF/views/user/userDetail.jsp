@@ -299,12 +299,12 @@ function chkTempData(selectBox2){
 						</div>
 					</div>
 				</div>
-				<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
-					<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_02.gif); background-repeat: no-repeat; margin-top:13px;"></div>
-					<div class="col"></div>
-					<div class="col"></div>
-					<div class="col"></div>
-					<div class="col"></div>
+					<div class="row" style=" background-image : url(../resources/img/applicationRegistration/bg_stepgamjung.gif); width: inherit;margin-right: 0px;margin-left: 0px;height: 66px;">
+					<div class="col" style="background-image : url(../resources/img/applicationRegistration/stepgamjung_01.gif); background-repeat:no-repeat;background-position: -202px 13px;padding-right: 14px;"></div>
+					<div class="col" style="padding-right: 15px;"></div>
+					<div class="col" style="padding-right: 11px;"></div>
+					<div class="col" style="padding-right: 14px;"></div>
+					<div class="col" style="padding-right: 1px;"></div>
 				</div>
 				
 				<!-- <div class="row" style="height: 63.5px; ">

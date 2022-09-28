@@ -95,6 +95,35 @@ function changeForDate(date){
 	}
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
+function checkList(){
+	
+	let result = true;
+	
+	let check = document.getElementsByTagName("input");
+	
+	let ss = document.getElementById("ss");
+	// 메세지 초기화
+	let msg = document.getElementsByClassName('msg');
+	for(e of msg) {
+		e.innerText = '';
+	}
+	
+	// 공백검사
+	for(let i=0; i<check.length; i++) {
+		let box = check[i].parentNode.parentNode.parentNode;
+		
+		if(check[i].value == '') {
+				elert("빈칸을 채워주세요");
+				result = false;
+		}
+	}
+	if(result){
+		ss.submit();
+		alert("저장되었습니다");
+	}else{
+		alert("빈칸을 입력해주세요");
+	}
+}
  
 </script>
 </head>
@@ -194,6 +223,7 @@ function changeForDate(date){
                             <th scope="row" class="table-active">경력구분</th>
                             <td><div class="col">
                                 <select id="s2" name="carer_type">
+                                		<option value= "x">--경력 X--</option>
                                         <option value="ca">법원감정인 경력</option>
                                         <option value="ot">기타 경력</option>
                                 </select>

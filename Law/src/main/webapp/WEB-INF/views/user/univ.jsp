@@ -124,9 +124,9 @@ function checkList(){
 	}
 	if(result){
 		ss.submit();
-		alert("oo");
+		alert("저장되었습니다");
 	}else{
-		alert("nn");
+		alert("빈칸을 입력해주세요");
 	}
 }
 

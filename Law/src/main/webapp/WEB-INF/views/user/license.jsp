@@ -87,7 +87,39 @@ function changeForDate(date){
 	}
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
-
+function checkList(){
+	
+	let result = true;
+	
+	let check = document.getElementsByTagName("input");
+	
+	let ss = document.getElementById("ss");
+	// 메세지 초기화
+	let msg = document.getElementsByClassName('msg');
+	for(e of msg) {
+		e.innerText = '';
+	}
+	
+	// 공백검사
+	for(let i=0; i<check.length; i++) {
+		let box = check[i].parentNode.parentNode.parentNode;
+		let msg = box.getElementsByClassName('msg');
+		
+		if(check[i].value == '') {
+			for(e of msg) {
+				e.innerText = '필수입력입니다.';
+				e.setAttribute("style","font-size: 11px");
+				result = false;
+			}
+		}
+	}
+	if(result){
+		ss.submit();
+		alert("저장되었습니다");
+	}else{
+		alert("빈칸을 입력해주세요");
+	}
+}
 
 
  
