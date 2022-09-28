@@ -4,10 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-<title>재판조력자 등재신청</title>
+<title>회원가입</title>
+<!-- 외부 css 로드  -->
+<link rel="stylesheet" type="text/css" href="../resources/css/common.css">
+<style>
+
+.ms{
+	text-align-last: right;
+	font-weight:bold;
+	padding-right: 16px;
+	font-size: larger;
+}
+.contentsinbox input{
+	width: auto;
+	float: left;
+}
+	
+</style>
 <script src="../resources/js/common.js"></script>
 <script type="text/javascript">
 
@@ -58,6 +74,9 @@ function checkListId(){
 					checkList.innerText="이미 중복 아이디가 존재합니다";
 					checkList.classList.remove("text-success");
 					checkList.classList.add("text-danger");
+					checkList.setAttribute("style", "font-size: 18px");
+					checkList.setAttribute("style", "padding-left: 235px");
+					checkList.setAttribute("style", "padding-top: 4px");
 					alreadyCheckId.appendChild(checkList);
 					
 				}else{
@@ -66,6 +85,9 @@ function checkListId(){
 					checkList.innerText="중복 아이디가 없습니다.";
 					checkList.classList.add("text-success");
 					checkList.classList.remove("text-danger");
+					checkList.setAttribute("style", "font-size: 18px");
+					checkList.setAttribute("style", "padding-left: 235px");
+					checkList.setAttribute("style", "padding-top: 4px");
 					alreadyCheckId.appendChild(checkList);
 				}
 	    }
@@ -88,7 +110,7 @@ function insertUser(){
 			}
 			const insertUser = document.getElementById("insertUser");
 			
-			const pwInput = document.getElementById("pw");
+			/* const pwInput = document.getElementById("pw");
 			if(pwInput.value == ""){
 				alert("비밀번호를 입력해 주세요");
 				pwInput.focus();
@@ -153,150 +175,185 @@ function insertUser(){
 				alert("예금명을 입력해 주세요");
 				holder.focus();
 				return;
-			}
+			} */
 			
 			insertUser.submit();
 }
-	
+$("#emailNum").blur(function(){
+	user_email();
+});
+$("#emailAddress").change(function(){
+	user_email();
+});
+function user_email(){
+	const email = $("#emailNum").val();
+	const middle = $("middle").text();
+	const address = $("#emailAddress").val();
+	if(email != "" && address != ""){
+		$("#totalEmail").val(email+middel+address);
+	}
+};
 
 
 </script>
+<style>
+
+.contentsinbox h4{
+	clear:both; 
+	font-size:12px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	line-height:1.3em;
+	padding:0 11px;
+	margin:5px 0;
+	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
+}
+
+.contentsinbox h5{
+	clear:both; 
+	font-size:12px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	line-height:1.3em;
+	margin:3px 0;
+	padding:0 0 0 10px;
+	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 25%;
+}
+	
+</style>
 </head>
 <body>
-<jsp:include page="../common/header.jsp"></jsp:include>
-	재판조력자 등재신청
+	<!-- 여기부터 다시 시작임 -->
+	<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
 
-	<div class="col container-fluid" style="width : 1800px;">
-	 <div class="row mt-4 mx-5">
-            <div class="col">
-                <div class="row">STEP 1</div>
-                <div class="row ">기본정보</div>
+			<!-- 사이드 네비바 -->
+			<div class="col-3 text-end">
+                <jsp:include page="../common/applicationRegistrationLocalNav.jsp"></jsp:include>
             </div>
-            <div class="col border-start">
-                <div class="row">STEP 2</div>
-                <div class="row ">학력정보</div>
-            </div>
-            <div class="col border-start">
-                <div class="row">STEP 3</div>
-                <div class="row ">경력정보</div>
-            </div>
-            <div class="col border-start">
-                <div class="row">STEP 4</div>
-                <div class="row ">자격증정보</div>
-            </div>
-            <div class="col border-start">
-                <div class="row">STEP 5</div>
-                <div class="row ">증빙서류첨부</div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="row border-bottom">감정분야 및 세부구분선택</div>
-            <div class="row">
-                <div class="col">감정분야 선택</div>
-                <div class="col">슬롯</div>
-                <div class="col">슬롯</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row">
-                <div class="col">희망법원선택</div>
-                <div class="col">*한곳의 법원에서 부적격 판정 시 다른 법원에서도 부적격이 될 수 있습니다.</div>
-            </div>
-            <div class="row">
-                <div class="col">희망법원 선택</div>
-                <div class="col">
-                    <div class="col">
-                        <div class="row">법원목록</div>
-                        <div class="row">목록</div>
-                    </div>
-                    <div class="col">화살표</div>
-                    <div class="col">
-                        <div class="row">희망법원</div>
-                        <div class="row">text</div>
-                    </div>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end loc">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > </span><span style="color: #72a8fe;font-weight: bold;">회원가입</span>
+					</div>
+				</div>
+				<!-- 타이틀 -->
+				<div class="row my-4">
+					<div class="col">
+						<img src="../resources/img/Guide/h3_ogi110.gif">
+					</div>
+				</div>
+				
+				
+				<!-- 안내 -->
+				<div class="contentsinbox">
+					<h4 class="mar">회원가입</h4>
+					<!--table start-->
+					<div class="tabletop">
+					<form action="../user/applicationRegistrationProcess" id="insertUser">
+						<table class="list vline" summary="감정인의 종류 및 신청 방식" border="1">
+							<colgroup>
+							<col width="15%;">
+							<col width="15%;">
+							<col width="70%;">
+                            </colgroup>
+							<tbody>
+								<tr>
+									<th class="ms">아이디<span style="color:red"> *</span></td>
+									<td colspan="2">
+										<input type="text" class="form-control ms" id="checkId" onblur="checkListId()" name="user_id">
+										<span id="alreadyCheckId" class="msg"></span>
+									</td>
+								</tr>
+								<tr>
+									<th class="ms">비밀번호<span style="color:red"> *</span></td>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_pw"></td>
+								</tr>
+								<tr>
+									<th class="ms">이름<span style="color:red"> *</span></th>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_name"></td>
+								</tr>
+								<tr>
+									<th class="ms">나이<span style="color:red"> *</span></th>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_age"></td>
+								</tr>
+								<tr>
+									<th class="ms">직업<span style="color:red"> *</span></th>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_job"></td>
+								</tr>
+								<tr>
+									<th class="ms">연락처<span style="color:red"> *</span></th>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_phone"></td>
+								</tr>
+								<tr>
+									<th class="ms">이메일<span style="color:red"> *</span></th>
+									<td colspan="2">
+										<input type="text" id="emailNum" class="form-control ms" id="emailNum" >
+										<span id="middle" style="float: left; font-size: 21px">@</span><input type="text" class="form-control" id="emailAddress" list="userEmailAddress">
+										<datalist id="userEmailAddress">
+											<option value="naver.com"></option>
+											<option value="daum.com"></option>
+											<option value="google.com"></option>
+											<option value="직접입력"></option>
+										</datalist>
+										<input type="hidden" id="totalEmail" name="user_email" value="">
+									</td>
+								</tr>
+								<tr>
+									<th class="ms">기본주소<span style="color:red"> *</span></th>
+									<td colspan="2"><input type="text" class="form-control ms" name="user_ar"></td>
+								</tr>
+								<tr>
+									<th rowspan="3" scope="row" class="ms">주소<span style="color:red"> *</span></th>
+									<td class="title">우편번호</td>
+									<td><input type="text" class="form-control ms" name="user_ar_zonecode"></td>					
+								</tr>
+								<tr>
+									<td class="title">지번주소</td>
+									<td><input type="text" class="form-control ms" name="user_ar_jibun"></td>
+								</tr>
+								<tr>
+									<td class="title">상세주소</td>
+									<td><input type="text" class="form-control ms" name="user_ar_detail"></td>
+								</tr>
+								<tr>
+									<th rowspan="3" scope="row" class="ms">은행<span style="color:red"> *</span></th>
+									<td class="title">계좌 예금주</td>
+									<td><input type="text" class="form-control ms" name="user_bank_holder"></td>
+								</tr>
+								<tr>
+									<td class="title">계좌은행</td>
+									<td><input type="text" class="form-control ms" name="user_bank"></td>			
+								</tr>
+								<tr>
+									<td class="title">계좌 번호</td>
+									<td><input type="text" class="form-control ms" name="user_bank_account"></td>
+								</tr>
+								
+							</tbody>
+						</table>
+						<div class="row">
+							<div class="col">
+								<input type="button" class="btn btn-primary" onclick="insertUser()" value="회원가입">	
+							</div>
+						</div>
+						</form>
+					</div>
                 </div>
-            </div>  
-        </div>
-
-        <div class="row">
-            만일 감정인이 원거리에 있는 여러 법원을 선택하여 감정서를 늦게 제출하거나 정당한 이유 없이 감정인이 되기를 거부하는 등의 사유<br>
-            가 발생할 경우에 감정인 등록이 삭제되거나 재등록 심사 시 부적격자로 감정인 선정에서 탈락할 수 있으니 여러개의 법원을 신청 시 이<br>
-            점 유념하시기 바랍니다
-        </div>
-        <div class="row">
-        	<form action="../user/applicationRegistrationProcess" id="insertUser">
-	            <div class="row">신청인 기본정보</div>
-	            <div class="row">
-	                <div class="row">
-	                    <div class="col">이름</div>
-	                    <div class="col"><input type="text" id="name" name="user_name"></div>
-	                </div>
-	                <div class="row">
-	                    <div class="col">휴대전화번호</div>
-	                    <div class="col"><input type="text" id="phone" name="user_phone"></div>
-	                </div>
-	                <div class="row">
-	                    <div class="col">직업</div>
-	                    <div class="col"><input type="text" id="job" name="user_job"></div>
-	                </div>
-	                <div class="row">
-	                    <div class="col">이메일</div>
-	                    <div class="col"><input type="text" id="email" name="user_email"></div>
-	                </div>
-	                <div class="row">
-	                    <div class="row">
-	                        <div class="col">기본주소 : </div>
-	                        <div class="col"><input type="text" id="ar" name="user_ar"></div>
-	                    </div>
-	                    <div class="row">
-	                        <div class="col">우편주소 : </div>
-	                        <div class="col"><input type="text" id="zonecode" name="user_ar_zonecode"></div>
-	                    </div>
-	                    <div class="row">
-	                        <div class="col">지번주소 : </div>
-	                        <div class="col"><input type="text" id="jibun" name="user_ar_jibun"></div>
-	                    </div>
-	                    <div class="row">
-	                        <div class="col">상세주소 : </div>
-	                        <div class="col"><input type="text" id="detail" name="user_ar_detail"></div>
-	                    </div>
-	                </div>
-	                <div class="row">
-	                    <div class="row">
-	                        <div class="col">나이 : </div>
-	                        <div class="col"><input type="number" id="age" name="user_age"></div>
-	                    </div>
-	                    
-	                    <div class="row">
-	                    	<div class="col">예금주 : </div>
-	                    	<div class="col"><input type="text" id="bankHolder" name="user_bank_holder"></div>
-	                    </div>
-	                    <div class="row">
-	                    	<div class="col">은행명 : </div>
-	                    	<div class="col"><input type="text" id="bank" name="user_bank"></div>
-	                    </div>
-	                    <div class="row">
-	                    	<div class="col">계좌번호 : </div>
-	                    	<div class="col"><input type="text" id="account" name="user_bank_account"></div>
-	                    </div>
-	                    <div class="row">
-	                    	<div class="col">아이디 : </div>
-	                    	<div class="col">
-	                    		<input type="text" id="checkId" onblur="checkListId()" name="user_id">
-	                    		<div id="alreadyCheckId" class="row msg"></div>
-	                    	</div>
-	                    </div>
-	                    <div class="row">
-	                    	<div class="col">비밀번호 : </div>
-	                    	<div class="col"><input type="password" id="pw" name="user_pw"></div>
-	                    </div>
-	                </div>
-	               		<input type="button" onclick="insertUser()" value="회원가입">
-	            </div>
-            </form>
-        </div>
-       </div>
+            </div>
+		</div>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+	</div>
+       
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>
