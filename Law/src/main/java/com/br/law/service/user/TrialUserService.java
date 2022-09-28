@@ -115,7 +115,7 @@ public class TrialUserService {
 	}	
 	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드
-	private String convertAplcnStsToKorean(String aplcn_dtls_sts) {
+	public String convertAplcnStsToKorean(String aplcn_dtls_sts) {
 		String stsKoStr = "";
 		
 		switch (aplcn_dtls_sts) {
@@ -139,6 +139,57 @@ public class TrialUserService {
 			break;
 		}
 		return stsKoStr;
+	}
+	
+	// 첨부서류 분류 코드  en -> ko 변환 출력용 메소드
+	public String convertFileCodeToKorean(String file_code) {
+		String fileCodeKoStr = "";
+		
+		switch (file_code) {
+		case "co" :
+			fileCodeKoStr = "공통서류";
+			break;
+		case "pe" :
+			fileCodeKoStr = "개인서류";
+			break;
+		case "ot" :
+			fileCodeKoStr = "기타서류";
+			break;
+		}
+		return fileCodeKoStr;
+	}
+	
+	// 첨부서류 타입 en -> ko 변환 출력용 메소드
+	public String convertFileTypeToKorean(String file_type) {
+		String fileTypeKoStr = "";
+		
+		switch (file_type) {
+		case "businesslicense" :
+			fileTypeKoStr = "사업자등록증";
+			break;
+		case "businessreport" :
+			fileTypeKoStr = "업무관련 등록신고 현황";
+			break;
+		case "taxconfirm" :
+			fileTypeKoStr = "납세증명확인서";
+			break;
+		case "resume" :
+			fileTypeKoStr = "이력서";
+			break;
+		case "educationlevel" :
+			fileTypeKoStr = "학력정보 증명서";
+			break;
+		case "carrer" :
+			fileTypeKoStr = "경력정보 증명서";
+			break;
+		case "certificate" :
+			fileTypeKoStr = "자격증정보 증명서";
+			break;
+		case "other" :
+			fileTypeKoStr = "기타";
+			break;
+		}
+		return fileTypeKoStr;
 	}
 	
 	
