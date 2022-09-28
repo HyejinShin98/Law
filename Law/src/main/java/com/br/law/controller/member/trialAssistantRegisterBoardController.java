@@ -68,16 +68,10 @@ public class trialAssistantRegisterBoardController {
 
 	
 	@RequestMapping("trialAssistantRegisterReadBoard")
-	public String trialAssistantRegisterReadBoard(int announce_proper_num, Model model , HttpSession session) {
-		
-		Tb_015 sessionAdmin = (Tb_015)session.getAttribute("admin");
-		
+	public String trialAssistantRegisterReadBoard(int announce_proper_num, Model model) {
 		HashMap<String, Object> trialAssistantData = noticeService.getSelectTrialAssistantBoard(announce_proper_num);
+		
 		model.addAttribute("trialAssistantData" , trialAssistantData);
-		model.addAttribute("trialFcltt" , noticeService.getTrialFcltt());
-		model.addAttribute("sessionAdmin" , sessionAdmin);
-		
-		
 		return "member/trialAssistantRegisterReadBoard";
 		
 	}

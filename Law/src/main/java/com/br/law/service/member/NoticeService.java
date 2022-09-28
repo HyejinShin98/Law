@@ -73,10 +73,11 @@ public class NoticeService {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		Tb_002 tb_002 = noticeSQLMapper.selectTrialAssistantByNo(announce_proper_num);
-		int admin_proper_num = tb_002.getAdmin_proper_num();
-		Tb_015 noticeAdmin = trialAdminMapper.selectByNo(admin_proper_num);
+		Tb_010 tb_010 = noticeSQLMapper.selectTb010VoByPk(tb_002.getTrial_fcltt_proper_num());
+		Tb_015 noticeAdmin = trialAdminMapper.selectByNo(tb_002.getAdmin_proper_num());
 		
 		map.put("tb_002", tb_002);
+		map.put("tb_010", tb_010);
 		map.put("noticeAdmin", noticeAdmin);
 		
 		return map;

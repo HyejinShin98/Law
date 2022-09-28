@@ -19,6 +19,7 @@ public interface NoticeSQLMapper {
 	
 	public Tb_003 selectNoticeByNo(int notice_proper_num);
 	public Tb_002 selectTrialAssistantByNo(int announce_proper_num);
+	public Tb_010 selectTb010VoByPk (int trial_fcltt_proper_num);
 	public Tb_015 selectAdminByNo(int admin_proper_num);
 	
 	public void deleteMyNoticeByNo(int notice_proper_num);

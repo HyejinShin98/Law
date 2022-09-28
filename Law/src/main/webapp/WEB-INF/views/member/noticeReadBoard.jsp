@@ -63,7 +63,7 @@
 							    <tr>
 							        <td colspan="4">
 							        <div class="contentsview">
-							            <textarea rows="12" style="width: 100%; border: none; overflow: auto; font-size: 75%/1.4em; color: #747474"> ${noticeData.tb_003.notice_content }
+							            <textarea rows="12" style="width: 100%; border: none; overflow: auto; font-size: 75%/1.4em; color: #747474" readonly> ${noticeData.tb_003.notice_content }
 							            </textarea>
 							        </div>
 							        </td>
@@ -89,9 +89,6 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 </body>
-
-
-
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

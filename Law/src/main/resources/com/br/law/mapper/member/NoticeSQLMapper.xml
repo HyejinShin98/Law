@@ -49,7 +49,10 @@
 		WHERE announce_proper_num = #{announce_proper_num}
 	</select>
 	
-	
+	<select id="selectTb010VoByPk" resultType="com.br.law.vo.Tb_010">
+		SELECT * FROM Tb_010
+		WHERE trial_fcltt_proper_num = #{trial_fcltt_proper_num}
+	</select>
 	
 	<select id="selectAdminByNo" resultType="com.br.law.vo.Tb_015">
 		SELECT * 

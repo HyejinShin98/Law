@@ -93,7 +93,6 @@
 						</div>
 					</div>
 				</c:if>
-				<!-- 테이블 -->
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>

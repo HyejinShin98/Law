@@ -15,92 +15,101 @@
 <title>등재공고 상세페이지</title>
 </head>
 <body>
-	<div class="col container-fluid" style="width: 1600px;">
-		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
-			<div class="col-2">
-				<jsp:include page="../common/localNav.jsp"></jsp:include>
-			</div>
-			<div class="col">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col"><h3>등재공고 상세페이지</h3></div>
-					<div class="col"></div>
-				</div>
-				
-				<!-- 서치박스 -->
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col bg-light text-dark" style="">등재공고 상세페이지</div>
-					<div class="col-4"></div>
-				</div>
-				<!-- 서치박스 끝 -->
-				<!--게시글부분-->
-				<div class="row mt-3 ">
-					<div class="col-1"></div>
-					<div class="col-3 bg-primary p-2 text-dark bg-opacity-10">제목] ${trialAssistantData.tb_002.announce_title }</div>
-					<div class="col-1 bg-primary p-2 text-dark bg-opacity-10" style="text-align: center;">작성자] ${trialAssistantData.noticeAdmin.admin_auth }</div>
-					<div class="col-3 bg-primary p-2 text-dark bg-opacity-10" style="text-align: right;">모집기간] 
-					<fmt:formatDate value="${trialAssistantData.tb_002.announce_start_date }" pattern="yyyy-MM-dd"/>~
-					<fmt:formatDate value="${trialAssistantData.tb_002.announce_end_date }" pattern="yyyy-MM-dd"/>
+<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+		
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+			<!-- 사이드 네비바 -->
+			<jsp:include page="../common/localNav.jsp"></jsp:include>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe;font-weight: bold;">감정인등재공고</span>
 					</div>
-					<div class="col"></div>
 				</div>
-				<div class="row mt-3 ">
-					<div class="col-1"></div>
-					<div class="col-3 bg-primary p-2 text-dark bg-opacity-10" style="text-align: left;">최근수정일자 
-					<fmt:formatDate value="${trialAssistantData.tb_002.announce_last_date }" pattern="yyyy-MM-dd"/>
+				<!-- 타이틀 -->
+				<div class="row mb-3">
+					<div class="col">
+						<img src="../resources/img/Notice/h3_ogi410.gif">
 					</div>
-					<div class="col-4 bg-primary p-2 text-dark bg-opacity-10"></div>
 				</div>
-				
-				
-				
-				
-				
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col bg-primary p-2 text-dark bg-opacity-10 d-grid">
-						<label>모집대상</label>
-						 <c:forEach items="${trialFcltt}" var="trialFcltt" varStatus="status">
-						 	<c:if test="${status.index%5==0}">
-						 		<br>
-						 	</c:if>
-						 	[${trialFcltt.trial_fcltt_description}]
-						 </c:forEach>
+				<!-- 테이블 -->
+				<div class="row m-3" style="font-size: 12px;">
+					<div class="col border-top border-2 border-secondary">
+						<table class="table">
+							<colgroup>
+						        <col width="17%">
+						        <col width="">
+						    </colgroup>
+						  	<tbody>
+							    <tr>
+							        <th scope="row">제목</th>
+							        <td>${trialAssistantData.tb_002.announce_title }</td>
+							    </tr>
+							    <tr>
+							        <th scope="row">모집기간</th>
+							        <td>
+							        	<fmt:formatDate value="${trialAssistantData.tb_002.announce_start_date }" pattern="yyyy-MM-dd"/>~
+										<fmt:formatDate value="${trialAssistantData.tb_002.announce_end_date }" pattern="yyyy-MM-dd"/>
+									</td>
+							    </tr>
+							    <tr>
+							        <th scope="row">모집대상</th>
+							        <td>
+							        	[${trialAssistantData.tb_010.trial_fcltt_description }]
+							        	<!-- 모집 대상이 여러개 선택가능하게 할 수 있으면 -->
+							        	<%-- <c:forEach items="${trialFcltt}" var="trialFcltt" varStatus="status">
+										 	[${trialFcltt.trial_fcltt_description}]
+										 	<c:if test="${status.index%5==0}">
+										 		<br>
+										 	</c:if>
+										 </c:forEach> --%>
+							        </td>
+							    </tr>
+							    <tr>
+							        <th scope="row" class="totalth text-center" colspan="4">내용</th>
+							    </tr>
+							    <tr>
+							        <td colspan="4">
+							        <div class="contentsview">
+							            <textarea rows="12" style="width: 100%; border: none; overflow: auto; font-size: 75%/1.4em; color: #747474" readonly>${trialAssistantData.tb_002.announce_title }
+							            </textarea>
+							        </div>
+							        </td>
+							    </tr>
+						   	</tbody>
+						</table>
 					</div>
-					<div class="col-4"> </div>
 				</div>
-				<div class="row mt-3">
-					<div class="col-1"></div>
-					<div class="col d-grid bg-primary p-2 text-dark bg-opacity-10">
-					<label>내용</label><br>
-					${trialAssistantData.tb_002.announce_title }</div>
-					<div class="col-4"> </div>
-				</div>
-				<div class="row">
-					<div class="col d-grid  p-2 text-dark ">
-						<div class="col-4" style="justify-self: center;"> 
-							<a href="../user/announcementProcess?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }" class="text-decoration-none border bg-light text-black">등재신청</a>
-						</div>
+				<!-- 등재신청 -->
+				<div class="row mb-3">
+					<div class="col text-center">
+						<a href="../user/announcementProcess?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }" class="text-decoration-none border bg-light text-black">등재신청</a>
 					</div>
+				</div>
+				
 				<!-- 게시믈 부분 끝 -->
 				
-				<c:if test="${!empty admin && sessionAdmin.admin_proper_num == trialAssistantData.tb_002.admin_proper_num}">
-				<div class="row mt-3">
-					<div class="col-6"></div>
-					<div class="col-1 d-grid">
-						<a class="btn btn-primary" href="./trialAssistantRegisterUpdateBoard?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }">수정</a>
+				<c:if test="${!empty admin}">
+					<div class="row mb-3 justify-content-end">
+						<div class="col-2 d-grid">
+							<a class="btn btn-primary" href="./trialAssistantRegisterUpdateBoard?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }">수정</a>
+						</div>
+						<div class="col-2 d-grid">
+							<a class="btn btn-primary" href="./trialAssistantRegisterDeleteProcess?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }">삭제</a>
+						</div>					
 					</div>
-					<div class="col-1 d-grid">
-						<a class="btn btn-primary" href="./trialAssistantRegisterDeleteProcess?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }">삭제</a>
-					</div>					
-				</div>
 				</c:if>
-				
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+			</div>
 		</div>
-	</div>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
 </body>
 <script
