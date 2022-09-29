@@ -1196,13 +1196,15 @@ function tableNineInfo(){
                	var bodyTr1Td3 = document.createElement("td");
                	bodyTr1Td3.classList.add("text-center");
                	
-               	var bodyTr1Td3A = document.createElement("a");
-                bodyTr1Td3A.classList.add("text-center");
-                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[0].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[0].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr1Td3A.classList.add("text-decoration-none");
-                bodyTr1Td3A.innerText = jsonObj[0].original_file_name;
-                bodyTr1Td3.appendChild(bodyTr1Td3A);
-                bodyTr1.appendChild(bodyTr1Td3);
+               	if(jsonObj[0] != null) {
+	               	var bodyTr1Td3A = document.createElement("a");
+	                bodyTr1Td3A.classList.add("text-center");
+	                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[0].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[0].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr1Td3A.classList.add("text-decoration-none");
+	                bodyTr1Td3A.innerText = jsonObj[0].original_file_name;
+	                bodyTr1Td3.appendChild(bodyTr1Td3A);
+	                bodyTr1.appendChild(bodyTr1Td3);
+                }
                 
                 // 업무관련 등록신고서류
                	var bodyTr2 = document.createElement("tr");
@@ -1216,13 +1218,15 @@ function tableNineInfo(){
             	var bodyTr2Td2 = document.createElement("td");
             	bodyTr2Td2.classList.add("text-center");
                 
-                var bodyTr2Td2A = document.createElement("a");
-                bodyTr2Td2A.classList.add("text-center");
-                bodyTr2Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[1].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[1].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr2Td2A.classList.add("text-decoration-none");
-                bodyTr2Td2A.innerText = jsonObj[1].original_file_name;
-                bodyTr2Td2.appendChild(bodyTr2Td2A);
-                bodyTr2.appendChild(bodyTr2Td2);
+                if(jsonObj[1] != null) {
+	                var bodyTr2Td2A = document.createElement("a");
+	                bodyTr2Td2A.classList.add("text-center");
+	                bodyTr2Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[1].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[1].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr2Td2A.classList.add("text-decoration-none");
+	                bodyTr2Td2A.innerText = jsonObj[1].original_file_name;
+	                bodyTr2Td2.appendChild(bodyTr2Td2A);
+	                bodyTr2.appendChild(bodyTr2Td2);
+                }
                 
                 // 납세증명확인서
                 var bodyTr3 = document.createElement("tr");
@@ -1236,14 +1240,15 @@ function tableNineInfo(){
                 var bodyTr3Td2 = document.createElement("td");
                 bodyTr3Td2.classList.add("text-center");
                 
-                var bodyTr3Td2A = document.createElement("a");
-                bodyTr3Td2A.classList.add("text-center");
-                bodyTr3Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[2].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[2].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr3Td2A.classList.add("text-decoration-none");
-                bodyTr3Td2A.innerText = jsonObj[2].original_file_name;
-                bodyTr3Td2.appendChild(bodyTr3Td2A);
-                bodyTr3.appendChild(bodyTr3Td2);
-                
+                if(jsonObj[2] != null) {
+	                var bodyTr3Td2A = document.createElement("a");
+	                bodyTr3Td2A.classList.add("text-center");
+	                bodyTr3Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[2].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[2].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr3Td2A.classList.add("text-decoration-none");
+	                bodyTr3Td2A.innerText = jsonObj[2].original_file_name;
+	                bodyTr3Td2.appendChild(bodyTr3Td2A);
+	                bodyTr3.appendChild(bodyTr3Td2);
+                }
                 
                 // 이력서
                 var bodyTr4 = document.createElement("tr");
@@ -1264,14 +1269,15 @@ function tableNineInfo(){
                	var bodyTr4Td3 = document.createElement("td");
                	bodyTr4Td3.classList.add("text-center");
                	
-               	var bodyTr4Td3A = document.createElement("a");
-                bodyTr4Td3A.classList.add("text-center");
-                bodyTr4Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[3].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[3].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr4Td3A.classList.add("text-decoration-none");
-                bodyTr4Td3A.innerText = jsonObj[3].original_file_name;
-                bodyTr4Td3.appendChild(bodyTr4Td3A);
-                bodyTr4.appendChild(bodyTr4Td3);
-                
+               	if(jsonObj[3] != null) {
+	               	var bodyTr4Td3A = document.createElement("a");
+	                bodyTr4Td3A.classList.add("text-center");
+	                bodyTr4Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[3].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[3].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr4Td3A.classList.add("text-decoration-none");
+	                bodyTr4Td3A.innerText = jsonObj[3].original_file_name;
+	                bodyTr4Td3.appendChild(bodyTr4Td3A);
+	                bodyTr4.appendChild(bodyTr4Td3);
+                }
                 
                 // 학력 증명서
                 var bodyTr5 = document.createElement("tr");
@@ -1285,13 +1291,15 @@ function tableNineInfo(){
             	var bodyTr5Td2 = document.createElement("td");
             	bodyTr5Td2.classList.add("text-center");
                 
-                var bodyTr5Td2A = document.createElement("a");
-                bodyTr5Td2A.classList.add("text-center");
-                bodyTr5Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[4].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[4].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr5Td2A.classList.add("text-decoration-none");
-                bodyTr5Td2A.innerText = jsonObj[4].original_file_name;
-                bodyTr5Td2.appendChild(bodyTr5Td2A);
-                bodyTr5.appendChild(bodyTr5Td2);
+                if(jsonObj[4] != null) {
+	                var bodyTr5Td2A = document.createElement("a");
+	                bodyTr5Td2A.classList.add("text-center");
+	                bodyTr5Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[4].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[4].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr5Td2A.classList.add("text-decoration-none");
+	                bodyTr5Td2A.innerText = jsonObj[4].original_file_name;
+	                bodyTr5Td2.appendChild(bodyTr5Td2A);
+	                bodyTr5.appendChild(bodyTr5Td2);
+                }
                 
                 // 경력 증명서
                 var bodyTr6 = document.createElement("tr");
@@ -1305,13 +1313,15 @@ function tableNineInfo(){
             	var bodyTr6Td2 = document.createElement("td");
             	bodyTr6Td2.classList.add("text-center");
             	
-            	var bodyTr6Td2A = document.createElement("a");
-                bodyTr6Td2A.classList.add("text-center");
-                bodyTr6Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[5].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[5].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr6Td2A.classList.add("text-decoration-none");
-                bodyTr6Td2A.innerText = jsonObj[5].original_file_name;
-                bodyTr6Td2.appendChild(bodyTr6Td2A);
-                bodyTr6.appendChild(bodyTr6Td2);
+            	if(jsonObj[5] != null) {
+	            	var bodyTr6Td2A = document.createElement("a");
+	                bodyTr6Td2A.classList.add("text-center");
+	                bodyTr6Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[5].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[5].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr6Td2A.classList.add("text-decoration-none");
+	                bodyTr6Td2A.innerText = jsonObj[5].original_file_name;
+	                bodyTr6Td2.appendChild(bodyTr6Td2A);
+	                bodyTr6.appendChild(bodyTr6Td2);
+                }
                 
                  // 자격증 사본
                 var bodyTr7 = document.createElement("tr");
@@ -1325,14 +1335,15 @@ function tableNineInfo(){
             	var bodyTr7Td2 = document.createElement("td");
             	bodyTr7Td2.classList.add("text-center");
             	
-            	var bodyTr7Td2A = document.createElement("a");
-                bodyTr7Td2A.classList.add("text-center");
-                bodyTr7Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[6].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[6].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr7Td2A.classList.add("text-decoration-none");
-                bodyTr7Td2A.innerText = jsonObj[6].original_file_name;
-                bodyTr7Td2.appendChild(bodyTr7Td2A);
-                bodyTr7.appendChild(bodyTr7Td2);
-                
+            	if(jsonObj[6] != null) {
+	            	var bodyTr7Td2A = document.createElement("a");
+	                bodyTr7Td2A.classList.add("text-center");
+	                bodyTr7Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[6].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[6].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr7Td2A.classList.add("text-decoration-none");
+	                bodyTr7Td2A.innerText = jsonObj[6].original_file_name;
+	                bodyTr7Td2.appendChild(bodyTr7Td2A);
+	                bodyTr7.appendChild(bodyTr7Td2);
+                }
 				
 				// 기타서류
                 var bodyTr8 = document.createElement("tr");
@@ -1351,14 +1362,15 @@ function tableNineInfo(){
                	var bodyTr8Td3 = document.createElement("td");
                	bodyTr8Td3.classList.add("text-center");
                	
-               	var bodyTr8Td3A = document.createElement("a");
-                bodyTr8Td3A.classList.add("text-center");
-                bodyTr8Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[7].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[7].APLCN_ATCH_FILE_PROPER_NUM);
-                bodyTr8Td3A.classList.add("text-decoration-none");
-                bodyTr8Td3A.innerText = jsonObj[7].original_file_name;
-                bodyTr8Td3.appendChild(bodyTr8Td3A);
-                bodyTr8.appendChild(bodyTr8Td3);
-				
+               	if(jsonObj[7] != null) {
+	               	var bodyTr8Td3A = document.createElement("a");
+	                bodyTr8Td3A.classList.add("text-center");
+	                bodyTr8Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[7].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[7].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr8Td3A.classList.add("text-decoration-none");
+	                bodyTr8Td3A.innerText = jsonObj[7].original_file_name;
+	                bodyTr8Td3.appendChild(bodyTr8Td3A);
+	                bodyTr8.appendChild(bodyTr8Td3);
+				}
 				
                 /*
                for(dataList of jsonObj){
