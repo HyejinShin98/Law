@@ -387,7 +387,7 @@ function tableSixInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-
+				console.log(jsonObj);
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
@@ -460,7 +460,7 @@ function tableSixInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
+                theadTrTd1.innerText=jsonObj.EDCTN_SCHOOL_NAME;
                 theadTr.appendChild(theadTrTd1);
 
                 var theadTrTh2 = document.createElement("th");
@@ -470,7 +470,7 @@ function tableSixInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
+                theadTrTd2.innerText=jsonObj.EDCTN_MAJOR;
                 theadTr.appendChild(theadTrTd2);
 
                 var tbody = document.createElement("tbody");
@@ -486,7 +486,7 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
+                bodyTr1Td1.innerText=jsonObj.EDCTN_ADMSN_DATE;
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Th2 = document.createElement("th");
@@ -496,7 +496,7 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
+                bodyTr1Td2.innerText=jsonObj.EDCTN_GRDTN_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
 
                 var bodyTr2 = document.createElement("tr");
@@ -509,17 +509,17 @@ function tableSixInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText="적어";
+                bodyTr2Td1.innerText=jsonObj.EDCTN_DEGREE;
                 bodyTr2.appendChild(bodyTr2Td1);
 
                 var bodyTr2Th2 = document.createElement("th");
-                bodyTr2Th2.innerText="최종학력";
+                bodyTr2Th2.innerText="최종학력 여부";
                 bodyTr2Th2.classList.add("text-center");
                 bodyTr2Th2.classList.add("table-light");
                 bodyTr2.appendChild(bodyTr2Th2);
 
                 var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText="적어";
+                bodyTr2Td2.innerText=jsonObj.EDCTN_FINAL__YN;
                 bodyTr2.appendChild(bodyTr2Td2);
 
                 commentListBox.appendChild(rowBox);
@@ -537,7 +537,7 @@ function tableSevenInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-
+				console.log(jsonObj);
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
@@ -609,7 +609,7 @@ function tableSevenInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
+                theadTrTd1.innerText=jsonObj.COMPANY_NAME;
                 theadTr.appendChild(theadTrTd1);
 
                 var theadTrTh2 = document.createElement("th");
@@ -619,7 +619,7 @@ function tableSevenInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
+                theadTrTd2.innerText=jsonObj.CARER_TYPE;
                 theadTr.appendChild(theadTrTd2);
 
                 var tbody = document.createElement("tbody");
@@ -635,7 +635,7 @@ function tableSevenInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
+                bodyTr1Td1.innerText=jsonObj.WORK_START_DATE;
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Th2 = document.createElement("th");
@@ -645,7 +645,7 @@ function tableSevenInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
+                bodyTr1Td2.innerText=jsonObj.WORK_END_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
 
                 var bodyTr2 = document.createElement("tr");
@@ -658,7 +658,7 @@ function tableSevenInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText="적어";
+                bodyTr2Td1.innerText=jsonObj.WORK_POSITION;
                 bodyTr2.appendChild(bodyTr2Td1);
 
                 var bodyTr2Th2 = document.createElement("th");
@@ -668,7 +668,7 @@ function tableSevenInfo(){
                 bodyTr2.appendChild(bodyTr2Th2);
 
                 var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText="적어";
+                bodyTr2Td2.innerText=jsonObj.WORK_DEPARTMENT;
                 bodyTr2.appendChild(bodyTr2Td2);
 
 
@@ -683,7 +683,7 @@ function tableSevenInfo(){
 
                 var bodyTr3Td = document.createElement("td");
                 bodyTr3Td.setAttribute("colspan", "3");
-                bodyTr3Td.innerText="적으셈";
+                bodyTr3Td.innerText=jsonObj.WORK_DESCRIPTION;
                 bodyTr3.appendChild(bodyTr3Td);
 
 
@@ -741,7 +741,7 @@ function tableSevenInfo(){
                 thead2Tr1.appendChild(thead2Tr1Th1);
 
                 var thead2Tr1Td1 = document.createElement("td");
-                thead2Tr1Td1.innerText= "적으셈";
+                thead2Tr1Td1.innerText=jsonObj.CARER_DESCRIPTION;
                 thead2Tr1.appendChild(thead2Tr1Td1);
 
                 var thead2Tr2 = document.createElement("tr");
@@ -758,7 +758,7 @@ function tableSevenInfo(){
                 thead2Tr2.appendChild(thead2Tr2Th1);
 
                 var thead2Tr2Td1 = document.createElement("hd");
-                thead2Tr2Td1.innerText="적으셈";
+                thead2Tr2Td1.innerText=jsonObj.SPECIAL_NOTE_DESCRIPTION;
                 thead2Tr2.appendChild(thead2Tr2Td1);
 
                 commentListBox.appendChild(rowBox);
@@ -774,7 +774,7 @@ function tableEightInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-
+				console.log(jsonObj);
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
@@ -849,7 +849,7 @@ function tableEightInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText="적어";
+                theadTrTd1.innerText=jsonObj.CRTFC_TYPE;
                 theadTr.appendChild(theadTrTd1);
 
                 var theadTrTh2 = document.createElement("th");
@@ -859,7 +859,7 @@ function tableEightInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText="적어";
+                theadTrTd2.innerText=jsonObj.ISSUE_AGENCY;
                 theadTr.appendChild(theadTrTd2);
 
                 var tbody = document.createElement("tbody");
@@ -875,7 +875,7 @@ function tableEightInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
+                bodyTr1Td1.innerText=jsonObj.CRTFC_NUMBER;
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Th2 = document.createElement("th");
@@ -885,7 +885,7 @@ function tableEightInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText="적으셈";
+                bodyTr1Td2.innerText=jsonObj.ISSUE_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
 
                 

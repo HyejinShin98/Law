@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <title>회원가입</title>
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 
 .ms{
@@ -22,39 +23,79 @@
 	width: auto;
 	float: left;
 }
+
+.contentsinbox h4{
+	clear:both; 
+	font-size:12px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	line-height:1.3em;
+	padding:0 11px;
+	margin:5px 0;
+	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
+}
+
+.contentsinbox h5{
+	clear:both; 
+	font-size:12px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	line-height:1.3em;
+	margin:3px 0;
+	padding:0 0 0 10px;
+	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 25%;
+}
+select.box {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  margin-left: 5px;
+  padding: 5px 0 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #d9d6d6;
+  color: #383838;
+  background-color: #ffffff;
+  font-family: 'Montserrat', 'Pretendard', sans-serif;
+}
+
+option {
+  font-size: 16px;
+}
+
+.info .box#domain-list option {
+  font-size: 14px;
+  background-color: #ffffff;
+}
 	
 </style>
 <script src="../resources/js/common.js"></script>
-<script type="text/javascript">
 
+
+
+
+
+
+<script type="text/javascript">
 window.addEventListener("DOMContentLoaded", function() {
 	// 실행 시 가장 먼저 에러메세지 유무 확인
 	
 });
 
-/* let values = document.getElementsByTagName('input');
-
-// 메세지 초기화
-let msg = document.getElementsByClassName('msg');
-for(e of msg) {
-	e.innerText = '';
+function helloWorld(){
+	var first = document.getElementById("firstEmail").value;
+	var middle = document.getElementById("middle").value;
+	var last = document.getElementById("lastEmail").value;
+	
+	var lastest = first + middle + last;
+	console.log(first);
+	console.log(middle);
+	console.log(last);
+	console.log(lastest);
+	document.getElementById("totalEmail").value= lastest; 
 }
 
-// 공백검사
-for(let i=0; i<values.length; i++) {
-	let box = values[i].parentNode.parentNode.parentNode;
-	let msg = box.getElementsByClassName('msg');
-	
-	if(values[i].value == '') {
-		for(e of msg) {
-			e.innerText = '필수입력입니다.';
-			result = false;
-		}
-	}
-} */
 
 
-/*  */
 function checkListId(){
 	var check = document.getElementById("checkId").value;
 	console.log(check);
@@ -109,118 +150,70 @@ function insertUser(){
 				return;
 			}
 			const insertUser = document.getElementById("insertUser");
-			
-			/* const pwInput = document.getElementById("pw");
-			if(pwInput.value == ""){
-				alert("비밀번호를 입력해 주세요");
-				pwInput.focus();
-				return;
-			}
-			const nameInput = document.getElementById("name");
-			if(nameInput.value == ""){
-				alert("이름을 입력해 주세요");
-				nameInput.focus();
-				return;
-			}
-			const ageInput = document.getElementById("age");
-			if(ageInput.value == ""){
-				alert("나이를 입력해 주세요");
-				ageInput.focus();
-				return;
-			}
-			const emailInput = document.getElementById("email");
-			if(emailInput.value == ""){
-				alert("이메일을 입력해 주세요");
-				emailInput.focus();
-				return;
-			}
-			const phoneInput = document.getElementById("phone");
-			if(phoneInput.value  == ""){
-				alert("휴대폰 번호를 입력해 주세요");
-				phoneInput .focus();
-				return;
-			}
-			const jobInput = document.getElementById("job");
-			if(jobInput.value == ""){
-				alert("직업을 입력해 주세요");
-				jobInput.focus();
-				return;
-			}
-			const detail = document.getElementById("detail");
-			if(detail.value == ""){
-				alert("주소를 입력해 주세요");
-				detail.focus();
-				return;
-			}
-			const bank = document.getElementById("bank");
-			if(bank.value == ""){
-				alert("은행 명을 입력해 주세요");
-				bank.focus();
-				return;
-			}
-			const account = document.getElementById("account");
-			if(account.value == ""){
-				alert("계좌번호을 입력해 주세요");
-				account.focus();
-				return;
-			}
-			const jibun = document.getElementById("jibun");
-			if(account.value == ""){
-				alert("주소를 입력해 주세요");
-				account.focus();
-				return;
-			}
-			const holder = document.getElementById("bankHolder");
-			if(holder.value == ""){
-				alert("예금명을 입력해 주세요");
-				holder.focus();
-				return;
-			} */
-			
+	
 			insertUser.submit();
 }
-$("#emailNum").blur(function(){
-	user_email();
-});
-$("#emailAddress").change(function(){
-	user_email();
-});
-function user_email(){
-	const email = $("#emailNum").val();
-	const middle = $("middle").text();
-	const address = $("#emailAddress").val();
-	if(email != "" && address != ""){
-		$("#totalEmail").val(email+middel+address);
-	}
-};
+
+
+
+function sample4_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var extraRoadAddr = ''; // 참고 항목 변수
+
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                extraRoadAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if(data.buildingName !== '' && data.apartment === 'Y'){
+               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if(extraRoadAddr !== ''){
+                extraRoadAddr = ' (' + extraRoadAddr + ')';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('sample4_postcode').value = data.zonecode;
+            document.getElementById("sample4_roadAddress").value = roadAddr;
+            document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+            
+            // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+            if(roadAddr !== ''){
+                document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+            } else {
+                document.getElementById("sample4_extraAddress").value = '';
+            }
+
+            var guideTextBox = document.getElementById("guide");
+            // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+            if(data.autoRoadAddress) {
+                var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                guideTextBox.style.display = 'block';
+
+            } else if(data.autoJibunAddress) {
+                var expJibunAddr = data.autoJibunAddress;
+                guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                guideTextBox.style.display = 'block';
+            } else {
+                guideTextBox.innerHTML = '';
+                guideTextBox.style.display = 'none';
+            }
+        }
+    }).open();
+}
 
 
 </script>
-<style>
 
-.contentsinbox h4{
-	clear:both; 
-	font-size:12px;
-	font-weight:bold;
-	letter-spacing:-1px;
-	line-height:1.3em;
-	padding:0 11px;
-	margin:5px 0;
-	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
-}
-
-.contentsinbox h5{
-	clear:both; 
-	font-size:12px;
-	font-weight:bold;
-	letter-spacing:-1px;
-	line-height:1.3em;
-	margin:3px 0;
-	padding:0 0 0 10px;
-	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 25%;
-}
-	
-</style>
 </head>
 <body>
 	<!-- 여기부터 다시 시작임 -->
@@ -297,33 +290,41 @@ function user_email(){
 								<tr>
 									<th class="ms">이메일<span style="color:red"> *</span></th>
 									<td colspan="2">
-										<input type="text" id="emailNum" class="form-control ms" id="emailNum" >
-										<span id="middle" style="float: left; font-size: 21px">@</span><input type="text" class="form-control" id="emailAddress" list="userEmailAddress">
-										<datalist id="userEmailAddress">
-											<option value="naver.com"></option>
-											<option value="daum.com"></option>
-											<option value="google.com"></option>
-											<option value="직접입력"></option>
+										<input type="text" id="firstEmail" class="form-control ms" id="emailNum" >
+										<span style="float: left; font-size: 21px"><input id="middle" type="hidden" value="@">@</span><input type="text" onblur="helloWorld();" class="form-control" id="lastEmail" list="user_email_address">
+										
+										<datalist id="user_email_address">
+											<option value="type">직접입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.com">daum.com</option>
+											<option value="google.com">google.com</option>
 										</datalist>
 										<input type="hidden" id="totalEmail" name="user_email" value="">
 									</td>
 								</tr>
-								<tr>
-									<th class="ms">기본주소<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_ar"></td>
-								</tr>
+							
 								<tr>
 									<th rowspan="3" scope="row" class="ms">주소<span style="color:red"> *</span></th>
-									<td class="title">우편번호</td>
-									<td><input type="text" class="form-control ms" name="user_ar_zonecode"></td>					
+									<td class="title">기본주소</td>
+									<td>
+										<input type="text" id="sample4_roadAddress" class="form-control ms" name="user_ar">
+										<input type="hidden" id="sample4_jibunAddress" class="form-control ms" name="user_ar_jibun">
+									</td>				
 								</tr>
 								<tr>
-									<td class="title">지번주소</td>
-									<td><input type="text" class="form-control ms" name="user_ar_jibun"></td>
+									<td class="title">우편번호</th>
+									<td colspan="1">
+										<input type="text" id="sample4_postcode" class="form-control ms" name="user_ar_zonecode">
+										<input type="button" class="btn btn-outline-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+									</td>
 								</tr>
 								<tr>
 									<td class="title">상세주소</td>
-									<td><input type="text" class="form-control ms" name="user_ar_detail"></td>
+									<td>
+										<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
+										<input type="text" id="sample4_detailAddress" class="form-control ms" name="user_ar_detail">
+										<span id="guide" style="color:#999;display:none"></span>
+									</td>
 								</tr>
 								<tr>
 									<th rowspan="3" scope="row" class="ms">은행<span style="color:red"> *</span></th>
@@ -353,6 +354,7 @@ function user_email(){
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
+	
        
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
