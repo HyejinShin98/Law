@@ -1,5 +1,6 @@
 package com.br.law.service.assistant;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.law.mapper.assistant.AssistantSQLMapper;
+import com.br.law.vo.Tb_002;
+import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
 
 @Service
@@ -72,5 +75,27 @@ public class AssistantServiceImpl {
 		return trial_fcltt_name;
 	}
 	
+	public Map<String, Object> announceSelectList(int announce_proper_num){
+		Map<String, Object> announceSelect =  assistantSQLMapper.announceSelect(announce_proper_num);
+		
+		return announceSelect;
+	}
 	
+//	0928 하다 조건별 분류
+	public ArrayList<Tb_010> callTb_010() {
+		return assistantSQLMapper.callTb_010();
+	}
+	//0928 하다 공고별 분류
+	public ArrayList<Tb_002> callTb_002() {
+		return assistantSQLMapper.callTb_002();
+	}
+	//0928 하다 조건별 유저
+	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num){
+		return assistantSQLMapper.callAUser(trial_fcltt_proper_num);
+	}
+	
+	//0928 하다 공고별 유저
+	public List<Map<String, Object>> callCUser(int announce_proper_num){
+		return assistantSQLMapper.callCUser(announce_proper_num);
+	}
 }

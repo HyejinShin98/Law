@@ -1,8 +1,11 @@
 package com.br.law.mapper.assistant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.br.law.vo.Tb_002;
+import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
 
 public interface AssistantSQLMapper {
@@ -16,5 +19,11 @@ public interface AssistantSQLMapper {
 	public List<Map<String, Object>> uploadFile(int aplcn_dtls_proper_num);
 	public List<Map<String, Object>> announce();
 	public List<Map<String, Object>> TRIAL_FCLTT_NAME();
+	public Map<String, Object> announceSelect(int announce_proper_num);
+	public Map<String, Object> trialSelect(int trial_fcltt_proper_num);
 	
+	public ArrayList<Tb_010> callTb_010();
+	public ArrayList<Tb_002> callTb_002();
+	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num);
+	public List<Map<String, Object>> callCUser(int announce_proper_num);
 }

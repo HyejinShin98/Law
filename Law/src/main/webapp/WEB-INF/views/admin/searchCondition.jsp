@@ -13,28 +13,698 @@
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
 <title>조건별 조회</title>
-<style>
-	
-</style>
-<script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript"> 
+window.addEventListener("DOMContentLoaded" , function (){
+	allUser();
+});
 
-function selectCategory(e){
-	console.log(e);
-	console.log(e.value);
-	
+function allUser(){
 	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	xhr.onreadystatechange = function () {
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-			
-		}
-	};
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+            
+            console.log(jsonObj);
+	            for(i of jsonObj.list){
+	            	console.log(i.ANNOUNCE_PROPER_NUM);
+	            }
+	            var ListBox = document.getElementById("list-info");
+				ListBox.innerHTML = "";
+	            
+	            
+	            var rowBox = document.createElement("div");
+	            rowBox.classList.add("row");
+	            
+	            var tableRow = document.createElement("div");
+             tableRow.classList.add("row");
+             tableRow.classList.add("mx-0");
+             tableRow.classList.add("px-0");
+             rowBox.appendChild(tableRow);
+             
+             var table = document.createElement("table");
+             table.classList.add("table");
+             table.classList.add("table-bordered");
+             tableRow.appendChild(table);
+             
+             var colGroup = document.createElement("colgroup");
+             table.appendChild(colGroup);
+
+             var colGroupA = document.createElement("col");
+             //colGroupA.setAttribute("width", "25%");
+             colGroup.appendChild(colGroupA);
+
+             var colGroupB = document.createElement("col");
+             //colGroupB.setAttribute("width", "25%");
+             colGroup.appendChild(colGroupB);
+
+             var colGroupC = document.createElement("col");
+             //colGroupC.setAttribute("width", "50%");
+             colGroup.appendChild(colGroupC);
+             
+             var colGroupD = document.createElement("col");
+             //colGroupD.setAttribute("width", "50%");
+             colGroup.appendChild(colGroupD);
+             
+             var colGroupE = document.createElement("col");
+             //colGroupE.setAttribute("width", "50%");
+             colGroup.appendChild(colGroupE);
+             
+             var colGroupF = document.createElement("col");
+             //colGroupF.setAttribute("width", "50%");
+             colGroup.appendChild(colGroupF);
+             
+             var thead = document.createElement("thead");
+             table.appendChild(thead);
+             
+             var theadTr = document.createElement("tr");
+             theadTr.classList.add("text-center");
+             thead.appendChild(theadTr);
+             
+             var theadTrTh1 = document.createElement("th");
+             theadTrTh1.setAttribute("scope", "col");
+             theadTrTh1.classList.add("table-light");
+             theadTrTh1.innerText="번호";
+             theadTr.appendChild(theadTrTh1);
+             
+             var theadTrTh2 = document.createElement("th");
+             theadTrTh2.setAttribute("scope", "col");
+             theadTrTh2.classList.add("table-light");
+             theadTrTh2.innerText="이름";
+             theadTr.appendChild(theadTrTh2);
+             
+             var theadTrTh3 = document.createElement("th");
+             theadTrTh3.setAttribute("scope", "col");
+             theadTrTh3.classList.add("table-light");
+             theadTrTh3.innerText="신청공고";
+             theadTr.appendChild(theadTrTh3);
+             
+             var theadTrTh4 = document.createElement("th");
+             theadTrTh4.setAttribute("scope", "col");
+             theadTrTh4.classList.add("table-light");
+             theadTrTh4.innerText="조력자 분류";
+             theadTr.appendChild(theadTrTh4);
+             
+             var theadTrTh5 = document.createElement("th");
+             theadTrTh5.setAttribute("scope", "col");
+             theadTrTh5.classList.add("table-light");
+             theadTrTh5.innerText="신청일";
+             theadTr.appendChild(theadTrTh5);
+             
+             var theadTrTh6 = document.createElement("th");
+             theadTrTh6.setAttribute("scope", "col");
+             theadTrTh6.classList.add("table-light");
+             theadTrTh6.innerText="신청상황";
+             theadTr.appendChild(theadTrTh6);
+             
+             var tbody = document.createElement("tbody");
+             table.appendChild(tbody);
+             
+             for(dataList of jsonObj.list){
+                 
+                 
+             var bodyTr1 = document.createElement("tr");
+             tbody.appendChild(bodyTr1);
+
+
+             var bodyTr1Td1 = document.createElement("td");
+             bodyTr1Td1.classList.add("text-center");
+             bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+             bodyTr1.appendChild(bodyTr1Td1);
+
+             var bodyTr1Td2 = document.createElement("td");
+             bodyTr1Td2.classList.add("text-center");
+             bodyTr1Td2.innerText = dataList.USER_NAME;
+             bodyTr1.appendChild(bodyTr1Td2);
+             
+             var bodyTr1Td3 = document.createElement("td");
+             bodyTr1Td3.classList.add("text-center");
+             bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+             bodyTr1.appendChild(bodyTr1Td3);
+             
+             var bodyTr1Td4 = document.createElement("td");
+             bodyTr1Td4.classList.add("text-center");
+             bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+             bodyTr1.appendChild(bodyTr1Td4);
+             
+             var bodyTr1Td5 = document.createElement("td");
+             bodyTr1Td5.classList.add("text-center");
+             bodyTr1Td5.innerText = dataList.APLCN_DTLS_DATE;
+             bodyTr1.appendChild(bodyTr1Td5);
+		
+             var bodyTr1Td6 = document.createElement("td");
+             bodyTr1Td6.classList.add("text-center");
+             bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+             bodyTr1.appendChild(bodyTr1Td6);
+             
+             }
+             
+             ListBox.appendChild(rowBox);
+	           }
+	       }
+    xhr.open("get" , "../admin/callAllUser"); //리퀘스트 세팅..
+    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+    xhr.send(); //AJAX로 리퀘스트함..
+}
+
+function calloption(e){
+	console.log(e.value);
+	const targetBox = document.getElementById("target");
+	targetBox.innerHTML = "";
 	
-	xhr.open("get" , "../testapi/test5"); //리퀘스트 세팅..
-	//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
-	xhr.send(); //AJAX로 리퀘스트함..
+	if(e.value == "a"){
+	        
+       var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+       xhr.onreadystatechange = function () {
+           if(xhr.readyState == 4 && xhr.status == 200){
+               var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+               
+               console.log(jsonObj);
+               
+               var selBox = document.createElement('select');
+               selBox.setAttribute('id', "good");
+               selBox.setAttribute('onchange', "callUser(this)");
+               targetBox.appendChild(selBox);
+               
+               
+               const selectBox = document.getElementById("good");
+           	   selectBox.innerHTML = "";
+     		
+	       		var optionBox1 = document.createElement('option');
+	       		optionBox1.innerText = '선택';
+	       		selectBox.appendChild(optionBox1);
+	       		
+	       		for(option of jsonObj.t10){
+	   	    		var optionBox = document.createElement('option');
+	   	            optionBox.setAttribute('value', option.trial_fcltt_proper_num);
+	   	            optionBox.innerText = option.trial_fcltt_description;
+	   	            selectBox.appendChild(optionBox);
+	           }
+			}
+		}
+       
+       xhr.open("get" , "../admin/callA"); //리퀘스트 세팅..
+       //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+       xhr.send(); //AJAX로 리퀘스트함..
+       
+	}else if(e.value == "c"){
+        
+       var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+       xhr.onreadystatechange = function () {
+           if(xhr.readyState == 4 && xhr.status == 200){
+               var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+               
+               console.log(jsonObj);
+               
+               var selBox = document.createElement('select');
+               selBox.setAttribute('id', "good");
+               selBox.setAttribute('onchange', "callUser(this)");
+               targetBox.appendChild(selBox);
+               
+               const selectBox = document.getElementById("good");
+           	   selectBox.innerHTML = "";
+     		
+	       		var optionBox1 = document.createElement('option');
+	       		optionBox1.innerText = '선택';
+	       		selectBox.appendChild(optionBox1);
+	       		
+	       		for(option of jsonObj.t2){
+	   	    		var optionBox = document.createElement('option');
+	   	            optionBox.setAttribute('value', option.announce_proper_num);
+	   	            optionBox.innerText = option.announce_title;
+	   	            selectBox.appendChild(optionBox);
+	           }
+	       }
+	       
+		}
+       xhr.open("get" , "../admin/callC"); //리퀘스트 세팅..
+       //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+       xhr.send(); //AJAX로 리퀘스트함..
+	}
+	else if(e.value == "all"){
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	       xhr.onreadystatechange = function () {
+	           if(xhr.readyState == 4 && xhr.status == 200){
+	               var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	               
+	               console.log(jsonObj);
+		            for(i of jsonObj.list){
+		            	console.log(i.ANNOUNCE_PROPER_NUM);
+		            }
+		            var ListBox = document.getElementById("list-info");
+					ListBox.innerHTML = "";
+		            
+		            
+		            var rowBox = document.createElement("div");
+		            rowBox.classList.add("row");
+		            
+		            var tableRow = document.createElement("div");
+	                tableRow.classList.add("row");
+	                tableRow.classList.add("mx-0");
+	                tableRow.classList.add("px-0");
+	                rowBox.appendChild(tableRow);
+	                
+	                var table = document.createElement("table");
+	                table.classList.add("table");
+	                table.classList.add("table-bordered");
+	                tableRow.appendChild(table);
+	                
+	                var colGroup = document.createElement("colgroup");
+	                table.appendChild(colGroup);
+
+	                var colGroupA = document.createElement("col");
+	                //colGroupA.setAttribute("width", "25%");
+	                colGroup.appendChild(colGroupA);
+
+	                var colGroupB = document.createElement("col");
+	                //colGroupB.setAttribute("width", "25%");
+	                colGroup.appendChild(colGroupB);
+
+	                var colGroupC = document.createElement("col");
+	                //colGroupC.setAttribute("width", "50%");
+	                colGroup.appendChild(colGroupC);
+	                
+	                var colGroupD = document.createElement("col");
+	                //colGroupD.setAttribute("width", "50%");
+	                colGroup.appendChild(colGroupD);
+	                
+	                var colGroupE = document.createElement("col");
+	                //colGroupE.setAttribute("width", "50%");
+	                colGroup.appendChild(colGroupE);
+	                
+	                var colGroupF = document.createElement("col");
+	                //colGroupF.setAttribute("width", "50%");
+	                colGroup.appendChild(colGroupF);
+	                
+	                var thead = document.createElement("thead");
+	                table.appendChild(thead);
+	                
+	                var theadTr = document.createElement("tr");
+	                theadTr.classList.add("text-center");
+	                thead.appendChild(theadTr);
+	                
+	                var theadTrTh1 = document.createElement("th");
+	                theadTrTh1.setAttribute("scope", "col");
+	                theadTrTh1.classList.add("table-light");
+	                theadTrTh1.innerText="번호";
+	                theadTr.appendChild(theadTrTh1);
+	                
+	                var theadTrTh2 = document.createElement("th");
+	                theadTrTh2.setAttribute("scope", "col");
+	                theadTrTh2.classList.add("table-light");
+	                theadTrTh2.innerText="이름";
+	                theadTr.appendChild(theadTrTh2);
+	                
+	                var theadTrTh3 = document.createElement("th");
+	                theadTrTh3.setAttribute("scope", "col");
+	                theadTrTh3.classList.add("table-light");
+	                theadTrTh3.innerText="신청공고";
+	                theadTr.appendChild(theadTrTh3);
+	                
+	                var theadTrTh4 = document.createElement("th");
+	                theadTrTh4.setAttribute("scope", "col");
+	                theadTrTh4.classList.add("table-light");
+	                theadTrTh4.innerText="조력자 분류";
+	                theadTr.appendChild(theadTrTh4);
+	                
+	                var theadTrTh5 = document.createElement("th");
+	                theadTrTh5.setAttribute("scope", "col");
+	                theadTrTh5.classList.add("table-light");
+	                theadTrTh5.innerText="신청일";
+	                theadTr.appendChild(theadTrTh5);
+	                
+	                var theadTrTh6 = document.createElement("th");
+	                theadTrTh6.setAttribute("scope", "col");
+	                theadTrTh6.classList.add("table-light");
+	                theadTrTh6.innerText="신청상황";
+	                theadTr.appendChild(theadTrTh6);
+	                
+	                var tbody = document.createElement("tbody");
+	                table.appendChild(tbody);
+	                
+	                for(dataList of jsonObj.list){
+	                    
+	                    
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+
+
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1Td1.classList.add("text-center");
+	                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+	                bodyTr1.appendChild(bodyTr1Td1);
+
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1Td2.classList.add("text-center");
+	                bodyTr1Td2.innerText = dataList.USER_NAME;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var bodyTr1Td3 = document.createElement("td");
+	                bodyTr1Td3.classList.add("text-center");
+	                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+	                bodyTr1.appendChild(bodyTr1Td3);
+	                
+	                var bodyTr1Td4 = document.createElement("td");
+	                bodyTr1Td4.classList.add("text-center");
+	                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+	                bodyTr1.appendChild(bodyTr1Td4);
+	                
+	                var bodyTr1Td5 = document.createElement("td");
+	                bodyTr1Td5.classList.add("text-center");
+	                bodyTr1Td5.innerText = dataList.APLCN_DTLS_DATE;
+	                bodyTr1.appendChild(bodyTr1Td5);
+			
+	                var bodyTr1Td6 = document.createElement("td");
+	                bodyTr1Td6.classList.add("text-center");
+	                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+	                bodyTr1.appendChild(bodyTr1Td6);
+	                
+	                }
+	                
+	                ListBox.appendChild(rowBox);
+		           }
+		       }
+	       xhr.open("get" , "../admin/callAllUser"); //리퀘스트 세팅..
+	       //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+	       xhr.send(); //AJAX로 리퀘스트함..
+		       
+		
+		
+		
+	}
+}
+
+function callUser(e){
+	const selectBox1 = document.getElementById("select");
+	
+	if(selectBox1.value == "a"){
+		
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	    xhr.onreadystatechange = function () {
+	        if(xhr.readyState == 4 && xhr.status == 200){
+	            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	            
+	            console.log(jsonObj);
+	            for(i of jsonObj.list){
+	            	console.log(i.ANNOUNCE_PROPER_NUM);
+	            }
+	            var ListBox = document.getElementById("list-info");
+				ListBox.innerHTML = "";
+	            
+	            
+	            var rowBox = document.createElement("div");
+	            rowBox.classList.add("row");
+	            
+	            var tableRow = document.createElement("div");
+                tableRow.classList.add("row");
+                tableRow.classList.add("mx-0");
+                tableRow.classList.add("px-0");
+                rowBox.appendChild(tableRow);
+                
+                var table = document.createElement("table");
+                table.classList.add("table");
+                table.classList.add("table-bordered");
+                tableRow.appendChild(table);
+                
+                var colGroup = document.createElement("colgroup");
+                table.appendChild(colGroup);
+
+                var colGroupA = document.createElement("col");
+                //colGroupA.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupA);
+
+                var colGroupB = document.createElement("col");
+                //colGroupB.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupB);
+
+                var colGroupC = document.createElement("col");
+                //colGroupC.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupC);
+                
+                var colGroupD = document.createElement("col");
+                //colGroupD.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupD);
+                
+                var colGroupE = document.createElement("col");
+                //colGroupE.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupE);
+                
+                var colGroupF = document.createElement("col");
+                //colGroupF.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupF);
+                
+                var thead = document.createElement("thead");
+                table.appendChild(thead);
+                
+                var theadTr = document.createElement("tr");
+                theadTr.classList.add("text-center");
+                thead.appendChild(theadTr);
+                
+                var theadTrTh1 = document.createElement("th");
+                theadTrTh1.setAttribute("scope", "col");
+                theadTrTh1.classList.add("table-light");
+                theadTrTh1.innerText="번호";
+                theadTr.appendChild(theadTrTh1);
+                
+                var theadTrTh2 = document.createElement("th");
+                theadTrTh2.setAttribute("scope", "col");
+                theadTrTh2.classList.add("table-light");
+                theadTrTh2.innerText="이름";
+                theadTr.appendChild(theadTrTh2);
+                
+                var theadTrTh3 = document.createElement("th");
+                theadTrTh3.setAttribute("scope", "col");
+                theadTrTh3.classList.add("table-light");
+                theadTrTh3.innerText="신청공고";
+                theadTr.appendChild(theadTrTh3);
+                
+                var theadTrTh4 = document.createElement("th");
+                theadTrTh4.setAttribute("scope", "col");
+                theadTrTh4.classList.add("table-light");
+                theadTrTh4.innerText="조력자 분류";
+                theadTr.appendChild(theadTrTh4);
+                
+                var theadTrTh5 = document.createElement("th");
+                theadTrTh5.setAttribute("scope", "col");
+                theadTrTh5.classList.add("table-light");
+                theadTrTh5.innerText="신청일";
+                theadTr.appendChild(theadTrTh5);
+                
+                var theadTrTh6 = document.createElement("th");
+                theadTrTh6.setAttribute("scope", "col");
+                theadTrTh6.classList.add("table-light");
+                theadTrTh6.innerText="신청상황";
+                theadTr.appendChild(theadTrTh6);
+                
+                var tbody = document.createElement("tbody");
+                table.appendChild(tbody);
+                
+                for(dataList of jsonObj.list){
+                    
+                    
+                var bodyTr1 = document.createElement("tr");
+                tbody.appendChild(bodyTr1);
+
+
+                var bodyTr1Td1 = document.createElement("td");
+                bodyTr1Td1.classList.add("text-center");
+                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+                bodyTr1.appendChild(bodyTr1Td1);
+
+                var bodyTr1Td2 = document.createElement("td");
+                bodyTr1Td2.classList.add("text-center");
+                bodyTr1Td2.innerText = dataList.USER_NAME;
+                bodyTr1.appendChild(bodyTr1Td2);
+                
+                var bodyTr1Td3 = document.createElement("td");
+                bodyTr1Td3.classList.add("text-center");
+                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+                bodyTr1.appendChild(bodyTr1Td3);
+                
+                var bodyTr1Td4 = document.createElement("td");
+                bodyTr1Td4.classList.add("text-center");
+                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+                bodyTr1.appendChild(bodyTr1Td4);
+                
+                var bodyTr1Td5 = document.createElement("td");
+                bodyTr1Td5.classList.add("text-center");
+                bodyTr1Td5.innerText = dataList.APLCN_DTLS_DATE;
+                bodyTr1.appendChild(bodyTr1Td5);
+		
+                var bodyTr1Td6 = document.createElement("td");
+                bodyTr1Td6.classList.add("text-center");
+                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+                bodyTr1.appendChild(bodyTr1Td6);
+                
+                }
+                
+                ListBox.appendChild(rowBox);        
+	            
+	        }
+	    }
+	    
+	    xhr.open("get" , "../admin/callAUser?trial_fcltt_proper_num=" + e.value); //리퀘스트 세팅..
+	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+	    xhr.send(); //AJAX로 리퀘스트함..
+		
+		
+	}else if(selectBox1.value == "c"){
+		
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	    xhr.onreadystatechange = function () {
+	        if(xhr.readyState == 4 && xhr.status == 200){
+	            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+	            
+	            console.log(jsonObj);
+	            for(i of jsonObj.list){
+	            	console.log(i.ANNOUNCE_PROPER_NUM);
+	            }
+	            var ListBox = document.getElementById("list-info");
+				ListBox.innerHTML = "";
+	            
+	            
+	            var rowBox = document.createElement("div");
+	            rowBox.classList.add("row");
+	            
+	            var tableRow = document.createElement("div");
+                tableRow.classList.add("row");
+                tableRow.classList.add("mx-0");
+                tableRow.classList.add("px-0");
+                rowBox.appendChild(tableRow);
+                
+                var table = document.createElement("table");
+                table.classList.add("table");
+                table.classList.add("table-bordered");
+                tableRow.appendChild(table);
+                
+                var colGroup = document.createElement("colgroup");
+                table.appendChild(colGroup);
+
+                var colGroupA = document.createElement("col");
+                //colGroupA.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupA);
+
+                var colGroupB = document.createElement("col");
+                //colGroupB.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupB);
+
+                var colGroupC = document.createElement("col");
+                //colGroupC.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupC);
+                
+                var colGroupD = document.createElement("col");
+                //colGroupD.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupD);
+                
+                var colGroupE = document.createElement("col");
+                //colGroupE.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupE);
+                
+                var colGroupF = document.createElement("col");
+                //colGroupF.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupF);
+                
+                var thead = document.createElement("thead");
+                table.appendChild(thead);
+                
+                var theadTr = document.createElement("tr");
+                theadTr.classList.add("text-center");
+                thead.appendChild(theadTr);
+                
+                var theadTrTh1 = document.createElement("th");
+                theadTrTh1.setAttribute("scope", "col");
+                theadTrTh1.classList.add("table-light");
+                theadTrTh1.innerText="번호";
+                theadTr.appendChild(theadTrTh1);
+                
+                var theadTrTh2 = document.createElement("th");
+                theadTrTh2.setAttribute("scope", "col");
+                theadTrTh2.classList.add("table-light");
+                theadTrTh2.innerText="이름";
+                theadTr.appendChild(theadTrTh2);
+                
+                var theadTrTh3 = document.createElement("th");
+                theadTrTh3.setAttribute("scope", "col");
+                theadTrTh3.classList.add("table-light");
+                theadTrTh3.innerText="신청공고";
+                theadTr.appendChild(theadTrTh3);
+                
+                var theadTrTh4 = document.createElement("th");
+                theadTrTh4.setAttribute("scope", "col");
+                theadTrTh4.classList.add("table-light");
+                theadTrTh4.innerText="조력자 분류";
+                theadTr.appendChild(theadTrTh4);
+                
+                var theadTrTh5 = document.createElement("th");
+                theadTrTh5.setAttribute("scope", "col");
+                theadTrTh5.classList.add("table-light");
+                theadTrTh5.innerText="신청일";
+                theadTr.appendChild(theadTrTh5);
+                
+                var theadTrTh6 = document.createElement("th");
+                theadTrTh6.setAttribute("scope", "col");
+                theadTrTh6.classList.add("table-light");
+                theadTrTh6.innerText="신청상황";
+                theadTr.appendChild(theadTrTh6);
+                
+                var tbody = document.createElement("tbody");
+                table.appendChild(tbody);
+                
+                for(dataList of jsonObj.list){
+                    
+                    
+                var bodyTr1 = document.createElement("tr");
+                tbody.appendChild(bodyTr1);
+
+
+                var bodyTr1Td1 = document.createElement("td");
+                bodyTr1Td1.classList.add("text-center");
+                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+                bodyTr1.appendChild(bodyTr1Td1);
+
+                var bodyTr1Td2 = document.createElement("td");
+                bodyTr1Td2.classList.add("text-center");
+                bodyTr1Td2.innerText = dataList.USER_NAME;
+                bodyTr1.appendChild(bodyTr1Td2);
+                
+                var bodyTr1Td3 = document.createElement("td");
+                bodyTr1Td3.classList.add("text-center");
+                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+                bodyTr1.appendChild(bodyTr1Td3);
+                
+                var bodyTr1Td4 = document.createElement("td");
+                bodyTr1Td4.classList.add("text-center");
+                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+                bodyTr1.appendChild(bodyTr1Td4);
+                
+                var bodyTr1Td5 = document.createElement("td");
+                bodyTr1Td5.classList.add("text-center");
+                bodyTr1Td5.innerText = dataList.APLCN_DTLS_DATE;
+                bodyTr1.appendChild(bodyTr1Td5);
+		
+                var bodyTr1Td6 = document.createElement("td");
+                bodyTr1Td6.classList.add("text-center");
+                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+                bodyTr1.appendChild(bodyTr1Td6);
+                
+                }
+                
+                ListBox.appendChild(rowBox);
+                
+	        }
+	    }
+	    
+	    xhr.open("get" , "../admin/callCUser?announce_proper_num=" + e.value); //리퀘스트 세팅..
+	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+	    xhr.send(); //AJAX로 리퀘스트함..
+		
+		
+	}
 	
 }
+
 </script>
 </head>
 <body>
@@ -66,45 +736,25 @@ function selectCategory(e){
 					<span style="font-weight: bold;">조건별 조회</span>
 				</div>
 			</div>
-			
 			<!-- 안내 -->
 			<div class="contentsinbox">
-				<div class="row">
-					<div class="col">
-						<select onchange="selectCategory(this)">
-							<option>조건을 선택해주세요</option>
+				<div class="row" >
+					<div class="col-2">
+						<select id="select" onchange="calloption(this)" >
+							<option value="all">전체</option>
 							<option value="a">조력자별 조회</option>
-							<option value="b">기간별 조회</option>
+<!-- 							<option value="b">기간별 조회</option> -->
 							<option value="c">공고별 조회</option>
 						</select>
-			
-						<select id="good">
-							<option>조건을 선택해주세요</option>
-						</select>
+						
+					</div>
+					<div id="target" class="col">
 					
-				
-						<table class="table">
-							  <thead>
-							    <tr>
-							      <th scope="col">번호</th>
-							      <th scope="col">이름</th>
-							      <th scope="col">신청일</th>
-							      <th scope="col">신청현황</th>
-							    </tr>
-							  </thead>
-							  <tbody>
-							  <c:forEach items="${applicantManagementList }" var="data">
-							    <tr>
-							      <th scope="row">${data.aplcn_dtls_proper_num}</th>
-							      <td>${data.user_name }</td>
-							      <td><fmt:formatDate value="${data.aplcn_dtls_date }" pattern="yy.MM.dd"/></td>				      
-							      <td>${data.aplcn_dtls_sts}</td>
-							    </tr>
-							    </c:forEach>
-							  </tbody>
-							</table>
 					</div>
 				</div>
+				<div class="row mx-0">
+					<div id="list-info" class="col"></div>
+				</div> 
 			</div>
 		</div>
 	</div>

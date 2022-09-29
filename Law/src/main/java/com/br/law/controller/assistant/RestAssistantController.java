@@ -67,4 +67,71 @@ public class RestAssistantController {
 	}
  	
 	
+	@RequestMapping("announceSelect")
+	public Map<String, Object> announceSelect(int announce_proper_num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		Map<String, Object> announceSelect =  assistantServiceImpl.announceSelectList(announce_proper_num);
+		
+		map.put("map", announceSelect);
+		map.put("result", "success");
+		
+		return map;
+	}
+	
+	//0928 하다
+	// 조견별 분류불러오기
+	@RequestMapping("callA")
+	public Map<String, Object> callA(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("t10", assistantServiceImpl.callTb_010());
+		return map;
+
+	}
+	
+	//기간별은 추후 추가 예정
+	// 공고별 분류불러오기
+	@RequestMapping("callC")
+	public Map<String, Object> callC(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("t2", assistantServiceImpl.callTb_002());
+		return map;
+		
+	}
+	
+	// 조건별 유저 불러오기
+	@RequestMapping("callAUser")
+	public Map<String, Object> callAUser(int trial_fcltt_proper_num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("list", assistantServiceImpl.callAUser(trial_fcltt_proper_num));
+		return map;
+	}
+	
+	// 공고별 유저 불러오기
+	@RequestMapping("callCUser")
+	public Map<String, Object> callCUser(int announce_proper_num){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("list", assistantServiceImpl.callCUser(announce_proper_num));
+		return map;
+	}
+	
+	//0929 하다
+	// 전체 유저 불러오기
+	@RequestMapping("callAllUser")
+	public Map<String, Object> callAllUser(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("list", assistantServiceImpl.allApplicantManagement());
+	
+		return map;
+	}
 }
