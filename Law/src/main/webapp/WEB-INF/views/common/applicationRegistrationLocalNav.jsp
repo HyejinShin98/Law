@@ -31,7 +31,7 @@
 .submenu li{
 	display:
 	inline-block;
-	width:175px;
+	width:200px;
 	font-size:14px;
 	font-weight:
 	bold;
@@ -41,12 +41,13 @@
 	padding:8px 25px 1px 0;
 	border-bottom:1px solid #ddd;
 	color : white;
+	margin-left: 16px;
 }
 </style>
 </head>
 <body>
 	  
-        <ul class="nav submenu">
+        <ul class="nav submenu" style="margin-left:10px;">
 		  <li class="">등재신청</li>
 		</ul>
         	

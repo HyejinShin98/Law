@@ -57,14 +57,7 @@ body{
 </style>
 <script type="text/javascript">
 /*  */
-function getUserDetail(){
-
-	document.getElementById("s1").value='${eight.crtfc_type}'; 
-	document.getElementById("s2").value='${eight.issue_agency}'; 
-	document.getElementById("s3").value='${eight.crtfc_number}'; 
-	document.getElementById("s4").value=changeForDate('${eight.issue_date}'); 
-}
-
+var count="";
 function changeForDate(date){
 	var changeDate;
 	 var changeYear = date.substring(date.length -4);
@@ -91,26 +84,16 @@ function checkList(){
 	
 	let result = true;
 	
-	let check = document.getElementsByTagName("input");
+	let check = document.getElementsByClassName("ch");
 	
 	let ss = document.getElementById("ss");
-	// 메세지 초기화
-	let msg = document.getElementsByClassName('msg');
-	for(e of msg) {
-		e.innerText = '';
-	}
-	
 	// 공백검사
 	for(let i=0; i<check.length; i++) {
 		let box = check[i].parentNode.parentNode.parentNode;
-		let msg = box.getElementsByClassName('msg');
 		
 		if(check[i].value == '') {
-			for(e of msg) {
-				e.innerText = '필수입력입니다.';
-				e.setAttribute("style","font-size: 11px");
+			console.log(check[i]);
 				result = false;
-			}
 		}
 	}
 	if(result){
@@ -120,6 +103,26 @@ function checkList(){
 		alert("빈칸을 입력해주세요");
 	}
 }
+
+function chkTempData(){
+	  count  = "${count}";
+    if(count){
+         if (confirm("임시저장된 정보들이 있습니다. 불러오시겠습니까 ? ")) {
+          /* 임시저장 */
+        	 	document.getElementById("s1").value='${eight.crtfc_type}'; 
+        		document.getElementById("s2").value='${eight.issue_agency}'; 
+        		document.getElementById("s3").value='${eight.crtfc_number}'; 
+        		document.getElementById("s4").value=changeForDate('${eight.issue_date}'); 
+			}
+     	 }
+}
+window.addEventListener("DOMContentLoaded", function() {
+	// 실행 시 가장 먼저 에러메세지 유무 확인
+//	getUserDetail(); 
+	chkTempData();
+	
+});
+ 
 
 
  
@@ -191,7 +194,14 @@ function checkList(){
 
 
                
-              <form name="form1">
+              <c:choose>
+            		<c:when test="${!empty count}">
+	            		<form id="ss" action="licenseUpProcess">
+	            	</c:when>
+	            	<c:otherwise>
+	            		<form id="ss" action="licenseInsProcess">
+	            	</c:otherwise>
+       			</c:choose>		
               <div class="contentsinbox">
 	           
                 <div class="col border-bottom mt-5">
@@ -217,15 +227,15 @@ function checkList(){
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">발급기관</th>
-                            <td><div class="col"><input id="s2" type="text" name="issue_agency"></div></td>
+                            <td><div class="col"><input class="ch" id="s2" type="text" name="issue_agency"></div></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">자격 면허 번호</th>
-                            <td><div class="col"><input id="s3" type="text" name="crtfc_number"></div></td>
+                            <td><div class="col"><input class="ch" id="s3" type="text" name="crtfc_number"></div></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">발급일</th>
-                            <td><div class="col"><input id="s4" type="date" name="issue_date"></div></td>
+                            <td><div class="col"><input class="ch" id="s4" type="date" name="issue_date"></div></td>
                         </tr>
                         </tbody>
                     </table> 
@@ -233,20 +243,15 @@ function checkList(){
                 </div>
                 <div class="row">
                 	<div class="col">
-                		<c:if test="${!empty count}">
-							<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
-						</c:if>
-                	</div>
-                	<div class="col">
-                		<c:choose>
+                      	<c:choose>
 			            	<c:when test="${!empty count}">
-			            		<button type="submit" formaction="licenseUpProcess" formmethod="get">업데이트</button>
+			            		<a type="button" onclick="checkList();">업데이트</a>
 			            	</c:when>
 			            	<c:otherwise>
-			            		<button type="submit" onclick="checkList();" formaction="licenseInsProcess" formmethod="get">인설트</button>
+			            		<a type="button" onclick="checkList();">인설트</a>
 			            	</c:otherwise>
-		             	</c:choose>
-                	</div>
+            			</c:choose>
+           			</div>
                 </div>
                 </div>
         </form>

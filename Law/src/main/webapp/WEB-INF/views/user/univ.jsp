@@ -57,22 +57,7 @@ body{
 
 </style>
 <script type="text/javascript">
-function getUserDetail(){
-	document.getElementbyId
-	
-	document.getElementById("s1").value='${six.edctn_school_name}';
-	document.getElementById("s2").value='${six.edctn_major}'; 
-	document.getElementById("s3").value='${six.edctn_degree}'; 
-	document.getElementById("s4").value= changeForDate('${six.edctn_admsn_date}'); 
-	document.getElementById("s5").value= changeForDate('${six.edctn_grdtn_date}');
-	
-	if('${six.edctn_final_yn}' == 'y'){
-		document.getElementById("s61").checked = true;
-	}else{
-		document.getElementById("s62").checked = true;
-	}
-}
-
+var count = "";
 function changeForDate(date){
 	var changeDate;
 	 var changeYear = date.substring(date.length -4);
@@ -100,26 +85,17 @@ function checkList(){
 	
 	let result = true;
 	
-	let check = document.getElementsByTagName("input");
+	let check = document.getElementsByClassName("ch");
 	
 	let ss = document.getElementById("ss");
-	// 메세지 초기화
-	let msg = document.getElementsByClassName('msg');
-	for(e of msg) {
-		e.innerText = '';
-	}
 	
 	// 공백검사
 	for(let i=0; i<check.length; i++) {
 		let box = check[i].parentNode.parentNode.parentNode;
-		let msg = box.getElementsByClassName('msg');
 		
 		if(check[i].value == '') {
-			for(e of msg) {
-				e.innerText = '필수입력입니다.';
-				e.setAttribute("style","font-size: 11px");
+			console.log(check[i]);
 				result = false;
-			}
 		}
 	}
 	if(result){
@@ -129,6 +105,32 @@ function checkList(){
 		alert("빈칸을 입력해주세요");
 	}
 }
+
+function chkTempData(){
+  count = "${count}";
+      if(count){
+           if (confirm("임시저장된 정보들이 있습니다. 불러오시겠습니까 ? ")) {
+            /* 임시저장 */
+	            document.getElementById("s1").value='${six.edctn_school_name}';
+	        	document.getElementById("s2").value='${six.edctn_major}'; 
+	        	document.getElementById("s3").value='${six.edctn_degree}'; 
+	        	document.getElementById("s4").value= changeForDate('${six.edctn_admsn_date}'); 
+	        	document.getElementById("s5").value= changeForDate('${six.edctn_grdtn_date}');
+           	
+	        	if('${six.edctn_final_yn}' == 'y'){
+	        		document.getElementById("s61").checked = true;
+	        	}else{
+	        		document.getElementById("s62").checked = true;
+	        	}
+			}
+       	 }
+}
+window.addEventListener("DOMContentLoaded", function() {
+	// 실행 시 가장 먼저 에러메세지 유무 확인
+// 	getUserDetail(); 
+	chkTempData();
+	
+});
 
 </script>
 </head>
@@ -211,8 +213,7 @@ function checkList(){
 				<div class="col border-bottom mt-5">
                     <div class="row ms-0 mb-2"><h4>학력사항</h4></div>
                 </div>
-                
-                
+               
                 
                 <div class="row">
                 	<div class="col">
@@ -220,15 +221,15 @@ function checkList(){
                         <tbody>
                           <tr>
                             <th class="table-active">학교명</th>
-                            <td><input type="text" id="s1" name="edctn_school_name"><span class="msg"></span></td>
+                            <td><input class="ch" type="text" id="s1" name="edctn_school_name"></td>
                             <th class="table-active">최종학력</th>
-                            <td><input type="radio" id="s61" name="edctn_final_yn" value='y' >맞음 <span class="msg"></span>
-                            	<input type="radio" id="s62" name="edctn_final_yn" value='n' >아님 <span class="msg"></span>
+                            <td><input class="ch" type="radio" id="s61" name="edctn_final_yn" value='y' >맞음 
+                            	<input class="ch" type="radio" id="s62" name="edctn_final_yn" value='n' >아님
                             </td>
                           </tr>
                           <tr>
                             <th class="table-active">학과(전공)</th>
-                            <td><input type="text" id="s2"  name="edctn_major" ><span class="msg"></span></td>
+                            <td><input class="ch" type="text" id="s2"  name="edctn_major" ></td>
                             <th class="table-active">학위</th>
                             <td>
                                 	<select id="s3" name="edctn_degree"> 
@@ -238,18 +239,14 @@ function checkList(){
                                         <option value="dropout">중퇴</option>
                                         <option value="expel">퇴학</option>
                                 	</select>
-                                	<span class="msg"></span>
-                                
                             </td>
                           </tr>
                           <tr>
                             <th class="table-active">입학 년월</th>
-                            <td><input type="date" id="s4" name="edctn_admsn_date">
-                            	<span class="msg"></span>
+                            <td><input class="ch" type="date" id="s4" name="edctn_admsn_date">
                             </td>
                             <th class="table-active">졸업 년월</th>
-                            <td><input type="date" id="s5" name="edctn_grdtn_date">
-                          		<span class="msg"></span>
+                            <td><input class="ch" type="date" id="s5" name="edctn_grdtn_date">
                             </td>
                           </tr>
                         </tbody>
@@ -258,11 +255,6 @@ function checkList(){
                    </div>
                       
                       <div class="row">
-                      	<div class="col">
-                      		<c:if test="${!empty count}">
-								<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
-							</c:if>
-                      	</div>
                       	<div class="col">
 	                      	<c:choose>
 				            	<c:when test="${!empty count}">

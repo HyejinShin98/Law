@@ -30,7 +30,7 @@
 								</a>
 							</div>
 							<div class="col">
-								<a href="#">
+								<a href="../user/applicationRegistration">
 									<span>회원가입</span>
 								</a>
 							</div>
@@ -142,7 +142,7 @@
 						<a class = "text-secondary" href="./#"> 비밀번호 찾기 </a>
 					</div>
 					<div class="col">
-						<a class = "text-secondary" href="./registerPage"> 회원가입 </a>
+						<a class = "text-secondary" href="../user/applicationRegistration"> 회원가입 </a>
 					</div>
 				</div>
 			</div>

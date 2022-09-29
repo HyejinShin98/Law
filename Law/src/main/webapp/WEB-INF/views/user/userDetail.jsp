@@ -242,6 +242,30 @@ function chkTempData(selectBox2){
     
 }
 
+function checkList(){
+	
+	let result = true;
+	
+	let check = document.getElementsByTagName("ch");
+	
+	let ss = document.getElementById("ss");
+	
+	// 공백검사
+	for(let i=0; i<check.length; i++) {
+		let box = check[i].parentNode.parentNode.parentNode;
+		
+		if(check[i].value == '') {
+				result = false;
+		}
+	}
+	if(result){
+		ss.submit();
+		alert("저장되었습니다");
+	}else{
+		alert("빈칸을 입력해주세요");
+	}
+}
+
 </script>
 <title>등재신청 기본정보</title>
 </head>
@@ -307,47 +331,6 @@ function chkTempData(selectBox2){
 					<div class="col" style="padding-right: 1px;"></div>
 				</div>
 				
-				<!-- <div class="row" style="height: 63.5px; ">
-					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
-						<div class="row">
-							<div class="col">
-								<p class="my-0">STEP1</p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col">
-								<p>기본정보</p>
-							</div>
-						</div>
-						
-						공란
-						<div class="row">
-						</div>
-					</div>
-					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
-					</div>
-					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
-					</div>
-					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
-					</div>
-					<div class="col" style="background-image: url(../resources/img/Line.jpg);">
-					</div>
-				</div> -->
-				
-				<!-- 스텝 그림-->
-				 <!--
-				<div class="row mt-2">
-					<div class="col">
-					<div style="position: relative;">
-		            	<img style="width: 660px;" src="../resources/img/applicationRegistration/bg_stepgamjung.gif">
-	            	</div>
-		            
-		            <div style="position: absolute; top:600px; left: 25%;">
-		            	<img src="../resources/img/applicationRegistration/stepgamjung_02.gif">
-		            </div>
-		            </div>
-		        </div> -->
-				<!-- 여긴 위에 -->
 	
 			<form name="form1">
 				

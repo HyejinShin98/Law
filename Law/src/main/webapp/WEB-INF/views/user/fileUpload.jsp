@@ -52,7 +52,24 @@ body{
 }
 </style>
 <script type="text/javascript">
-
+function uploadFile(){
+	var formData = new FormData(document.getElementById("test"));
+	console.log(formData);
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			
+			console.log(result);
+			
+		}
+	}
+	
+		xhr.open("post" , "../user/multiFileUpload"); //리퀘스트 세팅..
+	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); // 콘텐츠 타입을 json으로
+	   	xhr.send(formData); //AJAX로 리퀘스트함..
+	
+}
 
 </script>
 <title>Insert title here</title>
@@ -66,7 +83,7 @@ body{
 		
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
-			<div class="col-3 text-end"> <!-- style="border-right: solid 1px #ccc;" -->
+			<div class="col-3 text-end border-end" style="padding-right: 0px;"> <!-- style="border-right: solid 1px #ccc;" -->
 				<!-- <div class="list-group list-group-flush">
 					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
 				</div> -->
@@ -119,7 +136,7 @@ body{
 					</div>
                <!-- 고정 -->
 
-        <form action="../user/multiFileUpload" method="post" enctype="multipart/form-data">
+        <form id="test" enctype="multipart/form-data">
         <div class="contentsinbox">
         
         <div class="row">
@@ -216,13 +233,53 @@ body{
                 </tbody>
             </table>
         </div>
-        <div class="row"><div class="col d-grid"><button class="btn btn-primary btn-sm">입력완료</button></div></div>
-        </div>
+        <div class="row">
+        	<div class="col d-grid">
+        		<a class="btn btn-primary btn-sm" onclick="uploadFile();" data-bs-toggle="modal"data-bs-target="#exampleModal">입력완료</a>
+       		</div>
+       	</div>
+       	</div>
         </form>
     </div>
     </div>
-    <jsp:include page="../common/footer.jsp"></jsp:include>
+		<div class="row">
+			<div class="col">이건 실험용</div>
+			<div class="col">
+				<!-- Button trigger modal --
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header border-bottom-0">
+								<h5 class="modal-title" id="exampleModalLabel"></h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col mb-4 " style="text-align : center;">
+										<img src="../resources/img/logo_ogi.gif">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col text-center my-2" style="font-weight: bold;">신청 완료 되었습니다.</div>
+								</div>
+								
+							</div>
+							<div class="modal-footer border-top-0">
+								<button type="button" class="btn btn-primary"  onclick="location.href='../user/main'">메인페이지로 이동</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<jsp:include page="../common/footer.jsp"></jsp:include>
     </div>
+    
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

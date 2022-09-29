@@ -58,21 +58,7 @@ body{
 </style>
 <script type="text/javascript">
 /*  */
-function getUserDetail(){
-
-	document.getElementById("s1").value='${seven.company_name}'; 
-	document.getElementById("s2").value='${seven.carer_type}'; 
-	
-	document.getElementById("s5").value='${seven.work_description}'; 
-	document.getElementById("s6").value='${seven.work_department}'; 
-	document.getElementById("s7").value='${seven.work_position}'; 
-	document.getElementById("s8").value='${seven.carer_description}'; 
-	document.getElementById("s9").value='${seven.special_note_description}';
-	document.getElementById("s3").value=changeForDate('${seven.work_start_date}'); 
-	document.getElementById("s4").value=changeForDate('${seven.work_end_date}');
-
-}
-
+var count = "";
 function changeForDate(date){
 	var changeDate;
 	 var changeYear = date.substring(date.length -4);
@@ -96,24 +82,18 @@ function changeForDate(date){
 	return changeDate = changeYear + "-" + changeMonth  + "-" + changeDay; 
 }
 function checkList(){
-	
+
 	let result = true;
 	
-	let check = document.getElementsByTagName("input");
+	let check = document.getElementsByClassName("ch");
 	
 	let ss = document.getElementById("ss");
-	// 메세지 초기화
-	let msg = document.getElementsByClassName('msg');
-	for(e of msg) {
-		e.innerText = '';
-	}
-	
 	// 공백검사
 	for(let i=0; i<check.length; i++) {
 		let box = check[i].parentNode.parentNode.parentNode;
 		
 		if(check[i].value == '') {
-				elert("빈칸을 채워주세요");
+			console.log(check[i]);
 				result = false;
 		}
 	}
@@ -124,6 +104,31 @@ function checkList(){
 		alert("빈칸을 입력해주세요");
 	}
 }
+
+function chkTempData(){
+	count = "${count}";
+    if(count){
+         if (confirm("임시저장된 정보들이 있습니다. 불러오시겠습니까 ? ")) {
+          /* 임시저장 */
+        	 document.getElementById("s1").value='${seven.company_name}'; 
+        		document.getElementById("s2").value='${seven.carer_type}'; 
+        		
+        		document.getElementById("s5").value='${seven.work_description}'; 
+        		document.getElementById("s6").value='${seven.work_department}'; 
+        		document.getElementById("s7").value='${seven.work_position}'; 
+        		document.getElementById("s8").value='${seven.carer_description}'; 
+        		document.getElementById("s9").value='${seven.special_note_description}';
+        		document.getElementById("s3").value=changeForDate('${seven.work_start_date}'); 
+        		document.getElementById("s4").value=changeForDate('${seven.work_end_date}');
+			}
+     	 }
+}
+window.addEventListener("DOMContentLoaded", function() {
+	// 실행 시 가장 먼저 에러메세지 유무 확인
+//	getUserDetail(); 
+	chkTempData();
+	
+});
  
 </script>
 </head>
@@ -136,10 +141,7 @@ function checkList(){
 		
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
-			<div class="col-3 text-end"> <!-- style="border-right: solid 1px #ccc;" -->
-				<!-- <div class="list-group list-group-flush">
-					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
-				</div> -->
+			<div class="col-3 text-end">
 				<jsp:include page="../common/applicationRegistrationLocalNav.jsp"></jsp:include>
 			</div>
 			
@@ -191,8 +193,14 @@ function checkList(){
                
 
 
-               
-          <form name="form1">
+                <c:choose>
+            		<c:when test="${!empty count}">
+	            		<form id="ss" action="./careerUpProcess">
+	            	</c:when>
+	            	<c:otherwise>
+	            		<form id="ss" action="./careerInsProcess">
+	            	</c:otherwise>
+       			</c:choose>		
           	<div class="contentsinbox">
 				<div class="col border-bottom mt-5">
                     <div class="row ms-0 mb-2"><h4>학력사항</h4></div>
@@ -203,21 +211,21 @@ function checkList(){
                         <tbody>
                         <tr>
                             <th scope="row" class="table-active">회사명/활동기관 명</th>
-                            <td><div class="col"><input type="text" id="s1" name="company_name"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="text" id="s1" name="company_name"></div></td>
                             <th class="table-active">수행업무</th>
-                            <td><div class="col"><input type="text"id="s5" name="work_description"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="text"id="s5" name="work_description"></div></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">근무 시작 일자</th>
-                            <td><div class="col"><input type="date" id="s3" name="work_start_date"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="date" id="s3" name="work_start_date"></div></td>
                             <th class="table-active">근무 종료 일자</th>
-                            <td><div class="col"><input type="date" id="s4" name="work_end_date"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="date" id="s4" name="work_end_date"></div></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">부서</th>
-                            <td><div class="col"><input type="text" id="s6" name="work_department"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="text" id="s6" name="work_department"></div></td>
                             <th class="table-active">직책</th>
-                            <td><div class="col"><input type="text" id="s7" name="work_position"></div></td>
+                            <td><div class="col"><input class="ch form-control" type="text" id="s7" name="work_position"></div></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active">경력구분</th>
@@ -242,20 +250,20 @@ function checkList(){
                         <tbody>
                         <tr>
                             <th scope="row" class="table-active">활동경력</th>
-                            <td><div class="col"><textarea class="form-control" id="s8" name="carer_description"></textarea></div></td>
+                            <td><div class="col"><textarea class="form-control ch" id="s8" name="carer_description"></textarea></div></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="col border-bottom mt-5">
-                    <div class="row ms-0 mb-2"><h4>학력사항</h4></div>
+                    <div class="row ms-0 mb-2"><h4>특이사항</h4></div>
                 </div>
                 <div class="row">
                     <table class="table ">
                         <tbody>
                         <tr>
                             <th scope="row" class="table-active">특기사항</th>
-                            <td><div class="col"><textarea class="form-control" id="s9" name="special_note_description"></textarea></div></td>
+                            <td><div class="col"><textarea class="form-control ch" id="s9" name="special_note_description"></textarea></div></td>
                         </tr>
                         </tbody>
                     </table>
@@ -263,20 +271,15 @@ function checkList(){
             </div>
             <div class="row">
             	<div class="col">
-            		<c:if test="${!empty count}">
-						<input type="button" onclick="getUserDetail()" value="임시저장 ${count}"><br>
-					</c:if>
-            	</div>
-            	<div class="col">
-            		 <c:choose>
-            			<c:when test="${!empty count}">
-            				<button type="submit" formaction="careerUpProcess" formmethod="get">업데이트</button>
-            			</c:when>
-            			<c:otherwise>
-            				<button type="submit"  formaction="careerInsProcess" formmethod="get">인설트</button>
-            			</c:otherwise>
-             		</c:choose>
-            	</div>
+                    <c:choose>
+		            	<c:when test="${!empty count}">
+		            		<a type="button" onclick="checkList();">업데이트</a>
+		            	</c:when>
+		            	<c:otherwise>
+		            		<a type="button" onclick="checkList();">인설트</a>
+		            	</c:otherwise>
+           			</c:choose>
+         		</div>
             </div>
            </div>
         </form>
