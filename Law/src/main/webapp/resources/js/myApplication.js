@@ -38,7 +38,7 @@ function showFileInput(ele, type, code) {
 	ele.innerHTML = '';
 	
 	var inputFile = document.createElement("input");
-   	inputFile.classList.add("form-control");
+   	//inputFile.classList.add("form-control");
    	inputFile.type = "file";
    	inputFile.name = "file";
    	inputFile.id = "file_" + type;
@@ -432,7 +432,7 @@ function userDetailWrite(){
 	                inputUserName.value = jsonObj.map.USER_NAME;
 	                inputUserName.id = "user_name";
 	                inputUserName.name = "user_name";
-	                inputUserName.classList.add("form-control");
+	                //inputUserName.classList.add("form-control");
 	                trTd1.appendChild(inputUserName);
 	                */
 	
@@ -464,7 +464,7 @@ function userDetailWrite(){
 	                
 	                var inputEmail = document.createElement("input");
 	                inputEmail.type = "text";
-	                inputEmail.classList.add("form-control");
+	                //inputEmail.classList.add("form-control");
 	                inputEmail.value = jsonObj.map.USER_EMAIL;
 	                inputEmail.id = "user_email";
 	                inputEmail.name = "user_email";
@@ -481,7 +481,7 @@ function userDetailWrite(){
 	                
 	                var inputPhone = document.createElement("input");
 	                inputPhone.type = "text";
-	                inputPhone.classList.add("form-control");
+	                //inputPhone.classList.add("form-control");
 	                inputPhone.value = jsonObj.map.USER_PHONE;
 	                inputPhone.id = "user_phone";
 	                inputPhone.name = "user_phone";
@@ -501,7 +501,7 @@ function userDetailWrite(){
 	                
 	                var inputJob = document.createElement("input");
 	                inputJob.type = "text";
-	                inputJob.classList.add("form-control");
+	                //inputJob.classList.add("form-control");
 	                inputJob.value = jsonObj.map.USER_JOB;
 	                inputJob.id = "user_job";
 	                inputJob.name = "user_job";
@@ -518,7 +518,7 @@ function userDetailWrite(){
 	                
 	                var inputAddr = document.createElement("input");
 	                inputAddr.type = "text";
-	                inputAddr.classList.add("form-control");
+	                //inputAddr.classList.add("form-control");
 	                inputAddr.value = jsonObj.map.USER_AR; 
 	                inputAddr.id = "user_ar";
 	                inputAddr.name = "user_ar";
@@ -563,7 +563,7 @@ function userDetailWrite(){
 	                
 	                var inputZoneCode = document.createElement("input");
 	                inputZoneCode.type = "text";
-	                inputZoneCode.classList.add("form-control");
+	                //inputZoneCode.classList.add("form-control");
 	                inputZoneCode.value = jsonObj.map.USER_AR_ZONECODE;
 	                inputZoneCode.id = "user_ar_zonecode";
 	                inputZoneCode.name = "user_ar_zonecode";
@@ -577,8 +577,8 @@ function userDetailWrite(){
 					zoneCodeRow.appendChild(zoneCodeCol3);
 					
 					var addrSearchBtn = document.createElement("div");
-					addrSearchBtn.classList.add("btn");
-					addrSearchBtn.classList.add("btn-success");
+					//addrSearchBtn.classList.add("btn");
+					//addrSearchBtn.classList.add("btn-success");
 					addrSearchBtn.innerText = "검색";
 					addrSearchBtn.setAttribute("onClick", "searchAddr();");
 					zoneCodeCol3.appendChild(addrSearchBtn);
@@ -610,7 +610,7 @@ function userDetailWrite(){
 	                
 					var inputArJibun = document.createElement("input");
 					inputArJibun.type = "text";
-					inputArJibun.classList.add("form-control");
+					//inputArJibun.classList.add("form-control");
 					inputArJibun.value = jsonObj.map.USER_AR_JIBUN;
 					inputArJibun.id = "user_ar_jibun";
 					inputArJibun.name = "user_ar_jibun";
@@ -643,7 +643,7 @@ function userDetailWrite(){
 					
 					var inputArDetail = document.createElement("input");
 					inputArDetail.type = "text";
-					inputArDetail.classList.add("form-control");
+					//inputArDetail.classList.add("form-control");
 					inputArDetail.value = jsonObj.map.USER_AR_DETAIL;
 					inputArDetail.id = "user_ar_detail";
 					inputArDetail.name = "user_ar_detail";
@@ -686,7 +686,7 @@ function userDetailWrite(){
 					
 					var inputBankHolder = document.createElement("input");
 					inputBankHolder.type = "text";
-					inputBankHolder.classList.add("form-control");
+					//inputBankHolder.classList.add("form-control");
 					inputBankHolder.value = jsonObj.map.USER_BANK_HOLDER;
 					inputBankHolder.id = "user_bank_holder";
 					inputBankHolder.name = "user_bank_holder";
@@ -719,7 +719,7 @@ function userDetailWrite(){
 	                
 	                var inputBank = document.createElement("input");
 	                inputBank.type = "text";
-	                inputBank.classList.add("form-control");
+	                //inputBank.classList.add("form-control");
 	                inputBank.value = jsonObj.map.USER_BANK; 
 	                inputBank.id = "user_bank";
 	                inputBank.name = "user_bank";
@@ -752,7 +752,7 @@ function userDetailWrite(){
 	                
 	                var inputBankAccount = document.createElement("input");
 	                inputBankAccount.type = "text";
-	                inputBankAccount.classList.add("form-control");
+	                //inputBankAccount.classList.add("form-control");
 	                inputBankAccount.value = jsonObj.map.USER_BANK_ACCOUNT;
 	                inputBankAccount.id = "user_bank_account"; 
 	                inputBankAccount.name = "user_bank_account";
@@ -940,7 +940,7 @@ function tableFiveInfo(){
 					bodyTr1Td1.appendChild(inputYesLigtnBox);
 					
 					var inputYesLigtn = document.createElement("input");
-					inputYesLigtn.classList.add("form-check-input");
+					//inputYesLigtn.classList.add("form-check-input");
 					inputYesLigtn.type = "radio";
 					inputYesLigtn.name = "ligtn_case_carer_yn";
 					inputYesLigtn.id = "ligtn_case_carer_y";
@@ -951,19 +951,19 @@ function tableFiveInfo(){
 					inputYesLigtnBox.appendChild(inputYesLigtn);
 					
 					var labelYesLigtn = document.createElement("label");
-					labelYesLigtn.classList.add("form-check-label");
+					//labelYesLigtn.classList.add("form-check-label");
 					labelYesLigtn.for = "ligtn_case_carer_y";
 					labelYesLigtn.innerText = "유";
 					inputYesLigtnBox.appendChild(labelYesLigtn);
 					
 					var inputNoLigtnBox = document.createElement("div");
-					inputNoLigtnBox.classList.add("form-check");
+					//inputNoLigtnBox.classList.add("form-check");
 					inputNoLigtnBox.style.float = "left";
 					inputNoLigtnBox.style.marginTop = "5px";
 					bodyTr1Td1.appendChild(inputNoLigtnBox);
 					
 					var inputNoLigtn = document.createElement("input");
-					inputNoLigtn.classList.add("form-check-input");
+					//inputNoLigtn.classList.add("form-check-input");
 					inputNoLigtn.type = "radio";
 					inputNoLigtn.name = "ligtn_case_carer_yn";
 					inputNoLigtn.id = "ligtn_case_carer_n";
@@ -974,7 +974,7 @@ function tableFiveInfo(){
 					inputNoLigtnBox.appendChild(inputNoLigtn);
 					
 					var labelNoLigtn = document.createElement("label");
-					labelNoLigtn.classList.add("form-check-label");
+					//labelNoLigtn.classList.add("form-check-label");
 					labelNoLigtn.for = "ligtn_case_carer_n";
 					labelNoLigtn.innerText = "무";
 					inputNoLigtnBox.appendChild(labelNoLigtn);
@@ -986,7 +986,7 @@ function tableFiveInfo(){
 	                var InputligtnCaseCarerEtc = document.createElement("input");
 	                InputligtnCaseCarerEtc.id = "ligtn_case_carer_etc";
 	                InputligtnCaseCarerEtc.name = "ligtn_case_carer_etc";
-	                InputligtnCaseCarerEtc.classList.add("form-control");
+	                //InputligtnCaseCarerEtc.classList.add("form-control");
 	                
 	                InputligtnCaseCarerEtc.value = jsonObj.map.LIGTN_CASE_CARER_ETC; 
 	                var ligtnCaseCarerEtc =  jsonObj.map.LIGTN_CASE_CARER_ETC
@@ -1035,13 +1035,13 @@ function tableFiveInfo(){
 					bodyTr2.appendChild(bodyTr2Td1);
 					
 					var inputYesInsrnBox = document.createElement("div");
-					inputYesInsrnBox.classList.add("form-check");
+					//inputYesInsrnBox.classList.add("form-check");
 					inputYesInsrnBox.style.float = "left";
 					inputYesInsrnBox.style.margin = "0px 20px 0px 50px";
 					bodyTr2Td1.appendChild(inputYesInsrnBox);
 					
 					var inputYesInsrn = document.createElement("input");
-					inputYesInsrn.classList.add("form-check-input");
+					//inputYesInsrn.classList.add("form-check-input");
 					inputYesInsrn.type = "radio";
 					inputYesInsrn.name = "insrn_indst_carer_yn";
 					inputYesInsrn.id = "insrn_indst_carer_y";
@@ -1052,18 +1052,18 @@ function tableFiveInfo(){
 					inputYesInsrnBox.appendChild(inputYesInsrn);
 					
 					var labelYesInsrn = document.createElement("label");
-					labelYesInsrn.classList.add("form-check-label");
+					//labelYesInsrn.classList.add("form-check-label");
 					labelYesInsrn.for = "insrn_indst_carer_y";
 					labelYesInsrn.innerText = "유";
 					inputYesInsrnBox.appendChild(labelYesInsrn);
 					
 					var inputNoInsrnBox = document.createElement("div");
-					inputNoInsrnBox.classList.add("form-check");
+					//inputNoInsrnBox.classList.add("form-check");
 					inputNoInsrnBox.style.float = "left";
 					bodyTr2Td1.appendChild(inputNoInsrnBox);
 					
 					var inputNoInsrn = document.createElement("input");
-					inputNoInsrn.classList.add("form-check-input");
+					//inputNoInsrn.classList.add("form-check-input");
 					inputNoInsrn.type = "radio";
 					inputNoInsrn.name = "insrn_indst_carer_yn";
 					inputNoInsrn.id = "insrn_indst_carer_n";
@@ -1074,7 +1074,7 @@ function tableFiveInfo(){
 					inputNoInsrnBox.appendChild(inputNoInsrn);
 					
 					var labelNoInsrn = document.createElement("label");
-					labelNoInsrn.classList.add("form-check-label");
+					//labelNoInsrn.classList.add("form-check-label");
 					labelNoInsrn.for = "insrn_indst_carer_n";
 					labelNoInsrn.innerText = "무";
 					inputNoInsrnBox.appendChild(labelNoInsrn);
@@ -1086,7 +1086,7 @@ function tableFiveInfo(){
 	                var InputInsrnIndstCarerEtc = document.createElement("input");
 	                InputInsrnIndstCarerEtc.id = "insrn_indst_carer_etc";
 	                InputInsrnIndstCarerEtc.name = "insrn_indst_carer_etc";
-	                InputInsrnIndstCarerEtc.classList.add("form-control");
+	               // InputInsrnIndstCarerEtc.classList.add("form-control");
 	                var insrnIndstCarerEtc =  jsonObj.map.INSRN_INDST_CARER_ETC
 	                if(insrnIndstCarerEtc == "" || insrnIndstCarerEtc == undefined) {
 		                InputInsrnIndstCarerEtc.value = ""; 
@@ -1151,13 +1151,13 @@ function tableFiveInfo(){
 	                bodyTr3.appendChild(bodyTr3Td1);
 	                
 	                var inputYesCriBox = document.createElement("div");
-	                inputYesCriBox.classList.add("form-check");
+	                //inputYesCriBox.classList.add("form-check");
 	                inputYesCriBox.style.float = "left";
 	                inputYesCriBox.style.margin = "0px 20px 0px 50px";
 	                bodyTr3Td1.appendChild(inputYesCriBox);
 	                
 	                var inputYesCri = document.createElement("input");
-	                inputYesCri.classList.add("form-check-input");
+	                //inputYesCri.classList.add("form-check-input");
 	                inputYesCri.type = "radio";
 	                inputYesCri.name = "criminal_penalty_carer_yn";
 	                inputYesCri.id = "criminal_penalty_carer_y";
@@ -1168,18 +1168,18 @@ function tableFiveInfo(){
 	                inputYesCriBox.appendChild(inputYesCri);
 	                
 	                var labelYesCri = document.createElement("label");
-	                labelYesCri.classList.add("form-check-label");
+	               // labelYesCri.classList.add("form-check-label");
 	                labelYesCri.for = "criminal_penalty_carer_y";
 	                labelYesCri.innerText = "유";
 	                inputYesCriBox.appendChild(labelYesCri);
 	                
 	                var inputNoCriBox = document.createElement("div");
-					inputNoCriBox.classList.add("form-check");
+					//inputNoCriBox.classList.add("form-check");
 					inputNoCriBox.style.float = "left";
 					bodyTr3Td1.appendChild(inputNoCriBox);
 					
 					var inputNoCri = document.createElement("input");
-					inputNoCri.classList.add("form-check-input");
+					//inputNoCri.classList.add("form-check-input");
 					inputNoCri.type = "radio";
 					inputNoCri.name = "criminal_penalty_carer_yn";
 					inputNoCri.id = "criminal_penalty_carer_ n";
@@ -1190,7 +1190,7 @@ function tableFiveInfo(){
 					inputNoCriBox.appendChild(inputNoCri);
 					
 					var labelNoCri = document.createElement("label");
-					labelNoCri.classList.add("form-check-label");
+					//labelNoCri.classList.add("form-check-label");
 					labelNoCri.for = "criminal_penalty_carer_n";
 					labelNoCri.innerText = "무";
 					inputNoCriBox.appendChild(labelNoCri);
@@ -1201,7 +1201,7 @@ function tableFiveInfo(){
 	               	var inputCriPenCarerEtc = document.createElement("input");
 	               	inputCriPenCarerEtc.id = "criminal_penalty_carer_etc";
 	               	inputCriPenCarerEtc.name = "criminal_penalty_carer_etc";
-	               	inputCriPenCarerEtc.classList.add("form-control");
+	               	//inputCriPenCarerEtc.classList.add("form-control");
 	               	var criPenCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
 	               	if(criPenCarerEtc == "" || criPenCarerEtc == undefined) {
 	               		inputCriPenCarerEtc.value = "";
@@ -1384,7 +1384,7 @@ function tableSixInfo(){
 	
 					var inputSchoolName = document.createElement("input");
 					inputSchoolName.type = "text";
-					inputSchoolName.classList.add("form-control");
+					//inputSchoolName.classList.add("form-control");
 					inputSchoolName.value = jsonObj.map.EDCTN_SCHOOL_NAME;
 					inputSchoolName.id = "edctn_school_name";
 					inputSchoolName.name = "edctn_school_name";
@@ -1401,7 +1401,7 @@ function tableSixInfo(){
 	
 					var inputEdctnMajor = document.createElement("input");
 					inputEdctnMajor.type = "text";
-					inputEdctnMajor.classList.add("form-control");
+					//inputEdctnMajor.classList.add("form-control");
 					inputEdctnMajor.value = jsonObj.map.EDCTN_MAJOR;
 					inputEdctnMajor.id = "edctn_major";
 					inputEdctnMajor.name = "edctn_major";
@@ -1424,7 +1424,7 @@ function tableSixInfo(){
 	
 					var inputEdctnAdmsnDate = document.createElement("input");
 					inputEdctnAdmsnDate.type = "date";
-					inputEdctnAdmsnDate.classList.add("form-control");
+					//inputEdctnAdmsnDate.classList.add("form-control");
 					//console.log(jsonObj.map.EDCTN_ADMSN_DATE);
 					inputEdctnAdmsnDate.value = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
 					inputEdctnAdmsnDate.id = "edctn_admsn_date";
@@ -1442,7 +1442,7 @@ function tableSixInfo(){
 	                
 	                var inputEdctnGrdtnDate = document.createElement("input");
 	                inputEdctnGrdtnDate.type = "date";
-	                inputEdctnGrdtnDate.classList.add("form-control");
+	                //inputEdctnGrdtnDate.classList.add("form-control");
 	                inputEdctnGrdtnDate.value = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
 	                inputEdctnGrdtnDate.id = "edctn_grdtn_date";
 	                inputEdctnGrdtnDate.name = "edctn_grdtn_date";
@@ -1462,7 +1462,7 @@ function tableSixInfo(){
 	                
 	                var inputEdctnDegree = document.createElement("input");
 	                inputEdctnDegree.type = "text";
-	                inputEdctnDegree.classList.add("form-control");
+	                //inputEdctnDegree.classList.add("form-control");
 	                inputEdctnDegree.value = jsonObj.map.EDCTN_DEGREE;
 	                inputEdctnDegree.id = "edctn_degree";
 	                inputEdctnDegree.name = "edctn_degree";
@@ -1480,13 +1480,13 @@ function tableSixInfo(){
 	                
 	                // 220923 hyejin 추가
 	                var inputEdctnFinalYBox = document.createElement("div");
-	                inputEdctnFinalYBox.classList.add("form-check");
+	                //inputEdctnFinalYBox.classList.add("form-check");
 	                inputEdctnFinalYBox.style.float = "left";
 	                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
 					bodyTr2Td2.appendChild(inputEdctnFinalYBox);
 					
 					var inputEdctnFinalY = document.createElement("input");
-					inputEdctnFinalY.classList.add("form-check-input");
+					//inputEdctnFinalY.classList.add("form-check-input");
 					inputEdctnFinalY.type = "radio";
 					inputEdctnFinalY.name = "edctn_final_yn";
 					inputEdctnFinalY.id = "edctn_final_y";
@@ -1495,20 +1495,20 @@ function tableSixInfo(){
 					inputEdctnFinalYBox.appendChild(inputEdctnFinalY);
 					
 					var labelEdctnFinalY = document.createElement("label");
-					labelEdctnFinalY.classList.add("form-check-label");
+					//labelEdctnFinalY.classList.add("form-check-label");
 					labelEdctnFinalY.setAttribute("for", "edctn_final_y");
 					labelEdctnFinalY.innerText = "예";
 					inputEdctnFinalYBox.appendChild(labelEdctnFinalY);
 					
 					
 					var inputEdctnFinalNBox = document.createElement("div");
-					inputEdctnFinalNBox.classList.add("form-check");
+					//inputEdctnFinalNBox.classList.add("form-check");
 					inputEdctnFinalNBox.style.float = "left";
 					inputEdctnFinalNBox.style.marginTop = "5px";
 					bodyTr2Td2.appendChild(inputEdctnFinalNBox);
 					
 					var inputEdctnFinalN = document.createElement("input");
-					inputEdctnFinalN.classList.add("form-check-input");
+					//inputEdctnFinalN.classList.add("form-check-input");
 					inputEdctnFinalN.type = "radio";
 					inputEdctnFinalN.name = "edctn_final_yn";
 					inputEdctnFinalN.id = "edctn_final_n";
@@ -1517,7 +1517,7 @@ function tableSixInfo(){
 					inputEdctnFinalNBox.appendChild(inputEdctnFinalN);
 					
 					var labelEdctnFinalN = document.createElement("label");
-					labelEdctnFinalN.classList.add("form-check-label");
+					//labelEdctnFinalN.classList.add("form-check-label");
 					labelEdctnFinalN.setAttribute("for", "edctn_final_n");
 					labelEdctnFinalN.innerText = "아니오";
 					inputEdctnFinalNBox.appendChild(labelEdctnFinalN);
@@ -1679,7 +1679,7 @@ function tableSevenInfo(){
 	                theadTr.appendChild(theadTrTd1);
 	                
 	                var inputCompanyName = document.createElement("input");
-	                inputCompanyName.classList.add("form-control");
+	                //inputCompanyName.classList.add("form-control");
 	                inputCompanyName.type = "text";
 	                inputCompanyName.id = "company_name";
 	                inputCompanyName.name = "company_name";
@@ -1696,7 +1696,7 @@ function tableSevenInfo(){
 	                theadTr.appendChild(theadTrTd2);
 	                
 	                var inputCarerType = document.createElement("input");
-	                inputCarerType.classList.add("form-control");
+	                //inputCarerType.classList.add("form-control");
 	                inputCarerType.type = "text";
 	                inputCarerType.id = "carer_type";
 	                inputCarerType.name = "carer_type";
@@ -1719,7 +1719,7 @@ function tableSevenInfo(){
 	                bodyTr1.appendChild(bodyTr1Td1);
 	                
 	                var inputWorkStartDate = document.createElement("input");
-	                inputWorkStartDate.classList.add("form-control");
+	                //inputWorkStartDate.classList.add("form-control");
 	                inputWorkStartDate.type = "date";
 	                inputWorkStartDate.id = "work_start_date";
 	                inputWorkStartDate.name = "work_start_date";
@@ -1736,7 +1736,7 @@ function tableSevenInfo(){
 	                bodyTr1.appendChild(bodyTr1Td2);
 	
 					var inputWorkEndDate = document.createElement("input");
-	                inputWorkEndDate.classList.add("form-control");
+	                //inputWorkEndDate.classList.add("form-control");
 	                inputWorkEndDate.type = "date";
 	                inputWorkEndDate.id = "work_end_date";
 	                inputWorkEndDate.name = "work_end_date";
@@ -1756,7 +1756,7 @@ function tableSevenInfo(){
 	                bodyTr2.appendChild(bodyTr2Td1);
 	                
 	                var inputWorkPosition = document.createElement("input");
-	                inputWorkPosition.classList.add("form-control");
+	                //inputWorkPosition.classList.add("form-control");
 	                inputWorkPosition.type = "text";
 	                inputWorkPosition.id = "work_position";
 	                inputWorkPosition.name = "work_position";
@@ -1773,7 +1773,7 @@ function tableSevenInfo(){
 	                bodyTr2.appendChild(bodyTr2Td2);
 	
 					var inputWorkDepartment = document.createElement("input");
-	                inputWorkDepartment.classList.add("form-control");
+	                //inputWorkDepartment.classList.add("form-control");
 	                inputWorkDepartment.type = "text";
 	                inputWorkDepartment.id = "work_department";
 	                inputWorkDepartment.name = "work_department";
@@ -1794,7 +1794,7 @@ function tableSevenInfo(){
 	                bodyTr3.appendChild(bodyTr3Td);
 	
 					var inputWorkDescription = document.createElement("input");
-	                inputWorkDescription.classList.add("form-control");
+	                //inputWorkDescription.classList.add("form-control");
 	                inputWorkDescription.type = "text";
 	                inputWorkDescription.id = "work_description";
 	                inputWorkDescription.name = "work_description";
@@ -1815,7 +1815,7 @@ function tableSevenInfo(){
 	                bodyTr4.appendChild(bodyTr4Td);
 	
 					var inputCarerDesc = document.createElement("textarea");
-	                inputCarerDesc.classList.add("form-control");
+	                //inputCarerDesc.classList.add("form-control");
 	                inputCarerDesc.id = "carer_description";
 	                inputCarerDesc.name = "carer_description";
 	                inputCarerDesc.value = jsonObj.map.CARER_DESCRIPTION;
@@ -1835,7 +1835,7 @@ function tableSevenInfo(){
 	                bodyTr5.appendChild(bodyTr5Td);
 	
 					var inputSpecialNoteDesc = document.createElement("textarea");
-	                inputSpecialNoteDesc.classList.add("form-control");
+	                //inputSpecialNoteDesc.classList.add("form-control");
 	                inputSpecialNoteDesc.id = "special_note_description";
 	                inputSpecialNoteDesc.name = "special_note_description";
 	                inputSpecialNoteDesc.value = jsonObj.map.SPECIAL_NOTE_DESCRIPTION;
@@ -1971,7 +1971,7 @@ function tableEightInfo(){
 	                theadTr.appendChild(theadTrTd1);
 	                
 					var crtfcTypeSelect = document.createElement("select");
-					crtfcTypeSelect.classList.add("form-select");
+					//crtfcTypeSelect.classList.add("form-select");
 					crtfcTypeSelect.id = "crtfc_type";
 					crtfcTypeSelect.name = "crtfc_type";
 					theadTrTd1.appendChild(crtfcTypeSelect);
@@ -2030,7 +2030,7 @@ function tableEightInfo(){
 	                
 	                /*
 	                var inputCrtfcType = document.createElement("input");
-	                inputCrtfcType.classList.add("form-control");
+	                //inputCrtfcType.classList.add("form-control");
 	                inputCrtfcType.type = "text";
 	                inputCrtfcType.id = "crtfc_type";
 	                inputCrtfcType.name = "crtfc_type";
@@ -2050,7 +2050,7 @@ function tableEightInfo(){
 	                theadTr.appendChild(theadTrTd2);
 	                
 	                var inputIssueAgency = document.createElement("input");
-	                inputIssueAgency.classList.add("form-control");
+	                //inputIssueAgency.classList.add("form-control");
 	                inputIssueAgency.type = "text";
 	                inputIssueAgency.id = "issue_agency";
 	                inputIssueAgency.name = "issue_agency";
@@ -2073,7 +2073,7 @@ function tableEightInfo(){
 	                bodyTr1.appendChild(bodyTr1Td1);
 	                
 	                var inputCrtfcNumber = document.createElement("input");
-	                inputCrtfcNumber.classList.add("form-control");
+	                //inputCrtfcNumber.classList.add("form-control");
 	                inputCrtfcNumber.type = "text";
 	                inputCrtfcNumber.id = "crtfc_number";
 	                inputCrtfcNumber.name = "crtfc_number";
@@ -2090,7 +2090,7 @@ function tableEightInfo(){
 	                bodyTr1.appendChild(bodyTr1Td2);
 	                
 	                var inputIssueDate = document.createElement("input");
-	                inputIssueDate.classList.add("form-control");
+	                //inputIssueDate.classList.add("form-control");
 	                inputIssueDate.type = "date";
 	                inputIssueDate.id = "issue_date";
 	                inputIssueDate.name = "issue_date";
