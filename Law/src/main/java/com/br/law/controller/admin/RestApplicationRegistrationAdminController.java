@@ -56,4 +56,27 @@ public class RestApplicationRegistrationAdminController {
 		return list;
 	}
 	
+	//분류별 출력 
+	@RequestMapping("accList")
+	public Map<String, Object> accList(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("json", applicationRegistrationAdminService.accList());
+		
+		map.put("result", "success");
+		
+		return map;
+	}
+		
+		//option 목록 출력
+	@RequestMapping("optionBoxapp")
+	public Map<String, Object> optionBoxapp(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("Tb_010", applicationRegistrationAdminService.optionBoxapp());
+		
+		return map;
+	}
+
+	
 }

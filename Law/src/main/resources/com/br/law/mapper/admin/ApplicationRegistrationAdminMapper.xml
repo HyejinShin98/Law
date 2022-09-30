@@ -83,6 +83,21 @@
 		UPDATE tb_005 SET aplcn_dtls_sts = 'evaluationCp' WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</update>
 	
+	<!-- 신청 반려 불러오기 -->
+	<select id="accList" resultType="map" >
+		SELECT * FROM tb_001 t1, tb_005 t5, tb_010 t10, tb_011 t11, tb_014 t14
+		WHERE t1.USER_PROPER_NUM  = t14.USER_PROPER_NUM 
+		AND t5.APLCN_DTLS_PROPER_NUM  = t14.APLCN_DTLS_PROPER_NUM 
+		AND t10.TRIAL_FCLTT_PROPER_NUM  = t14.TRIAL_FCLTT_PROPER_NUM 
+		AND t11.COURT_PROPER_NUM = t14.COURT_PROPER_NUM 
+		AND t5.APLCN_DTLS_STS = 'accept'
+	</select>
+	
+	<!-- optionBox 조건별 불러오기 -->
+	<select id="optionBoxapp" resultType="com.br.law.vo.Tb_010" >
+		SELECT * FROM TB_010 ORDER BY TRIAL_FCLTT_PROPER_NUM asc
+	</select>
+	
 	
 	
 	

@@ -1,6 +1,5 @@
 package com.br.law.service.admin;
 
-import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +14,7 @@ import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_009;
+import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_014;
 
 @Service
@@ -99,5 +99,12 @@ public class ApplicationRegistrationAdminService {
 		applicationRegistrationAdminMapper.evaluationCpUp(param);
 	}
 	
+	public List<Map<String, Object>> accList(){
+		return applicationRegistrationAdminMapper.accList();
+	}
+	
+	public List<Tb_010> optionBoxapp() {
+		return applicationRegistrationAdminMapper.optionBoxapp();
+	}
 	
 }

@@ -158,6 +158,10 @@ public class ApplicationRegistrationAdminController {
 		return "admin/fileDownLoadProcess";
 	}
 	
+	@RequestMapping("acting")
+	public String acting() {
+		return "user/acting";
+	}
 	
 
 	
