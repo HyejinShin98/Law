@@ -91,7 +91,7 @@ h4{
 				<!-- 현재위치 -->
 				<div class="row text-end">
 					<div class="col" style="font-size: 11px;">
-						<span> 홈 > My Page ></span><span style="color: #72a8fe;font-weight: bold;">내정보</span>
+						<span> 홈 > My Page > 내정보 > </span><span style="color: #72a8fe;font-weight: bold;">내정보 관리</span>
 					</div>
 				</div>
 				<!-- 네비바 -->
@@ -161,12 +161,12 @@ h4{
 					</div>
 					
 			
+				</div>
 			</div>
-		
 		</div>
-	
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
 	</div>
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

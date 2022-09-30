@@ -101,7 +101,7 @@ h4{
 				<!-- 현재위치 -->
 				<div class="row text-end">
 					<div class="col" style="font-size: 11px;">
-						<span> 홈 > My Page > </span><span style="color: #72a8fe;font-weight: bold;">내정보</span>
+						<span> 홈 > My Page > 내정보 > </span><span style="color: #72a8fe;font-weight: bold;">회원탈퇴</span>
 					</div>
 				</div>
 				
@@ -124,7 +124,7 @@ h4{
 						<!-- 내용 -->
 						<div class="row content">
 							<div class="col">
-								<div class="row py-4">
+								<div class="row py-3">
 									<div class="col">
 										<div class="row"><div class="col fs-5 fw-bold mb-1 text-secondary"><h4>아이디 재사용 및 복구 불가 안내</h4></div></div>
 										<div class="row"><div class="col text-secondary">
@@ -144,8 +144,10 @@ h4{
 										</div>	
 										<div class="row pt-2">
 											<div class="col-2 fw-bold pt-1"><span>비밀번호</span></div>
-											<div class="col-3"><input type="password" class="" placeholder="비밀번호 입력" id="user_pw" style="width:140px;"></div>
-											<div class="col"><input type="button" class="" value="탈퇴하기" onclick="withdrawal();"></div>
+											<div class="col-3" style="width: 230px;">
+												<input type="password" class="" placeholder="비밀번호 입력" id="user_pw" style="float:left;">
+												<input type="button" class="mx-2" value="탈퇴하기" onclick="withdrawal();" style="float:left;">
+											</div>
 										</div>
 										<input type="hidden" value="${user.user_proper_num }" id="user_proper_num">
 									

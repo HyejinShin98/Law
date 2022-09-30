@@ -91,7 +91,7 @@ function modifyMyInfo() {
 				<!-- 현재위치 -->
 				<div class="row text-end">
 					<div class="col" style="font-size: 11px;">
-						<span> 홈 > My Page > </span><span style="color: #72a8fe;font-weight: bold;">내정보</span>
+						<span> 홈 > My Page > 내정보 > </span><span style="color: #72a8fe;font-weight: bold;">내정보 관리</span>
 					</div>
 				</div>
 				
