@@ -67,7 +67,7 @@ body{
 </script>
 </head>
 <body>
-
+<!-- 테스트 주석 -->
 	<div class="container-fluid" style="width: 960px;">
 		<jsp:include page="../common/header.jsp"></jsp:include>
 		
