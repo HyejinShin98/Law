@@ -5,9 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.law.controller.user.TrialUserController;
+import com.br.law.mapper.user.ApplicationRegistrationMapper;
 import com.br.law.mapper.user.TrialUserMapper;
 import com.br.law.vo.Tb_001;
 import com.br.law.vo.Tb_005;
@@ -19,9 +22,12 @@ import com.br.law.vo.Tb_009;
 @Service
 public class TrialUserService {
 	
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(TrialUserController.class);
 	
 	@Autowired
 	private TrialUserMapper trialMainMapper;
+	@Autowired
+	private ApplicationRegistrationMapper applicationRegistrationMapper;
 	
 	public Tb_001 login(Tb_001 user) {
 		return trialMainMapper.login(user);
@@ -106,9 +112,32 @@ public class TrialUserService {
 		return trialMainMapper.modifyTableEight(param);
 	}
 	
-	public int modifyTableNine(Tb_009 param) {
-		return trialMainMapper.modifyTableNine(param);
+	public boolean modifyTableNine(List<Tb_009> list) {
+		boolean result = true;
+		
+		for(Tb_009 item : list) {
+			// 등재신청 첨부파일 기본기 & 서류타입으로 해당 데이터가 존재하는지 검색
+			Tb_009 atch = trialMainMapper.selectTableNineByAplcnNoAndFileType(item.getAplcn_dtls_proper_num(), item.getFile_type());
+			LOGGER.debug("TrialUserService modifyTableNine list - Tb_009 : " + item);
+			
+			if(atch != null) {	// 해당 타입의 첨부파일을 저장한 데이터가 있으면 update
+				trialMainMapper.modifyTableNine(item);
+				
+			} else { // 해당 첨부파일이 존재하지 않는다면 insert
+				applicationRegistrationMapper.uploadFilesIns(atch);
+			}
+			
+		}
+		// 파일 하나라도 업데이트 실패 시 return -> false
+		return result;
 	}
+	
+	public int updateApplicationStatus(int aplcn_dtls_proper_num, String aplcn_dtls_sts) {
+		LOGGER.info("aplcn_dtls_proper_num : " + aplcn_dtls_proper_num);
+		LOGGER.info("aplcn_dtls_sts : " + aplcn_dtls_sts);
+		return trialMainMapper.updateApplicationStatus(aplcn_dtls_proper_num, aplcn_dtls_sts);
+	}
+	
 	
 	public List<Map<String, Object>> getMyActiveList(int user_proper_num) {
 		return trialMainMapper.selectMyActiveList(user_proper_num);
@@ -147,13 +176,13 @@ public class TrialUserService {
 		
 		switch (file_code) {
 		case "co" :
-			fileCodeKoStr = "공통서류";
+			fileCodeKoStr = "공통";
 			break;
 		case "pe" :
-			fileCodeKoStr = "개인서류";
+			fileCodeKoStr = "개인";
 			break;
 		case "ot" :
-			fileCodeKoStr = "기타서류";
+			fileCodeKoStr = "기타";
 			break;
 		}
 		return fileCodeKoStr;

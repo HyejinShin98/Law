@@ -168,8 +168,15 @@
 			, FILE_TYPE = #{file_type}
 			, ORIGINAL_FILE_NAME = #{original_file_name}
 			, FILE_PATH = #{file_path}
-		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+		WHERE APLCN_ATCH_FILE_PROPER_NUM = #{aplcn_atch_file_proper_num}
 	</update>
+	
+	<!-- 등재신청번호 & 서류타입으로 나의 등재신청 첨부파일 정보 조회 -->
+	<select id="selectTableNineByAplcnNoAndFileType" resultType="com.br.law.vo.Tb_009">
+		SELECT * FROM TB_009
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+		AND FILE_TYPE = #{file_type}
+	</select>
 	
 	<!-- 나의 활동내역 리스트 -->
 	<select id="selectMyActiveList" resultType="map">

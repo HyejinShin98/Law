@@ -118,7 +118,9 @@ public class TrialUserController {
 	@RequestMapping("/modifyPassword")
 	public String modifyPassword(HttpSession session, Model model) {
 		try {
-			chkLoginSession(session);
+			Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
+			Tb_001 user = trialMainService.getMyInfo(sessionUser.getUser_proper_num());
+			model.addAttribute("user", user);
 			
 		} catch(Exception e) {
 			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));

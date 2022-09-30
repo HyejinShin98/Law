@@ -12,7 +12,7 @@
 	
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
-<title>평정 기준표 관리</title>
+<title>신청자 조회</title>
 <style>
 	
 </style>

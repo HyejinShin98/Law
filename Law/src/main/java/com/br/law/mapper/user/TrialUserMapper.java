@@ -55,6 +55,12 @@ public interface TrialUserMapper {
 	// 나의 등재신청 첨부파일정보 수정
 	public int modifyTableNine(Tb_009 param);
 	
+	// 등재신청번호 & 서류타입으로 나의 등재신청 첨부파일 정보 조회
+	public Tb_009 selectTableNineByAplcnNoAndFileType(@Param("aplcn_dtls_proper_num") int aplcn_dtls_proper_num, @Param("file_type") String file_type);
+	
+	// 등재신청 상태 변경
+	public int updateApplicationStatus(@Param("aplcn_dtls_proper_num") int aplcn_dtls_proper_num, @Param("aplcn_dtls_sts") String aplcn_dtls_sts);
+	
 	// 나의 활동내역 리스트
 	public List<Map<String, Object>> selectMyActiveList(int user_proper_num);
 

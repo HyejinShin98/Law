@@ -19,6 +19,19 @@ function changeBtn(addId, navClassName){
 	addBtn.classList.add("fw-bold");
 }
 
+function setDateInput(dateVal) {
+	var date = new Date(dateVal);
+	var yyyy = date.getFullYear();
+	
+	var month = parseInt(date.getMonth()+1);
+	var mm = month > 9 ? month : '0' + month;
+	
+	var day = date.getDate();
+	var dd = day > 9 ? day : '0' + day;
+	
+	return yyyy + '-' + mm + '-' + dd; 
+}
+
 function tableOneInfo(){
     var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {
@@ -38,7 +51,7 @@ function tableOneInfo(){
                 rowBox.classList.add("row");
 
            
-                
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -54,6 +67,7 @@ function tableOneInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
+                */
                 
                 var tableRowBox = document.createElement("div");
                 tableRowBox.classList.add("row");
@@ -262,7 +276,7 @@ function tableFiveInfo(){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
 
-                
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -278,7 +292,8 @@ function tableFiveInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
-
+				*/
+				
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
 				tableRow.classList.add("mx-0");
@@ -296,10 +311,14 @@ function tableFiveInfo(){
                 var colGroupOne = document.createElement("col");
                 colGroupOne.setAttribute("width", "20%");
                 colGroup.appendChild(colGroupOne);
-
+                
                 var colGroupTwo = document.createElement("col");
-                colGroupTwo.setAttribute("width", "80%");
+                colGroupTwo.setAttribute("width", "20%");
                 colGroup.appendChild(colGroupTwo);
+
+                var colGroupThree = document.createElement("col");
+                colGroupThree.setAttribute("width", "60%");
+                colGroup.appendChild(colGroupThree);
 
                 // var colGroupThree = document.createElement("col");
                 // colGroupThree.setAttribute("width", "15%");
@@ -322,12 +341,36 @@ function tableFiveInfo(){
 
                 var bodyTr1Th1 = document.createElement("th");
                 bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="소송사건 당사자 경력 내용" + jsonObj.map.LIGTN_CASE_CARER_YN;
+                bodyTr1Th1.innerText="소송사건 당사자 경력";
                 bodyTr1.appendChild(bodyTr1Th1);
 
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText=jsonObj.map.LIGTN_CASE_CARER_ETC;
-                bodyTr1.appendChild(bodyTr1Td1);
+				var bodyTr1Td1 = document.createElement("td");
+				bodyTr1.appendChild(bodyTr1Td1);
+
+				var ligtnYNBox = document.createElement("div");
+				bodyTr1Td1.appendChild(ligtnYNBox);
+				
+				var ligtnYNSpan = document.createElement("span");
+				var ligtnCaseCarerYn = jsonObj.map.LIGTN_CASE_CARER_YN;
+				if(ligtnCaseCarerYn == 'y') {
+					ligtnYNSpan.innerText = '유';
+				} else if(ligtnCaseCarerYn == 'n') {
+					ligtnYNSpan.innerText = '무';
+				}
+				ligtnYNBox.appendChild(ligtnYNSpan);
+				
+				var bodyTr1Td2 = document.createElement("td");
+                bodyTr1.appendChild(bodyTr1Td2);
+                
+				var ligtnCaseCarerEtcSpan = document.createElement("span");
+				var ligtnCaseCarerEtc = jsonObj.map.LIGTN_CASE_CARER_ETC;
+				if(ligtnCaseCarerEtc == '' || ligtnCaseCarerEtc == undefined) {
+					ligtnCaseCarerEtcSpan.innerText = '';
+				} else {
+					ligtnCaseCarerEtcSpan.innerText = ligtnCaseCarerEtc;
+				}
+                bodyTr1Td2.appendChild(ligtnCaseCarerEtcSpan);
+				
 
                 // var bodyTr1Th2 = document.createElement("th");
                 // bodyTr1Th2.classList.add("text-center");
@@ -349,12 +392,36 @@ function tableFiveInfo(){
 
                 var bodyTr2Th1 = document.createElement("th");
                 bodyTr2Th1.classList.add("table-light");
-                bodyTr2Th1.innerText ="보험업계 경력 내용" + jsonObj.map.INSRN_INDST_CARER_YN;
+                //bodyTr2Th1.innerText ="보험업계 경력 내용" + jsonObj.map.INSRN_INDST_CARER_YN;
+                bodyTr2Th1.innerText ="보험업계 경력";
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText=jsonObj.map.INSRN_INDST_CARER_ETC;
                 bodyTr2.appendChild(bodyTr2Td1);
+                
+                var insrnYnBox = document.createElement("div");
+				bodyTr2Td1.appendChild(insrnYnBox);
+				
+				var insrnYNSpan = document.createElement("span");
+				var insrnCarerYn = jsonObj.map.INSRN_INDST_CARER_YN;
+				if(insrnCarerYn == 'y') {
+					insrnYNSpan.innerText = '유';
+				} else if(insrnCarerYn == 'n') {
+					insrnYNSpan.innerText = '무';
+				}
+				insrnYnBox.appendChild(insrnYNSpan);
+                
+                var bodyTr2Td2 = document.createElement("td");
+                bodyTr2.appendChild(bodyTr2Td2);
+                
+                var insrnCarerEtcSpan = document.createElement("span");
+				var insrnCarerEtc = jsonObj.map.INSRN_INDST_CARER_ETC;
+				if(insrnCarerEtc == '' || insrnCarerEtc == undefined) {
+					insrnCarerEtcSpan.innerText = '';
+				} else {
+					insrnCarerEtcSpan.innerText = insrnCarerEtc;
+				}
+                bodyTr2Td2.appendChild(insrnCarerEtcSpan);
 
                 var bodyTr3 = document.createElement("tr");
                 bodyTr3.setAttribute("rowspan", "2");
@@ -366,12 +433,36 @@ function tableFiveInfo(){
 
                 var bodyTr3Th1 = document.createElement("th");
                 bodyTr3Th1.classList.add("table-light");
-                bodyTr3Th1.innerText="형사처벌 경력 내용" + jsonObj.map.CRIMINAL_PENALTY_CARER_YN;
+                //bodyTr3Th1.innerText="형사처벌 경력 내용" + jsonObj.map.CRIMINAL_PENALTY_CARER_YN;
+                bodyTr3Th1.innerText="형사처벌 경력";
                 bodyTr3.appendChild(bodyTr3Th1);
 
                 var bodyTr3Td1 = document.createElement("td");
-                bodyTr3Td1.innerText= jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
                 bodyTr3.appendChild(bodyTr3Td1);
+                
+                var criminalYNBox = document.createElement("div");
+				bodyTr3Td1.appendChild(criminalYNBox);
+				
+				var criminalYNSpan = document.createElement("span");
+				var criminalCarerYn = jsonObj.map.LIGTN_CASE_CARER_YN;
+				if(criminalCarerYn == 'y') {
+					criminalYNSpan.innerText = '유';
+				} else if(criminalCarerYn == 'n') {
+					criminalYNSpan.innerText = '무';
+				}
+				criminalYNBox.appendChild(criminalYNSpan);
+            
+            	var bodyTr3Td2 = document.createElement("td");
+                bodyTr3.appendChild(bodyTr3Td2);
+                
+				var criminalCarerEtcSpan = document.createElement("span");
+				var criminalCarerEtc = jsonObj.map.LIGTN_CASE_CARER_ETC;
+				if(criminalCarerEtc == '' || criminalCarerEtc == undefined) {
+					criminalCarerEtcSpan.innerText = '';
+				} else {
+					criminalCarerEtcSpan.innerText = criminalCarerEtc;
+				}
+                bodyTr3Td2.appendChild(criminalCarerEtcSpan);
                 
                 commentListBox.appendChild(rowBox);
 
@@ -387,14 +478,14 @@ function tableSixInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				console.log(jsonObj);
+
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
    
-                
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -410,7 +501,7 @@ function tableSixInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
-
+				*/
                 //기본정보 끝
 
                 //table시작
@@ -460,8 +551,11 @@ function tableSixInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText=jsonObj.EDCTN_SCHOOL_NAME;
                 theadTr.appendChild(theadTrTd1);
+                
+                var schoolName = document.createElement("span");
+                schoolName.innerText = jsonObj.map.EDCTN_SCHOOL_NAME;
+                theadTrTd1.appendChild(schoolName);
 
                 var theadTrTh2 = document.createElement("th");
                 theadTrTh2.classList.add("text-center");
@@ -470,8 +564,11 @@ function tableSixInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText=jsonObj.EDCTN_MAJOR;
                 theadTr.appendChild(theadTrTd2);
+                
+                var edctnMajor = document.createElement("span");
+                edctnMajor.innerText = jsonObj.map.EDCTN_MAJOR;
+                theadTrTd2.appendChild(edctnMajor);
 
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
@@ -486,8 +583,11 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText=jsonObj.EDCTN_ADMSN_DATE;
                 bodyTr1.appendChild(bodyTr1Td1);
+                
+                var edctnAdmsnDate = document.createElement("span");
+                edctnAdmsnDate.innerText = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
+                bodyTr1Td1.appendChild(edctnAdmsnDate);
 
                 var bodyTr1Th2 = document.createElement("th");
                 bodyTr1Th2.classList.add("text-center");
@@ -496,8 +596,11 @@ function tableSixInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText=jsonObj.EDCTN_GRDTN_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
+                
+                var edctnGrdtnDate = document.createElement("span");
+                edctnGrdtnDate.innerText = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
+                bodyTr1Td2.appendChild(edctnGrdtnDate);
 
                 var bodyTr2 = document.createElement("tr");
                 tbody.appendChild(bodyTr2);
@@ -509,18 +612,29 @@ function tableSixInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText=jsonObj.EDCTN_DEGREE;
                 bodyTr2.appendChild(bodyTr2Td1);
+                
+                var edctnDegree = document.createElement("span");
+                edctnDegree.innerText = jsonObj.map.EDCTN_DEGREE;
+                bodyTr2Td1.appendChild(edctnDegree);
 
                 var bodyTr2Th2 = document.createElement("th");
-                bodyTr2Th2.innerText="최종학력 여부";
+                bodyTr2Th2.innerText="최종학력";
                 bodyTr2Th2.classList.add("text-center");
                 bodyTr2Th2.classList.add("table-light");
                 bodyTr2.appendChild(bodyTr2Th2);
 
                 var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText=jsonObj.EDCTN_FINAL__YN;
                 bodyTr2.appendChild(bodyTr2Td2);
+                
+                var edctnFinalYNSpan = document.createElement("span");
+                var edctnFinalYN = jsonObj.map.EDCTN_FINAL_YN;
+                if(edctnFinalYN == 'y') {
+                	edctnFinalYNSpan.innerText = '예';
+                } else if(edctnFinalYN == 'n') {
+                	edctnFinalYNSpan.innerText = '아니오';
+                }
+                bodyTr2Td2.appendChild(edctnFinalYNSpan);
 
                 commentListBox.appendChild(rowBox);
                 
@@ -537,13 +651,14 @@ function tableSevenInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				console.log(jsonObj);
+
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row"); 
                 
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -559,7 +674,7 @@ function tableSevenInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
-
+				*/
                 //기본정보 끝
 
                 //table시작
@@ -609,8 +724,11 @@ function tableSevenInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText=jsonObj.COMPANY_NAME;
                 theadTr.appendChild(theadTrTd1);
+                
+                var companyName = document.createElement("span");
+                companyName.innerText = jsonObj.map.COMPANY_NAME;
+                theadTrTd1.appendChild(companyName);
 
                 var theadTrTh2 = document.createElement("th");
                 theadTrTh2.classList.add("text-center");
@@ -619,8 +737,11 @@ function tableSevenInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText=jsonObj.CARER_TYPE;
                 theadTr.appendChild(theadTrTd2);
+                
+                var carerType = document.createElement("span");
+                carerType.innerText = jsonObj.map.CARER_TYPE;
+                theadTrTd2.appendChild(carerType);
 
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
@@ -635,8 +756,11 @@ function tableSevenInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText=jsonObj.WORK_START_DATE;
                 bodyTr1.appendChild(bodyTr1Td1);
+                
+                var workStartDate = document.createElement("span");
+                workStartDate.innerText = setDateInput(jsonObj.map.WORK_START_DATE);
+                bodyTr1Td1.appendChild(workStartDate);
 
                 var bodyTr1Th2 = document.createElement("th");
                 bodyTr1Th2.classList.add("text-center");
@@ -645,8 +769,11 @@ function tableSevenInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText=jsonObj.WORK_END_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
+                
+                var workEndDate = document.createElement("span");
+                workEndDate.innerText = setDateInput(jsonObj.map.WORK_END_DATE);
+                bodyTr1Td2.appendChild(workEndDate);
 
                 var bodyTr2 = document.createElement("tr");
                 tbody.appendChild(bodyTr2);
@@ -658,8 +785,11 @@ function tableSevenInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText=jsonObj.WORK_POSITION;
                 bodyTr2.appendChild(bodyTr2Td1);
+                
+                var workPosition = document.createElement("span");
+                workPosition.innerText = jsonObj.map.WORK_POSITION;
+                bodyTr2Td1.appendChild(workPosition);
 
                 var bodyTr2Th2 = document.createElement("th");
                 bodyTr2Th2.innerText="부서";
@@ -668,9 +798,11 @@ function tableSevenInfo(){
                 bodyTr2.appendChild(bodyTr2Th2);
 
                 var bodyTr2Td2 = document.createElement("td");
-                bodyTr2Td2.innerText=jsonObj.WORK_DEPARTMENT;
                 bodyTr2.appendChild(bodyTr2Td2);
-
+                
+                var workDepartment = document.createElement("span");
+                workDepartment.innerText = jsonObj.map.WORK_DEPARTMENT;
+                bodyTr2Td2.appendChild(workDepartment);
 
                 var bodyTr3 = document.createElement("tr");
                 tbody.appendChild(bodyTr3);
@@ -683,11 +815,50 @@ function tableSevenInfo(){
 
                 var bodyTr3Td = document.createElement("td");
                 bodyTr3Td.setAttribute("colspan", "3");
-                bodyTr3Td.innerText=jsonObj.WORK_DESCRIPTION;
                 bodyTr3.appendChild(bodyTr3Td);
+                
+                var workDescription = document.createElement("span");
+                workDescription.innerText = jsonObj.map.WORK_DESCRIPTION;
+                bodyTr3Td.appendChild(workDescription);
+                
+                var bodyTr4 = document.createElement("tr");
+                tbody.appendChild(bodyTr4);
 
+                var bodyTr4Th = document.createElement("th");
+                bodyTr4Th.classList.add("text-center");
+                bodyTr4Th.classList.add("table-light");
+                bodyTr4Th.innerText="활동경력";
+                bodyTr4.appendChild(bodyTr4Th);
+
+                var bodyTr4Td = document.createElement("td");
+                bodyTr4Td.setAttribute("colspan", "3");
+                bodyTr4.appendChild(bodyTr4Td);
+                
+                var carerDesc = document.createElement("span");
+                carerDesc.innerText = jsonObj.map.CARER_DESCRIPTION;
+                bodyTr4Td.appendChild(carerDesc);
+                
+                 var bodyTr5 = document.createElement("tr");
+                tbody.appendChild(bodyTr5);
+
+                var bodyTr5Th = document.createElement("th");
+                bodyTr5Th.classList.add("text-center");
+                bodyTr5Th.classList.add("table-light");
+                bodyTr5Th.innerText="활동경력";
+                bodyTr5.appendChild(bodyTr5Th);
+
+                var bodyTr5Td = document.createElement("td");
+                bodyTr5Td.setAttribute("colspan", "3");
+                bodyTr5.appendChild(bodyTr5Td);
+                
+                var specialNoteDesc = document.createElement("span");
+                specialNoteDesc.innerText =  jsonObj.map.SPECIAL_NOTE_DESCRIPTION;
+                bodyTr5Td.appendChild(specialNoteDesc);
+                
+                
 
                 //기본정보 네비
+                /*
                 var subNab2 = document.createElement("div");
                 subNab2.classList.add("row");
                 subNab2.classList.add("mx-0");
@@ -703,8 +874,10 @@ function tableSevenInfo(){
                 subNab2SpanFromI.classList.add("bi");
                 subNab2SpanFromI.classList.add("bi-circle-fill");
                 subNab2Span.appendChild(subNab2SpanFromI);
+                */
 
                 //테이블 시작
+                /*
 
                 var tableRow2 = document.createElement("div");
                 rowBox.appendChild(tableRow2);
@@ -741,7 +914,7 @@ function tableSevenInfo(){
                 thead2Tr1.appendChild(thead2Tr1Th1);
 
                 var thead2Tr1Td1 = document.createElement("td");
-                thead2Tr1Td1.innerText=jsonObj.CARER_DESCRIPTION;
+                thead2Tr1Td1.innerText= "적으셈";
                 thead2Tr1.appendChild(thead2Tr1Td1);
 
                 var thead2Tr2 = document.createElement("tr");
@@ -758,8 +931,9 @@ function tableSevenInfo(){
                 thead2Tr2.appendChild(thead2Tr2Th1);
 
                 var thead2Tr2Td1 = document.createElement("hd");
-                thead2Tr2Td1.innerText=jsonObj.SPECIAL_NOTE_DESCRIPTION;
+                thead2Tr2Td1.innerText="적으셈";
                 thead2Tr2.appendChild(thead2Tr2Td1);
+                */
 
                 commentListBox.appendChild(rowBox);
             }
@@ -774,14 +948,14 @@ function tableEightInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				console.log(jsonObj);
+
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
                 
-                
+                /*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -797,6 +971,7 @@ function tableEightInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
+                */
 
                 //기본정보 끝
 
@@ -849,9 +1024,12 @@ function tableEightInfo(){
                 theadTr.appendChild(theadTrTh1);
 
                 var theadTrTd1 = document.createElement("td");
-                theadTrTd1.innerText=jsonObj.CRTFC_TYPE;
                 theadTr.appendChild(theadTrTd1);
-
+                
+                var crtfcType = document.createElement("span");
+                crtfcType.innerText = jsonObj.map.CRTFC_TYPE;
+                theadTrTd1.appendChild(crtfcType);
+                
                 var theadTrTh2 = document.createElement("th");
                 theadTrTh2.classList.add("text-center");
                 theadTrTh2.classList.add("table-light");
@@ -859,8 +1037,11 @@ function tableEightInfo(){
                 theadTr.appendChild(theadTrTh2);
 
                 var theadTrTd2 = document.createElement("td");
-                theadTrTd2.innerText=jsonObj.ISSUE_AGENCY;
                 theadTr.appendChild(theadTrTd2);
+                
+                var issueAgency = document.createElement("span");
+                issueAgency.innerText = jsonObj.map.ISSUE_AGENCY;
+                theadTrTd2.appendChild(issueAgency);
 
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
@@ -875,8 +1056,11 @@ function tableEightInfo(){
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText=jsonObj.CRTFC_NUMBER;
                 bodyTr1.appendChild(bodyTr1Td1);
+                
+                var crtfcNumber = document.createElement("span");
+                crtfcNumber.innerText = jsonObj.map.CRTFC_NUMBER;
+                bodyTr1Td1.appendChild(crtfcNumber);
 
                 var bodyTr1Th2 = document.createElement("th");
                 bodyTr1Th2.classList.add("text-center");
@@ -885,9 +1069,11 @@ function tableEightInfo(){
                 bodyTr1.appendChild(bodyTr1Th2);
 
                 var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.innerText=jsonObj.ISSUE_DATE;
                 bodyTr1.appendChild(bodyTr1Td2);
-
+                
+                var issueDate = document.createElement("span");
+                issueDate.innerText = setDateInput(jsonObj.map.ISSUE_DATE);
+                bodyTr1Td2.appendChild(issueDate);
                 
                 commentListBox.appendChild(rowBox);
             }
@@ -909,7 +1095,7 @@ function tableNineInfo(){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
 
- 
+ 				/*
                 var subNab1 = document.createElement("div");
                 subNab1.classList.add("row");
                 subNab1.classList.add("mx-0");
@@ -925,6 +1111,7 @@ function tableNineInfo(){
                 subNab1SpanFromI.classList.add("bi");
                 subNab1SpanFromI.classList.add("bi-circle-fill");
                 subNab1Span.appendChild(subNab1SpanFromI);
+                */
 
                 //기본정보 끝
 
@@ -987,14 +1174,205 @@ function tableNineInfo(){
                 theadTr.appendChild(theadTrTh3);
 
 
-
-
-
-
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
-				
                 
+                // 사업자등록증
+               	var bodyTr1 = document.createElement("tr");
+               	tbody.appendChild(bodyTr1);
+               	
+               	var bodyTr1Td1 = document.createElement("td");
+               	bodyTr1Td1.classList.add("text-center");
+                bodyTr1Td1.innerText = "사업자등록증";
+                bodyTr1.appendChild(bodyTr1Td1);
+                
+                var bodyTr1Td2 = document.createElement("td");
+               	bodyTr1Td2.classList.add("text-center");
+               	bodyTr1Td2.setAttribute("rowspan", "3");
+               	bodyTr1Td2.setAttribute("valign", "middle");
+                bodyTr1Td2.innerText = "공통서류";
+                bodyTr1.appendChild(bodyTr1Td2);
+
+               	var bodyTr1Td3 = document.createElement("td");
+               	bodyTr1Td3.classList.add("text-center");
+               	
+               	if(jsonObj[0] != null) {
+	               	var bodyTr1Td3A = document.createElement("a");
+	                bodyTr1Td3A.classList.add("text-center");
+	                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[0].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[0].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr1Td3A.classList.add("text-decoration-none");
+	                bodyTr1Td3A.innerText = jsonObj[0].original_file_name;
+	                bodyTr1Td3.appendChild(bodyTr1Td3A);
+	                bodyTr1.appendChild(bodyTr1Td3);
+                }
+                
+                // 업무관련 등록신고서류
+               	var bodyTr2 = document.createElement("tr");
+               	tbody.appendChild(bodyTr2);
+               	
+               	var bodyTr2Td1 = document.createElement("td");
+               	bodyTr2Td1.classList.add("text-center");
+                bodyTr2Td1.innerText = "업무관련 등록신고 서류";
+                bodyTr2.appendChild(bodyTr2Td1);
+                
+            	var bodyTr2Td2 = document.createElement("td");
+            	bodyTr2Td2.classList.add("text-center");
+                
+                if(jsonObj[1] != null) {
+	                var bodyTr2Td2A = document.createElement("a");
+	                bodyTr2Td2A.classList.add("text-center");
+	                bodyTr2Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[1].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[1].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr2Td2A.classList.add("text-decoration-none");
+	                bodyTr2Td2A.innerText = jsonObj[1].original_file_name;
+	                bodyTr2Td2.appendChild(bodyTr2Td2A);
+	                bodyTr2.appendChild(bodyTr2Td2);
+                }
+                
+                // 납세증명확인서
+                var bodyTr3 = document.createElement("tr");
+               	tbody.appendChild(bodyTr3);
+               	
+               	var bodyTr3Td1 = document.createElement("td");
+               	bodyTr3Td1.classList.add("text-center");
+                bodyTr3Td1.innerText = "납세증명확인서";
+                bodyTr3.appendChild(bodyTr3Td1);
+                
+                var bodyTr3Td2 = document.createElement("td");
+                bodyTr3Td2.classList.add("text-center");
+                
+                if(jsonObj[2] != null) {
+	                var bodyTr3Td2A = document.createElement("a");
+	                bodyTr3Td2A.classList.add("text-center");
+	                bodyTr3Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[2].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[2].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr3Td2A.classList.add("text-decoration-none");
+	                bodyTr3Td2A.innerText = jsonObj[2].original_file_name;
+	                bodyTr3Td2.appendChild(bodyTr3Td2A);
+	                bodyTr3.appendChild(bodyTr3Td2);
+                }
+                
+                // 이력서
+                var bodyTr4 = document.createElement("tr");
+               	tbody.appendChild(bodyTr4);
+               	
+               	var bodyTr4Td1 = document.createElement("td");
+               	bodyTr4Td1.classList.add("text-center");
+                bodyTr4Td1.innerText = "이력서";
+                bodyTr4.appendChild(bodyTr4Td1);
+                
+                var bodyTr4Td2 = document.createElement("td");
+               	bodyTr4Td2.classList.add("text-center");
+               	bodyTr4Td2.setAttribute("rowspan", "4");
+               	bodyTr4Td2.setAttribute("valign", "middle");
+                bodyTr4Td2.innerText = "개인서류";
+                bodyTr4.appendChild(bodyTr4Td2);
+               	
+               	var bodyTr4Td3 = document.createElement("td");
+               	bodyTr4Td3.classList.add("text-center");
+               	
+               	if(jsonObj[3] != null) {
+	               	var bodyTr4Td3A = document.createElement("a");
+	                bodyTr4Td3A.classList.add("text-center");
+	                bodyTr4Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[3].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[3].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr4Td3A.classList.add("text-decoration-none");
+	                bodyTr4Td3A.innerText = jsonObj[3].original_file_name;
+	                bodyTr4Td3.appendChild(bodyTr4Td3A);
+	                bodyTr4.appendChild(bodyTr4Td3);
+                }
+                
+                // 학력 증명서
+                var bodyTr5 = document.createElement("tr");
+               	tbody.appendChild(bodyTr5);
+               	
+               	var bodyTr5Td1 = document.createElement("td");
+               	bodyTr5Td1.classList.add("text-center");
+                bodyTr5Td1.innerText = "학력 증명서";
+                bodyTr5.appendChild(bodyTr5Td1);
+                
+            	var bodyTr5Td2 = document.createElement("td");
+            	bodyTr5Td2.classList.add("text-center");
+                
+                if(jsonObj[4] != null) {
+	                var bodyTr5Td2A = document.createElement("a");
+	                bodyTr5Td2A.classList.add("text-center");
+	                bodyTr5Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[4].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[4].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr5Td2A.classList.add("text-decoration-none");
+	                bodyTr5Td2A.innerText = jsonObj[4].original_file_name;
+	                bodyTr5Td2.appendChild(bodyTr5Td2A);
+	                bodyTr5.appendChild(bodyTr5Td2);
+                }
+                
+                // 경력 증명서
+                var bodyTr6 = document.createElement("tr");
+               	tbody.appendChild(bodyTr6);
+               	
+               	var bodyTr6Td1 = document.createElement("td");
+               	bodyTr6Td1.classList.add("text-center");
+                bodyTr6Td1.innerText = "경력 증명서";
+                bodyTr6.appendChild(bodyTr6Td1);
+                
+            	var bodyTr6Td2 = document.createElement("td");
+            	bodyTr6Td2.classList.add("text-center");
+            	
+            	if(jsonObj[5] != null) {
+	            	var bodyTr6Td2A = document.createElement("a");
+	                bodyTr6Td2A.classList.add("text-center");
+	                bodyTr6Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[5].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[5].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr6Td2A.classList.add("text-decoration-none");
+	                bodyTr6Td2A.innerText = jsonObj[5].original_file_name;
+	                bodyTr6Td2.appendChild(bodyTr6Td2A);
+	                bodyTr6.appendChild(bodyTr6Td2);
+                }
+                
+                 // 자격증 사본
+                var bodyTr7 = document.createElement("tr");
+               	tbody.appendChild(bodyTr7);
+               	
+               	var bodyTr7Td1 = document.createElement("td");
+               	bodyTr7Td1.classList.add("text-center");
+                bodyTr7Td1.innerText = "자격증 사본";
+                bodyTr7.appendChild(bodyTr7Td1);
+                
+            	var bodyTr7Td2 = document.createElement("td");
+            	bodyTr7Td2.classList.add("text-center");
+            	
+            	if(jsonObj[6] != null) {
+	            	var bodyTr7Td2A = document.createElement("a");
+	                bodyTr7Td2A.classList.add("text-center");
+	                bodyTr7Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[6].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[6].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr7Td2A.classList.add("text-decoration-none");
+	                bodyTr7Td2A.innerText = jsonObj[6].original_file_name;
+	                bodyTr7Td2.appendChild(bodyTr7Td2A);
+	                bodyTr7.appendChild(bodyTr7Td2);
+                }
+				
+				// 기타서류
+                var bodyTr8 = document.createElement("tr");
+               	tbody.appendChild(bodyTr8);
+               	
+               	var bodyTr8Td1 = document.createElement("td");
+               	bodyTr8Td1.classList.add("text-center");
+                bodyTr8Td1.innerText = "기타서류";
+                bodyTr8.appendChild(bodyTr8Td1);
+                
+                var bodyTr8Td2 = document.createElement("td");
+               	bodyTr8Td2.classList.add("text-center");
+                bodyTr8Td2.innerText = "기타서류";
+                bodyTr8.appendChild(bodyTr8Td2);
+               	
+               	var bodyTr8Td3 = document.createElement("td");
+               	bodyTr8Td3.classList.add("text-center");
+               	
+               	if(jsonObj[7] != null) {
+	               	var bodyTr8Td3A = document.createElement("a");
+	                bodyTr8Td3A.classList.add("text-center");
+	                bodyTr8Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[7].APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj[7].APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr8Td3A.classList.add("text-decoration-none");
+	                bodyTr8Td3A.innerText = jsonObj[7].original_file_name;
+	                bodyTr8Td3.appendChild(bodyTr8Td3A);
+	                bodyTr8.appendChild(bodyTr8Td3);
+				}
+				
+                /*
                for(dataList of jsonObj){
              
                 
@@ -1022,7 +1400,8 @@ function tableNineInfo(){
                 bodyTr1Td3A.innerText = dataList.original_file_name;
                 bodyTr1Td3.appendChild(bodyTr1Td3A);
                }
-                
+               */
+               
                 commentListBox.appendChild(rowBox);
                 
                 
