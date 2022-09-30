@@ -37,12 +37,12 @@ public class FaqServiceImpl {
 		return map;
 	}
 	
-	public void deleteContent(int faq_proper_num) {
+	public void deleteFaq(int faq_proper_num) {
 		faqSQLMapper.deleteByNo(faq_proper_num);
 	}
 	
-	public void updateContent(Tb_004 tb_004) {
-		faqSQLMapper.updateTitleAndContent(tb_004);
+	public void updateFaq(Tb_004 tb_004) {
+		faqSQLMapper.updateFaq(tb_004);
 	}
 	
 }

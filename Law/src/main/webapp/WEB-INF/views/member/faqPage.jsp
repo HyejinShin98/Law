@@ -10,6 +10,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <title>FAQ</title>
+
+<style>
+  table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+</style>
+
 </head>
 <body>
 	<div class="col container-fluid" style="width: 960px;">
@@ -21,6 +34,7 @@
 			<!-- 사이드 네비바 -->
 			<jsp:include page="../common/localNav.jsp"></jsp:include>
 			
+			<!-- FAQ 게시판 내용 -->
 			<div class="col">
 				<div class="row">
 					<div class="col">
@@ -42,7 +56,10 @@
 						<div class="row mt-3">
 							<div class="col"></div>
 							<div class="col-10">
+							<table>
+								
 								<c:forEach items="${dataList }" var="data">
+															
 									<div class="accordion-item">
 										<h2 class="accordion-header" id="flush-heading${data.faq_proper_num }">
 											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${data.faq_proper_num }" aria-expanded="false" aria-controls="flush-collapse${data.faq_proper_num }">
@@ -53,27 +70,38 @@
 								    	<div id="flush-collapse${data.faq_proper_num }" class="accordion-collapse collapse" aria-labelledby="flush-heading${data.faq_proper_num }" data-bs-parent="#accordionFlushExample">
 											<div class="accordion-body" style="background:#f8f9fa">
 												<b>A&#46;</b>&nbsp;
-									      		${data.faq_ask_comment }
+												${data.faq_ask_comment }
 											</div>
+											
+											<div class="row">
+												<div class="col"></div>
+												<div class="col-8"></div>
+												<div class="col">
+													<!-- 수정, 삭제 버튼 -->
+													<c:if test="${!empty sessionUserInfo && sessionUserInfo.admin_proper_num == data.admin_proper_num }">
+														<a href="./updateFaqProcess?faq_proper_num=${data.faq_proper_num }">수정</a>
+														<a href="./deleteFaqProcess?faq_proper_num=${data.faq_proper_num }">삭제</a>
+													</c:if>
+												</div>
+											</div>
+											
 								  		</div>
 									</div>
+									
 								</c:forEach>
-
-								<!-- 글쓰기 버튼(관리자) -->
-								<div class="row">
-									<div class="col">
-										
-										<a class="btn btn-primary" href="./writeFaqPage">글쓰기</a>
-										
-										<c:if test="${!empty admin && admin == admin.admin_proper_num }">
-											<a href="./deleteContentProcess?board_no=${data.faq_proper_num }">삭제</a>
-											<a href="./updateContentPage?board_no=${data.faq_proper_num }">수정</a>
-										</c:if>
-									</div>
-								</div>
+							
+							</table>
 							</div>
+							<div class="col"></div>
+					</div>
+					
+					<!-- 글쓰기 버튼 -->
+					<div class="row mt-3">
 						<div class="col"></div>
-						
+						<div class="col"></div>
+						<div class="col">
+							<a href="./writeFaqPage"><button class="btn btn-primary">글쓰기</button></a>							
+						</div>
 					</div>
 				</div>
 			</div>
