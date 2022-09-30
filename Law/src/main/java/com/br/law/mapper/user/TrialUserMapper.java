@@ -63,5 +63,11 @@ public interface TrialUserMapper {
 	
 	// 나의 활동내역 리스트
 	public List<Map<String, Object>> selectMyActiveList(int user_proper_num);
+	
+	// 나의 등재(활동)리스트
+	public List<Map<String, Object>> selectMyAcceptList(int user_propeR_num);
+	
+	// 나의 활동여부 변경
+	public int updateAcceptActYn(@Param("accept_proper_num") int accept_proper_num, @Param("accept_act_yn") String accept_act_yn);
 
 }

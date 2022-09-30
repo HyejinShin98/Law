@@ -331,5 +331,41 @@ public class TrialUserRestController {
 		return map;
 	}
 	
+	@RequestMapping("updateAcceptActYn")
+	public Map<String, Object> activePause(HttpSession session, String accept_proper_num, String accept_act_yn) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
+		
+		System.out.println("accept_act_yn : " + accept_act_yn);
+		System.out.println("accept_proper_num : " + accept_proper_num);
+		
+		int properNum = Integer.parseInt(accept_proper_num);
+		
+		try {
+			// 활동중지/철회 신청
+			int result = trialMainService.updateAcceptActYn(properNum, accept_act_yn);
+			System.out.println("result : " + result);
+			
+			if(result > 0) {
+				map.put("result", "success");
+				
+				if(accept_act_yn.equals("n")) {
+					map.put("msg", "중지 신청이 완료되었습니다.");
+				} else if(accept_act_yn.equals("y")) {
+					map.put("msg", "중지철회 신청이 완료되었습니다.");
+					
+				}
+				
+				LOGGER.info("trialMainService updateAcceptActYn SUCCESS! accept_proper_num : " + properNum);
+			}
+			
+		} catch (Exception e) {
+			map.put("result", "error");
+			map.put("msg", e.getMessage());
+			e.printStackTrace();
+			LOGGER.error("trialMainService updateAcceptActYn ERROR! accept_proper_num : " + properNum);
+		}
+		return map;
+	}
 	
 }

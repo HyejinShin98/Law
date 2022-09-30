@@ -138,10 +138,23 @@ public class TrialUserService {
 		return trialMainMapper.updateApplicationStatus(aplcn_dtls_proper_num, aplcn_dtls_sts);
 	}
 	
-	
+	// 나의 활동내역 리스트
 	public List<Map<String, Object>> getMyActiveList(int user_proper_num) {
 		return trialMainMapper.selectMyActiveList(user_proper_num);
 	}	
+	
+	// 나의 등재 리스트
+	public List<Map<String, Object>> getMyAcceptList(int user_proper_num) {
+		return trialMainMapper.selectMyAcceptList(user_proper_num);
+	}
+	
+	// 나의 활동여부 변경
+	public int updateAcceptActYn(int accept_proper_num, String accept_act_yn) {
+		// accept_act_yn : y -> 활동중으로 변경
+		// accept_act_yn : n -> 활동중지로 변경
+		return trialMainMapper.updateAcceptActYn(accept_proper_num, accept_act_yn);
+	}
+	
 	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드
 	public String convertAplcnStsToKorean(String aplcn_dtls_sts) {

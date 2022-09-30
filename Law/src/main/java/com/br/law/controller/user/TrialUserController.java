@@ -163,7 +163,6 @@ public class TrialUserController {
 		return "user/myApplication";
 	}
 	
-	// TODO: 보류
 	// 마이페이지 - 나의 등재신청 내역 이어 작성하기
 	@RequestMapping("/myApplicationWrite")
 	public String myApplicationWrite(HttpSession session, Model model, int aplcn_dtls_proper_num) {
@@ -206,11 +205,14 @@ public class TrialUserController {
 		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
 		
 		try {
-			chkLoginSession(session);
-			model.addAttribute("user", null);
+			// 나의 등재 리스트 출력
+			List<Map<String, Object>> myAcceptList = trialMainService.getMyAcceptList(sessionUser.getUser_proper_num());
+			model.addAttribute("myAcceptList", myAcceptList);
+			LOGGER.info("TrialUserController myPause SUCCESS! myAcceptList : " + myAcceptList);
 			
 		} catch(Exception e) {
 			model.addAttribute("errorMsg", getErrMsg(e.getMessage()));
+			LOGGER.error("TrialUserController myActive ERROR! user : " + sessionUser);
 		}
 		
 		return "user/myPause";

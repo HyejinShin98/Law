@@ -188,5 +188,33 @@
 			ORDER BY t12.CHOSEN_DATE DESC) a
 	</select>
 	
+	<!-- 나의 등재(활동)리스트 -->
+	<select id="selectMyAcceptList" resultType="map">
+		SELECT ROWNUM, a.* FROM (
+			SELECT
+				t14.ACCEPT_PROPER_NUM,
+				t14.APLCN_DTLS_PROPER_NUM,
+				t14.USER_PROPER_NUM,
+				t10.TRIAL_FCLTT_CLASIFI_CODE,
+				t10.TRIAL_FCLTT_SBCLS_CODE,
+				t10.TRIAL_FCLTT_DESCRIPTION,
+				t11.COURT_NAME,
+				t14.ACCEPT_DATE,
+				t14.ACCEPT_ETC,
+				t14.ACCEPT_ACT_YN 
+			FROM TB_014 t14, TB_010 t10, TB_011 t11 WHERE 
+			t14.COURT_PROPER_NUM = t11.COURT_PROPER_NUM
+			AND t14.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
+			AND t14.USER_PROPER_NUM = #{user_proper_num}
+			ORDER BY t14.ACCEPT_DATE DESC
+		) a
+	</select>
+	
+	<update id="updateAcceptActYn">
+		UPDATE TB_014 SET 
+		ACCEPT_ACT_YN = #{accept_act_yn}
+		WHERE ACCEPT_PROPER_NUM = #{accept_proper_num}
+	</update>
+	
 </mapper>
 
