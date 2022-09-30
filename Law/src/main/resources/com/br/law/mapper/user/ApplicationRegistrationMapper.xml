@@ -41,7 +41,7 @@ INSERT INTO tb_001 values(
 	#{insrn_indst_carer_etc},
 	#{criminal_penalty_carer_yn},
 	#{criminal_penalty_carer_etc},
-	'ing',
+	'임시저장',
 	sysdate
 ) 
 </insert>
@@ -55,7 +55,7 @@ INSERT INTO tb_001 values(
 	insrn_indst_carer_etc =  #{insrn_indst_carer_etc},
 	criminal_penalty_carer_yn = #{criminal_penalty_carer_yn},
 	criminal_penalty_carer_etc = #{criminal_penalty_carer_etc},
-	aplcn_dtls_sts = 'ing',
+	aplcn_dtls_sts = '임시저장',
 	aplcn_dtls_date = sysdate 
 	WHERE user_proper_num = #{user_proper_num}
 	and announce_proper_num = #{announce_proper_num}
@@ -174,7 +174,7 @@ INSERT INTO tb_006 values(
 </select>
 
 <update id="UserDetailExam">
-	UPDATE tb_005 SET aplcn_dtls_sts = 'examination' WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	UPDATE tb_005 SET aplcn_dtls_sts = '신청중' WHERE aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 </update>
 <select id="duplicate" resultType="int">
 	select count(*) from tb_001 t1, tb_005 t5 

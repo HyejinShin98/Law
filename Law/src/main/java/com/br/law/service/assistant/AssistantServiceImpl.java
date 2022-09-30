@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.law.mapper.assistant.AssistantSQLMapper;
 import com.br.law.vo.Tb_002;
+import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
 
@@ -89,6 +90,7 @@ public class AssistantServiceImpl {
 	public ArrayList<Tb_002> callTb_002() {
 		return assistantSQLMapper.callTb_002();
 	}
+	
 	//0928 하다 조건별 유저
 	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num){
 		return assistantSQLMapper.callAUser(trial_fcltt_proper_num);
@@ -97,5 +99,10 @@ public class AssistantServiceImpl {
 	//0928 하다 공고별 유저
 	public List<Map<String, Object>> callCUser(int announce_proper_num){
 		return assistantSQLMapper.callCUser(announce_proper_num);
+	}
+	
+	//0928 병훈 신청현황 별 유저
+	public List<Map<String, Object>> callDUser(String aplcn_dtls_sts){
+		return assistantSQLMapper.callDUser(aplcn_dtls_sts);
 	}
 }

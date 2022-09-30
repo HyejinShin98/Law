@@ -44,12 +44,12 @@
 			<c:choose>
 				<c:when test="${!empty admin}">
 					<div class="col">
-						<a href="#">
+						<a href="../admin/managementEvaluationtable">
 							<span>현황조회</span>
 						</a>
 					</div>
 					<div class="col">
-						<a href="../admin/managementEvaluationtable">
+						<a href="">
 							<span>재판조력자관리</span>
 						</a>
 					</div>

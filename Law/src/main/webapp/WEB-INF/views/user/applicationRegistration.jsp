@@ -269,7 +269,7 @@ function sample4_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th class="ms">비밀번호<span style="color:red"> *</span></td>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_pw"></td>
+									<td colspan="2"><input type="password" class="form-control ms" name="user_pw"></td>
 								</tr>
 								<tr>
 									<th class="ms">이름<span style="color:red"> *</span></th>
@@ -277,7 +277,7 @@ function sample4_execDaumPostcode() {
 								</tr>
 								<tr>
 									<th class="ms">나이<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_age"></td>
+									<td colspan="2"><input type="number" class="form-control ms" name="user_age"></td>
 								</tr>
 								<tr>
 									<th class="ms">직업<span style="color:red"> *</span></th>

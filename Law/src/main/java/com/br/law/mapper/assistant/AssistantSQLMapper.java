@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.br.law.vo.Tb_002;
+import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
 
@@ -26,4 +27,5 @@ public interface AssistantSQLMapper {
 	public ArrayList<Tb_002> callTb_002();
 	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num);
 	public List<Map<String, Object>> callCUser(int announce_proper_num);
+	public List<Map<String, Object>> callDUser(String aplcn_dtls_sts);
 }

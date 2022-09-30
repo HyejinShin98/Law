@@ -7,6 +7,7 @@ import java.util.Map;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.law.service.assistant.AssistantServiceImpl;
@@ -120,6 +121,16 @@ public class RestAssistantController {
 		
 		map.put("result", "success");
 		map.put("list", assistantServiceImpl.callCUser(announce_proper_num));
+		return map;
+	}
+	
+	// 공고별 유저 불러오기
+	@RequestMapping("callDUser")
+	public Map<String, Object> callCUser(@RequestParam("aplcn_dtls_sts") String aplcn_dtls_sts ){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("list", assistantServiceImpl.callDUser(aplcn_dtls_sts));
 		return map;
 	}
 	
