@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="row mt-5 pt-4 border-top">
-	<div class="col-3"><img src="../resources/img/캡처3.PNG"></div>
+	<div class="col-4"><img src="../resources/img/캡처3.PNG"></div>
 	<div class="col-6">
 		<div class="row" style="font-weight: bold;">개인정보처리방침</div>
 		<div class="row" style="font-size: smaller;">홈페이지 이용/장애문의 TEL 02.3480.1715(평일 9시 ~ 18시)</div>

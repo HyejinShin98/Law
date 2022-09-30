@@ -10,7 +10,29 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="../resources/css/common.css">
+<link rel="stylesheet"  type="text/css" href="../resources/css/common.css">
+<style type="text/css">
+body{
+	height: 100%;
+	width: 100%;
+	font-size: 11px;
+}
+
+h4{
+	clear:both; 
+	font-size:14px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	line-height:1.3em;
+	padding:0 11px;
+	margin:5px 0;
+	background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
+}	
+
+#myInfoFrm span {
+	font-size: 12.5px;
+}
+</style>
 <title>마이페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../resources/js/common.js"></script>
@@ -52,107 +74,126 @@ function modifyMyInfo() {
 </script>
 </head>
 <body>
-	<div class="col container-fluid" style="width : 1600px;">
+	<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
 		
-		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
-			<div class="col">
-				<jsp:include page="./myPageNav.jsp"></jsp:include>
-			</div>
-			<div class="col-9 mt-4 px-5 mx-5">
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+	
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+		
+			<!-- 사이드 네비바 -->
+			<jsp:include page="../user/myPageNav.jsp"></jsp:include>
+		
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > My Page > </span><span style="color: #72a8fe;font-weight: bold;">내정보</span>
+					</div>
+				</div>
 				
-				<div class="row border-bottom border-2 border-secondary py-2">
+				<!-- 네비바 -->
+				<div class="row mb-3">
 					<div class="col">
-						<span class="fw-bold fs-3 ">내정보</span>
-					</div>	
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-info btn-pointer" onclick="location.href='./identityVerificate';">내정보 관리</span>
-					</div>
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-secondary btn-pointer" onclick="location.href='./modifyPassword';">비밀번호 변경</span>
-					</div>
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-secondary btn-pointer" onclick="location.href='./withdrawal';">회원탈퇴</span>
-					</div>
-					<div class="col-5"></div>
-				</div>
-				
-				<form id="myInfoFrm" name="myInfoFrm">
-					<div class="row">
-						<div class="col">
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold"><span>아이디</span></div>
-								<div class="col"><span>${user.user_id }</span></div>
+						<div class="row border-bottom border-2 border-secondary py-2">
+							<div class="col pt-1 px-0 text-center">
+								<span class="fw-bold text-info btn-pointer font-def" onclick="location.href='./identityVerificate';">내정보 관리</span>
 							</div>
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold"><span>이름</span></div>
-								<div class="col"><span>${user.user_name }</span></div>
-							</div>	
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>이메일</span></div>
-								<div class="col-3"><input class="form-control" type="text" name="user_email" id="user_email" value="${user.user_email }"></div>
+							<div class="col pt-1">
+								<span class="fw-bold text-secondary btn-pointer font-def mx-2" onclick="location.href='./modifyPassword';">비밀번호 변경</span>
 							</div>
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>연락처</span></div>
-								<div class="col-2"><input class="form-control" type="text" name="user_phone" id="user_phone" value="${user.user_phone}"></div>
+							<div class="col pt-1">
+								<span class="fw-bold  text-secondary btn-pointer font-def mx-2" onclick="location.href='./withdrawal';">회원탈퇴</span>
 							</div>
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>직업</span></div>
-								<div class="col-2"><input class="form-control" type="text" name="user_job" id="user_job" value="${user.user_job }"></div>
-							</div>
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-4"><span>주소</span></div>
-								<div class="col">
-									<div class="row pb-2 input-group">
-										<div class="col"><input class="form-control" type="text" value="${user.user_ar_zonecode}" name="user_ar_zonecode" id="user_ar_zonecode" disabled></div>
-										<div class="col-4"><input class="form-control" type="text" value="${user.user_ar}" name="user_ar" id="user_ar"></div>
-										<div class="col-1"><input class="form-control" type="button" value="검색" onclick="searchAddress();"></div>
-										<div class="col-5"></div>
-									</div>
-									 <div class="row pb-2">
-										<div class="col-5"><input class="form-control" type="text" value="${user.user_ar_detail}" name="user_ar_detail" id="user_ar_detail"></div>
-									</div>
-								</div>
-							</div>		
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>계좌은행</span></div>
-								<div class="col-2">
-									<select class="form-select" id="user_bank" name="user_bank">
-										<option value="woorie">우리은행</option>
-										<option value="shinhan">신한은행</option>
-										<option value="kuckmin">국민은행</option>
-										<option value="kiup">기업은행</option>
-									</select>
-								</div>
-								
-							</div>	
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>계좌번호</span></div>
-								<div class="col-2"><input class="form-control" type="text" value="${user.user_bank_account}" id="user_bank_account" name="user_bank_account"></div>
-							</div>	
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold pt-2"><span>예금주</span></div>
-								<div class="col-2"><input class="form-control" type="text" value="${user.user_bank_holder}" id="user_bank_holder" name="user_bank_holder">
-								</div>
-							</div>	
-							<div class="row border-bottom border-secondary border-opacity-25 py-3">
-								<div class="col-2 fw-bold "><span>가입일자</span></div>
-								<div class="col"><span><fmt:formatDate pattern="yyyy-MM-dd" value="${user.user_joindate }" /></span>
-								</div>
-							</div>
+							<div class="col-6"></div>
 						</div>
-						<input type="hidden" value="${user.user_proper_num}" name="user_proper_num">
-					</form>
-					<div class="row mt-3 float-end">
-						<div class="col-10"></div>
-						<div class="col-2 d-grid"><input type="button" onclick="modifyMyInfo();" class="btn btn-primary" value="수정"></div>
+						
+						<!-- 내용 -->
+						<form id="myInfoFrm" name="myInfoFrm">
+						<div class="row">
+							<div class="col">
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>아이디</span></div>
+									<div class="col"><span>${user.user_id }</span></div>
+								</div>
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>이름</span></div>
+									<div class="col"><span>${user.user_name }</span></div>
+								</div>	
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>이메일</span></div>
+									<div class="col-3"><input class="" type="text" name="user_email" id="user_email" value="${user.user_email }"></div>
+								</div>
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>연락처</span></div>
+									<div class="col-2"><input class="" type="text" name="user_phone" id="user_phone" value="${user.user_phone}"></div>
+								</div>
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bol"><span>직업</span></div>
+									<div class="col-2"><input class="" type="text" name="user_job" id="user_job" value="${user.user_job }"></div>
+								</div>
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold pt-4"><span>주소</span></div>
+									<div class="col">
+										<div class="row pb-2 input-group">
+											<div class="col"><input class="" type="text" value="${user.user_ar_zonecode}" name="user_ar_zonecode" id="user_ar_zonecode" disabled></div>
+											<div class="col"><input class="" type="text" value="${user.user_ar}" name="user_ar" id="user_ar"></div>
+											<div class="col"><input class="" type="button" value="검색" onclick="searchAddress();"></div>
+											<div class="col"></div>
+										</div>
+										 <div class="row pb-2">
+											<div class="col-5"><input class="" type="text" value="${user.user_ar_detail}" name="user_ar_detail" id="user_ar_detail" style="width:284px;"></div>
+										</div>
+									</div>
+								</div>		
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>계좌은행</span></div>
+									<div class="col-2">
+										<select class="" id="user_bank" name="user_bank">
+											<option value="woorie">우리은행</option>
+											<option value="shinhan">신한은행</option>
+											<option value="kuckmin">국민은행</option>
+											<option value="kiup">기업은행</option>
+										</select>
+									</div>
+									
+								</div>	
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold "><span>계좌번호</span></div>
+									<div class="col-2"><input class="" type="text" value="${user.user_bank_account}" id="user_bank_account" name="user_bank_account"></div>
+								</div>	
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold"><span>예금주</span></div>
+									<div class="col-2"><input class="" type="text" value="${user.user_bank_holder}" id="user_bank_holder" name="user_bank_holder">
+									</div>
+								</div>	
+								<div class="row border-bottom border-secondary border-opacity-25 py-3">
+									<div class="col-2 fw-bold "><span>가입일자</span></div>
+									<div class="col"><span><fmt:formatDate pattern="yyyy-MM-dd" value="${user.user_joindate }" /></span>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" value="${user.user_proper_num}" name="user_proper_num">
+						</form>
+						<div class="row mt-3 float-end">
+							<div class="col-10"></div>
+							<div class="col-2 d-grid"><input type="button" onclick="modifyMyInfo();" class="btn btn-primary btn-sm" value="수정"></div>
+						</div>
+					</div>
+						
+						
 					</div>
 				</div>
 				
-			</div>
-			<jsp:include page="../common/footer.jsp"></jsp:include>
+			
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
+	
 	</div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>
