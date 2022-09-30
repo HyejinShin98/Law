@@ -30,16 +30,18 @@ public class RestApplicationRegistrationAdminController {
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RestApplicationRegistrationAdminController.class);
 	
 	@RequestMapping("selTableOne")
-	public Map<String, Object> selTableOne(int aplcn_dtls_proper_num, String aplcn_dtls_sts) {
+//	public Map<String, Object> selTableOne(int aplcn_dtls_proper_num, String aplcn_dtls_sts) {
+	public Map<String, Object> selTableOne(int aplcn_dtls_proper_num) {
 		Map<String, Object> map = new HashMap<String, Object>();
 	
 		map.put("aplcn_dtls_proper_num", aplcn_dtls_proper_num);
-		map.put("aplcn_dtls_sts", aplcn_dtls_sts);
-		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(map);
+//		map.put("aplcn_dtls_sts", aplcn_dtls_sts);
+//		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(map);
+		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(aplcn_dtls_proper_num);
 		
-		map.put("map", param);
 		map.put("result", "success");
-		logger.info("맵확인 : " + param);
+		map.put("map", param);
+		
 		return map;
 	}
 	
@@ -53,5 +55,28 @@ public class RestApplicationRegistrationAdminController {
 		logger.info("list", list);
 		return list;
 	}
+	
+	//분류별 출력 
+	@RequestMapping("accList")
+	public Map<String, Object> accList(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("json", applicationRegistrationAdminService.accList());
+		
+		map.put("result", "success");
+		
+		return map;
+	}
+		
+		//option 목록 출력
+	@RequestMapping("optionBoxapp")
+	public Map<String, Object> optionBoxapp(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("result", "success");
+		map.put("Tb_010", applicationRegistrationAdminService.optionBoxapp());
+		
+		return map;
+	}
+
 	
 }

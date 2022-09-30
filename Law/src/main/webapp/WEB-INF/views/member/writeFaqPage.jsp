@@ -18,19 +18,17 @@
 			
 			<div class="row">
 				<!-- 사이드 네비바 -->
-				<div class="col-3">
-					<jsp:include page="../common/localNav.jsp"></jsp:include>
-				</div>
+				<jsp:include page="../common/localNav.jsp"></jsp:include>
 				
 				<div class="col">
 					<div class="row">
-						<div class="col"><h2>FAQ 관리 페이지</h2></div>
+						<div class="col"><h2>FAQ 작성 페이지</h2></div>
 					
 					<div class="row">
 						<div class="col" style="background: #f8f9fa">관리자 FAQ 작성 페이지입니다.</div>
 					</div>
 						
-					<div class="row">
+					<div class="row mt-3">
 						<div class="col">
 								<div class="row" id="contents">
 									<div class="col">
@@ -38,34 +36,29 @@
 												<div class="col d-grid">
 													<input name="faq_ask_content" type="text" placeholder="제목을 입력해주세요."><br>
 												</div>
-												<div class="col d-grid"></div>
+												<div class="col d-grid">
 													<textarea name="faq_ask_comment" placeholder="답변을 입력해주세요."></textarea>
-												<input type="submit" class="btn btn-primary" value="글쓰기">
+												</div>
+												
+												<!-- 글쓰기 버튼 -->
+												<div class="row">
+													<div class="col"></div>
+													<div class="col"></div>
+													<div class="col">
+													<c:if test="${!empty sessionUserInfo && sessionUserInfo.tb_015.admin_proper_num == data.tb_015.admin_proper_num }">
+														<input type="submit" class="btn btn-primary" value="글쓰기">
+													</c:if>
+													</div>
+												</div>
 											</form>
 									</div>
-									</div>
-									<div class="row">
-										<div class="col"></div>
-										<div class="col"></div>
-										<div class="col"></div>
-									</div>
-								
-								
-								
-							</div>
-					</div>	
-						
-						
 
-						
-						
+									</div>
+							</div>
+						</div>	
 					</div>
 				</div>
-				
-				
-			</div>
-			
-			
+			</div>	
 		</div>
 		
 		

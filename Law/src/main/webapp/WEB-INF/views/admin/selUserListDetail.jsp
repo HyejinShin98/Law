@@ -14,8 +14,6 @@
 <script type="text/javascript">
 var userNo = ${map.APLCN_DTLS_PROPER_NUM};
 
-
-
 /* function fileDownLoadProcess(userNo, fileNo){
 	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 	xhr.onreadystatechange = function () {

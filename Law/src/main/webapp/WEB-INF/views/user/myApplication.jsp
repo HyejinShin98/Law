@@ -60,25 +60,34 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					  	<c:forEach items="${list }" var="item">
-					  		<tr>
-					  			<td>${item.rownum}</td>
-					  			<td>${item.trial_fcltt_description}</td>
-					  			<td>${item.court_name}</td>
-					  			<td>${item.aplcn_dtls_sts}</td>
-					  			<td><fmt:formatDate value="${item.aplcn_dtls_date}" pattern="yyyy-MM-dd"/></td>
-					  			<td>
-					  				<c:choose>
-					  					<c:when test="${item.aplcn_dtls_sts eq '작성중' or item.aplcn_dtls_sts eq '서류보완필요'}">
-					  						<button type="button" class="btn btn-warning btn-sm text-white" onclick="location.href='./myApplicationWrite?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}'">작성</button>
-					  					</c:when>
-					  					<c:otherwise>
-					  						<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./myApplicationDetail?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}';">보기</button>
-					  					</c:otherwise>
-					  				</c:choose>
-					  			</td>
-					  		</tr>	
-					  	</c:forEach>
+					  	<c:choose>
+						  	<c:when test="${!empty list }">
+							  	<c:forEach items="${list }" var="item">
+							  		<tr>
+							  			<td>${item.rownum}</td>
+							  			<td>${item.trial_fcltt_description}</td>
+							  			<td>${item.court_name}</td>
+							  			<td>${item.aplcn_dtls_sts}</td>
+							  			<td><fmt:formatDate value="${item.aplcn_dtls_date}" pattern="yyyy-MM-dd"/></td>
+							  			<td>
+							  				<c:choose>
+							  					<c:when test="${item.aplcn_dtls_sts eq '작성중' or item.aplcn_dtls_sts eq '서류보완필요'}">
+							  						<button type="button" class="btn btn-warning btn-sm text-white" onclick="location.href='./myApplicationWrite?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}'">작성</button>
+							  					</c:when>
+							  					<c:otherwise>
+							  						<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./myApplicationDetail?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}';">보기</button>
+							  					</c:otherwise>
+							  				</c:choose>
+							  			</td>
+							  		</tr>	
+							  	</c:forEach>
+						  	</c:when>
+						  	<c:otherwise>
+						  		<tr>
+						  			<td colspan="6"><span>등재신청 내역이 존재하지 않습니다.</span></td>
+						  		</tr>
+						  	</c:otherwise>
+					  	</c:choose>
 					  </tbody>
 					</table>
 				</div>

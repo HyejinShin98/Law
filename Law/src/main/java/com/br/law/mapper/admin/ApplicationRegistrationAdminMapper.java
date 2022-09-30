@@ -3,17 +3,21 @@ package com.br.law.mapper.admin;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.br.law.vo.Tb_001;
-import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_009;
+import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_014;
 
 public interface ApplicationRegistrationAdminMapper {
 	
 	public List<Map<String, Object>> selUserList();
-	
-	public Map<String, Object> onestExamination(Map<String, Object> param);
+	//기존
+//	public Map<String, Object> onestExamination(Map<String, Object> param);
+	//신규
+	public Map<String, Object> onestExamination(int aplcn_dtls_proper_num);
 	
 	public void upComplete(int param);
 	
@@ -37,4 +41,9 @@ public interface ApplicationRegistrationAdminMapper {
 	
 	public void evaluationCpUp(int param);
 	
+	//조건별 조회 (서류통과, 반려, 진행중)
+	public List<Map<String, Object>> accList();
+		
+	// optionBox 조건별 불러오기
+	public List<Tb_010> optionBoxapp();
 }

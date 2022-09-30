@@ -12,14 +12,54 @@
 	
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
-<title>조건별 조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="../resources/js/userDetailList2.js"></script>
+
+<title>조건별 조회</title>
 
 <script type="text/javascript"> 
 window.addEventListener("DOMContentLoaded" , function (){
 	allUser();
 });
+
+function callUserDetail(e) {
+	var userNo = e; 
+	tableOneInfo(userNo);
+	var navClassName ='nav-btn';
+	var navBtn = document.getElementsByClassName(navClassName);
+	for(btn of navBtn){
+		btn.addEventListener('click', function(e){
+			var addId = this.id;
+			
+			changeBtn(addId, navClassName);
+			
+			switch(addId){
+				case 'oneTab' : 
+					tableOneInfo(userNo);
+					break;
+				case 'fiveTab' : 
+					tableFiveInfo(userNo);
+					break;
+				case 'sixTab' : 
+					tableSixInfo(userNo);
+					break;
+				case 'sevenTab' : 
+					tableSevenInfo(userNo);
+					break;
+				case 'eightTab' : 
+					tableEightInfo(userNo);
+					break;
+				case 'nineTab' :
+					tableNineInfo(userNo);
+					break;
+			}
+		});
+	}
+}
+
+
+
 
 function allUser(){
 	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
@@ -124,10 +164,8 @@ function allUser(){
              
              for(dataList of jsonObj.list){
                  
-                 
 	             var bodyTr1 = document.createElement("tr");
 	             tbody.appendChild(bodyTr1);
-	
 	
 	             var bodyTr1Td1 = document.createElement("td");
 	             bodyTr1Td1.classList.add("text-center");
@@ -137,6 +175,9 @@ function allUser(){
 	             var bodyTr1Td2 = document.createElement("td");
 	             bodyTr1Td2.classList.add("text-center");
 	             bodyTr1Td2.innerText = dataList.USER_NAME;
+	             bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	             bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
+	             bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
 	             bodyTr1.appendChild(bodyTr1Td2);
 	             
 	             var bodyTr1Td3 = document.createElement("td");
@@ -242,8 +283,51 @@ function calloption(e){
        xhr.open("get" , "../admin/callC"); //리퀘스트 세팅..
        //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
        xhr.send(); //AJAX로 리퀘스트함..
-	}
-	else if(e.value == "all"){
+	}else if(e.value == "d"){
+		
+		var selBox = document.createElement('select');
+		selBox.setAttribute('id', "good");
+		selBox.setAttribute('onchange', "callUser(this)");
+		targetBox.appendChild(selBox);
+	             
+		const selectBox = document.getElementById("good");
+		selectBox.innerHTML = "";
+	   		
+		var optionBox1 = document.createElement('option');
+		optionBox1.innerText = '선택';
+		selectBox.appendChild(optionBox1);
+	      		
+		var optionBox2 = document.createElement('option');
+		optionBox2.setAttribute('value', 'ing');
+		optionBox2.innerText = '작성중';
+		selectBox.appendChild(optionBox2);
+		
+		var optionBox3 = document.createElement('option');
+		optionBox3.setAttribute('value', 'examination');
+		optionBox3.innerText = '신청중';
+		selectBox.appendChild(optionBox3);
+		
+		var optionBox4 = document.createElement('option');
+		optionBox4.setAttribute('value', 'evaluationCp');
+		optionBox4.innerText = '서류완료';
+		selectBox.appendChild(optionBox4);
+		
+		var optionBox5 = document.createElement('option');
+		optionBox5.setAttribute('value', 'companion');
+		optionBox5.innerText = '서류반려';
+		selectBox.appendChild(optionBox5);
+		
+		var optionBox6 = document.createElement('option');
+		optionBox6.setAttribute('value', 'failure');
+		optionBox6.innerText = '불합격';
+		selectBox.appendChild(optionBox6);
+		
+		var optionBox7 = document.createElement('option');
+		optionBox7.setAttribute('value', 'accept');
+		optionBox7.innerText = '최종합격';
+		selectBox.appendChild(optionBox7);
+		
+	}else if(e.value == "all"){
 		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 	       xhr.onreadystatechange = function () {
 	           if(xhr.readyState == 4 && xhr.status == 200){
@@ -357,6 +441,9 @@ function calloption(e){
 		                var bodyTr1Td2 = document.createElement("td");
 		                bodyTr1Td2.classList.add("text-center");
 		                bodyTr1Td2.innerText = dataList.USER_NAME;
+		                bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+			            bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
+			            bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
 		                bodyTr1.appendChild(bodyTr1Td2);
 		                
 		                var bodyTr1Td3 = document.createElement("td");
@@ -387,9 +474,6 @@ function calloption(e){
 	       xhr.open("get" , "../admin/callAllUser"); //리퀘스트 세팅..
 	       //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 	       xhr.send(); //AJAX로 리퀘스트함..
-		       
-		
-		
 		
 	}
 }
@@ -397,115 +481,111 @@ function calloption(e){
 function callUser(e){
 	const selectBox1 = document.getElementById("select");
 	
-	if(selectBox1.value == "a"){
-		
-		
-		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	    xhr.onreadystatechange = function () {
-	        if(xhr.readyState == 4 && xhr.status == 200){
-	            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-	            
-	            console.log(jsonObj);
-	            for(i of jsonObj.list){
-	            	console.log(i.ANNOUNCE_PROPER_NUM);
-	            }
-	            var ListBox = document.getElementById("list-info");
-				ListBox.innerHTML = "";
-	            
-	            
-	            var rowBox = document.createElement("div");
-	            rowBox.classList.add("row");
-	            
-	            var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-                
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+            
+            console.log(jsonObj);
+            for(i of jsonObj.list){
+            	console.log(i.ANNOUNCE_PROPER_NUM);
+            }
+            var ListBox = document.getElementById("list-info");
+			ListBox.innerHTML = "";
+            
+            
+            var rowBox = document.createElement("div");
+            rowBox.classList.add("row");
+            
+            var tableRow = document.createElement("div");
+               tableRow.classList.add("row");
+               tableRow.classList.add("mx-0");
+               tableRow.classList.add("px-0");
+               rowBox.appendChild(tableRow);
+               
+               var table = document.createElement("table");
+               table.classList.add("table");
+               table.classList.add("table-bordered");
+               tableRow.appendChild(table);
+               
+               var colGroup = document.createElement("colgroup");
+               table.appendChild(colGroup);
 
-                var colGroupA = document.createElement("col");
-                //colGroupA.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupA);
+               var colGroupA = document.createElement("col");
+               //colGroupA.setAttribute("width", "25%");
+               colGroup.appendChild(colGroupA);
 
-                var colGroupB = document.createElement("col");
-                //colGroupB.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupB);
+               var colGroupB = document.createElement("col");
+               //colGroupB.setAttribute("width", "25%");
+               colGroup.appendChild(colGroupB);
 
-                var colGroupC = document.createElement("col");
-                //colGroupC.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupC);
-                
-                var colGroupD = document.createElement("col");
-                //colGroupD.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupD);
-                
-                var colGroupE = document.createElement("col");
-                //colGroupE.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupE);
-                
-                var colGroupF = document.createElement("col");
-                //colGroupF.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupF);
-                
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-                
-                var theadTr = document.createElement("tr");
-                theadTr.classList.add("text-center");
-                thead.appendChild(theadTr);
-                
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.setAttribute("scope", "col");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="번호";
-                theadTr.appendChild(theadTrTh1);
-                
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.setAttribute("scope", "col");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="이름";
-                theadTr.appendChild(theadTrTh2);
-                
-                var theadTrTh3 = document.createElement("th");
-                theadTrTh3.setAttribute("scope", "col");
-                theadTrTh3.classList.add("table-light");
-                theadTrTh3.innerText="신청공고";
-                theadTr.appendChild(theadTrTh3);
-                
-                var theadTrTh4 = document.createElement("th");
-                theadTrTh4.setAttribute("scope", "col");
-                theadTrTh4.classList.add("table-light");
-                theadTrTh4.innerText="조력자 분류";
-                theadTr.appendChild(theadTrTh4);
-                
-                var theadTrTh5 = document.createElement("th");
-                theadTrTh5.setAttribute("scope", "col");
-                theadTrTh5.classList.add("table-light");
-                theadTrTh5.innerText="신청일";
-                theadTr.appendChild(theadTrTh5);
-                
-                var theadTrTh6 = document.createElement("th");
-                theadTrTh6.setAttribute("scope", "col");
-                theadTrTh6.classList.add("table-light");
-                theadTrTh6.innerText="신청상황";
-                theadTr.appendChild(theadTrTh6);
-                
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-                
-                for(dataList of jsonObj.list){
-                    
-                    
+               var colGroupC = document.createElement("col");
+               //colGroupC.setAttribute("width", "50%");
+               colGroup.appendChild(colGroupC);
+               
+               var colGroupD = document.createElement("col");
+               //colGroupD.setAttribute("width", "50%");
+               colGroup.appendChild(colGroupD);
+               
+               var colGroupE = document.createElement("col");
+               //colGroupE.setAttribute("width", "50%");
+               colGroup.appendChild(colGroupE);
+               
+               var colGroupF = document.createElement("col");
+               //colGroupF.setAttribute("width", "50%");
+               colGroup.appendChild(colGroupF);
+               
+               var thead = document.createElement("thead");
+               table.appendChild(thead);
+               
+               var theadTr = document.createElement("tr");
+               theadTr.classList.add("text-center");
+               thead.appendChild(theadTr);
+               
+               var theadTrTh1 = document.createElement("th");
+               theadTrTh1.setAttribute("scope", "col");
+               theadTrTh1.classList.add("table-light");
+               theadTrTh1.innerText="번호";
+               theadTr.appendChild(theadTrTh1);
+               
+               var theadTrTh2 = document.createElement("th");
+               theadTrTh2.setAttribute("scope", "col");
+               theadTrTh2.classList.add("table-light");
+               theadTrTh2.innerText="이름";
+               theadTr.appendChild(theadTrTh2);
+               
+               var theadTrTh3 = document.createElement("th");
+               theadTrTh3.setAttribute("scope", "col");
+               theadTrTh3.classList.add("table-light");
+               theadTrTh3.innerText="신청공고";
+               theadTr.appendChild(theadTrTh3);
+               
+               var theadTrTh4 = document.createElement("th");
+               theadTrTh4.setAttribute("scope", "col");
+               theadTrTh4.classList.add("table-light");
+               theadTrTh4.innerText="조력자 분류";
+               theadTr.appendChild(theadTrTh4);
+               
+               var theadTrTh5 = document.createElement("th");
+               theadTrTh5.setAttribute("scope", "col");
+               theadTrTh5.classList.add("table-light");
+               theadTrTh5.innerText="신청일";
+               theadTr.appendChild(theadTrTh5);
+               
+               var theadTrTh6 = document.createElement("th");
+               theadTrTh6.setAttribute("scope", "col");
+               theadTrTh6.classList.add("table-light");
+               theadTrTh6.innerText="신청상황";
+               theadTr.appendChild(theadTrTh6);
+               
+               var tbody = document.createElement("tbody");
+               table.appendChild(tbody);
+               
+               for(dataList of jsonObj.list){
+                   
+                   
                 var bodyTr1 = document.createElement("tr");
                 tbody.appendChild(bodyTr1);
-
 
                 var bodyTr1Td1 = document.createElement("td");
                 bodyTr1Td1.classList.add("text-center");
@@ -515,6 +595,9 @@ function callUser(e){
                 var bodyTr1Td2 = document.createElement("td");
                 bodyTr1Td2.classList.add("text-center");
                 bodyTr1Td2.innerText = dataList.USER_NAME;
+                bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	            bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
+	            bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
                 bodyTr1.appendChild(bodyTr1Td2);
                 
                 var bodyTr1Td3 = document.createElement("td");
@@ -536,171 +619,25 @@ function callUser(e){
                 bodyTr1Td6.classList.add("text-center");
                 bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
                 bodyTr1.appendChild(bodyTr1Td6);
-                
-                }
-                
-                ListBox.appendChild(rowBox);        
-	            
-	        }
-	    }
-	    
+               
+               }
+               
+               ListBox.appendChild(rowBox);        
+            
+        }
+    }
+    if(selectBox1.value == "a"){
 	    xhr.open("get" , "../admin/callAUser?trial_fcltt_proper_num=" + e.value); //리퀘스트 세팅..
 	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 	    xhr.send(); //AJAX로 리퀘스트함..
-		
-		
-	}else if(selectBox1.value == "c"){
-		
-		
-		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
-	    xhr.onreadystatechange = function () {
-	        if(xhr.readyState == 4 && xhr.status == 200){
-	            var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-	            
-	            console.log(jsonObj);
-	            for(i of jsonObj.list){
-	            	console.log(i.ANNOUNCE_PROPER_NUM);
-	            }
-	            var ListBox = document.getElementById("list-info");
-				ListBox.innerHTML = "";
-	            
-	            
-	            var rowBox = document.createElement("div");
-	            rowBox.classList.add("row");
-	            
-	            var tableRow = document.createElement("div");
-                tableRow.classList.add("row");
-                tableRow.classList.add("mx-0");
-                tableRow.classList.add("px-0");
-                rowBox.appendChild(tableRow);
-                
-                var table = document.createElement("table");
-                table.classList.add("table");
-                table.classList.add("table-bordered");
-                tableRow.appendChild(table);
-                
-                var colGroup = document.createElement("colgroup");
-                table.appendChild(colGroup);
-
-                var colGroupA = document.createElement("col");
-                //colGroupA.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupA);
-
-                var colGroupB = document.createElement("col");
-                //colGroupB.setAttribute("width", "25%");
-                colGroup.appendChild(colGroupB);
-
-                var colGroupC = document.createElement("col");
-                //colGroupC.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupC);
-                
-                var colGroupD = document.createElement("col");
-                //colGroupD.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupD);
-                
-                var colGroupE = document.createElement("col");
-                //colGroupE.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupE);
-                
-                var colGroupF = document.createElement("col");
-                //colGroupF.setAttribute("width", "50%");
-                colGroup.appendChild(colGroupF);
-                
-                var thead = document.createElement("thead");
-                table.appendChild(thead);
-                
-                var theadTr = document.createElement("tr");
-                theadTr.classList.add("text-center");
-                thead.appendChild(theadTr);
-                
-                var theadTrTh1 = document.createElement("th");
-                theadTrTh1.setAttribute("scope", "col");
-                theadTrTh1.classList.add("table-light");
-                theadTrTh1.innerText="번호";
-                theadTr.appendChild(theadTrTh1);
-                
-                var theadTrTh2 = document.createElement("th");
-                theadTrTh2.setAttribute("scope", "col");
-                theadTrTh2.classList.add("table-light");
-                theadTrTh2.innerText="이름";
-                theadTr.appendChild(theadTrTh2);
-                
-                var theadTrTh3 = document.createElement("th");
-                theadTrTh3.setAttribute("scope", "col");
-                theadTrTh3.classList.add("table-light");
-                theadTrTh3.innerText="신청공고";
-                theadTr.appendChild(theadTrTh3);
-                
-                var theadTrTh4 = document.createElement("th");
-                theadTrTh4.setAttribute("scope", "col");
-                theadTrTh4.classList.add("table-light");
-                theadTrTh4.innerText="조력자 분류";
-                theadTr.appendChild(theadTrTh4);
-                
-                var theadTrTh5 = document.createElement("th");
-                theadTrTh5.setAttribute("scope", "col");
-                theadTrTh5.classList.add("table-light");
-                theadTrTh5.innerText="신청일";
-                theadTr.appendChild(theadTrTh5);
-                
-                var theadTrTh6 = document.createElement("th");
-                theadTrTh6.setAttribute("scope", "col");
-                theadTrTh6.classList.add("table-light");
-                theadTrTh6.innerText="신청상황";
-                theadTr.appendChild(theadTrTh6);
-                
-                var tbody = document.createElement("tbody");
-                table.appendChild(tbody);
-                
-                for(dataList of jsonObj.list){
-                    
-                    
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.classList.add("text-center");
-                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
-                bodyTr1.appendChild(bodyTr1Td1);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.classList.add("text-center");
-                bodyTr1Td2.innerText = dataList.USER_NAME;
-                bodyTr1.appendChild(bodyTr1Td2);
-                
-                var bodyTr1Td3 = document.createElement("td");
-                bodyTr1Td3.classList.add("text-center");
-                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
-                bodyTr1.appendChild(bodyTr1Td3);
-                
-                var bodyTr1Td4 = document.createElement("td");
-                bodyTr1Td4.classList.add("text-center");
-                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
-                bodyTr1.appendChild(bodyTr1Td4);
-                
-                var bodyTr1Td5 = document.createElement("td");
-                bodyTr1Td5.classList.add("text-center");
-                bodyTr1Td5.innerText = moment(dataList.APLCN_DTLS_DATE).format('YYYY-MM-DD');
-                bodyTr1.appendChild(bodyTr1Td5);
-		
-                var bodyTr1Td6 = document.createElement("td");
-                bodyTr1Td6.classList.add("text-center");
-                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
-                bodyTr1.appendChild(bodyTr1Td6);
-                
-                }
-                
-                ListBox.appendChild(rowBox);
-                
-	        }
-	    }
-	    
+    }else if(selectBox1.value == "c"){
 	    xhr.open("get" , "../admin/callCUser?announce_proper_num=" + e.value); //리퀘스트 세팅..
 	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 	    xhr.send(); //AJAX로 리퀘스트함..
-		
-		
+	}else if(selectBox1.value == "d"){
+	    xhr.open("get" , "../admin/callDUser?aplcn_dtls_sts=" + e.value); //리퀘스트 세팅..
+	    //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
+	    xhr.send(); //AJAX로 리퀘스트함..
 	}
 	
 }
@@ -745,13 +682,14 @@ function callUser(e){
 							<option value="a">조력자별 조회</option>
 <!-- 							<option value="b">기간별 조회</option> -->
 							<option value="c">공고별 조회</option>
+							<option value="d">신청현황 조회</option>
 						</select>
-						
 					</div>
 					<div id="target" class="col">
 					
 					</div>
 				</div>
+				<br>
 				<div class="row mx-0">
 					<div id="list-info" class="col"></div>
 				</div> 
@@ -759,6 +697,35 @@ function callUser(e){
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
+</div>
+
+<!-- User Detail Modal -->
+<div class="modal fade" id="userDetail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">User Detail Modal</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<!-- 실험용 -->
+		 		<div class="row text-center my-2 mx-1"><!-- 네비바 -->            
+		            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="fiveTab"><span>신청정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sixTab"><span>학력정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sevenTab"><span>경력정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="eightTab"><span>자격증정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일</span></div>
+		        </div>
+		 		<div class="row mx-0">
+					<div id="nav-info" class="col">왜안됨</div>
+				</div> 
+			</div>
+			<div id="userDetailButtonBox" class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

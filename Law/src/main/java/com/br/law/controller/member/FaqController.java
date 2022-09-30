@@ -1,9 +1,11 @@
 package com.br.law.controller.member;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.law.service.member.FaqServiceImpl;
 import com.br.law.vo.Tb_004;
+import com.br.law.vo.Tb_015;
 
 @Controller
 @RequestMapping("/member/*")
@@ -20,16 +23,25 @@ public class FaqController {
 	private FaqServiceImpl faqService;
 	
 	@RequestMapping("faqPage")
-	public String faqPage(Model model) {
-		//System.out.println("0907 faqPage 테스트!");
+	public String faqPage(Model model, int faq_proper_num) {
 		
 		ArrayList<Tb_004> dataList = faqService.getFaqDataList();
 		model.addAttribute("dataList", dataList);
 		
+		//for(Tb_004 tb_004 : dataList) {
+		//	System.out.println("tb_004 : " + tb_004.getFaq_proper_num());
+		//}
 		
-		for(Tb_004 tb_004 : dataList) {
-			System.out.println("tb_004 : " + tb_004.getFaq_proper_num());
-		}
+		HashMap<String, Object> data = faqService.getFaqData(faq_proper_num);
+		
+		Tb_004 tb_004 = (Tb_004)data.get("tb_004");
+		String content = tb_004.getFaq_ask_content();
+		content = StringEscapeUtils.escapeHtml4(content);
+		content = content.replaceAll(" ", "&nbsp");
+		content = content.replaceAll("\n", "<br>");
+		tb_004.setFaq_ask_content(content);
+		
+		model.addAttribute("data", data);
 		
 		return "member/faqPage";
 	}
@@ -43,22 +55,38 @@ public class FaqController {
 	@RequestMapping("writeFaqProcess")
 	public String writeFaqProcess(Tb_004 param , HttpSession session) {
 		
+		Tb_015 sessionUser = (Tb_015)session.getAttribute("sessionUserInfo");
+		int admin_proper_num = sessionUser.getAdmin_proper_num();
+		
+		param.setAdmin_proper_num(admin_proper_num);
+		
 		faqService.writeFaq(param);
 		
 		return "redirect:./faqPage";
 	}
 	
-	@RequestMapping("deleteContentProcess")
-	public String deleteContentProcess(int faq_proper_num) {
+	@RequestMapping("deleteFaqProcess")
+	public String deleteFaqProcess(int faq_proper_num) {
 		
-		faqService.deleteContent(faq_proper_num);
+		faqService.deleteFaq(faq_proper_num);
 		
 		return "redirect:./faqPage";
 	}
 	
-	@RequestMapping("updateContentPage")
-	public String updateContentPage(Tb_004 param) {
-		faqService.updateContent(param);
+	@RequestMapping("updateFaqPage")
+	public String updateFaqPage(int faq_proper_num , Model model) {
+		
+		HashMap<String, Object> data = faqService.getFaqData(faq_proper_num);
+		model.addAttribute("data", data);
+		
+		return "member/updateFaqPage";
+	}
+	
+	@RequestMapping("updateFaqProcess")
+	public String updateFaqProcess(Tb_004 param) {
+		
+		faqService.updateFaq(param);
+		
 		return "redirect:./faqPage";
 	}
 
