@@ -12,8 +12,10 @@ import com.br.law.vo.Tb_014;
 public interface ApplicationRegistrationAdminMapper {
 	
 	public List<Map<String, Object>> selUserList();
-	
-	public Map<String, Object> onestExamination(Map<String, Object> param);
+	//기존
+//	public Map<String, Object> onestExamination(Map<String, Object> param);
+	//신규
+	public Map<String, Object> onestExamination(int aplcn_dtls_proper_num);
 	
 	public void upComplete(int param);
 	

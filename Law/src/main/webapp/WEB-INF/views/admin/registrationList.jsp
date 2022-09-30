@@ -12,10 +12,7 @@
 	
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
-<!-- 외부 js 로드 -->
-<script type="text/javascript" src="../resources/js/userDetailList.js"></script>
-
-<title>평정 기준표 관리</title>
+<title>등재명단 조회</title>
 <style>
 	
 </style>
@@ -42,14 +39,14 @@
 			<!-- 현재위치 -->
 			<div class="row text-end loc">
 				<div class="col" style="font-size: 11px;">
-					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">1차심사 리스트</span>
+					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">신청자 조회</span>
 				</div>
 			</div>
 			<!-- 타이틀 -->
 			<div class="row my-4">
 				<div class="col">
 					<img src="../resources/img/Admin/head_title_img.gif">
-					<span style="font-weight: bold;">1차심사 리스트</span>
+					<span style="font-weight: bold;">등재명단 조회</span>
 				</div>
 			</div>
 			
@@ -57,63 +54,42 @@
 			<div class="contentsinbox">
 				<div class="row">
 					<div class="col">
-					
 						<form action="excel" method="post">
-							<table class="table">
+							<table class="table text-center">
 								  <thead>
 								    <tr>
 								      <th scope="col">번호</th>
 								      <th scope="col">이름</th>
-								      <th scope="col">법원이름</th>
+								      <th scope="col">연락처</th>
 								      <th scope="col">이메일</th>
 								      <th scope="col">신청일</th>
-								      <th scope="col">조력자분류</th>
+								      <th scope="col">신청공고</th>
 								      <th scope="col">신청현황</th>
 								    </tr>
 								  </thead>
 								  <tbody>
-								  <c:forEach items="${list}" var="data">
-									    <tr onclick="location.href='../admin/selUserListDetail?aplcn_dtls_proper_num=${data.APLCN_DTLS_PROPER_NUM }'">
-								     	  <td> ${data.APLCN_DTLS_PROPER_NUM }</td>
-									      <td>${data.USER_NAME}</td>
-									      <td>${data.COURT_NAME}</td>
-									      <td>${data.USER_EMAIL}</td>
-									      <td><fmt:formatDate value="${data.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
-									      <td>${data.TRIAL_FCLTT_SBCLS_CODE }</td>
-									      <td>${data.APLCN_DTLS_STS }</td>
-									      </tr>
-				    			</c:forEach>
+								  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
+								    <tr>
+								      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
+								      <td><a href="applicantManagementDetail?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>
+								      <td>${applicantManagementList.USER_PHONE}</td>
+								      <td>${applicantManagementList.USER_EMAIL}</td>
+								      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
+								      <td>${applicantManagementList.ANNOUNCE_TITLE}</td>
+								      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
+								    </tr>
+								    </c:forEach>
 								  </tbody>
 								</table>
+							<button type="submit" type="button" class="btn btn-primary">다운로드</button>		
 						</form>
-						
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
-</div>
-
-<!-- User Detail Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+</div>	
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

@@ -27,13 +27,17 @@ public class ApplicationRegistrationAdminService {
 	@Autowired
 	TrialUserService trialUserService;
 	
-	//
 	public List<Map<String, Object>> selUserList(){
 		return applicationRegistrationAdminMapper.selUserList();
 	}
 	
-	public Map<String, Object> onestExamination(Map<String, Object> param){
-		return applicationRegistrationAdminMapper.onestExamination(param);
+	//기존
+//	public Map<String, Object> onestExamination(Map<String, Object> param){
+//		return applicationRegistrationAdminMapper.onestExamination(param);
+//	}
+	//신규
+	public Map<String, Object> onestExamination(int aplcn_dtls_proper_num){
+		return applicationRegistrationAdminMapper.onestExamination(aplcn_dtls_proper_num);
 	}
 	
 	public void upComplete(int param) {

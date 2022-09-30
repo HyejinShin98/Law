@@ -51,16 +51,12 @@ public class ApplicationRegistrationAdminController {
 		
 		int userNo = Integer.parseInt(request.getParameter("aplcn_dtls_proper_num"));
 		map.put("aplcn_dtls_proper_num", userNo);
-		//1, 2, 5, 6,7,8,10,11 join
-		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(map);
-		//9 join
+		Map<String, Object> param = applicationRegistrationAdminService.onestExamination(userNo);
 		List<Tb_009> list = applicationRegistrationAdminService.uploadFileSel(userNo);
 		
-		logger.info("맵확인 : " + map);
 		model.addAttribute("map" , param);
 		model.addAttribute("fileList", list);
-		System.out.println("이건 확인" + model);
-		System.out.println("ddd" + model);
+		
 		return "admin/selUserListDetail";
 	}
 	

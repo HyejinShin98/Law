@@ -54,20 +54,19 @@ public class AssistantController {
 		return "admin/applicantManagement";
 	}
 	
+	//삭제요망
 	@RequestMapping("applicantManagementDetail")
-	public String ApplicantManagementDetail(Model model,int aplcn_dtls_proper_num){
+	public String ApplicantManagementDetail(Model model, int aplcn_dtls_proper_num){
 		Map<String, Object> user = new HashMap<String, Object>();
 		 
 		Map<String, Object> userInfo = assistantServiceImpl.applicantInformation(aplcn_dtls_proper_num);
 		model.addAttribute("userInfo", userInfo); 
 		
 		List<Map<String, Object>> map = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
-		
 		List<Map<String,Object>> map2 = assistantServiceImpl.uploadfile(aplcn_dtls_proper_num);
-		model.addAttribute("uploadfile", map2); System.out.println("파ㅏ일" +
-		assistantServiceImpl.uploadfile(aplcn_dtls_proper_num));
-	
 		
+		model.addAttribute("uploadfile", map2); 
+		System.out.println("파ㅏ일" + assistantServiceImpl.uploadfile(aplcn_dtls_proper_num));
 		
 		return "admin/applicantManagementDetail";
 	}
