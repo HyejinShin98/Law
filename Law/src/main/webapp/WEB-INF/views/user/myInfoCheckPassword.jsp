@@ -119,9 +119,15 @@ h4{
 										<div class="row"><div class="col fw-bold mb-2 text-secondary"><h4>비밀번호 재확인</h4></div></div>
 										<div class="row">
 											<div class="col text-secondary">
+												<span style="font-size: 11px;">회원탈퇴 진행 시 본인을 포함한 타인 모두 <span class="text-danger text-opacity-75">아이디 재사용이나 복구가 불가능합니다.</span><br>
+												계속해서 탈퇴를 원하시면 비밀번호를 입력해주세요.
+											</span>
+											
+											<!-- 
 												<ul class="p-0">
 													<li style="font-size: 11px;" class="form-control py-2 ps-2">본인확인을 위해 한번 더 비밀번호를 입력해 주세요.<br>비밀번호는 타인에게 노출되지 않도록 주의해 주세요.</li>
 												</ul>
+												 -->
 											</div>
 										</div>
 										
