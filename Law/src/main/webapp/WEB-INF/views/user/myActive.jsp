@@ -46,22 +46,31 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${activeList }" var="list">
-								<tr>
-									<td>${list.ROWNUM }</td>								
-									<td>${list.COURT_NAME }</td>								
-									<td><fmt:formatDate value="${list.CHOSEN_DATE }" pattern="yyyy-MM-dd"/></td>								
-									<td><fmt:formatDate value="${list.ATTENDANCE_DATE }" pattern="yyyy-MM-dd"/></td>								
-									<td>
-										<c:if test="${list.ACT_COMPLETE_YN == 'y'}">
-											완료
-										</c:if>
-										<c:if test="${list.ACT_COMPLETE_YN == 'n'}">
-											미완료
-										</c:if>
-									</td>								
-								</tr>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${!empty activeList }">
+									<c:forEach items="${activeList }" var="list">
+										<tr>
+											<td>${list.ROWNUM }</td>								
+											<td>${list.COURT_NAME }</td>								
+											<td><fmt:formatDate value="${list.CHOSEN_DATE }" pattern="yyyy-MM-dd"/></td>								
+											<td><fmt:formatDate value="${list.ATTENDANCE_DATE }" pattern="yyyy-MM-dd"/></td>								
+											<td>
+												<c:if test="${list.ACT_COMPLETE_YN == 'y'}">
+													완료
+												</c:if>
+												<c:if test="${list.ACT_COMPLETE_YN == 'n'}">
+													미완료
+												</c:if>
+											</td>								
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="5"><span>활동내역이 존재하지 않습니다.</span></td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>
