@@ -41,6 +41,7 @@ function showFileInput(ele, type, code) {
    	//inputFile.classList.add("form-control");
    	inputFile.type = "file";
    	inputFile.name = "file";
+   	inputFile.classList.add("file");
    	inputFile.id = "file_" + type;
    	ele.appendChild(inputFile);
    	
@@ -48,12 +49,14 @@ function showFileInput(ele, type, code) {
    	inputFileType.type = "hidden";
    	inputFileType.name = "file_type";
    	inputFileType.value = type;
+   	inputFileType.classList.add("file_type");
    	ele.appendChild(inputFileType);
    	
    	var inputFileCode = document.createElement("input");
    	inputFileCode.type = "hidden";
    	inputFileCode.name = "file_code";
    	inputFileCode.value = code;
+   	inputFileCode.classList.add("file_code");
    	ele.appendChild(inputFileCode);
 }
 
@@ -264,6 +267,28 @@ function makeFileArr(arr) {
 	return resultArr;
 }
 
+function test() {
+	var formData = new FormData();
+	formData.append('aplcn_dtls_proper_num', document.getElementById('aplcn_dtls_proper_num').value);
+	formData.append('types', makeValArr(document.getElementsByName('file_type')));
+	formData.append('codes', makeValArr(document.getElementsByName('file_code')));
+	
+	var files = document.getElementsByClassName("file");
+	console.log('files : ' + files);
+	console.log('files.length : ' + files.length);
+	
+	var i=0;
+	for(e of files) {
+		
+	
+	
+	}
+	
+	
+	
+
+
+}
 
 function tableNineFrmSubmit() {
 	var formData = new FormData();
@@ -549,7 +574,7 @@ function userDetailWrite(){
 	                var zoneCodeCol1 = document.createElement("div");
 	                zoneCodeCol1.classList.add("col-2");
 	                zoneCodeCol1.classList.add("mt-1");
-	                zoneCodeCol1.style.width = "100px";
+	                zoneCodeCol1.style.width = "75px";
 	                zoneCodeRow.appendChild(zoneCodeCol1);
 	                
 	                var zoneCodeSpan = document.createElement("span");
@@ -576,10 +601,11 @@ function userDetailWrite(){
 					zoneCodeCol3.style.width = "100px";
 					zoneCodeRow.appendChild(zoneCodeCol3);
 					
-					var addrSearchBtn = document.createElement("div");
+					var addrSearchBtn = document.createElement("input");
 					//addrSearchBtn.classList.add("btn");
 					//addrSearchBtn.classList.add("btn-success");
-					addrSearchBtn.innerText = "검색";
+					addrSearchBtn.type = "button";
+					addrSearchBtn.value = "검색";
 					addrSearchBtn.setAttribute("onClick", "searchAddr();");
 					zoneCodeCol3.appendChild(addrSearchBtn);
 					
@@ -597,7 +623,7 @@ function userDetailWrite(){
 	                
 	                var addrJibunCol1 = document.createElement("div");
 	                addrJibunCol1.classList.add("col-2");
-	                addrJibunCol1.style.width = "100px";
+	                addrJibunCol1.style.width = "75px";
 	                addrJibunRow.appendChild(addrJibunCol1);
 	                
 	                var addrJibunSpan = document.createElement("span");
@@ -630,7 +656,7 @@ function userDetailWrite(){
 					
 					var addrDetailCol1 = document.createElement("div");
 					addrDetailCol1.classList.add("col-2");
-					addrDetailCol1.style.width = "100px";
+					addrDetailCol1.style.width = "75px";
 					addrDetailRow.appendChild(addrDetailCol1);
 					
 					var addrDetailSpan = document.createElement("span");
@@ -647,6 +673,7 @@ function userDetailWrite(){
 					inputArDetail.value = jsonObj.map.USER_AR_DETAIL;
 					inputArDetail.id = "user_ar_detail";
 					inputArDetail.name = "user_ar_detail";
+					inputArDetail.style.width = "80%";
 					addrDetailCol2.appendChild(inputArDetail);
 	
 	                var bodyTr6 = document.createElement("tr");
@@ -673,7 +700,7 @@ function userDetailWrite(){
 					
 					var bankHolderCol1 = document.createElement("div");
 					bankHolderCol1.classList.add("col-2");
-					bankHolderCol1.style.width = "100px";
+					bankHolderCol1.style.width = "75px";
 					bankHolderRow.appendChild(bankHolderCol1);
 					
 					var bankHolderSpan = document.createElement("span");
@@ -706,7 +733,7 @@ function userDetailWrite(){
 	                
 	                var bankCol1 = document.createElement("div");
 	                bankCol1.classList.add("col-2");
-	                bankCol1.style.width = "100px";
+	                bankCol1.style.width = "75px";
 	                bankRow.appendChild(bankCol1);
 	                
 	                var bankSpan = document.createElement("span");
@@ -739,7 +766,7 @@ function userDetailWrite(){
 	                
 	                var bankAccountCol1 = document.createElement("div");
 	                bankAccountCol1.classList.add("col-2");
-	                bankAccountCol1.style.width = "100px";
+	                bankAccountCol1.style.width = "75px";
 	                bankAccountRow.appendChild(bankAccountCol1);
 	                
 	                var bankAccountSpan = document.createElement("span");
@@ -934,9 +961,9 @@ function tableFiveInfo(){
 					bodyTr1.appendChild(bodyTr1Td1);
 					
 					var inputYesLigtnBox = document.createElement("div");
-					inputYesLigtnBox.classList.add("form-check");
+					//inputYesLigtnBox.classList.add("form-check");
 					inputYesLigtnBox.style.float = "left";
-					inputYesLigtnBox.style.margin = "5px 20px 0px 50px";
+					inputYesLigtnBox.style.margin = "4px 20px 0px 17px";
 					bodyTr1Td1.appendChild(inputYesLigtnBox);
 					
 					var inputYesLigtn = document.createElement("input");
@@ -945,8 +972,6 @@ function tableFiveInfo(){
 					inputYesLigtn.name = "ligtn_case_carer_yn";
 					inputYesLigtn.id = "ligtn_case_carer_y";
 					inputYesLigtn.value = "y";
-					inputYesLigtn.style.float = "none";
-					inputYesLigtn.style.marginRight = "5px";
 					inputYesLigtn.setAttribute("onclick", "disabledToggle('y', 'ligtn_case_carer_etc');");
 					inputYesLigtnBox.appendChild(inputYesLigtn);
 					
@@ -959,7 +984,7 @@ function tableFiveInfo(){
 					var inputNoLigtnBox = document.createElement("div");
 					//inputNoLigtnBox.classList.add("form-check");
 					inputNoLigtnBox.style.float = "left";
-					inputNoLigtnBox.style.marginTop = "5px";
+					inputNoLigtnBox.style.marginTop = "4px";
 					bodyTr1Td1.appendChild(inputNoLigtnBox);
 					
 					var inputNoLigtn = document.createElement("input");
@@ -968,8 +993,6 @@ function tableFiveInfo(){
 					inputNoLigtn.name = "ligtn_case_carer_yn";
 					inputNoLigtn.id = "ligtn_case_carer_n";
 					inputNoLigtn.value = "n";
-					inputNoLigtn.style.float = "none";
-					inputNoLigtn.style.marginRight = "5px";
 					inputNoLigtn.setAttribute("onclick", "disabledToggle('n', 'ligtn_case_carer_etc');");
 					inputNoLigtnBox.appendChild(inputNoLigtn);
 					
@@ -986,6 +1009,7 @@ function tableFiveInfo(){
 	                var InputligtnCaseCarerEtc = document.createElement("input");
 	                InputligtnCaseCarerEtc.id = "ligtn_case_carer_etc";
 	                InputligtnCaseCarerEtc.name = "ligtn_case_carer_etc";
+	                InputligtnCaseCarerEtc.style.width = "100%";
 	                //InputligtnCaseCarerEtc.classList.add("form-control");
 	                
 	                InputligtnCaseCarerEtc.value = jsonObj.map.LIGTN_CASE_CARER_ETC; 
@@ -1037,7 +1061,7 @@ function tableFiveInfo(){
 					var inputYesInsrnBox = document.createElement("div");
 					//inputYesInsrnBox.classList.add("form-check");
 					inputYesInsrnBox.style.float = "left";
-					inputYesInsrnBox.style.margin = "0px 20px 0px 50px";
+					inputYesInsrnBox.style.margin = "4px 20px 0px 17px";
 					bodyTr2Td1.appendChild(inputYesInsrnBox);
 					
 					var inputYesInsrn = document.createElement("input");
@@ -1047,7 +1071,7 @@ function tableFiveInfo(){
 					inputYesInsrn.id = "insrn_indst_carer_y";
 					inputYesInsrn.value = "y";
 					inputYesInsrn.style.float = "none";
-					inputYesInsrn.style.marginRight = "5px";
+					//inputYesInsrn.style.marginRight = "4px";
 					inputYesInsrn.setAttribute("onclick", "disabledToggle('y', 'insrn_indst_carer_etc');");
 					inputYesInsrnBox.appendChild(inputYesInsrn);
 					
@@ -1060,6 +1084,7 @@ function tableFiveInfo(){
 					var inputNoInsrnBox = document.createElement("div");
 					//inputNoInsrnBox.classList.add("form-check");
 					inputNoInsrnBox.style.float = "left";
+					inputNoInsrnBox.style.marginTop = "4px";
 					bodyTr2Td1.appendChild(inputNoInsrnBox);
 					
 					var inputNoInsrn = document.createElement("input");
@@ -1069,7 +1094,7 @@ function tableFiveInfo(){
 					inputNoInsrn.id = "insrn_indst_carer_n";
 					inputNoInsrn.value = "n";
 					inputNoInsrn.style.float = "none";
-					inputNoInsrn.style.marginRight = "5px";
+					//inputNoInsrn.style.marginRight = "5px";
 					inputNoInsrn.setAttribute("onclick", "disabledToggle('n', 'insrn_indst_carer_etc');");
 					inputNoInsrnBox.appendChild(inputNoInsrn);
 					
@@ -1086,6 +1111,7 @@ function tableFiveInfo(){
 	                var InputInsrnIndstCarerEtc = document.createElement("input");
 	                InputInsrnIndstCarerEtc.id = "insrn_indst_carer_etc";
 	                InputInsrnIndstCarerEtc.name = "insrn_indst_carer_etc";
+	                InputInsrnIndstCarerEtc.style.width = "100%";
 	               // InputInsrnIndstCarerEtc.classList.add("form-control");
 	                var insrnIndstCarerEtc =  jsonObj.map.INSRN_INDST_CARER_ETC
 	                if(insrnIndstCarerEtc == "" || insrnIndstCarerEtc == undefined) {
@@ -1153,7 +1179,7 @@ function tableFiveInfo(){
 	                var inputYesCriBox = document.createElement("div");
 	                //inputYesCriBox.classList.add("form-check");
 	                inputYesCriBox.style.float = "left";
-	                inputYesCriBox.style.margin = "0px 20px 0px 50px";
+	                inputYesCriBox.style.margin = "4px 20px 0px 17px";
 	                bodyTr3Td1.appendChild(inputYesCriBox);
 	                
 	                var inputYesCri = document.createElement("input");
@@ -1163,7 +1189,7 @@ function tableFiveInfo(){
 	                inputYesCri.id = "criminal_penalty_carer_y";
 	                inputYesCri.value = "y";
 	                inputYesCri.style.float = "none";
-	                inputYesCri.style.marginRight = "5px";
+	                //inputYesCri.style.marginRight = "5px";
 	                inputYesCri.setAttribute("onclick", "disabledToggle('y', 'criminal_penalty_carer_etc');");
 	                inputYesCriBox.appendChild(inputYesCri);
 	                
@@ -1176,6 +1202,7 @@ function tableFiveInfo(){
 	                var inputNoCriBox = document.createElement("div");
 					//inputNoCriBox.classList.add("form-check");
 					inputNoCriBox.style.float = "left";
+					inputNoCriBox.style.marginTop = "4px";
 					bodyTr3Td1.appendChild(inputNoCriBox);
 					
 					var inputNoCri = document.createElement("input");
@@ -1184,8 +1211,8 @@ function tableFiveInfo(){
 					inputNoCri.name = "criminal_penalty_carer_yn";
 					inputNoCri.id = "criminal_penalty_carer_ n";
 					inputNoCri.value = "n";
-					inputNoCri.style.float = "none";
-					inputNoCri.style.marginRight = "5px";
+					//inputNoCri.style.float = "none";
+					//inputNoCri.style.marginRight = "5px";
 					inputNoCri.setAttribute("onclick", "disabledToggle('n', 'criminal_penalty_carer_etc');");
 					inputNoCriBox.appendChild(inputNoCri);
 					
@@ -1201,6 +1228,7 @@ function tableFiveInfo(){
 	               	var inputCriPenCarerEtc = document.createElement("input");
 	               	inputCriPenCarerEtc.id = "criminal_penalty_carer_etc";
 	               	inputCriPenCarerEtc.name = "criminal_penalty_carer_etc";
+	               	inputCriPenCarerEtc.style.width = "100%";
 	               	//inputCriPenCarerEtc.classList.add("form-control");
 	               	var criPenCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
 	               	if(criPenCarerEtc == "" || criPenCarerEtc == undefined) {
@@ -1482,7 +1510,7 @@ function tableSixInfo(){
 	                var inputEdctnFinalYBox = document.createElement("div");
 	                //inputEdctnFinalYBox.classList.add("form-check");
 	                inputEdctnFinalYBox.style.float = "left";
-	                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
+	                inputEdctnFinalYBox.style.margin = "4px 40px 0px 43px";
 					bodyTr2Td2.appendChild(inputEdctnFinalYBox);
 					
 					var inputEdctnFinalY = document.createElement("input");
@@ -1504,7 +1532,7 @@ function tableSixInfo(){
 					var inputEdctnFinalNBox = document.createElement("div");
 					//inputEdctnFinalNBox.classList.add("form-check");
 					inputEdctnFinalNBox.style.float = "left";
-					inputEdctnFinalNBox.style.marginTop = "5px";
+					inputEdctnFinalNBox.style.marginTop = "4px";
 					bodyTr2Td2.appendChild(inputEdctnFinalNBox);
 					
 					var inputEdctnFinalN = document.createElement("input");
@@ -2259,6 +2287,7 @@ function tableNineInfo(){
 	               	bodyTr1Td3.classList.add("text-center");
 	               	
 					if(jsonObj[0] != null) {
+						console.log('jsonObj[0] : ' + jsonObj[0]);
 		              
 		              	var bodyTr1Td3Span = document.createElement("span");
 		              	bodyTr1Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj[0].aplcn_dtls_proper_num+"', '"+jsonObj[0].aplcn_atch_file_proper_num+"');");
@@ -2266,8 +2295,9 @@ function tableNineInfo(){
 		                bodyTr1Td3Span.innerText = jsonObj[0].original_file_name;
 		                bodyTr1Td3.appendChild(bodyTr1Td3Span);
 		                
-		                var bodyTr1Td3MofBtn = document.createElement("button");
-		                bodyTr1Td3MofBtn.innerText = "변경";
+		                var bodyTr1Td3MofBtn = document.createElement("input");
+		                bodyTr1Td3MofBtn.type = "button";
+		                bodyTr1Td3MofBtn.value = "변경";
 		                bodyTr1Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businesslicense', 'co');");
 		                bodyTr1Td3MofBtn.style.float = "right";
 		                bodyTr1Td3.appendChild(bodyTr1Td3MofBtn);
@@ -2298,8 +2328,9 @@ function tableNineInfo(){
 		                bodyTr2Td2Span.innerText = jsonObj[1].original_file_name;
 		                bodyTr2Td2.appendChild(bodyTr2Td2Span);
 		                
-		                var bodyTr2Td2MofBtn = document.createElement("button");
-		                bodyTr2Td2MofBtn.innerText = "변경";
+		                 var bodyTr2Td2MofBtn = document.createElement("input");
+		                bodyTr2Td2MofBtn.type = "button";
+		                bodyTr2Td2MofBtn.value = "변경";
 		                bodyTr2Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businessreport', 'co');");
 		                bodyTr2Td2MofBtn.style.float = "right";
 		                bodyTr2Td2.appendChild(bodyTr2Td2MofBtn);
@@ -2337,8 +2368,9 @@ function tableNineInfo(){
 		                bodyTr3Td2Span.innerText = jsonObj[2].original_file_name;
 		                bodyTr3Td2.appendChild(bodyTr3Td2Span);
 		                
-		                var bodyTr3Td2MofBtn = document.createElement("button");
-		                bodyTr3Td2MofBtn.innerText = "변경";
+		                var bodyTr3Td2MofBtn = document.createElement("input");
+		                bodyTr3Td2MofBtn.type = "button";
+		                bodyTr3Td2MofBtn.value = "변경";
 		                bodyTr3Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'taxconfirm', 'co');");
 		                bodyTr3Td2MofBtn.style.float = "right";
 		                bodyTr3Td2.appendChild(bodyTr3Td2MofBtn);
@@ -2376,8 +2408,9 @@ function tableNineInfo(){
 		                bodyTr4Td3Span.innerText = jsonObj[3].original_file_name;
 		                bodyTr4Td3.appendChild(bodyTr4Td3Span);
 		                
-		                var bodyTr4Td3MofBtn = document.createElement("button");
-		                bodyTr4Td3MofBtn.innerText = "변경";
+		                var bodyTr4Td3MofBtn = document.createElement("input");
+		                bodyTr4Td3MofBtn.type = "button";
+		                bodyTr4Td3MofBtn.value = "변경";
 		                bodyTr4Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'resume', 'pe');");
 		                bodyTr4Td3MofBtn.style.float = "right";
 		                bodyTr4Td3.appendChild(bodyTr4Td3MofBtn);
@@ -2408,8 +2441,9 @@ function tableNineInfo(){
 		                bodyTr5Td2Span.innerText = jsonObj[4].original_file_name;
 		                bodyTr5Td2.appendChild(bodyTr5Td2Span);
 		                
-		                var bodyTr5Td2MofBtn = document.createElement("button");
-		                bodyTr5Td2MofBtn.innerText = "변경";
+		                var bodyTr5Td2MofBtn = document.createElement("input");
+		                bodyTr5Td2MofBtn.type = "button";
+		                bodyTr5Td2MofBtn.value = "변경";
 		                bodyTr5Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'educationlevel', 'pe');");
 		                bodyTr5Td2MofBtn.style.float = "right";
 		                bodyTr5Td2.appendChild(bodyTr5Td2MofBtn);
@@ -2439,8 +2473,9 @@ function tableNineInfo(){
 		                bodyTr6Td2Span.innerText = jsonObj[5].original_file_name;
 		                bodyTr6Td2.appendChild(bodyTr6Td2Span);
 		                
-		                var bodyTr6Td2MofBtn = document.createElement("button");
-		                bodyTr6Td2MofBtn.innerText = "변경";
+		                var bodyTr6Td2MofBtn = document.createElement("input");
+		                bodyTr6Td2MofBtn.type = "button";
+		                bodyTr6Td2MofBtn.value = "변경";
 		                bodyTr6Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'carrer', 'pe');");
 		                bodyTr6Td2MofBtn.style.float = "right";
 		                bodyTr6Td2.appendChild(bodyTr6Td2MofBtn);
@@ -2470,8 +2505,9 @@ function tableNineInfo(){
 		                bodyTr7Td2Span.innerText = jsonObj[6].original_file_name;
 		                bodyTr7Td2.appendChild(bodyTr7Td2Span);
 		                
-		                var bodyTr7Td2MofBtn = document.createElement("button");
-		                bodyTr7Td2MofBtn.innerText = "변경";
+		                var bodyTr7Td2MofBtn = document.createElement("input");
+		                bodyTr7Td2MofBtn.type = "button";
+		                bodyTr7Td2MofBtn.value = "변경";
 		                bodyTr7Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'certificate', 'pe');");
 		                bodyTr7Td2MofBtn.style.float = "right";
 		                bodyTr7Td2.appendChild(bodyTr7Td2MofBtn);
@@ -2505,8 +2541,9 @@ function tableNineInfo(){
 		                bodyTr8Td3Span.innerText = jsonObj[7].original_file_name;
 		                bodyTr8Td3.appendChild(bodyTr8Td3Span);
 		                
-		                var bodyTr8Td3MofBtn = document.createElement("button");
-		                bodyTr8Td3MofBtn.innerText = "변경";
+		                var bodyTr8Td3MofBtn = document.createElement("input");
+		                bodyTr8Td3MofBtn.type = "button";
+		                bodyTr8Td3MofBtn.value = "변경";
 		                bodyTr8Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'other', 'ot');");
 		                bodyTr8Td3MofBtn.style.float = "right";
 		                bodyTr8Td3.appendChild(bodyTr8Td3MofBtn);
