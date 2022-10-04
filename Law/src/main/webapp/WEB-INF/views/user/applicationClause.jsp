@@ -109,8 +109,7 @@
 			<!-- 사이드 네비바 -->
 			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
 				<div class="list-group list-group-flush">
-					<a href="../member/systemGuide" class="list-group-item list-group-item-action">감정인 제도안내</a>
-					<a href="../member/processGuide" class="list-group-item list-group-item-action">감정인 신청절차 안내</a>
+					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
 				</div>
 			</div>
 			
