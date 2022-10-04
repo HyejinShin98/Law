@@ -56,6 +56,12 @@ public class RestApplicationRegistrationAdminController {
 		return list;
 	}
 	
+	@RequestMapping("selectFileList")
+	public Map<String, Object> selectFileList(int aplcn_dtls_proper_num) {
+		Map<String, Object> map = applicationRegistrationAdminService.uploadFileSelMap(aplcn_dtls_proper_num);
+		return map;
+	}
+	
 	//분류별 출력 
 	@RequestMapping("accList")
 	public Map<String, Object> accList(){
