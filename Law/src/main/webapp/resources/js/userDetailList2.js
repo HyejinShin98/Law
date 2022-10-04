@@ -28,15 +28,15 @@ function tableOneInfo(userNo){
 			var userDetailButtonBox = document.getElementById("userDetailButtonBox");
 			userDetailButtonBox.innerHTML = "";
 			
-			if(jsonObj.map.APLCN_DTLS_STS == 'examination'){
+			if(jsonObj.map.APLCN_DTLS_STS == '신청중'){
 				var buttonBox2 = document.createElement("a");
-				buttonBox2.setAttribute("href", "../admin/evaluationProcess?aplcn_dtls_proper_num=${map.APLCN_DTLS_PROPER_NUM}");
+				buttonBox2.setAttribute("href", "../admin/evaluationProcess?aplcn_dtls_proper_num=" + jsonObj.map.APLCN_DTLS_PROPER_NUM);
 				buttonBox2.setAttribute("class", "btn btn-primary");
 				buttonBox2.innerText="1차 서류 접수";
 				userDetailButtonBox.appendChild(buttonBox2);
 				
 				var buttonBox3 = document.createElement("a");
-				buttonBox3.setAttribute("href", "../admin/companionProcess?aplcn_dtls_proper_num=${map.APLCN_DTLS_PROPER_NUM}");
+				buttonBox3.setAttribute("href", "../admin/companionProcess?aplcn_dtls_proper_num=" + jsonObj.map.APLCN_DTLS_PROPER_NUM);
 				buttonBox3.setAttribute("class", "btn btn-primary");
 				buttonBox3.innerText="1차 서류 반려";
 				userDetailButtonBox.appendChild(buttonBox3);
