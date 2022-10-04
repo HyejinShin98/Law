@@ -30,11 +30,12 @@
 					<div class="row">
 						<div class="col">
 							<form action="./updateFaqProcess" method="post">
-								<input name="faq_ask_content" value="${data.faq_ask_content }">
+								<input name="faq_ask_content" value="${data.tb_004.faq_ask_content }">
 								<!-- 답변내용 -->
 								<div class="row">
 									<div class="col">
-										<textarea name="faq_ask_comment">${data.faq_ask_comment }</textarea>
+										<textarea name="faq_ask_comment">${data.tb_004.faq_ask_comment }</textarea>
+										<input type="hidden" name="faq_proper_num" value="${data.tb_004.faq_proper_num}">
 									</div>
 								</div>
 								<div class="row">

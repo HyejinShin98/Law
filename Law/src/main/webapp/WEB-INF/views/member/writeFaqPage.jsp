@@ -45,7 +45,7 @@
 													<div class="col"></div>
 													<div class="col"></div>
 													<div class="col">
-													<c:if test="${!empty sessionUserInfo && sessionUserInfo.tb_015.admin_proper_num == data.tb_015.admin_proper_num }">
+													<c:if test="${!empty admin}">
 														<input type="submit" class="btn btn-primary" value="글쓰기">
 													</c:if>
 													</div>

@@ -6,11 +6,15 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.law.mapper.admin.ApplicationRegistrationAdminMapper;
 import com.br.law.mapper.member.FaqSQLMapper;
 import com.br.law.vo.Tb_004;
 
 @Service
 public class FaqServiceImpl {
+	
+	@Autowired
+	public ApplicationRegistrationAdminMapper applicationRegistrationAdminMapper;
 	
 	@Autowired
 	private FaqSQLMapper faqSQLMapper;

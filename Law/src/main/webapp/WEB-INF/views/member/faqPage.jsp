@@ -11,16 +11,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <title>FAQ</title>
 
-<style>
-  table {
-    width: 100%;
-    border-top: 1px solid #444444;
-    border-collapse: collapse;
-  }
-  th, td {
-    border-bottom: 1px solid #444444;
-    padding: 10px;
-  }
 </style>
 
 </head>
@@ -78,8 +68,8 @@
 												<div class="col-8"></div>
 												<div class="col">
 													<!-- 수정, 삭제 버튼 -->
-													<c:if test="${!empty sessionUserInfo && sessionUserInfo.admin_proper_num == data.admin_proper_num }">
-														<a href="./updateFaqProcess?faq_proper_num=${data.faq_proper_num }">수정</a>
+													<c:if test="${!empty admin}">
+														<a href="./updateFaqPage?faq_proper_num=${data.faq_proper_num }">수정</a>
 														<a href="./deleteFaqProcess?faq_proper_num=${data.faq_proper_num }">삭제</a>
 													</c:if>
 												</div>
@@ -100,7 +90,9 @@
 						<div class="col"></div>
 						<div class="col"></div>
 						<div class="col">
-							<a href="./writeFaqPage"><button class="btn btn-primary">글쓰기</button></a>							
+						<c:if test="${!empty admin}">
+							<a href="./writeFaqPage"><button class="btn btn-primary">글쓰기</button></a>
+						</c:if>							
 						</div>
 					</div>
 				</div>

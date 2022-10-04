@@ -23,7 +23,7 @@ public class FaqController {
 	private FaqServiceImpl faqService;
 	
 	@RequestMapping("faqPage")
-	public String faqPage(Model model, int faq_proper_num) {
+	public String faqPage(Model model) {
 		
 		ArrayList<Tb_004> dataList = faqService.getFaqDataList();
 		model.addAttribute("dataList", dataList);
@@ -31,7 +31,7 @@ public class FaqController {
 		//for(Tb_004 tb_004 : dataList) {
 		//	System.out.println("tb_004 : " + tb_004.getFaq_proper_num());
 		//}
-		
+		/*
 		HashMap<String, Object> data = faqService.getFaqData(faq_proper_num);
 		
 		Tb_004 tb_004 = (Tb_004)data.get("tb_004");
@@ -40,8 +40,8 @@ public class FaqController {
 		content = content.replaceAll(" ", "&nbsp");
 		content = content.replaceAll("\n", "<br>");
 		tb_004.setFaq_ask_content(content);
-		
 		model.addAttribute("data", data);
+		*/
 		
 		return "member/faqPage";
 	}
@@ -55,7 +55,9 @@ public class FaqController {
 	@RequestMapping("writeFaqProcess")
 	public String writeFaqProcess(Tb_004 param , HttpSession session) {
 		
-		Tb_015 sessionUser = (Tb_015)session.getAttribute("sessionUserInfo");
+		//Tb_015 sessionUser = (Tb_015)session.getAttribute("sessionUserInfo");
+		Tb_015 sessionUser = (Tb_015)session.getAttribute("admin");
+		
 		int admin_proper_num = sessionUser.getAdmin_proper_num();
 		
 		param.setAdmin_proper_num(admin_proper_num);
