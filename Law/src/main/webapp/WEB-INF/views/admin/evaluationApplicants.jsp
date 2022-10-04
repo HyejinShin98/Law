@@ -8,9 +8,11 @@
 <meta charset="UTF-8">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../resources/css/common.css">
 <title>1차 신청자 평가</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="../resources/js/applicantDetail.js"></script>
+
 <script type="text/javascript">
 
 var userNo = ${map.aplcn_dtls_proper_num}
@@ -65,22 +67,6 @@ function tableOneInfo(){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
                 
                 var tableRowBox = document.createElement("div");
                 tableRowBox.classList.add("row");
@@ -327,170 +313,198 @@ function calculationtest(){
 
 </head>
 <body>
-<div class="col container-fluid" style="width : 850px;">
-	<div class="row">
-		<jsp:include page="../common/header.jsp"></jsp:include>
-		<div class="col-2">
+<div class="container-fluid" style="width: 960px;">
+	<jsp:include page="../common/header.jsp"></jsp:include>
+	
+	<!-- 구분 이미지 -->
+	<img src="../resources/img/sub_topimg.gif">
+	
+	<!-- 페이지 내용 -->
+	<div class="row mt-2">
+		<!-- 사이드 네비바 -->
+		<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
 			<jsp:include page="../common/assistantAdminNav.jsp"></jsp:include>
 		</div>
-		<div class="col">
-			<div class="row">
+		
+		<!-- 본문 -->
+		<div class="col mx-3">
+			<!-- 현재위치 -->
+			<div class="row text-end loc">
+				<div class="col" style="font-size: 11px;">
+					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">최종 심사</span>
+				</div>
+			</div>
+			<!-- 타이틀 -->
+			<div class="row my-4">
+				<div class="col">
+					<img src="../resources/img/Admin/head_title_img.gif">
+					<span style="font-weight: bold;">최종 심사</span>
+				</div>
+			</div>
 			
-		<div class="row text-center mt-5 mx-0 mb-4"><!-- 네비바 -->            
-            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="fiveTab"><span>신청정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sixTab"><span>학력정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sevenTab"><span>경력정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="eightTab"><span>자격증정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일 정보</span></div>
-      	</div>
-      	<div class="row mx-0">
-			<div id="nav-info" class="col"></div>
-		</div> 
+			<!-- 안내 -->
+			<div class="contentsinbox">
+				<div class="row">
+					<div class="col">
+					
+					<!-- 신청자 정보 nav -->
+					<div class="row text-center mt-2 mx-0"><!-- 네비바 -->            
+			            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>
+			            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="fiveTab"><span>신청정보</span></div>
+			            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sixTab"><span>학력정보</span></div>
+			            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sevenTab"><span>경력정보</span></div>
+			            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="eightTab"><span>자격증정보</span></div>
+			            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일 정보</span></div>
+			      	</div>
+			      	<!-- 신청자 정보 -->
+					<div class="row text-center mt-2 mx-0"  >
+						<div id="nav-info" class="col" style="text-align : center; font-size:12px;">
+					</div>
+					
+					<!-- 심사표 -->
+					<div class="row" style="margin:0px;padding:0px;">
+					<form action="evaluationApplicantsProcess?aplcn_dtls_proper_num=${userInfo.applicantInfo.APLCN_DTLS_PROPER_NUM}" method="post" name="score" style="margin:0px;padding:0px;">
+					<table class="table table-bordered " >
+						  <thead style=" text-align: center; vertical-align: middle;">
+						    <tr>
+						      <th rowspan="2">평정항목</th>		     
+						      <th rowspan="2">세부항목</th>
+						      <th rowspan="2">배점</th>
+						      <th colspan="3">내용</th>		  
+						    </tr>
+						    <tr>
+						      <th scope="col">구분</th>
+						      <th scope="col">기준</th>
+						      <th scope="col">배점</th>		  
+						    </tr>
+						  </thead>
+						  <tbody style=" text-align: center; vertical-align: middle;">
+						    <tr>
+						      <td rowspan="8" >기본평정</td>
+						      <td rowspan="6">경력점수</td>
+						      <td rowspan="3"><input type="text" class="input" name="all_carrer_score" onKeyUp="inputLimit(this)"></td>  
+						      <td rowspan="3">통산경력</td>
+						      <td colspan="1">10년이상</td>
+						      <td colspan="1">5</td>		     		      
+						    </tr>
+						    <tr>
+						    	<td scope="col">5~10년</td>
+						      	<td scope="col">4</td>
+						    </tr>
+						    <tr>
+						    	<td scope="col">5년 미만</td>
+						      	<td scope="col">3</td>
+						    </tr>
+						    <tr>
+						    	<td rowspan="3"><input type="text" class="input" name="jrsdc_carrer_score" onKeyUp="inputLimit(this)"></td> 
+						    	<td rowspan="3">관내경력</td>
+						    	<td scope="col">10년이상</td>
+						      	<td scope="col">5</td>
+						    </tr>
+						    <tr>
+						    	<td scope="col">5~10년</td>
+						      	<td scope="col">4</td>
+						    </tr>
+						    <tr>
+						    	<td scope="col">5년 미만</td>
+						      	<td scope="col">3</td>
+						    </tr>
+						    <tr>
+						    	<td rowspan="2">사무소 소재지</td>
+						    	<td rowspan="2"><input type="text" name="office_score" onKeyUp="inputLimit(this)"></td>
+						    	<td colspan="2">관내 사무소</td>
+						    	<td scope="col">5</td>
+						    </tr>
+						    <tr>
+						    	<td colspan="2">관외 사무소</td>
+						    	<td scope="col">3</td>
+						    </tr>
+						    
+						   	<tr>
+						   		<td rowspan="3">인성평가</td>
+						   		<td rowspan="3"></td>
+						   		<td rowspan="3"><input type="text" name="personality_score" onKeyUp="inputLimit(this)"></td>
+						   		<td colspan="2">우수</td>
+						   		<td scope="col">5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">평균</td>
+						   		<td scope="col">4</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">미흡</td>
+						   		<td scope="col">3</td>
+						   	</tr>
+						   	<tr>
+						   		<td rowspan="2">면접</td>
+						   		<td rowspan="2"></td>
+						   		<td rowspan="2"><input type="text"  name="interview_score" onKeyUp="inputLimit(this)"></td>
+						   		<td colspan="2">우수</td>
+						   		<td scope="col">5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">미흡</td>
+						   		<td scope="col">3</td>
+						   	</tr>
+						   	<tr>
+						   		<td rowspan="4">자격증 점수</td>
+						   		<td rowspan="4"></td>
+						   		<td rowspan="4"><input type="text" name="certificate_score" onKeyUp="inputLimit(this)"></td>
+						   		<td colspan="2"></td>
+						   		<td scope="col">2.5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2"></td>
+						   		<td scope="col">2.5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2"></td>
+						   		<td scope="col">2.5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2"></td>
+						   		<td scope="col">2.5</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">합계</td>
+						   		<td scope="col"><input type='text' name='total1' disabled ></td>
+						   		<td colspan="3"></td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">감정인 평정표</td>
+						   		<td scope="col"><input type="text" name="evaluate_score" onKeyUp="inputLimit(this)"></td>
+						   		<td colspan="3"></td>
+						   	</tr>
+						   	<tr>
+						   		<td scope="col">조정평점</td>
+						   		<td scope="col">심사위원 추천</td>
+						   		<td scope="col"><input type="text" name="judge_recom_score" onKeyUp="inputLimit(this)"></td>
+						   		<td colspan="3">최대 7점</td>
+						   	</tr>
+						   	<tr>
+						   		<td colspan="2">최종점수(종합)</td>
+						   		<td scope="col"><input type='text' name='total2' disabled></td>
+						   		<td colspan="3">--점/총점</td>
+						   	</tr>
+						  </tbody>
+						</table>
+						
+						<div style="text-align: left;">
+						검토의견 : <input type="text" name="review_etc">
+						<button type="submit" type="button" class="btn btn-primary">작성하기</button>
+						</div>		
+						
+						
+						</form>
+						</div>
+					</div>
+				</div>
+			</div>
 			
-	<div class="row">			
-	<form action="evaluationApplicantsProcess?aplcn_dtls_proper_num=${userInfo.applicantInfo.APLCN_DTLS_PROPER_NUM}" method="post" name="score">
-	<table class="table table-bordered" style="text-align : center; width : 800px; height: 800px; font-size:15px;">
-		  <thead>
-		    <tr>
-		      <th rowspan="2">평정항목</th>		     
-		      <th rowspan="2">세부항목</th>
-		      <th rowspan="2">배점</th>
-		      <th colspan="3">내용</th>		  
-		    </tr>
-		    <tr>
-		      <th scope="col">구분</th>
-		      <th scope="col">기준</th>
-		      <th scope="col">배점</th>		  
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr>
-		      <td rowspan="8" >기본평정</td>
-		      <td rowspan="6">경력점수</td>
-		      <td rowspan="3"><input type="text" class="input" name="all_carrer_score" onKeyUp="inputLimit(this)"></td>  
-		      <td rowspan="3">통산경력</td>
-		      <td colspan="1">10년이상</td>
-		      <td colspan="1">5</td>		     		      
-		    </tr>
-		    <tr>
-		    	<td scope="col">5~10년</td>
-		      	<td scope="col">4</td>
-		    </tr>
-		    <tr>
-		    	<td scope="col">5년 미만</td>
-		      	<td scope="col">3</td>
-		    </tr>
-		    <tr>
-		    	<td rowspan="3"><input type="text" class="input" name="jrsdc_carrer_score" onKeyUp="inputLimit(this)"></td> 
-		    	<td rowspan="3">관내경력</td>
-		    	<td scope="col">10년이상</td>
-		      	<td scope="col">5</td>
-		    </tr>
-		    <tr>
-		    	<td scope="col">5~10년</td>
-		      	<td scope="col">4</td>
-		    </tr>
-		    <tr>
-		    	<td scope="col">5년 미만</td>
-		      	<td scope="col">3</td>
-		    </tr>
-		    <tr>
-		    	<td rowspan="2">사무소 소재지</td>
-		    	<td rowspan="2"><input type="text" name="office_score" onKeyUp="inputLimit(this)"></td>
-		    	<td colspan="2">관내 사무소</td>
-		    	<td scope="col">5</td>
-		    </tr>
-		    <tr>
-		    	<td colspan="2">관외 사무소</td>
-		    	<td scope="col">3</td>
-		    </tr>
-		    
-		   	<tr>
-		   		<td rowspan="3">인성평가</td>
-		   		<td rowspan="3"></td>
-		   		<td rowspan="3"><input type="text" name="personality_score" onKeyUp="inputLimit(this)"></td>
-		   		<td colspan="2">우수</td>
-		   		<td scope="col">5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">평균</td>
-		   		<td scope="col">4</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">미흡</td>
-		   		<td scope="col">3</td>
-		   	</tr>
-		   	<tr>
-		   		<td rowspan="2">면접</td>
-		   		<td rowspan="2"></td>
-		   		<td rowspan="2"><input type="text"  name="interview_score" onKeyUp="inputLimit(this)"></td>
-		   		<td colspan="2">우수</td>
-		   		<td scope="col">5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">미흡</td>
-		   		<td scope="col">3</td>
-		   	</tr>
-		   	<tr>
-		   		<td rowspan="4">자격증 점수</td>
-		   		<td rowspan="4"></td>
-		   		<td rowspan="4"><input type="text" name="certificate_score" onKeyUp="inputLimit(this)"></td>
-		   		<td colspan="2"></td>
-		   		<td scope="col">2.5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2"></td>
-		   		<td scope="col">2.5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2"></td>
-		   		<td scope="col">2.5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2"></td>
-		   		<td scope="col">2.5</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">합계</td>
-		   		<td scope="col"><input type='text' name='total1' disabled ></td>
-		   		<td colspan="3"></td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">감정인 평정표</td>
-		   		<td scope="col"><input type="text" name="evaluate_score" onKeyUp="inputLimit(this)"></td>
-		   		<td colspan="3"></td>
-		   	</tr>
-		   	<tr>
-		   		<td scope="col">조정평점</td>
-		   		<td scope="col">심사위원 추천</td>
-		   		<td scope="col"><input type="text" name="judge_recom_score" onKeyUp="inputLimit(this)"></td>
-		   		<td colspan="3">최대 7점</td>
-		   	</tr>
-		   	<tr>
-		   		<td colspan="2">최종점수(종합)</td>
-		   		<td scope="col"><input type='text' name='total2' disabled></td>
-		   		<td colspan="3">--점/총점</td>
-		   	</tr>
-		  </tbody>
-		</table>
-		
-		검토의견 : <input type="text" name="review_etc">
-		
-	
-		<button type="submit" type="button" class="btn btn-primary">작성하기</button>
-				
-		
-		
-		</form>
-		</div>
-		</div>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
 	</div>
-	</div>
-	
-	
+	<jsp:include page="../common/footer.jsp"></jsp:include>
+</div>
 
 	
 </body>

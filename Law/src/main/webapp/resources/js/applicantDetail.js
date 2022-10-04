@@ -30,24 +30,7 @@ function tableFiveInfo(){
 				commentListBox.innerHTML = "";
 
                 var rowBox = document.createElement("div");
-                rowBox.classList.add("row");
-
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
+                rowBox.classList.add("row");	
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
@@ -164,23 +147,6 @@ function tableSixInfo(){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
    
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="신청정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
                 //기본정보 끝
 
                 //table시작
@@ -314,22 +280,6 @@ function tableSevenInfo(){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row"); 
                 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="경력정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
                 //기본정보 끝
 
                 //table시작
@@ -458,22 +408,7 @@ function tableSevenInfo(){
 
 
                 //기본정보 네비
-                var subNab2 = document.createElement("div");
-                subNab2.classList.add("row");
-                subNab2.classList.add("mx-0");
-                subNab2.classList.add("border-bottom");
-                subNab2.classList.add("pb-4");
-                rowBox.appendChild(subNab2);
-
-                var subNab2Span = document.createElement("span");
-                subNab2Span.innerText="기본정보";
-                subNab2.appendChild(subNab2Span);
-
-                var subNab2SpanFromI = document.createElement("i");
-                subNab2SpanFromI.classList.add("bi");
-                subNab2SpanFromI.classList.add("bi-circle-fill");
-                subNab2Span.appendChild(subNab2SpanFromI);
-
+ 
                 //테이블 시작
 
                 var tableRow2 = document.createElement("div");
@@ -550,23 +485,6 @@ function tableEightInfo(){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-
- 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="자격증 정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
 
                 //기본정보 끝
 
@@ -700,23 +618,6 @@ function tableNineInfo(){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-
- 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
 
                 //기본정보 끝
 

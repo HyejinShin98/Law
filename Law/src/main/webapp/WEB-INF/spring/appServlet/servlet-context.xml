@@ -66,6 +66,12 @@
 		<interceptor>
 			<mapping path="/admin/selUserList"/>
 			<mapping path="/admin/selUserListDetail"/>
+			
+			<!-- 하다 -->
+			<mapping path="/admin/managementEvaluationtable"/>
+			<mapping path="/admin/evaluationApplicantsList"/>
+			<mapping path="/admin/evaluationApplicants"/>
+			
 			<beans:bean class="com.br.law.interceptor.AdminSessionInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>	
