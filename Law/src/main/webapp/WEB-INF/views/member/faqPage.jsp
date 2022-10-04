@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%
+    	pageContext.setAttribute("br", "<br/>");
+    	pageContext.setAttribute("cn", "\n");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +15,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 <title>FAQ</title>
-
-</style>
 
 </head>
 <body>
@@ -54,13 +57,13 @@
 										<h2 class="accordion-header" id="flush-heading${data.faq_proper_num }">
 											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${data.faq_proper_num }" aria-expanded="false" aria-controls="flush-collapse${data.faq_proper_num }">
 								        		<b>Q&#46;</b>&nbsp;
-								        		${data.faq_ask_content }
+								        		${fn:replace(data.faq_ask_content, cn, br)}
 								      		</button>
 								    	</h2>
 								    	<div id="flush-collapse${data.faq_proper_num }" class="accordion-collapse collapse" aria-labelledby="flush-heading${data.faq_proper_num }" data-bs-parent="#accordionFlushExample">
 											<div class="accordion-body" style="background:#f8f9fa">
 												<b>A&#46;</b>&nbsp;
-												${data.faq_ask_comment }
+												${fn:replace(data.faq_ask_comment, cn, br) }
 											</div>
 											
 											<div class="row">
