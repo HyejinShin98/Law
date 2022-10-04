@@ -88,7 +88,7 @@ body{
 				<!-- 현재위치 -->
 				<div class="row text-end">
 					<div class="col" style="font-size: 11px;">
-						<span> 홈 > My Page > 나의 등재신청 내역 > </span><span style="color: #72a8fe;font-weight: bold;">나의 등재신청 상세</span>
+						<span> 홈 > My Page > 나의 등재신청 내역 > </span><span style="color: #72a8fe;font-weight: bold;">나의 등재신청 작성</span>
 					</div>
 				</div>
 				
@@ -129,47 +129,6 @@ body{
 	</div>
 
 
-
-
-
-
-
-
-
-
-
-<!-- 
-	<div class="col container-fluid" style="width : 1600px;">
-	<div class="row">
-		<jsp:include page="../common/header.jsp"></jsp:include>
-		<div class="col">
-			<jsp:include page="./myPageNav.jsp"></jsp:include>
-		</div>
-		<div class="col-9 mt-4 px-5 mx-5">
-	
-		<div class="row border-bottom border-2 border-secondary py-2">
-			<div class="col">
-				<span class="fw-bold fs-4 text-secondary">나의 등재신청 작성</span>
-			</div>	
-		</div>
-			
- 		<div class="row text-center mt-5 mx-0 mb-4"> 
-            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="fiveTab"><span>신청정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sixTab"><span>학력정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sevenTab"><span>경력정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="eightTab"><span>자격증정보</span></div>
-            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일 정보</span></div>
-        </div>
- 		<div class="row mx-0">
-			<div id="nav-info" class="col"></div>
-		</div> 
-		
-		</div>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
-	</div>
-	</div>
-	 -->
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

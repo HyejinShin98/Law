@@ -1,7 +1,7 @@
 package com.br.law.controller.user;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -235,6 +235,114 @@ public class TrialUserRestController {
 		return map;
 	}
 	
+	
+	@RequestMapping("modifyTableNine")
+	public Map<String, Object> modifyTableNine(@RequestParam HashMap<Object, Object> param, MultipartHttpServletRequest request, HttpSession session) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Tb_001 sessionUser = (Tb_001)session.getAttribute("user");
+		int aplcn_dtls_proper_num =  Integer.parseInt(request.getParameter("aplcn_dtls_proper_num"));
+		
+		try {
+			int userNo = sessionUser.getUser_proper_num();
+			String userName = sessionUser.getUser_name();
+			
+			List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+			
+			String[] codes = ((String)param.get("codes")).split(",");
+			String[] types = ((String)param.get("types")).split(",");
+			
+			Iterator<String> iter = request.getFileNames(); 
+			MultipartFile mfile = null; 
+		    String fieldName = "";
+		    String path = "C:uploadFiles/";
+		    
+		    int i=0;
+		    while (iter.hasNext()) { 
+		        fieldName = (String) iter.next(); 	 //파일이름, 위에서 file1과 file2로 보냈으니 file1, file2로 나온다.
+		        mfile = request.getFile(fieldName);  //저장된 파일 객체
+		        
+		        // 추가
+		        String originFileName = mfile.getOriginalFilename();
+		        String nameFile = System.currentTimeMillis() + originFileName;
+		        File userFolder = new File(path + userNo + userName);
+		        
+		        if(!userFolder.exists()) {
+		        	userFolder.mkdirs();
+		        }
+		        
+		        // 개별 update or insert
+		        mfile.transferTo(new File(path + userNo + userName + "/" + nameFile));
+		        Tb_009 atch = new Tb_009();
+		        atch.setOriginal_file_name(originFileName);
+		        atch.setFile_path(userFolder + "/" + nameFile);
+		        atch.setFile_type(types[i]);
+		        atch.setFile_code(codes[i]);
+		        atch.setAplcn_dtls_proper_num(aplcn_dtls_proper_num);
+		        
+		        //fileList.add(mfile);
+		        
+		        
+		        // 파일 업데이트 or 인서트
+				if(trialMainService.modifyTableNine(atch)) {
+					map.put("result", "success");
+					map.put("msg", "저장되었습니다");
+					LOGGER.info("trialMainService modifyTableNine SUCCESS! aplcn_dtls_proper_num : " + aplcn_dtls_proper_num + ", file_type : " + types[i]);
+				} else {
+					map.put("result", "fail");
+					map.put("msg", "알수없는 오류로 저장에 실패하였습니다.");
+					LOGGER.info("trialMainService modifyTableNine FAIL! aplcn_dtls_proper_num : " + aplcn_dtls_proper_num + ", file_code : " + codes[i]);
+				}
+		        i++;
+		    }		
+					
+			
+			
+			/*
+			String path = "C:uploadFiles/";
+			int i=0; 
+			for(MultipartFile file : fileList) {
+				String originFileName = file.getOriginalFilename();
+				String nameFile = System.currentTimeMillis() + originFileName;
+				File userFolder = new File(path + userNo + userName);
+				if(!userFolder.exists()) {
+					userFolder.mkdirs();
+				}
+				
+				// 개별 update
+				file.transferTo(new File(path + userNo + userName + "/" + nameFile));
+				Tb_009 atch = new Tb_009();
+				atch.setOriginal_file_name(originFileName);
+				atch.setFile_path(path);
+				atch.setFile_type(types[i]);
+				atch.setFile_code(codes[i]);
+				atch.setAplcn_dtls_proper_num(aplcn_dtls_proper_num);
+				
+				// 파일 업데이트 or 인서트
+				if(trialMainService.modifyTableNine(atch)) {
+					map.put("result", "success");
+					map.put("msg", "저장되었습니다");
+					LOGGER.info("trialMainService modifyTableNine SUCCESS! aplcn_dtls_proper_num : " + aplcn_dtls_proper_num + ", file_type : " + types[i]);
+				} else {
+					map.put("result", "fail");
+					map.put("msg", "알수없는 오류로 저장에 실패하였습니다.");
+					LOGGER.info("trialMainService modifyTableNine FAIL! aplcn_dtls_proper_num : " + aplcn_dtls_proper_num + ", file_code : " + codes[i]);
+				}
+				i++;
+			}
+			*/
+			    
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("result", "error");
+			map.put("msg", "저장에 실패하였습니다");
+		}
+		
+		return map;
+	}
+	
+	
+	
+	/*
 	@RequestMapping("modifyTableNine")
 //	public Map<String, Object> modifyTableNine(MultipartHttpServletRequest request, HttpSession session) {
 	public Map<String, Object> modifyTableNine(@RequestParam HashMap<Object, Object> param, MultipartHttpServletRequest request, HttpSession session) {
@@ -264,7 +372,6 @@ public class TrialUserRestController {
 			System.out.println("codes : " + Arrays.toString(codes));
 			System.out.println("types : " + Arrays.toString(types));
 			
-			/*
 			int i=0;
 			for(MultipartFile file : fileList) {
 				String path = "C:uploadFiles/";
@@ -287,7 +394,6 @@ public class TrialUserRestController {
 				list.add(atch);
 				i++;
 			}
-			*/
 			
 			trialMainService.modifyTableNine(list);
 			map.put("result", "success");
@@ -302,6 +408,8 @@ public class TrialUserRestController {
 		}
 		return map;
 	}
+	*/
+	
 	
 	@RequestMapping("updateAplcnStsToExamination")
 	public Map<String, Object> updateAplcnStsToExamination(HttpSession session, String aplcn_dtls_proper_num) {
