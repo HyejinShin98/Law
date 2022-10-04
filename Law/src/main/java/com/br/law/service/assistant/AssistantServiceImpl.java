@@ -13,6 +13,7 @@ import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
+import com.br.law.vo.Tb_014;
 
 @Service
 public class AssistantServiceImpl {
@@ -56,6 +57,15 @@ public class AssistantServiceImpl {
 	
 	public void accept(int aplcn_dtls_proper_num){
 		 assistantSQLMapper.accept(aplcn_dtls_proper_num);
+		 
+		 Tb_005 tb_005 = assistantSQLMapper.callTb_005(aplcn_dtls_proper_num);
+		 Tb_014 tb_014 = new Tb_014();
+		 tb_014.setAplcn_dtls_proper_num(aplcn_dtls_proper_num);
+		 tb_014.setUser_proper_num(tb_005.getUser_proper_num());
+		 tb_014.setTrial_fcltt_proper_num(tb_005.getTrial_fcltt_proper_num());
+		 tb_014.setCourt_proper_num(tb_005.getCourt_proper_num());
+		 
+		 assistantSQLMapper.insertTb_014(tb_014);
 		
 	}
 	
@@ -105,4 +115,9 @@ public class AssistantServiceImpl {
 	public List<Map<String, Object>> callDUser(String aplcn_dtls_sts){
 		return assistantSQLMapper.callDUser(aplcn_dtls_sts);
 	}
+	
+	//0930 하다
+	public int sumTb_013 (int aplcn_dtls_proper_num) {
+		 return assistantSQLMapper.sumTb_013(aplcn_dtls_proper_num); 	
+		}
 }

@@ -8,6 +8,7 @@ import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
+import com.br.law.vo.Tb_014;
 
 public interface AssistantSQLMapper {
 	public List<Map<String, Object>> ApplicantList();
@@ -28,4 +29,11 @@ public interface AssistantSQLMapper {
 	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num);
 	public List<Map<String, Object>> callCUser(int announce_proper_num);
 	public List<Map<String, Object>> callDUser(String aplcn_dtls_sts);
+	
+	// 0930 하다
+	public int sumTb_013(int aplcn_dtls_proper_num);
+	public void insertTb_014(Tb_014 tb_014);
+	public Tb_005 callTb_005(int aplcn_dtls_proper_num);
+	
+	
 }

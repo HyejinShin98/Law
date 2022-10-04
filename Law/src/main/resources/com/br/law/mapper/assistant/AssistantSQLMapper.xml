@@ -16,13 +16,15 @@
 
 	
 	<select id="ApplicantDetails" resultType="map">
-		SELECT * FROM TB_001 t1,TB_002 t2 ,TB_005 t5, TB_006 t6, TB_007 t7,TB_010 t10,TB_011 t11
+		SELECT * FROM TB_001 t1,TB_002 t2,TB_005 t5, TB_006 t6,TB_007 t7, TB_010 t10, TB_011 t11
 		WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
-		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
+		AND t5.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM 
+		AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM 
 		AND t5.APLCN_DTLS_PROPER_NUM = t6.APLCN_DTLS_PROPER_NUM 
 		AND t5.APLCN_DTLS_PROPER_NUM = t7.APLCN_DTLS_PROPER_NUM 
-		AND t10.TRIAL_FCLTT_PROPER_NUM = t2.TRIAL_FCLTT_PROPER_NUM
-		AND t5.aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+		AND t5.COURT_PROPER_NUM  = t11.COURT_PROPER_NUM 
+		AND t5.APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+		ORDER BY t5.APLCN_DTLS_PROPER_NUM asc
 	</select>
 	
 	<select id="certificate" resultType="map">
@@ -140,4 +142,28 @@
 		ORDER BY t3.APLCN_DTLS_PROPER_NUM asc
 	</select>
 	
+	<!-- 0930 하다 최종점수 불러오기 -->
+	<select id="sumTb_013" resultType="int">
+		SELECT SUM(t13.ALL_CARRER_SCORE+t13.JRSDC_CARRER_SCORE+t13.OFFICE_SCORE+t13.PERSONALITY_SCORE+t13.INTERVIEW_SCORE+t13.CERTIFICATE_SCORE+t13.EVALUATE_SCORE+t13.JUDGE_RECOM_SCORE)  
+		FROM TB_013 t13
+		WHERE APLCN_DTLS_PROPER_NUM = #{aplcn_dtls_proper_num}
+	</select>
+	
+	<!-- 0930 하다 합격자 tb_014 인서트 -->
+	<insert id="insertTb_014">
+		INSERT INTO TB_014 values(
+			TB_014_seq.nextval,
+			#{aplcn_dtls_proper_num},
+			#{user_proper_num},
+			#{trial_fcltt_proper_num},
+			#{court_proper_num},
+			SYSDATE,
+			'',
+			'y'
+		)
+	</insert>
+	
+	<select id="callTb_005" resultType="com.br.law.vo.Tb_005">
+		select * from Tb_005 where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
+	</select>
 </mapper>
