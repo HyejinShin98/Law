@@ -625,11 +625,11 @@ function tableSevenInfo(userNo){
                 var bodyTr1Th1 = document.createElement("th");
                 bodyTr1Th1.classList.add("text-center");
                 bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText= moment(jsonObj.map.WORK_START_DATE).format('YYYY-MM-DD');
+                bodyTr1Th1.innerText= "근무 시작 일자";
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
+                bodyTr1Td1.innerText= moment(jsonObj.map.WORK_START_DATE).format('YYYY-MM-DD');
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Th2 = document.createElement("th");
