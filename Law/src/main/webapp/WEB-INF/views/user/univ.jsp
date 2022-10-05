@@ -148,10 +148,7 @@ window.addEventListener("DOMContentLoaded", function() {
 		
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
-			<div class="col-3 text-end"> <!-- style="border-right: solid 1px #ccc;" -->
-				<!-- <div class="list-group list-group-flush">
-					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
-				</div> -->
+			<div class="col-3 text-end border-end" style="padding-right: 0px;">
 				<jsp:include page="../common/applicationRegistrationLocalNav.jsp"></jsp:include>
 			</div>
 			

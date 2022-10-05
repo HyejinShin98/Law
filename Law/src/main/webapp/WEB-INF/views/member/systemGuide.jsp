@@ -52,11 +52,14 @@
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
-			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
+			<!-- <div class="col-3 text-center" style="border-right: solid 1px #ccc;">
 				<div class="list-group list-group-flush">
 					<a href="../member/systemGuide" class="list-group-item list-group-item-action">감정인 제도안내</a>
 					<a href="../member/processGuide" class="list-group-item list-group-item-action">감정인 신청절차 안내</a>
 				</div>
+			</div> -->
+			<div class="col-3 text-end border-end" style="padding-right: 0px;">
+				<jsp:include page="../common/guideNav.jsp"></jsp:include>
 			</div>
 			
 			<!-- 본문 -->

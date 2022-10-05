@@ -288,10 +288,13 @@ function checkList(){
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
-			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
+			<!-- <div class="col-3 text-center" style="border-right: solid 1px #ccc;">
 				<div class="list-group list-group-flush">
 					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
 				</div>
+			</div> -->
+			<div class="col-3 text-end border-end" style="padding-right: 0px;">
+				<jsp:include page="../common/applicationRegistrationLocalNav.jsp"></jsp:include>
 			</div>
 			
 			<!-- 본문 -->

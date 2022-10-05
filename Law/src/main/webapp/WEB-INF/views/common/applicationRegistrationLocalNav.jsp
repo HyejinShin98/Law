@@ -48,7 +48,7 @@
 <body>
 	  
         <ul class="nav submenu" style="margin-left:10px;">
-		  <li class="">등재신청</li>
+		  <li class="">감정인 등재신청</li>
 		</ul>
         	
 </body>

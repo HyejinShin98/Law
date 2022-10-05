@@ -107,16 +107,14 @@
 		<!-- 페이지 내용 -->
 		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
-			<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
-				<div class="list-group list-group-flush">
-					<a href="#" class="list-group-item list-group-item-action">감정인 등재신청</a>
-				</div>
+			<div class="col-3 text-end border-end" style="padding-right: 0px;">
+				<jsp:include page="../common/applicationRegistrationLocalNav.jsp"></jsp:include>
 			</div>
 			
 			<!-- 본문 -->
 			<div class="col m-3">
 				<!-- 현재위치 -->
-				<div class="row text-end">
+				<div class="row text-end loc">
 					<div class="col" style="font-size: 11px;">
 						<span> 홈 > 감정인등재신청 > </span><span style="color: #72a8fe;font-weight: bold;">개인정보 수집 동의</span>
 					</div>
