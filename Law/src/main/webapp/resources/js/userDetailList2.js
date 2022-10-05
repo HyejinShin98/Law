@@ -28,15 +28,15 @@ function tableOneInfo(userNo){
 			var userDetailButtonBox = document.getElementById("userDetailButtonBox");
 			userDetailButtonBox.innerHTML = "";
 			
-			if(jsonObj.map.APLCN_DTLS_STS == 'examination'){
+			if(jsonObj.map.APLCN_DTLS_STS == '신청중'){
 				var buttonBox2 = document.createElement("a");
-				buttonBox2.setAttribute("href", "../admin/evaluationProcess?aplcn_dtls_proper_num=${map.APLCN_DTLS_PROPER_NUM}");
+				buttonBox2.setAttribute("href", "../admin/evaluationProcess?aplcn_dtls_proper_num=" + jsonObj.map.APLCN_DTLS_PROPER_NUM);
 				buttonBox2.setAttribute("class", "btn btn-primary");
 				buttonBox2.innerText="1차 서류 접수";
 				userDetailButtonBox.appendChild(buttonBox2);
 				
 				var buttonBox3 = document.createElement("a");
-				buttonBox3.setAttribute("href", "../admin/companionProcess?aplcn_dtls_proper_num=${map.APLCN_DTLS_PROPER_NUM}");
+				buttonBox3.setAttribute("href", "../admin/companionProcess?aplcn_dtls_proper_num=" + jsonObj.map.APLCN_DTLS_PROPER_NUM);
 				buttonBox3.setAttribute("class", "btn btn-primary");
 				buttonBox3.innerText="1차 서류 반려";
 				userDetailButtonBox.appendChild(buttonBox3);
@@ -625,11 +625,11 @@ function tableSevenInfo(userNo){
                 var bodyTr1Th1 = document.createElement("th");
                 bodyTr1Th1.classList.add("text-center");
                 bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText= moment(jsonObj.map.WORK_START_DATE).format('YYYY-MM-DD');
+                bodyTr1Th1.innerText= "근무 시작 일자";
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText="적어"
+                bodyTr1Td1.innerText= moment(jsonObj.map.WORK_START_DATE).format('YYYY-MM-DD');
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Th2 = document.createElement("th");

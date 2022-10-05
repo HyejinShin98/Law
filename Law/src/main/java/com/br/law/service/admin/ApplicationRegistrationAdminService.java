@@ -1,6 +1,7 @@
 package com.br.law.service.admin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,26 @@ public class ApplicationRegistrationAdminService {
 		LOGGER.info("ApplicationRegistrationAdminService uploadFileSel - list : " + resultList);
 		
 		return resultList;
+	}
+	
+	// hyejin 추가 위 함수와 동일 (returnType - map으로 변경)
+	public Map<String, Object> uploadFileSelMap(int param) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Tb_009> searchList = applicationRegistrationAdminMapper.uploadFileSel(param);
+		
+		for(Tb_009 search : searchList) {
+			Tb_009 item = new Tb_009();
+			item.setAplcn_atch_file_proper_num(search.getAplcn_atch_file_proper_num());
+			item.setAplcn_dtls_proper_num(search.getAplcn_dtls_proper_num());
+			item.setFile_code(trialUserService.convertFileCodeToKorean(search.getFile_code()));
+			item.setFile_type(trialUserService.convertFileTypeToKorean(search.getFile_type()));
+			item.setOriginal_file_name(search.getOriginal_file_name());
+			item.setFile_path(search.getFile_path());
+			
+			map.put(search.getFile_type(), item);
+		}
+		
+		return map;
 	}
 	
 	public Tb_001 getUserNameAndPk(int param) {

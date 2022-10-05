@@ -59,6 +59,8 @@
 							    <tr>
 							      <th scope="col">번호</th>
 							      <th scope="col">이름</th>
+							      <th scope="col">신청공고</th>
+							      <th scope="col">조력자 분류</th>	
 							      <th scope="col">신청일</th>
 							      <th scope="col">신청현황</th>
 							    </tr>
@@ -67,9 +69,11 @@
 							  
 							  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
 							  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'evaluationCp'}">
-							    <tr>
+							    <tr onclick="location.href='evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}'">
 							      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
-							      <td><a href="evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>
+							      <td>${applicantManagementList.USER_NAME }</a></td>
+							       <td>${applicantManagementList.ANNOUNCE_TITLE}</td>
+							       <td>${applicantManagementList.TRIAL_FCLTT_SBCLS_CODE}</td>
 							      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
 							      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
 							    </tr>

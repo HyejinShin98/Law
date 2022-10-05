@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -126,8 +125,12 @@ public class AssistantController {
 		 
 		 assistantServiceImpl.evaluation(param);
 		 
-		 assistantServiceImpl.accept(aplcn_dtls_proper_num);
-		 assistantServiceImpl.referral(aplcn_dtls_proper_num);
+		 if(assistantServiceImpl.sumTb_013(aplcn_dtls_proper_num) >= 40) {
+			 assistantServiceImpl.accept(aplcn_dtls_proper_num);			 
+		 }else {
+			 assistantServiceImpl.referral(aplcn_dtls_proper_num);
+		 }
+		 
 		return "redirect:./evaluationApplicantsList";
 	}
 	

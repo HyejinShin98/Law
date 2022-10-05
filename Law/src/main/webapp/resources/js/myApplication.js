@@ -38,9 +38,10 @@ function showFileInput(ele, type, code) {
 	ele.innerHTML = '';
 	
 	var inputFile = document.createElement("input");
-   	inputFile.classList.add("form-control");
+   	inputFile.classList.add("file");
    	inputFile.type = "file";
-   	inputFile.name = "file";
+   	inputFile.name = "file_" + type;
+   	inputFile.classList.add("file");
    	inputFile.id = "file_" + type;
    	ele.appendChild(inputFile);
    	
@@ -48,12 +49,14 @@ function showFileInput(ele, type, code) {
    	inputFileType.type = "hidden";
    	inputFileType.name = "file_type";
    	inputFileType.value = type;
+   	inputFileType.classList.add("file_type");
    	ele.appendChild(inputFileType);
    	
    	var inputFileCode = document.createElement("input");
    	inputFileCode.type = "hidden";
    	inputFileCode.name = "file_code";
    	inputFileCode.value = code;
+   	inputFileCode.classList.add("file_code");
    	ele.appendChild(inputFileCode);
 }
 
@@ -265,28 +268,37 @@ function makeFileArr(arr) {
 }
 
 
+// 22.10.04 오전 테스트코드
 function tableNineFrmSubmit() {
 	var formData = new FormData();
-	formData.append('aplcn_dtls_proper_num', document.getElementById('aplcn_dtls_proper_num').value);
-	formData.append('types', makeValArr(document.getElementsByName('file_type')));
-	formData.append('codes', makeValArr(document.getElementsByName('file_code')));
-	//formData.append('files', makeFileArr(document.getElementsByName('file')));
+	formData.append('aplcn_dtls_proper_num', document.getElementById('aplcn_dtls_proper_num').value);	// 등재신청 고유번호
 	
-	var files = document.getElementsByName("file");
-	for(file of files) {
-		formData.append(file.id, file.files[0]);
+	var fileList = document.getElementsByClassName("file");
+	var typeList = document.getElementsByName("file_type");		// type input list
+	var codeList = document.getElementsByName("file_code");		// code input list
+	
+	var resTypeList = [];	// ajax 전송할 typeList
+	var resCodeList = [];	// ajax 전송할 codeList
+	
+	var i=0;
+	var j=0;
+	for(e of fileList) {
+		var file = e.files[0];
+		if(file != undefined) {
+			
+			resTypeList[j] = typeList[i].value;
+			resCodeList[j] = codeList[i].value;
+			
+			formData.append(e.name, file);
+			
+			j++;
+		}
+		i++;
 	}
 	
-	/*
-	formData.append("file_businesslicense", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_businessreport", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_taxconfirm", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_resume", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_educationlevel", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_carrer", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_certificate", document.getElementById('file_businesslicense').files[0]);
-	formData.append("file_other", document.getElementById('file_businesslicense').files[0]);
-	*/
+	formData.append("types", resTypeList);
+	formData.append("codes", resCodeList);
+	
 	$.ajax({
 		url: "./modifyTableNine",
 		method: "post",
@@ -300,6 +312,40 @@ function tableNineFrmSubmit() {
 	}).fail(function() {});
 }
 
+/*
+function tableNineFrmSubmit() {
+	var formData = new FormData();
+	formData.append('aplcn_dtls_proper_num', document.getElementById('aplcn_dtls_proper_num').value);
+	formData.append('types', makeValArr(document.getElementsByName('file_type')));
+	formData.append('codes', makeValArr(document.getElementsByName('file_code')));
+	//formData.append('files', makeFileArr(document.getElementsByName('file')));
+	
+	var files = document.getElementsByName("file");
+	for(file of files) {
+		formData.append(file.id, file.files[0]);
+	}
+	
+	formData.append("file_businesslicense", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_businessreport", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_taxconfirm", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_resume", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_educationlevel", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_carrer", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_certificate", document.getElementById('file_businesslicense').files[0]);
+	formData.append("file_other", document.getElementById('file_businesslicense').files[0]);
+	$.ajax({
+		url: "./modifyTableNine",
+		method: "post",
+		data: formData,
+		contentType: false,
+		processData: false,
+		cache: false,
+	}).done(function(obj) {
+		alert(obj.msg);
+		tableNineInfo();
+	}).fail(function() {});
+}
+*/
 
 
 // 첨부파일정보 submit
@@ -432,7 +478,7 @@ function userDetailWrite(){
 	                inputUserName.value = jsonObj.map.USER_NAME;
 	                inputUserName.id = "user_name";
 	                inputUserName.name = "user_name";
-	                inputUserName.classList.add("form-control");
+	                //inputUserName.classList.add("form-control");
 	                trTd1.appendChild(inputUserName);
 	                */
 	
@@ -464,7 +510,7 @@ function userDetailWrite(){
 	                
 	                var inputEmail = document.createElement("input");
 	                inputEmail.type = "text";
-	                inputEmail.classList.add("form-control");
+	                //inputEmail.classList.add("form-control");
 	                inputEmail.value = jsonObj.map.USER_EMAIL;
 	                inputEmail.id = "user_email";
 	                inputEmail.name = "user_email";
@@ -481,7 +527,7 @@ function userDetailWrite(){
 	                
 	                var inputPhone = document.createElement("input");
 	                inputPhone.type = "text";
-	                inputPhone.classList.add("form-control");
+	                //inputPhone.classList.add("form-control");
 	                inputPhone.value = jsonObj.map.USER_PHONE;
 	                inputPhone.id = "user_phone";
 	                inputPhone.name = "user_phone";
@@ -501,7 +547,7 @@ function userDetailWrite(){
 	                
 	                var inputJob = document.createElement("input");
 	                inputJob.type = "text";
-	                inputJob.classList.add("form-control");
+	                //inputJob.classList.add("form-control");
 	                inputJob.value = jsonObj.map.USER_JOB;
 	                inputJob.id = "user_job";
 	                inputJob.name = "user_job";
@@ -518,7 +564,7 @@ function userDetailWrite(){
 	                
 	                var inputAddr = document.createElement("input");
 	                inputAddr.type = "text";
-	                inputAddr.classList.add("form-control");
+	                //inputAddr.classList.add("form-control");
 	                inputAddr.value = jsonObj.map.USER_AR; 
 	                inputAddr.id = "user_ar";
 	                inputAddr.name = "user_ar";
@@ -549,7 +595,7 @@ function userDetailWrite(){
 	                var zoneCodeCol1 = document.createElement("div");
 	                zoneCodeCol1.classList.add("col-2");
 	                zoneCodeCol1.classList.add("mt-1");
-	                zoneCodeCol1.style.width = "100px";
+	                zoneCodeCol1.style.width = "75px";
 	                zoneCodeRow.appendChild(zoneCodeCol1);
 	                
 	                var zoneCodeSpan = document.createElement("span");
@@ -563,7 +609,7 @@ function userDetailWrite(){
 	                
 	                var inputZoneCode = document.createElement("input");
 	                inputZoneCode.type = "text";
-	                inputZoneCode.classList.add("form-control");
+	                //inputZoneCode.classList.add("form-control");
 	                inputZoneCode.value = jsonObj.map.USER_AR_ZONECODE;
 	                inputZoneCode.id = "user_ar_zonecode";
 	                inputZoneCode.name = "user_ar_zonecode";
@@ -576,10 +622,11 @@ function userDetailWrite(){
 					zoneCodeCol3.style.width = "100px";
 					zoneCodeRow.appendChild(zoneCodeCol3);
 					
-					var addrSearchBtn = document.createElement("div");
-					addrSearchBtn.classList.add("btn");
-					addrSearchBtn.classList.add("btn-success");
-					addrSearchBtn.innerText = "검색";
+					var addrSearchBtn = document.createElement("input");
+					//addrSearchBtn.classList.add("btn");
+					//addrSearchBtn.classList.add("btn-success");
+					addrSearchBtn.type = "button";
+					addrSearchBtn.value = "검색";
 					addrSearchBtn.setAttribute("onClick", "searchAddr();");
 					zoneCodeCol3.appendChild(addrSearchBtn);
 					
@@ -597,7 +644,7 @@ function userDetailWrite(){
 	                
 	                var addrJibunCol1 = document.createElement("div");
 	                addrJibunCol1.classList.add("col-2");
-	                addrJibunCol1.style.width = "100px";
+	                addrJibunCol1.style.width = "75px";
 	                addrJibunRow.appendChild(addrJibunCol1);
 	                
 	                var addrJibunSpan = document.createElement("span");
@@ -610,7 +657,7 @@ function userDetailWrite(){
 	                
 					var inputArJibun = document.createElement("input");
 					inputArJibun.type = "text";
-					inputArJibun.classList.add("form-control");
+					//inputArJibun.classList.add("form-control");
 					inputArJibun.value = jsonObj.map.USER_AR_JIBUN;
 					inputArJibun.id = "user_ar_jibun";
 					inputArJibun.name = "user_ar_jibun";
@@ -630,7 +677,7 @@ function userDetailWrite(){
 					
 					var addrDetailCol1 = document.createElement("div");
 					addrDetailCol1.classList.add("col-2");
-					addrDetailCol1.style.width = "100px";
+					addrDetailCol1.style.width = "75px";
 					addrDetailRow.appendChild(addrDetailCol1);
 					
 					var addrDetailSpan = document.createElement("span");
@@ -643,10 +690,11 @@ function userDetailWrite(){
 					
 					var inputArDetail = document.createElement("input");
 					inputArDetail.type = "text";
-					inputArDetail.classList.add("form-control");
+					//inputArDetail.classList.add("form-control");
 					inputArDetail.value = jsonObj.map.USER_AR_DETAIL;
 					inputArDetail.id = "user_ar_detail";
 					inputArDetail.name = "user_ar_detail";
+					inputArDetail.style.width = "80%";
 					addrDetailCol2.appendChild(inputArDetail);
 	
 	                var bodyTr6 = document.createElement("tr");
@@ -673,7 +721,7 @@ function userDetailWrite(){
 					
 					var bankHolderCol1 = document.createElement("div");
 					bankHolderCol1.classList.add("col-2");
-					bankHolderCol1.style.width = "100px";
+					bankHolderCol1.style.width = "75px";
 					bankHolderRow.appendChild(bankHolderCol1);
 					
 					var bankHolderSpan = document.createElement("span");
@@ -686,7 +734,7 @@ function userDetailWrite(){
 					
 					var inputBankHolder = document.createElement("input");
 					inputBankHolder.type = "text";
-					inputBankHolder.classList.add("form-control");
+					//inputBankHolder.classList.add("form-control");
 					inputBankHolder.value = jsonObj.map.USER_BANK_HOLDER;
 					inputBankHolder.id = "user_bank_holder";
 					inputBankHolder.name = "user_bank_holder";
@@ -706,7 +754,7 @@ function userDetailWrite(){
 	                
 	                var bankCol1 = document.createElement("div");
 	                bankCol1.classList.add("col-2");
-	                bankCol1.style.width = "100px";
+	                bankCol1.style.width = "75px";
 	                bankRow.appendChild(bankCol1);
 	                
 	                var bankSpan = document.createElement("span");
@@ -719,7 +767,7 @@ function userDetailWrite(){
 	                
 	                var inputBank = document.createElement("input");
 	                inputBank.type = "text";
-	                inputBank.classList.add("form-control");
+	                //inputBank.classList.add("form-control");
 	                inputBank.value = jsonObj.map.USER_BANK; 
 	                inputBank.id = "user_bank";
 	                inputBank.name = "user_bank";
@@ -739,7 +787,7 @@ function userDetailWrite(){
 	                
 	                var bankAccountCol1 = document.createElement("div");
 	                bankAccountCol1.classList.add("col-2");
-	                bankAccountCol1.style.width = "100px";
+	                bankAccountCol1.style.width = "75px";
 	                bankAccountRow.appendChild(bankAccountCol1);
 	                
 	                var bankAccountSpan = document.createElement("span");
@@ -752,7 +800,7 @@ function userDetailWrite(){
 	                
 	                var inputBankAccount = document.createElement("input");
 	                inputBankAccount.type = "text";
-	                inputBankAccount.classList.add("form-control");
+	                //inputBankAccount.classList.add("form-control");
 	                inputBankAccount.value = jsonObj.map.USER_BANK_ACCOUNT;
 	                inputBankAccount.id = "user_bank_account"; 
 	                inputBankAccount.name = "user_bank_account";
@@ -798,7 +846,8 @@ function userDetailWrite(){
 	                
 	                var submitBtn = document.createElement("button");
 	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("btn-sm");
+	                submitBtn.classList.add("btn-secondary");
 	                submitBtn.classList.add("mx-2");
 	                submitBtn.classList.add("frmSubmit");
 	                
@@ -810,7 +859,8 @@ function userDetailWrite(){
 	                
 	                var finalSubmitBtn = document.createElement("button");
 	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.classList.add("btn-sm");
+	                finalSubmitBtn.classList.add("btn-outline-success");
 	                finalSubmitBtn.innerText = "작성완료";
 	                finalSubmitBtn.setAttribute("onclick", "application(true);");
 	                submitCol.appendChild(finalSubmitBtn);
@@ -934,47 +984,43 @@ function tableFiveInfo(){
 					bodyTr1.appendChild(bodyTr1Td1);
 					
 					var inputYesLigtnBox = document.createElement("div");
-					inputYesLigtnBox.classList.add("form-check");
+					//inputYesLigtnBox.classList.add("form-check");
 					inputYesLigtnBox.style.float = "left";
-					inputYesLigtnBox.style.margin = "5px 20px 0px 50px";
+					inputYesLigtnBox.style.margin = "4px 20px 0px 17px";
 					bodyTr1Td1.appendChild(inputYesLigtnBox);
 					
 					var inputYesLigtn = document.createElement("input");
-					inputYesLigtn.classList.add("form-check-input");
+					//inputYesLigtn.classList.add("form-check-input");
 					inputYesLigtn.type = "radio";
 					inputYesLigtn.name = "ligtn_case_carer_yn";
 					inputYesLigtn.id = "ligtn_case_carer_y";
 					inputYesLigtn.value = "y";
-					inputYesLigtn.style.float = "none";
-					inputYesLigtn.style.marginRight = "5px";
 					inputYesLigtn.setAttribute("onclick", "disabledToggle('y', 'ligtn_case_carer_etc');");
 					inputYesLigtnBox.appendChild(inputYesLigtn);
 					
 					var labelYesLigtn = document.createElement("label");
-					labelYesLigtn.classList.add("form-check-label");
+					//labelYesLigtn.classList.add("form-check-label");
 					labelYesLigtn.for = "ligtn_case_carer_y";
 					labelYesLigtn.innerText = "유";
 					inputYesLigtnBox.appendChild(labelYesLigtn);
 					
 					var inputNoLigtnBox = document.createElement("div");
-					inputNoLigtnBox.classList.add("form-check");
+					//inputNoLigtnBox.classList.add("form-check");
 					inputNoLigtnBox.style.float = "left";
-					inputNoLigtnBox.style.marginTop = "5px";
+					inputNoLigtnBox.style.marginTop = "4px";
 					bodyTr1Td1.appendChild(inputNoLigtnBox);
 					
 					var inputNoLigtn = document.createElement("input");
-					inputNoLigtn.classList.add("form-check-input");
+					//inputNoLigtn.classList.add("form-check-input");
 					inputNoLigtn.type = "radio";
 					inputNoLigtn.name = "ligtn_case_carer_yn";
 					inputNoLigtn.id = "ligtn_case_carer_n";
 					inputNoLigtn.value = "n";
-					inputNoLigtn.style.float = "none";
-					inputNoLigtn.style.marginRight = "5px";
 					inputNoLigtn.setAttribute("onclick", "disabledToggle('n', 'ligtn_case_carer_etc');");
 					inputNoLigtnBox.appendChild(inputNoLigtn);
 					
 					var labelNoLigtn = document.createElement("label");
-					labelNoLigtn.classList.add("form-check-label");
+					//labelNoLigtn.classList.add("form-check-label");
 					labelNoLigtn.for = "ligtn_case_carer_n";
 					labelNoLigtn.innerText = "무";
 					inputNoLigtnBox.appendChild(labelNoLigtn);
@@ -986,7 +1032,8 @@ function tableFiveInfo(){
 	                var InputligtnCaseCarerEtc = document.createElement("input");
 	                InputligtnCaseCarerEtc.id = "ligtn_case_carer_etc";
 	                InputligtnCaseCarerEtc.name = "ligtn_case_carer_etc";
-	                InputligtnCaseCarerEtc.classList.add("form-control");
+	                InputligtnCaseCarerEtc.style.width = "100%";
+	                //InputligtnCaseCarerEtc.classList.add("form-control");
 	                
 	                InputligtnCaseCarerEtc.value = jsonObj.map.LIGTN_CASE_CARER_ETC; 
 	                var ligtnCaseCarerEtc =  jsonObj.map.LIGTN_CASE_CARER_ETC
@@ -1035,46 +1082,47 @@ function tableFiveInfo(){
 					bodyTr2.appendChild(bodyTr2Td1);
 					
 					var inputYesInsrnBox = document.createElement("div");
-					inputYesInsrnBox.classList.add("form-check");
+					//inputYesInsrnBox.classList.add("form-check");
 					inputYesInsrnBox.style.float = "left";
-					inputYesInsrnBox.style.margin = "0px 20px 0px 50px";
+					inputYesInsrnBox.style.margin = "4px 20px 0px 17px";
 					bodyTr2Td1.appendChild(inputYesInsrnBox);
 					
 					var inputYesInsrn = document.createElement("input");
-					inputYesInsrn.classList.add("form-check-input");
+					//inputYesInsrn.classList.add("form-check-input");
 					inputYesInsrn.type = "radio";
 					inputYesInsrn.name = "insrn_indst_carer_yn";
 					inputYesInsrn.id = "insrn_indst_carer_y";
 					inputYesInsrn.value = "y";
 					inputYesInsrn.style.float = "none";
-					inputYesInsrn.style.marginRight = "5px";
+					//inputYesInsrn.style.marginRight = "4px";
 					inputYesInsrn.setAttribute("onclick", "disabledToggle('y', 'insrn_indst_carer_etc');");
 					inputYesInsrnBox.appendChild(inputYesInsrn);
 					
 					var labelYesInsrn = document.createElement("label");
-					labelYesInsrn.classList.add("form-check-label");
+					//labelYesInsrn.classList.add("form-check-label");
 					labelYesInsrn.for = "insrn_indst_carer_y";
 					labelYesInsrn.innerText = "유";
 					inputYesInsrnBox.appendChild(labelYesInsrn);
 					
 					var inputNoInsrnBox = document.createElement("div");
-					inputNoInsrnBox.classList.add("form-check");
+					//inputNoInsrnBox.classList.add("form-check");
 					inputNoInsrnBox.style.float = "left";
+					inputNoInsrnBox.style.marginTop = "4px";
 					bodyTr2Td1.appendChild(inputNoInsrnBox);
 					
 					var inputNoInsrn = document.createElement("input");
-					inputNoInsrn.classList.add("form-check-input");
+					//inputNoInsrn.classList.add("form-check-input");
 					inputNoInsrn.type = "radio";
 					inputNoInsrn.name = "insrn_indst_carer_yn";
 					inputNoInsrn.id = "insrn_indst_carer_n";
 					inputNoInsrn.value = "n";
 					inputNoInsrn.style.float = "none";
-					inputNoInsrn.style.marginRight = "5px";
+					//inputNoInsrn.style.marginRight = "5px";
 					inputNoInsrn.setAttribute("onclick", "disabledToggle('n', 'insrn_indst_carer_etc');");
 					inputNoInsrnBox.appendChild(inputNoInsrn);
 					
 					var labelNoInsrn = document.createElement("label");
-					labelNoInsrn.classList.add("form-check-label");
+					//labelNoInsrn.classList.add("form-check-label");
 					labelNoInsrn.for = "insrn_indst_carer_n";
 					labelNoInsrn.innerText = "무";
 					inputNoInsrnBox.appendChild(labelNoInsrn);
@@ -1086,7 +1134,8 @@ function tableFiveInfo(){
 	                var InputInsrnIndstCarerEtc = document.createElement("input");
 	                InputInsrnIndstCarerEtc.id = "insrn_indst_carer_etc";
 	                InputInsrnIndstCarerEtc.name = "insrn_indst_carer_etc";
-	                InputInsrnIndstCarerEtc.classList.add("form-control");
+	                InputInsrnIndstCarerEtc.style.width = "100%";
+	               // InputInsrnIndstCarerEtc.classList.add("form-control");
 	                var insrnIndstCarerEtc =  jsonObj.map.INSRN_INDST_CARER_ETC
 	                if(insrnIndstCarerEtc == "" || insrnIndstCarerEtc == undefined) {
 		                InputInsrnIndstCarerEtc.value = ""; 
@@ -1151,46 +1200,47 @@ function tableFiveInfo(){
 	                bodyTr3.appendChild(bodyTr3Td1);
 	                
 	                var inputYesCriBox = document.createElement("div");
-	                inputYesCriBox.classList.add("form-check");
+	                //inputYesCriBox.classList.add("form-check");
 	                inputYesCriBox.style.float = "left";
-	                inputYesCriBox.style.margin = "0px 20px 0px 50px";
+	                inputYesCriBox.style.margin = "4px 20px 0px 17px";
 	                bodyTr3Td1.appendChild(inputYesCriBox);
 	                
 	                var inputYesCri = document.createElement("input");
-	                inputYesCri.classList.add("form-check-input");
+	                //inputYesCri.classList.add("form-check-input");
 	                inputYesCri.type = "radio";
 	                inputYesCri.name = "criminal_penalty_carer_yn";
 	                inputYesCri.id = "criminal_penalty_carer_y";
 	                inputYesCri.value = "y";
 	                inputYesCri.style.float = "none";
-	                inputYesCri.style.marginRight = "5px";
+	                //inputYesCri.style.marginRight = "5px";
 	                inputYesCri.setAttribute("onclick", "disabledToggle('y', 'criminal_penalty_carer_etc');");
 	                inputYesCriBox.appendChild(inputYesCri);
 	                
 	                var labelYesCri = document.createElement("label");
-	                labelYesCri.classList.add("form-check-label");
+	               // labelYesCri.classList.add("form-check-label");
 	                labelYesCri.for = "criminal_penalty_carer_y";
 	                labelYesCri.innerText = "유";
 	                inputYesCriBox.appendChild(labelYesCri);
 	                
 	                var inputNoCriBox = document.createElement("div");
-					inputNoCriBox.classList.add("form-check");
+					//inputNoCriBox.classList.add("form-check");
 					inputNoCriBox.style.float = "left";
+					inputNoCriBox.style.marginTop = "4px";
 					bodyTr3Td1.appendChild(inputNoCriBox);
 					
 					var inputNoCri = document.createElement("input");
-					inputNoCri.classList.add("form-check-input");
+					//inputNoCri.classList.add("form-check-input");
 					inputNoCri.type = "radio";
 					inputNoCri.name = "criminal_penalty_carer_yn";
 					inputNoCri.id = "criminal_penalty_carer_ n";
 					inputNoCri.value = "n";
-					inputNoCri.style.float = "none";
-					inputNoCri.style.marginRight = "5px";
+					//inputNoCri.style.float = "none";
+					//inputNoCri.style.marginRight = "5px";
 					inputNoCri.setAttribute("onclick", "disabledToggle('n', 'criminal_penalty_carer_etc');");
 					inputNoCriBox.appendChild(inputNoCri);
 					
 					var labelNoCri = document.createElement("label");
-					labelNoCri.classList.add("form-check-label");
+					//labelNoCri.classList.add("form-check-label");
 					labelNoCri.for = "criminal_penalty_carer_n";
 					labelNoCri.innerText = "무";
 					inputNoCriBox.appendChild(labelNoCri);
@@ -1201,7 +1251,8 @@ function tableFiveInfo(){
 	               	var inputCriPenCarerEtc = document.createElement("input");
 	               	inputCriPenCarerEtc.id = "criminal_penalty_carer_etc";
 	               	inputCriPenCarerEtc.name = "criminal_penalty_carer_etc";
-	               	inputCriPenCarerEtc.classList.add("form-control");
+	               	inputCriPenCarerEtc.style.width = "100%";
+	               	//inputCriPenCarerEtc.classList.add("form-control");
 	               	var criPenCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
 	               	if(criPenCarerEtc == "" || criPenCarerEtc == undefined) {
 	               		inputCriPenCarerEtc.value = "";
@@ -1233,7 +1284,8 @@ function tableFiveInfo(){
 				
 	                var submitBtn = document.createElement("button");
 	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("btn-sm");
+	                submitBtn.classList.add("btn-secondary");
 	                submitBtn.classList.add("mx-2");
 	                submitBtn.classList.add("frmSubmit");
 		                
@@ -1245,7 +1297,8 @@ function tableFiveInfo(){
 	                
 		            var finalSubmitBtn = document.createElement("button");
 	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.classList.add("btn-sm");
+	                finalSubmitBtn.classList.add("btn-outline-success");
 	                finalSubmitBtn.innerText = "작성완료";
 	                finalSubmitBtn.setAttribute("onclick", "application(true);");
 	                submitCol.appendChild(finalSubmitBtn);    
@@ -1384,7 +1437,7 @@ function tableSixInfo(){
 	
 					var inputSchoolName = document.createElement("input");
 					inputSchoolName.type = "text";
-					inputSchoolName.classList.add("form-control");
+					//inputSchoolName.classList.add("form-control");
 					inputSchoolName.value = jsonObj.map.EDCTN_SCHOOL_NAME;
 					inputSchoolName.id = "edctn_school_name";
 					inputSchoolName.name = "edctn_school_name";
@@ -1401,7 +1454,7 @@ function tableSixInfo(){
 	
 					var inputEdctnMajor = document.createElement("input");
 					inputEdctnMajor.type = "text";
-					inputEdctnMajor.classList.add("form-control");
+					//inputEdctnMajor.classList.add("form-control");
 					inputEdctnMajor.value = jsonObj.map.EDCTN_MAJOR;
 					inputEdctnMajor.id = "edctn_major";
 					inputEdctnMajor.name = "edctn_major";
@@ -1424,7 +1477,7 @@ function tableSixInfo(){
 	
 					var inputEdctnAdmsnDate = document.createElement("input");
 					inputEdctnAdmsnDate.type = "date";
-					inputEdctnAdmsnDate.classList.add("form-control");
+					//inputEdctnAdmsnDate.classList.add("form-control");
 					//console.log(jsonObj.map.EDCTN_ADMSN_DATE);
 					inputEdctnAdmsnDate.value = setDateInput(jsonObj.map.EDCTN_ADMSN_DATE);
 					inputEdctnAdmsnDate.id = "edctn_admsn_date";
@@ -1442,7 +1495,7 @@ function tableSixInfo(){
 	                
 	                var inputEdctnGrdtnDate = document.createElement("input");
 	                inputEdctnGrdtnDate.type = "date";
-	                inputEdctnGrdtnDate.classList.add("form-control");
+	                //inputEdctnGrdtnDate.classList.add("form-control");
 	                inputEdctnGrdtnDate.value = setDateInput(jsonObj.map.EDCTN_GRDTN_DATE);
 	                inputEdctnGrdtnDate.id = "edctn_grdtn_date";
 	                inputEdctnGrdtnDate.name = "edctn_grdtn_date";
@@ -1462,7 +1515,7 @@ function tableSixInfo(){
 	                
 	                var inputEdctnDegree = document.createElement("input");
 	                inputEdctnDegree.type = "text";
-	                inputEdctnDegree.classList.add("form-control");
+	                //inputEdctnDegree.classList.add("form-control");
 	                inputEdctnDegree.value = jsonObj.map.EDCTN_DEGREE;
 	                inputEdctnDegree.id = "edctn_degree";
 	                inputEdctnDegree.name = "edctn_degree";
@@ -1480,13 +1533,13 @@ function tableSixInfo(){
 	                
 	                // 220923 hyejin 추가
 	                var inputEdctnFinalYBox = document.createElement("div");
-	                inputEdctnFinalYBox.classList.add("form-check");
+	                //inputEdctnFinalYBox.classList.add("form-check");
 	                inputEdctnFinalYBox.style.float = "left";
-	                inputEdctnFinalYBox.style.margin = "5px 40px 0px 100px";
+	                inputEdctnFinalYBox.style.margin = "4px 40px 0px 43px";
 					bodyTr2Td2.appendChild(inputEdctnFinalYBox);
 					
 					var inputEdctnFinalY = document.createElement("input");
-					inputEdctnFinalY.classList.add("form-check-input");
+					//inputEdctnFinalY.classList.add("form-check-input");
 					inputEdctnFinalY.type = "radio";
 					inputEdctnFinalY.name = "edctn_final_yn";
 					inputEdctnFinalY.id = "edctn_final_y";
@@ -1495,20 +1548,20 @@ function tableSixInfo(){
 					inputEdctnFinalYBox.appendChild(inputEdctnFinalY);
 					
 					var labelEdctnFinalY = document.createElement("label");
-					labelEdctnFinalY.classList.add("form-check-label");
+					//labelEdctnFinalY.classList.add("form-check-label");
 					labelEdctnFinalY.setAttribute("for", "edctn_final_y");
 					labelEdctnFinalY.innerText = "예";
 					inputEdctnFinalYBox.appendChild(labelEdctnFinalY);
 					
 					
 					var inputEdctnFinalNBox = document.createElement("div");
-					inputEdctnFinalNBox.classList.add("form-check");
+					//inputEdctnFinalNBox.classList.add("form-check");
 					inputEdctnFinalNBox.style.float = "left";
-					inputEdctnFinalNBox.style.marginTop = "5px";
+					inputEdctnFinalNBox.style.marginTop = "4px";
 					bodyTr2Td2.appendChild(inputEdctnFinalNBox);
 					
 					var inputEdctnFinalN = document.createElement("input");
-					inputEdctnFinalN.classList.add("form-check-input");
+					//inputEdctnFinalN.classList.add("form-check-input");
 					inputEdctnFinalN.type = "radio";
 					inputEdctnFinalN.name = "edctn_final_yn";
 					inputEdctnFinalN.id = "edctn_final_n";
@@ -1517,7 +1570,7 @@ function tableSixInfo(){
 					inputEdctnFinalNBox.appendChild(inputEdctnFinalN);
 					
 					var labelEdctnFinalN = document.createElement("label");
-					labelEdctnFinalN.classList.add("form-check-label");
+					//labelEdctnFinalN.classList.add("form-check-label");
 					labelEdctnFinalN.setAttribute("for", "edctn_final_n");
 					labelEdctnFinalN.innerText = "아니오";
 					inputEdctnFinalNBox.appendChild(labelEdctnFinalN);
@@ -1550,7 +1603,8 @@ function tableSixInfo(){
 	                
 	                var submitBtn = document.createElement("button");
 	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("btn-sm");
+	                submitBtn.classList.add("btn-secondary");
 	                submitBtn.classList.add("mx-2");
 	                submitBtn.classList.add("frmSubmit");
 		                
@@ -1562,7 +1616,8 @@ function tableSixInfo(){
 	                
 	                var finalSubmitBtn = document.createElement("button");
 	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.classList.add("btn-sm");
+	                finalSubmitBtn.classList.add("btn-outline-success");
 	                finalSubmitBtn.innerText = "작성완료";
 	                finalSubmitBtn.setAttribute("onclick", "application(true);");
 	                submitCol.appendChild(finalSubmitBtn);
@@ -1679,7 +1734,7 @@ function tableSevenInfo(){
 	                theadTr.appendChild(theadTrTd1);
 	                
 	                var inputCompanyName = document.createElement("input");
-	                inputCompanyName.classList.add("form-control");
+	                //inputCompanyName.classList.add("form-control");
 	                inputCompanyName.type = "text";
 	                inputCompanyName.id = "company_name";
 	                inputCompanyName.name = "company_name";
@@ -1696,7 +1751,7 @@ function tableSevenInfo(){
 	                theadTr.appendChild(theadTrTd2);
 	                
 	                var inputCarerType = document.createElement("input");
-	                inputCarerType.classList.add("form-control");
+	                //inputCarerType.classList.add("form-control");
 	                inputCarerType.type = "text";
 	                inputCarerType.id = "carer_type";
 	                inputCarerType.name = "carer_type";
@@ -1719,7 +1774,7 @@ function tableSevenInfo(){
 	                bodyTr1.appendChild(bodyTr1Td1);
 	                
 	                var inputWorkStartDate = document.createElement("input");
-	                inputWorkStartDate.classList.add("form-control");
+	                //inputWorkStartDate.classList.add("form-control");
 	                inputWorkStartDate.type = "date";
 	                inputWorkStartDate.id = "work_start_date";
 	                inputWorkStartDate.name = "work_start_date";
@@ -1736,7 +1791,7 @@ function tableSevenInfo(){
 	                bodyTr1.appendChild(bodyTr1Td2);
 	
 					var inputWorkEndDate = document.createElement("input");
-	                inputWorkEndDate.classList.add("form-control");
+	                //inputWorkEndDate.classList.add("form-control");
 	                inputWorkEndDate.type = "date";
 	                inputWorkEndDate.id = "work_end_date";
 	                inputWorkEndDate.name = "work_end_date";
@@ -1756,7 +1811,7 @@ function tableSevenInfo(){
 	                bodyTr2.appendChild(bodyTr2Td1);
 	                
 	                var inputWorkPosition = document.createElement("input");
-	                inputWorkPosition.classList.add("form-control");
+	                //inputWorkPosition.classList.add("form-control");
 	                inputWorkPosition.type = "text";
 	                inputWorkPosition.id = "work_position";
 	                inputWorkPosition.name = "work_position";
@@ -1773,7 +1828,7 @@ function tableSevenInfo(){
 	                bodyTr2.appendChild(bodyTr2Td2);
 	
 					var inputWorkDepartment = document.createElement("input");
-	                inputWorkDepartment.classList.add("form-control");
+	                //inputWorkDepartment.classList.add("form-control");
 	                inputWorkDepartment.type = "text";
 	                inputWorkDepartment.id = "work_department";
 	                inputWorkDepartment.name = "work_department";
@@ -1794,7 +1849,7 @@ function tableSevenInfo(){
 	                bodyTr3.appendChild(bodyTr3Td);
 	
 					var inputWorkDescription = document.createElement("input");
-	                inputWorkDescription.classList.add("form-control");
+	                //inputWorkDescription.classList.add("form-control");
 	                inputWorkDescription.type = "text";
 	                inputWorkDescription.id = "work_description";
 	                inputWorkDescription.name = "work_description";
@@ -1815,7 +1870,7 @@ function tableSevenInfo(){
 	                bodyTr4.appendChild(bodyTr4Td);
 	
 					var inputCarerDesc = document.createElement("textarea");
-	                inputCarerDesc.classList.add("form-control");
+	                //inputCarerDesc.classList.add("form-control");
 	                inputCarerDesc.id = "carer_description";
 	                inputCarerDesc.name = "carer_description";
 	                inputCarerDesc.value = jsonObj.map.CARER_DESCRIPTION;
@@ -1835,7 +1890,7 @@ function tableSevenInfo(){
 	                bodyTr5.appendChild(bodyTr5Td);
 	
 					var inputSpecialNoteDesc = document.createElement("textarea");
-	                inputSpecialNoteDesc.classList.add("form-control");
+	                //inputSpecialNoteDesc.classList.add("form-control");
 	                inputSpecialNoteDesc.id = "special_note_description";
 	                inputSpecialNoteDesc.name = "special_note_description";
 	                inputSpecialNoteDesc.value = jsonObj.map.SPECIAL_NOTE_DESCRIPTION;
@@ -1860,7 +1915,8 @@ function tableSevenInfo(){
 	                
 	                var submitBtn = document.createElement("button");
 	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("btn-sm");
+	                submitBtn.classList.add("btn-secondary");
 	                submitBtn.classList.add("mx-2");
 	                submitBtn.classList.add("frmSubmit");
 	                
@@ -1872,7 +1928,8 @@ function tableSevenInfo(){
 	                
 	                var finalSubmitBtn = document.createElement("button");
 	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.classList.add("btn-sm");
+	                finalSubmitBtn.classList.add("btn-outline-success");
 	                finalSubmitBtn.innerText = "작성완료";
 	                finalSubmitBtn.setAttribute("onclick", "application(true);");
 	                submitCol.appendChild(finalSubmitBtn);
@@ -1971,7 +2028,7 @@ function tableEightInfo(){
 	                theadTr.appendChild(theadTrTd1);
 	                
 					var crtfcTypeSelect = document.createElement("select");
-					crtfcTypeSelect.classList.add("form-select");
+					//crtfcTypeSelect.classList.add("form-select");
 					crtfcTypeSelect.id = "crtfc_type";
 					crtfcTypeSelect.name = "crtfc_type";
 					theadTrTd1.appendChild(crtfcTypeSelect);
@@ -2030,7 +2087,7 @@ function tableEightInfo(){
 	                
 	                /*
 	                var inputCrtfcType = document.createElement("input");
-	                inputCrtfcType.classList.add("form-control");
+	                //inputCrtfcType.classList.add("form-control");
 	                inputCrtfcType.type = "text";
 	                inputCrtfcType.id = "crtfc_type";
 	                inputCrtfcType.name = "crtfc_type";
@@ -2050,7 +2107,7 @@ function tableEightInfo(){
 	                theadTr.appendChild(theadTrTd2);
 	                
 	                var inputIssueAgency = document.createElement("input");
-	                inputIssueAgency.classList.add("form-control");
+	                //inputIssueAgency.classList.add("form-control");
 	                inputIssueAgency.type = "text";
 	                inputIssueAgency.id = "issue_agency";
 	                inputIssueAgency.name = "issue_agency";
@@ -2073,7 +2130,7 @@ function tableEightInfo(){
 	                bodyTr1.appendChild(bodyTr1Td1);
 	                
 	                var inputCrtfcNumber = document.createElement("input");
-	                inputCrtfcNumber.classList.add("form-control");
+	                //inputCrtfcNumber.classList.add("form-control");
 	                inputCrtfcNumber.type = "text";
 	                inputCrtfcNumber.id = "crtfc_number";
 	                inputCrtfcNumber.name = "crtfc_number";
@@ -2090,7 +2147,7 @@ function tableEightInfo(){
 	                bodyTr1.appendChild(bodyTr1Td2);
 	                
 	                var inputIssueDate = document.createElement("input");
-	                inputIssueDate.classList.add("form-control");
+	                //inputIssueDate.classList.add("form-control");
 	                inputIssueDate.type = "date";
 	                inputIssueDate.id = "issue_date";
 	                inputIssueDate.name = "issue_date";
@@ -2118,7 +2175,8 @@ function tableEightInfo(){
 	                
 	                var submitBtn = document.createElement("button");
 	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
+	                submitBtn.classList.add("btn-sm");
+	                submitBtn.classList.add("btn-secondary");
 	                submitBtn.classList.add("mx-2");
 	                submitBtn.classList.add("frmSubmit");
 	                
@@ -2130,7 +2188,8 @@ function tableEightInfo(){
 	                
 	                var finalSubmitBtn = document.createElement("button");
 	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
+	                finalSubmitBtn.classList.add("btn-sm");
+	                finalSubmitBtn.classList.add("btn-outline-success");
 	                finalSubmitBtn.innerText = "작성완료";
 	                finalSubmitBtn.setAttribute("onclick", "application(false);");
 	                submitCol.appendChild(finalSubmitBtn);
@@ -2162,418 +2221,418 @@ function tableNineInfo(){
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
-				var data = jsonObj.map;
 				
 				//console.log("jsonObj : " + jsonObj);
-				//console.log("jsonObj[0] : " + jsonObj[0].file_type);
-
+				
                 var commentListBox = document.getElementById("nav-info");
 				commentListBox.innerHTML = "";
 
-				if(data != null && data != undefined) {
-	                var rowBox = document.createElement("div");
-	                rowBox.classList.add("row");
-	 
-	 
-	                //table시작
-	                var tableRow = document.createElement("div");
-	                tableRow.classList.add("row");
-	                tableRow.classList.add("mx-0");
-	                tableRow.classList.add("px-0");
-	                rowBox.appendChild(tableRow);
-	
-					var tableNineFrm = document.createElement("form");
-					tableNineFrm.id = "tableNineFrm";
-	                tableNineFrm.name = "tableNineFrm";
-	                tableRow.appendChild(tableNineFrm);
-	
-	                var table = document.createElement("table");
-	                table.classList.add("table");
-	                table.classList.add("table-bordered");
-	                tableNineFrm.appendChild(table);
-	
-	                //여기까진 같음
-	                
-	                var colGroup = document.createElement("colgroup");
-	                table.appendChild(colGroup);
-	
-	                var colGroupOne = document.createElement("col");
-	                colGroupOne.setAttribute("width", "25%");
-	                colGroup.appendChild(colGroupOne);
-	
-	                var colGroupTwo = document.createElement("col");
-	                colGroupTwo.setAttribute("width", "25%");
-	                colGroup.appendChild(colGroupTwo);
-	
-	                var colGroupThree = document.createElement("col");
-	                colGroupThree.setAttribute("width", "50%");
-	                colGroup.appendChild(colGroupThree);
-	
-	
-	                var thead = document.createElement("thead");
-	                table.appendChild(thead);
-	
-	                var theadTr = document.createElement("tr");
-	                theadTr.classList.add("text-center");
-	                thead.appendChild(theadTr);
-	
-	                var theadTrTh1 = document.createElement("th");
-	                theadTrTh1.setAttribute("scope", "col");
-	                theadTrTh1.classList.add("table-light");
-	                theadTrTh1.innerText="첨부서류 분류 코드";
-	                theadTr.appendChild(theadTrTh1);
-	
-	                var theadTrTh2 = document.createElement("th");
-	                theadTrTh2.setAttribute("scope", "col");
-	                theadTrTh2.classList.add("table-light");
-	                theadTrTh2.innerText="첨부 서류 타입";
-	                theadTr.appendChild(theadTrTh2);
-	
-	                var theadTrTh3 = document.createElement("th");
-	                theadTrTh3.setAttribute("scope", "col");
-	                theadTrTh3.classList.add("table-light");
-	                theadTrTh3.innerText="파일 이름";
-	                theadTr.appendChild(theadTrTh3);
-	
-	
-	                var tbody = document.createElement("tbody");
-	                table.appendChild(tbody);
-					
-					// 사업자등록증
-	               	var bodyTr1 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr1);
-	               	
-	               	var bodyTr1Td1 = document.createElement("td");
-	               	bodyTr1Td1.classList.add("text-center");
-	                bodyTr1Td1.innerText = "사업자등록증";
-	                bodyTr1.appendChild(bodyTr1Td1);
-	                
-	                var bodyTr1Td2 = document.createElement("td");
-	               	bodyTr1Td2.classList.add("text-center");
-	               	bodyTr1Td2.setAttribute("rowspan", "3");
-	               	bodyTr1Td2.setAttribute("valign", "middle");
-	                bodyTr1Td2.innerText = "공통서류";
-	                bodyTr1.appendChild(bodyTr1Td2);
+                var rowBox = document.createElement("div");
+                rowBox.classList.add("row");
+ 
+ 
+                //table시작
+                var tableRow = document.createElement("div");
+                tableRow.classList.add("row");
+                tableRow.classList.add("mx-0");
+                tableRow.classList.add("px-0");
+                rowBox.appendChild(tableRow);
 
-	               	var bodyTr1Td3 = document.createElement("td");
-	               	bodyTr1Td3.classList.add("text-center");
-	               	
-					if(jsonObj[0] != null) {
-		              
-		              	var bodyTr1Td3Span = document.createElement("span");
-		              	bodyTr1Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj[0].aplcn_dtls_proper_num+"', '"+jsonObj[0].aplcn_atch_file_proper_num+"');");
-		              	bodyTr1Td3Span.classList.add("text-decoration-none");
-		                bodyTr1Td3Span.innerText = jsonObj[0].original_file_name;
-		                bodyTr1Td3.appendChild(bodyTr1Td3Span);
-		                
-		                var bodyTr1Td3MofBtn = document.createElement("button");
-		                bodyTr1Td3MofBtn.innerText = "변경";
-		                bodyTr1Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businesslicense', 'co');");
-		                bodyTr1Td3MofBtn.style.float = "right";
-		                bodyTr1Td3.appendChild(bodyTr1Td3MofBtn);
-		              
-	                } else {
-	                	// 저장된 파일이 없을때
-	                	showFileInput(bodyTr1Td3,'businesslicense', 'co');
-	                }
-	                
-	                bodyTr1.appendChild(bodyTr1Td3);
-	                
-	                // 업무관련 등록신고서류
-	               	var bodyTr2 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr2);
-	               	
-	               	var bodyTr2Td1 = document.createElement("td");
-	               	bodyTr2Td1.classList.add("text-center");
-	                bodyTr2Td1.innerText = "업무관련 등록신고 서류";
-	                bodyTr2.appendChild(bodyTr2Td1);
-	                
-                	var bodyTr2Td2 = document.createElement("td");
-                	bodyTr2Td2.classList.add("text-center");
-                	
-	                if(jsonObj[1] != null) {
-	               		var bodyTr2Td2Span = document.createElement("span");
-		              	bodyTr2Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj[1].aplcn_dtls_proper_num+"', '"+jsonObj[1].aplcn_atch_file_proper_num+"');");
-		              	bodyTr2Td2Span.classList.add("text-decoration-none");
-		                bodyTr2Td2Span.innerText = jsonObj[1].original_file_name;
-		                bodyTr2Td2.appendChild(bodyTr2Td2Span);
-		                
-		                var bodyTr2Td2MofBtn = document.createElement("button");
-		                bodyTr2Td2MofBtn.innerText = "변경";
-		                bodyTr2Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businessreport', 'co');");
-		                bodyTr2Td2MofBtn.style.float = "right";
-		                bodyTr2Td2.appendChild(bodyTr2Td2MofBtn);
-	                
-	                
-	                } else {
-	                	// 저장된 파일이 없을때
-	                	showFileInput(bodyTr2Td2,'businessreport', 'co');
-	                }
-	                
-	                bodyTr2.appendChild(bodyTr2Td2);
-	                
-	                // 납세증명확인서
-	                var bodyTr3 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr3);
-	               	
-	               	var bodyTr3Td1 = document.createElement("td");
-	               	bodyTr3Td1.classList.add("text-center");
-	                bodyTr3Td1.innerText = "납세증명확인서";
-	                bodyTr3.appendChild(bodyTr3Td1);
-	                
-	                var bodyTr3Td2 = document.createElement("td");
-	                bodyTr3Td2.classList.add("text-center");
-	                
-	                if(jsonObj[2] != null) {
-		               	bodyTr3Td2.classList.add("text-center");
-		                bodyTr3Td2.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj[2].aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj[2].aplcn_atch_file_proper_num);
-		                bodyTr3Td2.classList.add("text-decoration-none");
-		                bodyTr3Td2.innerText = jsonObj[2].original_file_name;
-		                
-		                
-		                var bodyTr3Td2Span = document.createElement("span");
-		              	bodyTr3Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj[2].aplcn_dtls_proper_num+"', '"+jsonObj[2].aplcn_atch_file_proper_num+"');");
-		              	bodyTr3Td2Span.classList.add("text-decoration-none");
-		                bodyTr3Td2Span.innerText = jsonObj[2].original_file_name;
-		                bodyTr3Td2.appendChild(bodyTr3Td2Span);
-		                
-		                var bodyTr3Td2MofBtn = document.createElement("button");
-		                bodyTr3Td2MofBtn.innerText = "변경";
-		                bodyTr3Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'taxconfirm', 'co');");
-		                bodyTr3Td2MofBtn.style.float = "right";
-		                bodyTr3Td2.appendChild(bodyTr3Td2MofBtn);
-		                
-	                } else {
-	                	// 저장된 파일이 없을때
-	                	showFileInput(bodyTr3Td2,'taxconfirm', 'co');
-	                }
-	                
-	                bodyTr3.appendChild(bodyTr3Td2);
-	                
-	                // 이력서
-	                var bodyTr4 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr4);
-	               	
-	               	var bodyTr4Td1 = document.createElement("td");
-	               	bodyTr4Td1.classList.add("text-center");
-	                bodyTr4Td1.innerText = "이력서";
-	                bodyTr4.appendChild(bodyTr4Td1);
-	                
-	                var bodyTr4Td2 = document.createElement("td");
-	               	bodyTr4Td2.classList.add("text-center");
-	               	bodyTr4Td2.setAttribute("rowspan", "4");
-	               	bodyTr4Td2.setAttribute("valign", "middle");
-	                bodyTr4Td2.innerText = "개인서류";
-	                bodyTr4.appendChild(bodyTr4Td2);
-	               	
-	               	var bodyTr4Td3 = document.createElement("td");
-	               	bodyTr4Td3.classList.add("text-center");
-	               	
-	               	if(jsonObj[3] != null) {
-	               		var bodyTr4Td3Span = document.createElement("span");
-		              	bodyTr4Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj[3].aplcn_dtls_proper_num+"', '"+jsonObj[3].aplcn_atch_file_proper_num+"');");
-		              	bodyTr4Td3Span.classList.add("text-decoration-none");
-		                bodyTr4Td3Span.innerText = jsonObj[3].original_file_name;
-		                bodyTr4Td3.appendChild(bodyTr4Td3Span);
-		                
-		                var bodyTr4Td3MofBtn = document.createElement("button");
-		                bodyTr4Td3MofBtn.innerText = "변경";
-		                bodyTr4Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'resume', 'pe');");
-		                bodyTr4Td3MofBtn.style.float = "right";
-		                bodyTr4Td3.appendChild(bodyTr4Td3MofBtn);
-	               		
-	                } else {
-	                	// 저장된 파일이 없을때
-	                	showFileInput(bodyTr4Td3,'resume', 'pe');
-	                }
-	                
-	                bodyTr4.appendChild(bodyTr4Td3);
-		                
-	                // 학력 증명서
-	                var bodyTr5 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr5);
-	               	
-	               	var bodyTr5Td1 = document.createElement("td");
-	               	bodyTr5Td1.classList.add("text-center");
-	                bodyTr5Td1.innerText = "학력 증명서";
-	                bodyTr5.appendChild(bodyTr5Td1);
-	                
-                	var bodyTr5Td2 = document.createElement("td");
-                	bodyTr5Td2.classList.add("text-center");
-                	
-	                if(jsonObj[4] != null) {
-	                	var bodyTr5Td2Span = document.createElement("span");
-		              	bodyTr5Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj[4].aplcn_dtls_proper_num+"', '"+jsonObj[4].aplcn_atch_file_proper_num+"');");
-		              	bodyTr5Td2Span.classList.add("text-decoration-none");
-		                bodyTr5Td2Span.innerText = jsonObj[4].original_file_name;
-		                bodyTr5Td2.appendChild(bodyTr5Td2Span);
-		                
-		                var bodyTr5Td2MofBtn = document.createElement("button");
-		                bodyTr5Td2MofBtn.innerText = "변경";
-		                bodyTr5Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'educationlevel', 'pe');");
-		                bodyTr5Td2MofBtn.style.float = "right";
-		                bodyTr5Td2.appendChild(bodyTr5Td2MofBtn);
-	                
-	                } else {
-	                	showFileInput(bodyTr5Td2,'educationlevel', 'pe');
-	                }
-	                
-	                bodyTr5.appendChild(bodyTr5Td2);
-	                
-	                // 경력 증명서
-	                var bodyTr6 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr6);
-	               	
-	               	var bodyTr6Td1 = document.createElement("td");
-	               	bodyTr6Td1.classList.add("text-center");
-	                bodyTr6Td1.innerText = "경력 증명서";
-	                bodyTr6.appendChild(bodyTr6Td1);
-	                
-                	var bodyTr6Td2 = document.createElement("td");
-                	bodyTr6Td2.classList.add("text-center");
-                	
-	                if(jsonObj[5] != null) {
-	                	var bodyTr6Td2Span = document.createElement("span");
-		              	bodyTr6Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj[5].aplcn_dtls_proper_num+"', '"+jsonObj[5].aplcn_atch_file_proper_num+"');");
-		              	bodyTr6Td2Span.classList.add("text-decoration-none");
-		                bodyTr6Td2Span.innerText = jsonObj[5].original_file_name;
-		                bodyTr6Td2.appendChild(bodyTr6Td2Span);
-		                
-		                var bodyTr6Td2MofBtn = document.createElement("button");
-		                bodyTr6Td2MofBtn.innerText = "변경";
-		                bodyTr6Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'carrer', 'pe');");
-		                bodyTr6Td2MofBtn.style.float = "right";
-		                bodyTr6Td2.appendChild(bodyTr6Td2MofBtn);
-	                
-	                } else {
-	                	showFileInput(bodyTr6Td2,'carrer', 'pe');
-	                }
-	                
-	                bodyTr6.appendChild(bodyTr6Td2);
-	                
-	                // 자격증 사본
-	                var bodyTr7 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr7);
-	               	
-	               	var bodyTr7Td1 = document.createElement("td");
-	               	bodyTr7Td1.classList.add("text-center");
-	                bodyTr7Td1.innerText = "자격증 사본";
-	                bodyTr7.appendChild(bodyTr7Td1);
-	                
-                	var bodyTr7Td2 = document.createElement("td");
-                	bodyTr7Td2.classList.add("text-center");
-                	
-	                if(jsonObj[6] != null) {
-	                	var bodyTr7Td2Span = document.createElement("span");
-		              	bodyTr7Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj[6].aplcn_dtls_proper_num+"', '"+jsonObj[6].aplcn_atch_file_proper_num+"');");
-		              	bodyTr7Td2Span.classList.add("text-decoration-none");
-		                bodyTr7Td2Span.innerText = jsonObj[6].original_file_name;
-		                bodyTr7Td2.appendChild(bodyTr7Td2Span);
-		                
-		                var bodyTr7Td2MofBtn = document.createElement("button");
-		                bodyTr7Td2MofBtn.innerText = "변경";
-		                bodyTr7Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'certificate', 'pe');");
-		                bodyTr7Td2MofBtn.style.float = "right";
-		                bodyTr7Td2.appendChild(bodyTr7Td2MofBtn);
-	                } else {
-	                	showFileInput(bodyTr7Td2,'certificate', 'pe');
-	                }
-	                
-	                bodyTr7.appendChild(bodyTr7Td2);
-	                
-	                // 기타서류
-	                var bodyTr8 = document.createElement("tr");
-	               	tbody.appendChild(bodyTr8);
-	               	
-	               	var bodyTr8Td1 = document.createElement("td");
-	               	bodyTr8Td1.classList.add("text-center");
-	                bodyTr8Td1.innerText = "기타서류";
-	                bodyTr8.appendChild(bodyTr8Td1);
-	                
-	                var bodyTr8Td2 = document.createElement("td");
-	               	bodyTr8Td2.classList.add("text-center");
-	                bodyTr8Td2.innerText = "기타서류";
-	                bodyTr8.appendChild(bodyTr8Td2);
-	               	
-	               	var bodyTr8Td3 = document.createElement("td");
-	               	bodyTr8Td3.classList.add("text-center");
-	               	
-	               	if(jsonObj[7] != null) {
-	               		var bodyTr8Td3Span = document.createElement("span");
-		              	bodyTr8Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj[7].aplcn_dtls_proper_num+"', '"+jsonObj[7].aplcn_atch_file_proper_num+"');");
-		              	bodyTr8Td3Span.classList.add("text-decoration-none");
-		                bodyTr8Td3Span.innerText = jsonObj[7].original_file_name;
-		                bodyTr8Td3.appendChild(bodyTr8Td3Span);
-		                
-		                var bodyTr8Td3MofBtn = document.createElement("button");
-		                bodyTr8Td3MofBtn.innerText = "변경";
-		                bodyTr8Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'other', 'ot');");
-		                bodyTr8Td3MofBtn.style.float = "right";
-		                bodyTr8Td3.appendChild(bodyTr8Td3MofBtn);
-	                } else {
-	                	showFileInput(bodyTr8Td3,'other', 'ot');
-	                }
-	                bodyTr8.appendChild(bodyTr8Td3);
-	                
-	                var properNum = document.createElement("input");
-	                properNum.name = "aplcn_dtls_proper_num";
-	                properNum.id = "aplcn_dtls_proper_num";
-	                properNum.type = "hidden";
-	                properNum.value = jsonObj[0].aplcn_dtls_proper_num;
-	                tableNineFrm.appendChild(properNum);
-	                
-	                
-	                // 저장버튼
-	                var submitRow = document.createElement("div");
-	                submitRow.classList.add("row");
-	                submitRow.classList.add("text-center");
-	                tableNineFrm.appendChild(submitRow);
-	                
-	                var submitCol = document.createElement("div");
-	                submitCol.classList.add("col");
-	                submitRow.appendChild(submitCol);
-	                
-	                var submitBtn = document.createElement("button");
-	                submitBtn.classList.add("btn");
-	                submitBtn.classList.add("btn-primary");
-	                submitBtn.classList.add("mx-2");
-	                submitBtn.classList.add("frmSubmit");
-	                
-	                submitBtn.id = "tableOneFrm";
-	                submitBtn.type = "button";
-	                submitBtn.innerText = "저장";
-	                submitBtn.setAttribute("onclick", "tableNineFrmSubmit();");
-	                submitCol.appendChild(submitBtn);
-	                
-	                var finalSubmitBtn = document.createElement("button");
-	                finalSubmitBtn.classList.add("btn");
-	                finalSubmitBtn.classList.add("btn-outline-primary");
-	                finalSubmitBtn.innerText = "작성완료";
-	                finalSubmitBtn.setAttribute("onclick", "application(false);");
-	                submitCol.appendChild(finalSubmitBtn);
-	                
-	                commentListBox.appendChild(rowBox);
-	                
-	              } else {	// ajax 등재신청 결과값 null일 때   
-	              	var errMsgRow = document.createElement("div");
-                	errMsgRow.classList.add("row");
-                	
-                	var errMsgCol = document.createElement("div");
-                	errMsgCol.classList.add("col");
-                	errMsgRow.appendChild(errMsgCol);
-                	
-                	var errMsgSpan = document.createElement("span");
-                	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
-                	errMsgCol.appendChild(errMsgSpan);
-                	
-                	commentListBox.appendChild(errMsgRow);
-	              }  
+				var tableNineFrm = document.createElement("form");
+				tableNineFrm.id = "tableNineFrm";
+                tableNineFrm.name = "tableNineFrm";
+                tableRow.appendChild(tableNineFrm);
+
+                var table = document.createElement("table");
+                table.classList.add("table");
+                table.classList.add("table-bordered");
+                tableNineFrm.appendChild(table);
+
+                //여기까진 같음
                 
-            }
+                var colGroup = document.createElement("colgroup");
+                table.appendChild(colGroup);
+
+                var colGroupOne = document.createElement("col");
+                colGroupOne.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupOne);
+
+                var colGroupTwo = document.createElement("col");
+                colGroupTwo.setAttribute("width", "25%");
+                colGroup.appendChild(colGroupTwo);
+
+                var colGroupThree = document.createElement("col");
+                colGroupThree.setAttribute("width", "50%");
+                colGroup.appendChild(colGroupThree);
+
+
+                var thead = document.createElement("thead");
+                table.appendChild(thead);
+
+                var theadTr = document.createElement("tr");
+                theadTr.classList.add("text-center");
+                thead.appendChild(theadTr);
+
+                var theadTrTh1 = document.createElement("th");
+                theadTrTh1.setAttribute("scope", "col");
+                theadTrTh1.classList.add("table-light");
+                theadTrTh1.innerText="첨부서류 분류 코드";
+                theadTr.appendChild(theadTrTh1);
+
+                var theadTrTh2 = document.createElement("th");
+                theadTrTh2.setAttribute("scope", "col");
+                theadTrTh2.classList.add("table-light");
+                theadTrTh2.innerText="첨부 서류 타입";
+                theadTr.appendChild(theadTrTh2);
+
+                var theadTrTh3 = document.createElement("th");
+                theadTrTh3.setAttribute("scope", "col");
+                theadTrTh3.classList.add("table-light");
+                theadTrTh3.innerText="파일 이름";
+                theadTr.appendChild(theadTrTh3);
+
+
+                var tbody = document.createElement("tbody");
+                table.appendChild(tbody);
+				
+				// 사업자등록증
+               	var bodyTr1 = document.createElement("tr");
+               	tbody.appendChild(bodyTr1);
+               	
+               	var bodyTr1Td1 = document.createElement("td");
+               	bodyTr1Td1.classList.add("text-center");
+                bodyTr1Td1.innerText = "사업자등록증";
+                bodyTr1.appendChild(bodyTr1Td1);
+                
+                var bodyTr1Td2 = document.createElement("td");
+               	bodyTr1Td2.classList.add("text-center");
+               	bodyTr1Td2.setAttribute("rowspan", "3");
+               	bodyTr1Td2.setAttribute("valign", "middle");
+                bodyTr1Td2.innerText = "공통서류";
+                bodyTr1.appendChild(bodyTr1Td2);
+
+               	var bodyTr1Td3 = document.createElement("td");
+               	bodyTr1Td3.classList.add("text-center");
+               	
+				if(jsonObj.businesslicense != undefined) {
+	              
+	              	var bodyTr1Td3Span = document.createElement("span");
+	              	bodyTr1Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj.businesslicense.aplcn_dtls_proper_num+"', '"+jsonObj.businesslicense.aplcn_atch_file_proper_num+"');");
+	              	bodyTr1Td3Span.classList.add("text-decoration-none");
+	                bodyTr1Td3Span.innerText = jsonObj.businesslicense.original_file_name;
+	                bodyTr1Td3.appendChild(bodyTr1Td3Span);
+	                
+	                var bodyTr1Td3MofBtn = document.createElement("input");
+	                bodyTr1Td3MofBtn.type = "button";
+	                bodyTr1Td3MofBtn.value = "변경";
+	                bodyTr1Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businesslicense', 'co');");
+	                bodyTr1Td3MofBtn.style.float = "right";
+	                bodyTr1Td3.appendChild(bodyTr1Td3MofBtn);
+	              
+                } else {
+                	// 저장된 파일이 없을때
+                	showFileInput(bodyTr1Td3,'businesslicense', 'co');
+                }
+                
+                bodyTr1.appendChild(bodyTr1Td3);
+                
+                // 업무관련 등록신고서류
+               	var bodyTr2 = document.createElement("tr");
+               	tbody.appendChild(bodyTr2);
+               	
+               	var bodyTr2Td1 = document.createElement("td");
+               	bodyTr2Td1.classList.add("text-center");
+                bodyTr2Td1.innerText = "업무관련 등록신고 서류";
+                bodyTr2.appendChild(bodyTr2Td1);
+                
+            	var bodyTr2Td2 = document.createElement("td");
+            	bodyTr2Td2.classList.add("text-center");
+            	
+                if(jsonObj.businessreport != undefined) {
+               		var bodyTr2Td2Span = document.createElement("span");
+	              	bodyTr2Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.businessreport.aplcn_dtls_proper_num+"', '"+jsonObj.businessreport.aplcn_atch_file_proper_num+"');");
+	              	bodyTr2Td2Span.classList.add("text-decoration-none");
+	                bodyTr2Td2Span.innerText = jsonObj.businessreport.original_file_name;
+	                
+	                 var bodyTr2Td2MofBtn = document.createElement("input");
+	                bodyTr2Td2MofBtn.type = "button";
+	                bodyTr2Td2MofBtn.value = "변경";
+	                bodyTr2Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'businessreport', 'co');");
+	                bodyTr2Td2MofBtn.style.float = "right";
+	                bodyTr2Td2.appendChild(bodyTr2Td2MofBtn);
+                
+                
+                } else {
+                	// 저장된 파일이 없을때
+                	showFileInput(bodyTr2Td2,'businessreport', 'co');
+                }
+                
+                bodyTr2.appendChild(bodyTr2Td2);
+                
+                // 납세증명확인서
+                var bodyTr3 = document.createElement("tr");
+               	tbody.appendChild(bodyTr3);
+               	
+               	var bodyTr3Td1 = document.createElement("td");
+               	bodyTr3Td1.classList.add("text-center");
+                bodyTr3Td1.innerText = "납세증명확인서";
+                bodyTr3.appendChild(bodyTr3Td1);
+                
+                var bodyTr3Td2 = document.createElement("td");
+                bodyTr3Td2.classList.add("text-center");
+                
+                if(jsonObj.taxconfirm != undefined) {
+	               	bodyTr3Td2.classList.add("text-center");
+	                
+	                var bodyTr3Td2Span = document.createElement("span");
+	              	bodyTr3Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.taxconfirm.aplcn_dtls_proper_num+"', '"+jsonObj.taxconfirm.aplcn_atch_file_proper_num+"');");
+	              	bodyTr3Td2Span.classList.add("text-decoration-none");
+	                bodyTr3Td2Span.innerText = jsonObj.taxconfirm.original_file_name;
+	                bodyTr3Td2.appendChild(bodyTr3Td2Span);
+	                
+	                var bodyTr3Td2MofBtn = document.createElement("input");
+	                bodyTr3Td2MofBtn.type = "button";
+	                bodyTr3Td2MofBtn.value = "변경";
+	                bodyTr3Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'taxconfirm', 'co');");
+	                bodyTr3Td2MofBtn.style.float = "right";
+	                bodyTr3Td2.appendChild(bodyTr3Td2MofBtn);
+	                
+                } else {
+                	// 저장된 파일이 없을때
+                	showFileInput(bodyTr3Td2,'taxconfirm', 'co');
+                }
+                
+                bodyTr3.appendChild(bodyTr3Td2);
+                
+                // 이력서
+                var bodyTr4 = document.createElement("tr");
+               	tbody.appendChild(bodyTr4);
+               	
+               	var bodyTr4Td1 = document.createElement("td");
+               	bodyTr4Td1.classList.add("text-center");
+                bodyTr4Td1.innerText = "이력서";
+                bodyTr4.appendChild(bodyTr4Td1);
+                
+                var bodyTr4Td2 = document.createElement("td");
+               	bodyTr4Td2.classList.add("text-center");
+               	bodyTr4Td2.setAttribute("rowspan", "4");
+               	bodyTr4Td2.setAttribute("valign", "middle");
+                bodyTr4Td2.innerText = "개인서류";
+                bodyTr4.appendChild(bodyTr4Td2);
+               	
+               	var bodyTr4Td3 = document.createElement("td");
+               	bodyTr4Td3.classList.add("text-center");
+               	
+               	if(jsonObj.resume != undefined) {
+               		var bodyTr4Td3Span = document.createElement("span");
+	              	bodyTr4Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj.resume.aplcn_dtls_proper_num+"', '"+jsonObj.resume.aplcn_atch_file_proper_num+"');");
+	              	bodyTr4Td3Span.classList.add("text-decoration-none");
+	                bodyTr4Td3Span.innerText = jsonObj.resume.original_file_name;
+	                bodyTr4Td3.appendChild(bodyTr4Td3Span);
+	                
+	                var bodyTr4Td3MofBtn = document.createElement("input");
+	                bodyTr4Td3MofBtn.type = "button";
+	                bodyTr4Td3MofBtn.value = "변경";
+	                bodyTr4Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'resume', 'pe');");
+	                bodyTr4Td3MofBtn.style.float = "right";
+	                bodyTr4Td3.appendChild(bodyTr4Td3MofBtn);
+               		
+                } else {
+                	// 저장된 파일이 없을때
+                	showFileInput(bodyTr4Td3,'resume', 'pe');
+                }
+                
+                bodyTr4.appendChild(bodyTr4Td3);
+	                
+                // 학력 증명서
+                var bodyTr5 = document.createElement("tr");
+               	tbody.appendChild(bodyTr5);
+               	
+               	var bodyTr5Td1 = document.createElement("td");
+               	bodyTr5Td1.classList.add("text-center");
+                bodyTr5Td1.innerText = "학력 증명서";
+                bodyTr5.appendChild(bodyTr5Td1);
+                
+            	var bodyTr5Td2 = document.createElement("td");
+            	bodyTr5Td2.classList.add("text-center");
+            	
+                if(jsonObj.educationlevel != null) {
+                	var bodyTr5Td2Span = document.createElement("span");
+	              	bodyTr5Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.educationlevel.aplcn_dtls_proper_num+"', '"+jsonObj.educationlevel.aplcn_atch_file_proper_num+"');");
+	              	bodyTr5Td2Span.classList.add("text-decoration-none");
+	                bodyTr5Td2Span.innerText = jsonObj.educationlevel.original_file_name;
+	                bodyTr5Td2.appendChild(bodyTr5Td2Span);
+	                
+	                var bodyTr5Td2MofBtn = document.createElement("input");
+	                bodyTr5Td2MofBtn.type = "button";
+	                bodyTr5Td2MofBtn.value = "변경";
+	                bodyTr5Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'educationlevel', 'pe');");
+	                bodyTr5Td2MofBtn.style.float = "right";
+	                bodyTr5Td2.appendChild(bodyTr5Td2MofBtn);
+                
+                } else {
+                	showFileInput(bodyTr5Td2,'educationlevel', 'pe');
+                }
+                
+                bodyTr5.appendChild(bodyTr5Td2);
+                
+                // 경력 증명서
+                var bodyTr6 = document.createElement("tr");
+               	tbody.appendChild(bodyTr6);
+               	
+               	var bodyTr6Td1 = document.createElement("td");
+               	bodyTr6Td1.classList.add("text-center");
+                bodyTr6Td1.innerText = "경력 증명서";
+                bodyTr6.appendChild(bodyTr6Td1);
+                
+            	var bodyTr6Td2 = document.createElement("td");
+            	bodyTr6Td2.classList.add("text-center");
+            	
+                if(jsonObj.carrer != undefined) {
+                	var bodyTr6Td2Span = document.createElement("span");
+	              	bodyTr6Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.carrer.aplcn_dtls_proper_num+"', '"+jsonObj.carrer.aplcn_atch_file_proper_num+"');");
+	              	bodyTr6Td2Span.classList.add("text-decoration-none");
+	                bodyTr6Td2Span.innerText = jsonObj.carrer.original_file_name;
+	                bodyTr6Td2.appendChild(bodyTr6Td2Span);
+	                
+	                var bodyTr6Td2MofBtn = document.createElement("input");
+	                bodyTr6Td2MofBtn.type = "button";
+	                bodyTr6Td2MofBtn.value = "변경";
+	                bodyTr6Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'carrer', 'pe');");
+	                bodyTr6Td2MofBtn.style.float = "right";
+	                bodyTr6Td2.appendChild(bodyTr6Td2MofBtn);
+                
+                } else {
+                	showFileInput(bodyTr6Td2,'carrer', 'pe');
+                }
+                
+                bodyTr6.appendChild(bodyTr6Td2);
+                
+                // 자격증 사본
+                var bodyTr7 = document.createElement("tr");
+               	tbody.appendChild(bodyTr7);
+               	
+               	var bodyTr7Td1 = document.createElement("td");
+               	bodyTr7Td1.classList.add("text-center");
+                bodyTr7Td1.innerText = "자격증 사본";
+                bodyTr7.appendChild(bodyTr7Td1);
+                
+            	var bodyTr7Td2 = document.createElement("td");
+            	bodyTr7Td2.classList.add("text-center");
+            	
+                if(jsonObj.certificate != undefined) {
+                	var bodyTr7Td2Span = document.createElement("span");
+	              	bodyTr7Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.certificate.aplcn_dtls_proper_num+"', '"+jsonObj.certificate.aplcn_atch_file_proper_num+"');");
+	              	bodyTr7Td2Span.classList.add("text-decoration-none");
+	                bodyTr7Td2Span.innerText = jsonObj.certificate.original_file_name;
+	                bodyTr7Td2.appendChild(bodyTr7Td2Span);
+	                
+	                var bodyTr7Td2MofBtn = document.createElement("input");
+	                bodyTr7Td2MofBtn.type = "button";
+	                bodyTr7Td2MofBtn.value = "변경";
+	                bodyTr7Td2MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'certificate', 'pe');");
+	                bodyTr7Td2MofBtn.style.float = "right";
+	                bodyTr7Td2.appendChild(bodyTr7Td2MofBtn);
+                } else {
+                	showFileInput(bodyTr7Td2,'certificate', 'pe');
+                }
+                
+                bodyTr7.appendChild(bodyTr7Td2);
+                
+                // 기타서류
+                var bodyTr8 = document.createElement("tr");
+               	tbody.appendChild(bodyTr8);
+               	
+               	var bodyTr8Td1 = document.createElement("td");
+               	bodyTr8Td1.classList.add("text-center");
+                bodyTr8Td1.innerText = "기타서류";
+                bodyTr8.appendChild(bodyTr8Td1);
+                
+                var bodyTr8Td2 = document.createElement("td");
+               	bodyTr8Td2.classList.add("text-center");
+                bodyTr8Td2.innerText = "기타서류";
+                bodyTr8.appendChild(bodyTr8Td2);
+               	
+               	var bodyTr8Td3 = document.createElement("td");
+               	bodyTr8Td3.classList.add("text-center");
+               	
+               	if(jsonObj.other != undefined) {
+               		var bodyTr8Td3Span = document.createElement("span");
+	              	bodyTr8Td3Span.setAttribute("onclick", "fileDownload('"+jsonObj.other.aplcn_dtls_proper_num+"', '"+jsonObj.other.aplcn_atch_file_proper_num+"');");
+	              	bodyTr8Td3Span.classList.add("text-decoration-none");
+	                bodyTr8Td3Span.innerText = jsonObj.other.original_file_name;
+	                bodyTr8Td3.appendChild(bodyTr8Td3Span);
+	                
+	                var bodyTr8Td3MofBtn = document.createElement("input");
+	                bodyTr8Td3MofBtn.type = "button";
+	                bodyTr8Td3MofBtn.value = "변경";
+	                bodyTr8Td3MofBtn.setAttribute("onclick", "showFileInput(this.parentNode,'other', 'ot');");
+	                bodyTr8Td3MofBtn.style.float = "right";
+	                bodyTr8Td3.appendChild(bodyTr8Td3MofBtn);
+                } else {
+                	showFileInput(bodyTr8Td3,'other', 'ot');
+                }
+                bodyTr8.appendChild(bodyTr8Td3);
+                
+                var properNum = document.createElement("input");
+                properNum.name = "aplcn_dtls_proper_num";
+                properNum.id = "aplcn_dtls_proper_num";
+                properNum.type = "hidden";
+                properNum.value = userNo;
+                tableNineFrm.appendChild(properNum);
+                
+                
+                // 저장버튼
+                var submitRow = document.createElement("div");
+                submitRow.classList.add("row");
+                submitRow.classList.add("text-center");
+                tableNineFrm.appendChild(submitRow);
+                
+                var submitCol = document.createElement("div");
+                submitCol.classList.add("col");
+                submitRow.appendChild(submitCol);
+                
+                var submitBtn = document.createElement("button");
+                submitBtn.classList.add("btn");
+                submitBtn.classList.add("btn-sm");
+                submitBtn.classList.add("btn-secondary");
+                submitBtn.classList.add("mx-2");
+                submitBtn.classList.add("frmSubmit");
+                
+                submitBtn.id = "tableOneFrm";
+                submitBtn.type = "button";
+                submitBtn.innerText = "저장";
+                submitBtn.setAttribute("onclick", "tableNineFrmSubmit();");
+                submitCol.appendChild(submitBtn);
+                
+                var finalSubmitBtn = document.createElement("button");
+                finalSubmitBtn.classList.add("btn");
+                finalSubmitBtn.classList.add("btn-sm");
+                finalSubmitBtn.classList.add("btn-outline-success");
+                finalSubmitBtn.innerText = "작성완료";
+                finalSubmitBtn.setAttribute("onclick", "application(false);");
+                submitCol.appendChild(finalSubmitBtn);
+                
+                commentListBox.appendChild(rowBox);
+                
+              } else {	// ajax 등재신청 결과값 null일 때   
+              	var errMsgRow = document.createElement("div");
+            	errMsgRow.classList.add("row");
+            	
+            	var errMsgCol = document.createElement("div");
+            	errMsgCol.classList.add("col");
+            	errMsgRow.appendChild(errMsgCol);
+            	
+            	var errMsgSpan = document.createElement("span");
+            	errMsgSpan.innerText = "등재신청 정보를 찾을 수 없습니다.";
+            	errMsgCol.appendChild(errMsgSpan);
+            	
+            	commentListBox.appendChild(errMsgRow);
+              }  
+                
     }
-        xhr.open("get" , "../admin/fileList?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
+        xhr.open("get" , "../admin/selectFileList?aplcn_dtls_proper_num=" + userNo); //리퀘스트 세팅..
 			//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); //Post
 		xhr.send(); //AJAX로 리퀘스트함..	
 }
-
 

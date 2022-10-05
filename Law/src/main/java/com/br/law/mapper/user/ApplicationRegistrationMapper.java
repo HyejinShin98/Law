@@ -45,7 +45,7 @@ public interface ApplicationRegistrationMapper {
 	
 	
 	
-	public void uploadFilesIns(Tb_009 param);
+	public int uploadFilesIns(Tb_009 param);
 	
 	public int duplicate(@Param("announce_proper_num") int paramOne,  @Param("user_proper_num") int paramTwo);
 	

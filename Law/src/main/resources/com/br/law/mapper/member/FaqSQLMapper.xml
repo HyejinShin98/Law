@@ -23,11 +23,11 @@
 	</select>
 	
 	<delete id="deleteByNo">
-		DELETE FORM TB_004 
+		DELETE FROM TB_004 
 		WHERE faq_proper_num = #{faq_proper_num}
 	</delete>
 
-	<update id="updateTitleAndContent">
+	<update id="updateFaq">
 		UPDATE TB_004
 		SET faq_ask_content = #{faq_ask_content} , 
 		faq_ask_comment = #{faq_ask_comment}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   
 <!DOCTYPE html>
 <html>
 	<head>
@@ -45,9 +46,7 @@
 													<div class="col"></div>
 													<div class="col"></div>
 													<div class="col">
-													<c:if test="${!empty sessionUserInfo && sessionUserInfo.tb_015.admin_proper_num == data.tb_015.admin_proper_num }">
-														<input type="submit" class="btn btn-primary" value="글쓰기">
-													</c:if>
+													<input type="submit" class="btn btn-primary" value="글쓰기">
 													</div>
 												</div>
 											</form>

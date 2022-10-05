@@ -10,6 +10,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<link rel="stylesheet"  type="text/css" href="../resources/css/common.css">
+<style type="text/css">
+body{
+	height: 100%;
+	width: 100%;
+	font-size: 11px;
+}
+</style>
 <title>마이페이지</title>
 <script src="../resources/js/common.js"></script>
 <script type="text/javascript">
@@ -23,22 +31,36 @@
 </script>
 </head>
 <body>
-	<div class="col container-fluid" style="width : 1600px;">
-	<div class="row">
+
+	<div class="container-fluid" style="width: 960px;">
 		<jsp:include page="../common/header.jsp"></jsp:include>
-		<div class="col">
-			<jsp:include page="./myPageNav.jsp"></jsp:include>
-		</div>
-		<div class="col-9 mt-4 px-5 mx-5">
 		
-			<div class="row border-bottom border-2 border-secondary py-2">
-				<div class="col">
-					<span class="fw-bold fs-4 text-secondary">나의 등재신청 내역</span>
-				</div>	
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
+		
+			<!-- 사이드 네비바 -->
+			<jsp:include page="./myPageNav.jsp"></jsp:include>
+		
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > My Page > </span><span style="color: #72a8fe;font-weight: bold;">나의 등재신청 내역</span>
+					</div>
+				</div>
 				
-			</div>
-			
-			<div class="row">
+				<div class="row border-bottom border-2 border-secondary py-2">
+					<div class="col">
+						<span class="fw-bold text-secondary font-def">나의 등재신청 내역</span>
+					</div>	
+				</div>
+				
+				<!-- 내용 -->
+				<div class="row">
 				<div class="col">
 					<table class="table text-center">
 						<colgroup>
@@ -56,7 +78,7 @@
 					      <th scope="col">신청법원</th>
 					      <th scope="col">상태</th>
 					      <th scope="col">신청일자</th>
-					      <th scope="col"></th>
+					      <th scope="col">작성/보기</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -72,10 +94,10 @@
 							  			<td>
 							  				<c:choose>
 							  					<c:when test="${item.aplcn_dtls_sts eq '작성중' or item.aplcn_dtls_sts eq '서류보완필요'}">
-							  						<button type="button" class="btn btn-warning btn-sm text-white" onclick="location.href='./myApplicationWrite?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}'">작성</button>
-							  					</c:when>
+							  						<input type="button" class="" onclick="location.href='./myApplicationWrite?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}'" value="작성" />
+							  					</c:when> 
 							  					<c:otherwise>
-							  						<button type="button" class="btn btn-primary btn-sm" onclick="location.href='./myApplicationDetail?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}';">보기</button>
+							  						<input type="button" class="" onclick="location.href='./myApplicationDetail?aplcn_dtls_proper_num=${item.aplcn_dtls_proper_num}';" value="보기"/>
 							  					</c:otherwise>
 							  				</c:choose>
 							  			</td>
@@ -91,13 +113,16 @@
 					  </tbody>
 					</table>
 				</div>
+			</div>
+			
+			
+			
 				
 			</div>
-		
-		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
+		</div>
 	</div>
-	</div>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

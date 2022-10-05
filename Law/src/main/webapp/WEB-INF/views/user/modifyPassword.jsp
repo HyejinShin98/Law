@@ -13,9 +13,23 @@
 <link rel="stylesheet" href="../resources/css/common.css">
 <title>마이페이지</title>
 <style type="text/css">
-	.btn-pointer {
-		cursor: pointer;
-	}
+body{
+	height: 100%;
+	width: 100%;
+	font-size: 11px;
+}
+
+.btn-pointer {
+	cursor: pointer;
+}
+	
+.content span {
+	font-size: 12.5px;
+}	
+
+.text {
+	width: 122px;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../resources/js/common.js"></script>
@@ -122,72 +136,94 @@ function chkVal() {
 </script>
 </head>
 <body>
-	<div class="col container-fluid" style="width : 1600px;">
-		<div class="row">
-			<jsp:include page="../common/header.jsp"></jsp:include>
-			<div class="col">
-				<jsp:include page="./myPageNav.jsp"></jsp:include>
-			</div>
-			<div class="col-9 mt-4 px-5 mx-5">
+
+	<div class="container-fluid" style="width: 960px;">
+		<jsp:include page="../common/header.jsp"></jsp:include>
+	
+		<!-- 구분 이미지 -->
+		<img src="../resources/img/sub_topimg.gif">
+		
+		<!-- 페이지 내용 -->
+		<div class="row mt-2">
 			
-				<div class="row border-bottom border-2 border-secondary py-2">
-					<div class="col">
-						<span class="fw-bold fs-3">내정보</span>
-					</div>	
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-secondary btn-pointer" onclick="location.href='./identityVerificate';">내정보 관리</span>
+			<!-- 사이드 네비바 -->
+			<jsp:include page="../user/myPageNav.jsp"></jsp:include>
+			
+			<!-- 본문 -->
+			<div class="col m-3">
+				<!-- 현재위치 -->
+				<div class="row text-end">
+					<div class="col" style="font-size: 11px;">
+						<span> 홈 > My Page > 내정보 > </span><span style="color: #72a8fe;font-weight: bold;">비밀번호 변경</span>
 					</div>
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-info btn-pointer" onclick="location.href='./modifyPassword';">비밀번호 변경</span>
-					</div>
-					<div class="col text-center pt-2">
-						<span class="fw-bold fs-5 text-secondary btn-pointer" onclick="location.href='./withdrawal';">회원탈퇴</span>
-					</div>
-					<div class="col-5"></div>
 				</div>
 				
-				
-				<div class="row border-secondary border-opacity-25 border-bottom pt-4 pb-1">
+				<!-- 네비바 -->
+				<div class="row mb-3">
 					<div class="col">
-						 
-						<div class="row">
+						<div class="row border-bottom border-2 border-secondary py-2">
+							<div class="col pt-1 px-0 text-center">
+								<span class="fw-bold text-secondary btn-pointer font-def" onclick="location.href='./identityVerificate';">내정보 관리</span>
+							</div>
+							<div class="col pt-1">
+								<span class="fw-bold text-info btn-pointer font-def mx-2" onclick="location.href='./modifyPassword';">비밀번호 변경</span>
+							</div>
+							<div class="col pt-1">
+								<span class="fw-bold  text-secondary btn-pointer font-def mx-2" onclick="location.href='./withdrawal';">회원탈퇴</span>
+							</div>
+							<div class="col-6"></div>
+						</div>
+						
+						<!-- 내용 -->
+						<div class="row border-secondary border-opacity-25 border-bottom pt-4 pb-1 content">
 							<div class="col">
+					
 								<div class="row">
-									<div class="col-2 fw-bold pt-1"><span>현재 비밀번호</span></div>
-									<div class="col-3"><input class="form-control" type="password" id="current_pw"></div>
+									<div class="col">
+										<div class="row">
+											<div class="col-2 fw-bold pt-1 text"><span>현재 비밀번호</span></div>
+											<div class="col-3"><input class="" type="password" id="current_pw"></div>
+										</div>
+										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
+									</div>
 								</div>
-								<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
-							</div>
-						</div>
-						
-						<div class="row">
-							<div class="col">
+								
 								<div class="row">
-									<div class="col-2 fw-bold pt-1"><span>새 비밀번호</span></div>
-									<div class="col-3"><input class="form-control" type="password" id="new_pw" name="new_pw"></div>
-								</div> 
-								<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>		
-							</div>
-						</div>
-						
-						<div class="row">
-							<div class="col">
+									<div class="col">
+										<div class="row">
+											<div class="col-2 fw-bold pt-1 text"><span>새 비밀번호</span></div>
+											<div class="col-3"><input class="" type="password" id="new_pw" name="new_pw"></div>
+										</div> 
+										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>		
+									</div>
+								</div>
+								
 								<div class="row">
-									<div class="col-2 fw-bold pt-1"><span>새 비밀번호 확인</span></div>
-									<div class="col-3"><input class="form-control" type="password" id="new_chk_pw"></div>
-									<div class="col"><input type="button" class="btn btn-primary" onclick="modifyPassword();" value="변경하기"></div>
-								</div> 
-								<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
+									<div class="col">
+										<div class="row">
+											<div class="col-2 fw-bold pt-1 text"><span>새 비밀번호 확인</span></div>
+											<div class="col-3" style="width:140px;"><input class="" type="password" id="new_chk_pw"></div>
+											<div class="col"><input type="button" class="" onclick="modifyPassword();" value="변경하기"></div>
+										</div> 
+										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
+									</div>
+								</div>
 							</div>
 						</div>
-						 
+					
 					</div>
 				</div>
 			
 			</div>
-			<jsp:include page="../common/footer.jsp"></jsp:include>
+		
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
 	</div>
+
+
+
+
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

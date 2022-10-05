@@ -10,6 +10,5 @@ public interface FaqSQLMapper {
 	public ArrayList<Tb_004> selectAll();
 	public Tb_004 selectByNo(int faq_proper_num);
 	public void deleteByNo(int faq_proper_num);
-	public void updateFaq(Tb_004 tb_004);
-	
+	public void updateFaq(Tb_004 tb_004);	
 }
