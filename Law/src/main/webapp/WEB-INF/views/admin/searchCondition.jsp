@@ -862,20 +862,22 @@ function search(){
 	var targetBox = document.getElementById("target2");
 	targetBox.innerHTML = "";
 	
+	var i = document.createElement("i");
+	i.classList.add("bi");
+	i.classList.add("bi-search");
+	i.classList.add("fs-5");
+	i.classList.add("px-2");
+	i.setAttribute("onclick", "searchAjax()");
+	targetBox.appendChild(i);
+	
 	var input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.setAttribute("name", "user_name");
 	input.setAttribute("id","search");
-	input.setAttribute("style","height:34px");
+	/* input.setAttribute("style","height:34px"); */
 	targetBox.appendChild(input);
 	
-	var a = document.createElement("a");
-	a.classList.add("btn");
-	a.classList.add("btn-outline-success");
-	a.setAttribute("type", "button");
-	a.setAttribute("onclick", "searchAjax()");
-	a.innerText="Search";
-	targetBox.appendChild(a);
+	
 	
 }
 
@@ -915,7 +917,7 @@ function search(){
 			</div>
 			<!-- 안내 -->
 			<div class="contentsinbox">
-				<div class="row" >
+				<div class="row align-items-center" >
 					<div class="col-2">
 						<select id="select" onchange="calloption(this)" >
 							<option value="all">전체</option>
@@ -925,9 +927,9 @@ function search(){
 							<option value="d">신청현황 조회</option>
 						</select>
 					</div>
-					<div id="target" class="col-3" >						 
+					<div id="target" class="col-6" >						 
 					</div>
-					<div class="col-7" id="target2" style="text-align: end;">
+					<div class="col-4" id="target2" style="text-align: end;">
 						
 					</div>
 				</div>
