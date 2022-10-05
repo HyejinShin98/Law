@@ -1,6 +1,9 @@
 package com.br.law.controller.admin;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,8 @@ public class TrialAdminController {
 	}
 	
 	@RequestMapping("loginProcess")
-	public String loginProcess(HttpSession session, HttpServletRequest request,
-			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+	public String loginProcess(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) throws Exception{
 		
 		Tb_015 param = new Tb_015();
 		param.setAdmin_id(id);
@@ -35,7 +38,12 @@ public class TrialAdminController {
 		
 		Tb_015 admin = trialAdminService.login(param);
 		if(admin == null) {
-			return"admin/loginAdmin";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('비밀번호를 다시 입력해주세요.'); location.href='../user/main' </script> ");
+			out.flush();
+			out.close();
+			return "redirect:" + request.getHeader("referer");
 		}else {
 			session.setAttribute("admin", admin);
 			return "redirect:" + request.getHeader("referer");

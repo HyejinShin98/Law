@@ -1,9 +1,11 @@
 package com.br.law.controller.user;
 
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.LoggerFactory;
@@ -32,8 +34,8 @@ public class TrialUserController {
 	}
 	
 	@RequestMapping("loginProcess")
-	public String loginProcess(HttpSession session, HttpServletRequest request,
-			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) {
+	public String loginProcess(HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("inputId") String id, @RequestParam("inputPw") String pw) throws Exception{
 		
 		Tb_001 user = new Tb_001();
 		user.setUser_id(id);
@@ -41,7 +43,12 @@ public class TrialUserController {
 		user = trialMainService.login(user);
 		
 		if(user == null) {
-			return"user/login";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('비밀번호를 다시 입력해주세요.'); location.href='../user/main' </script> ");
+			out.flush();
+			out.close();
+			return "redirect:" + request.getHeader("referer");
 		}else {
 			session.setAttribute("user", user);
 			return "redirect:" + request.getHeader("referer");
