@@ -17,7 +17,7 @@
 	text-align-last: right;
 	font-weight:bold;
 	padding-right: 16px;
-	font-size: larger;
+	font-size: 12.5px;
 }
 .contentsinbox input{
 	width: auto;
@@ -112,7 +112,7 @@ function checkListId(){
 				if(result.count == true){
 					isChecked = false;
 					var checkList = document.createElement("div");
-					checkList.innerText="이미 중복 아이디가 존재합니다";
+					checkList.innerText="해당 아이디가 존재합니다.";
 					checkList.classList.remove("text-success");
 					checkList.classList.add("text-danger");
 					checkList.setAttribute("style", "font-size: 18px");
@@ -123,7 +123,7 @@ function checkListId(){
 				}else{
 					isChecked = true;
 					var checkList = document.createElement("div");
-					checkList.innerText="중복 아이디가 없습니다.";
+					checkList.innerText="사용 가능한 아이디입니다.";
 					checkList.classList.add("text-success");
 					checkList.classList.remove("text-danger");
 					checkList.setAttribute("style", "font-size: 18px");
@@ -141,17 +141,19 @@ var isChecked = false;
 
 function insertUser(){
 
+			document.getElementsByName("user_ar_zonecode")[0].disabled = false;
 			
 			const id = document.getElementById("checkId");
 			
 			if(isChecked == false){
-				alert("아이디 중복 확인을 하셔야됩니다.");
+				alert("아이디 중복확인을 해주세요.");
 				id.focus();
 				return;
 			}
 			const insertUser = document.getElementById("insertUser");
 	
 			insertUser.submit();
+			alert("회원가입이 완료되었습니다.");
 }
 
 
@@ -263,35 +265,35 @@ function sample4_execDaumPostcode() {
 								<tr>
 									<th class="ms">아이디<span style="color:red"> *</span></td>
 									<td colspan="2">
-										<input type="text" class="form-control ms" id="checkId" onblur="checkListId()" name="user_id">
+										<input type="text" class="my-1" id="checkId" onblur="checkListId()" name="user_id" placeholder="아이디 입력">
 										<span id="alreadyCheckId" class="msg"></span>
 									</td>
 								</tr>
 								<tr>
 									<th class="ms">비밀번호<span style="color:red"> *</span></td>
-									<td colspan="2"><input type="password" class="form-control ms" name="user_pw"></td>
+									<td colspan="2"><input type="password" class="my-1" name="user_pw" placeholder="비밀번호 입력"></td>
 								</tr>
 								<tr>
 									<th class="ms">이름<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_name"></td>
+									<td colspan="2"><input type="text" class="my-1" name="user_name" placeholder="이름 입력"></td>
 								</tr>
 								<tr>
 									<th class="ms">나이<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="number" class="form-control ms" name="user_age"></td>
+									<td colspan="2"><input type="number" class="my-1" name="user_age" placeholder="나이 입력" style="width:77px;"></td>
 								</tr>
 								<tr>
 									<th class="ms">직업<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_job"></td>
+									<td colspan="2"><input type="text" class="my-1" name="user_job" placeholder="직업 입력"></td>
 								</tr>
 								<tr>
 									<th class="ms">연락처<span style="color:red"> *</span></th>
-									<td colspan="2"><input type="text" class="form-control ms" name="user_phone"></td>
+									<td colspan="2"><input type="text" class="my-1" name="user_phone" placeholder="연락처 입력"></td>
 								</tr>
 								<tr>
 									<th class="ms">이메일<span style="color:red"> *</span></th>
 									<td colspan="2">
-										<input type="text" id="firstEmail" class="form-control ms" id="emailNum" >
-										<span style="float: left; font-size: 21px"><input id="middle" type="hidden" value="@">@</span><input type="text" onblur="helloWorld();" class="form-control" id="lastEmail" list="user_email_address">
+										<input type="text" id="firstEmail" class="my-1" id="emailNum" placeholder="이메일 입력" style="width:116px;">
+										<span class="my-1" style="float: left; font-size: 13px"><input id="middle" type="hidden" value="@">&nbsp;@&nbsp; </span><input type="text" onblur="helloWorld();" class="my-1" id="lastEmail" list="user_email_address" placeholder="이메일주소 입력">
 										
 										<datalist id="user_email_address">
 											<option value="type">직접입력</option>
@@ -303,48 +305,43 @@ function sample4_execDaumPostcode() {
 									</td>
 								</tr>
 							
+							
+							
 								<tr>
-									<th rowspan="3" scope="row" class="ms">주소<span style="color:red"> *</span></th>
-									<td class="title">기본주소</td>
-									<td>
-										<input type="text" id="sample4_roadAddress" class="form-control ms" name="user_ar">
-										<input type="hidden" id="sample4_jibunAddress" class="form-control ms" name="user_ar_jibun">
-									</td>				
-								</tr>
-								<tr>
-									<td class="title">우편번호</th>
-									<td colspan="1">
-										<input type="text" id="sample4_postcode" class="form-control ms" name="user_ar_zonecode">
-										<input type="button" class="btn btn-outline-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
-									</td>
-								</tr>
-								<tr>
-									<td class="title">상세주소</td>
-									<td>
+									<th class="ms">주소<span style="color:red"> *</span></th>
+									<td colspan="2">
+										<div style="float: left;">
+											<input type="text" id="sample4_postcode" class="my-1" name="user_ar_zonecode" style="float:left; width: 60px;" placeholder="우편번호" disabled>
+											<input type="text" id="sample4_roadAddress" class="mx-1 my-1" name="user_ar" style="float:left;" placeholder="도로명 주소">
+											<input type="button" class="mx-1 my-1" onclick="sample4_execDaumPostcode()" value="검색">
+										</div>
+										<div style="float: left; width: 100%;">
+											<input type="text" id="sample4_detailAddress" class="my-1 my-1" name="user_ar_detail" style="width: 260px;" placeholder="상세주소 입력">
+										</div>
+										<input type="hidden" id="sample4_jibunAddress" class="" name="user_ar_jibun" >
 										<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
-										<input type="text" id="sample4_detailAddress" class="form-control ms" name="user_ar_detail">
-										<span id="guide" style="color:#999;display:none"></span>
+										
 									</td>
 								</tr>
 								<tr>
-									<th rowspan="3" scope="row" class="ms">은행<span style="color:red"> *</span></th>
+									<th rowspan="3" scope="row" class="">은행<span style="color:red"> *</span></th>
 									<td class="title">계좌 예금주</td>
-									<td><input type="text" class="form-control ms" name="user_bank_holder"></td>
+									<td><input type="text" class="my-1" name="user_bank_holder" placeholder="예금주 입력"></td>
 								</tr>
 								<tr>
 									<td class="title">계좌은행</td>
-									<td><input type="text" class="form-control ms" name="user_bank"></td>			
+									<td><input type="text" class="my-1" name="user_bank" placeholder="은행 입력"></td>			
 								</tr>
 								<tr>
 									<td class="title">계좌 번호</td>
-									<td><input type="text" class="form-control ms" name="user_bank_account"></td>
+									<td><input type="text" class="my-1" name="user_bank_account" placeholder="계좌번호 입력"></td>
 								</tr>
 								
 							</tbody>
 						</table>
 						<div class="row">
 							<div class="col">
-								<input type="button" class="btn btn-primary" onclick="insertUser()" value="회원가입">	
+								<input type="button" class="btn btn-primary btn-sm my-2" onclick="insertUser()" value="회원가입" style="float: right;">	
 							</div>
 						</div>
 						</form>
