@@ -160,4 +160,6 @@ public class ApplicationRegistrationService {
 		return applicationRegistrationMapper.selectVoByTb_010(tb_010);
 	}
 	
+	
+	
 }

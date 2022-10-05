@@ -54,7 +54,10 @@ body{
 		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
 }
 
-
+.mid{
+	vertical-align: middle;
+	text-align: -webkit-center;
+}
 </style>
 <script type="text/javascript">
 /*  */
@@ -210,25 +213,25 @@ window.addEventListener("DOMContentLoaded", function() {
                     <table class="table ">
                         <tbody>
                         <tr>
-                            <th scope="row" class="table-active">회사명/활동기관 명</th>
-                            <td><div class="col"><input class="ch form-control" type="text" id="s1" name="company_name"></div></td>
-                            <th class="table-active">수행업무</th>
-                            <td><div class="col"><input class="ch form-control" type="text"id="s5" name="work_description"></div></td>
+                            <th scope="row" class="table-active mid">회사명/활동기관 명</th>
+                            <td><div class="col"><input class="ch" type="text" id="s1" name="company_name"></div></td>
+                            <th class="table-active mid">수행업무</th>
+                            <td><div class="col"><input class="ch" type="text"id="s5" name="work_description"></div></td>
                         </tr>
                         <tr>
-                            <th scope="row" class="table-active">근무 시작 일자</th>
-                            <td><div class="col"><input class="ch form-control" type="date" id="s3" name="work_start_date"></div></td>
-                            <th class="table-active">근무 종료 일자</th>
-                            <td><div class="col"><input class="ch form-control" type="date" id="s4" name="work_end_date"></div></td>
+                            <th scope="row" class="table-active mid">근무 시작 일자</th>
+                            <td><div class="col"><input class="ch" type="date" id="s3" name="work_start_date"></div></td>
+                            <th class="table-active mid">근무 종료 일자</th>
+                            <td><div class="col"><input class="ch" type="date" id="s4" name="work_end_date"></div></td>
                         </tr>
                         <tr>
-                            <th scope="row" class="table-active">부서</th>
-                            <td><div class="col"><input class="ch form-control" type="text" id="s6" name="work_department"></div></td>
-                            <th class="table-active">직책</th>
-                            <td><div class="col"><input class="ch form-control" type="text" id="s7" name="work_position"></div></td>
+                            <th scope="row" class="table-active mid">부서</th>
+                            <td><div class="col"><input class="ch" type="text" id="s6" name="work_department"></div></td>
+                            <th class="table-active mid">직책</th>
+                            <td><div class="col"><input class="ch" type="text" id="s7" name="work_position"></div></td>
                         </tr>
                         <tr>
-                            <th scope="row" class="table-active">경력구분</th>
+                            <th scope="row" class="table-active mid">경력구분</th>
                             <td><div class="col">
                                 <select id="s2" name="carer_type">
                                 		<option value= "x">--경력 X--</option>
@@ -249,20 +252,20 @@ window.addEventListener("DOMContentLoaded", function() {
                     <table class="table ">
                         <tbody>
                         <tr>
-                            <th scope="row" class="table-active">활동경력</th>
+                            <th scope="row" class="table-active mid">활동경력</th>
                             <td><div class="col"><textarea class="form-control ch" id="s8" name="carer_description"></textarea></div></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="col border-bottom mt-5">
-                    <div class="row ms-0 mb-2"><h4>특이사항</h4></div>
+                    <div class="row ms-0 mb-2 "><h4>특이사항</h4></div>
                 </div>
                 <div class="row">
                     <table class="table ">
                         <tbody>
                         <tr>
-                            <th scope="row" class="table-active">특기사항</th>
+                            <th scope="row" class="table-active mid">특기사항</th>
                             <td><div class="col"><textarea class="form-control ch" id="s9" name="special_note_description"></textarea></div></td>
                         </tr>
                         </tbody>
@@ -273,10 +276,10 @@ window.addEventListener("DOMContentLoaded", function() {
             	<div class="col">
                     <c:choose>
 		            	<c:when test="${!empty count}">
-		            		<a type="button" onclick="checkList();">업데이트</a>
+		            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">업데이트</a>
 		            	</c:when>
 		            	<c:otherwise>
-		            		<a type="button" onclick="checkList();">인설트</a>
+		            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">인설트</a>
 		            	</c:otherwise>
            			</c:choose>
          		</div>

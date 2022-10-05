@@ -4,14 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.law.service.admin.ApplicationRegistrationAdminService;
 import com.br.law.service.assistant.AssistantServiceImpl;
-import com.br.law.vo.Tb_009;
 
 @RestController
 @RequestMapping("/admin/*")
@@ -19,6 +22,8 @@ public class RestAssistantController {
 	
 	@Autowired
 	private AssistantServiceImpl assistantServiceImpl;
+	
+	@Autowired ApplicationRegistrationAdminService applicationRegistrationAdminService;
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(RestAssistantController.class);
 
@@ -109,8 +114,10 @@ public class RestAssistantController {
 	public Map<String, Object> callAUser(int trial_fcltt_proper_num){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		
 		map.put("result", "success");
 		map.put("list", assistantServiceImpl.callAUser(trial_fcltt_proper_num));
+		
 		return map;
 	}
 	
@@ -126,7 +133,7 @@ public class RestAssistantController {
 	
 	// 공고별 유저 불러오기
 	@RequestMapping("callDUser")
-	public Map<String, Object> callCUser(@RequestParam("aplcn_dtls_sts") String aplcn_dtls_sts ){
+	public Map<String, Object> callCUser(@RequestParam("aplcn_dtls_sts")String aplcn_dtls_sts){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("result", "success");

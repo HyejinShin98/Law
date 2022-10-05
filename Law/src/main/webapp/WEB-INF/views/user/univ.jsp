@@ -54,6 +54,11 @@ body{
 		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
 }
 
+.mid{
+	vertical-align: middle;
+	text-align: -webkit-center;
+}
+
 
 </style>
 <script type="text/javascript">
@@ -220,17 +225,17 @@ window.addEventListener("DOMContentLoaded", function() {
                     <table class="table "><!-- w-auto --> 
                         <tbody>
                           <tr>
-                            <th class="table-active">학교명</th>
+                            <th class="table-active mid">학교명</th>
                             <td><input class="ch" type="text" id="s1" name="edctn_school_name"></td>
-                            <th class="table-active">최종학력</th>
+                            <th class="table-active mid">최종학력</th>
                             <td><input class="ch" type="radio" id="s61" name="edctn_final_yn" value='y' >맞음 
                             	<input class="ch" type="radio" id="s62" name="edctn_final_yn" value='n' >아님
                             </td>
                           </tr>
                           <tr>
-                            <th class="table-active">학과(전공)</th>
+                            <th class="table-active mid">학과(전공)</th>
                             <td><input class="ch" type="text" id="s2"  name="edctn_major" ></td>
-                            <th class="table-active">학위</th>
+                            <th class="table-active mid">학위</th>
                             <td>
                                 	<select id="s3" name="edctn_degree"> 
                                         <option value="graduation">졸업</option>
@@ -242,10 +247,10 @@ window.addEventListener("DOMContentLoaded", function() {
                             </td>
                           </tr>
                           <tr>
-                            <th class="table-active">입학 년월</th>
+                            <th class="table-active mid">입학 년월</th>
                             <td><input class="ch" type="date" id="s4" name="edctn_admsn_date">
                             </td>
-                            <th class="table-active">졸업 년월</th>
+                            <th class="table-active mid">졸업 년월</th>
                             <td><input class="ch" type="date" id="s5" name="edctn_grdtn_date">
                             </td>
                           </tr>
@@ -258,10 +263,10 @@ window.addEventListener("DOMContentLoaded", function() {
                       	<div class="col">
 	                      	<c:choose>
 				            	<c:when test="${!empty count}">
-				            		<a type="button" onclick="checkList();">업데이트</a>
+				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">업데이트</a>
 				            	</c:when>
 				            	<c:otherwise>
-				            		<a type="button" onclick="checkList();">인설트</a>
+				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">인설트</a>
 				            	</c:otherwise>
 	            			</c:choose>
             			</div>

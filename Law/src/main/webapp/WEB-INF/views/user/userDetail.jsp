@@ -53,7 +53,10 @@ body{
 		margin:5px 0;
 		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
 }
-
+.mid{
+	vertical-align: middle;
+	text-align: -webkit-center;
+}
 
 </style>
 
@@ -218,6 +221,9 @@ function chkTempData(selectBox2){
 		            buttonBox.setAttribute('type', "submit");
 		            buttonBox.setAttribute('formaction', "userDetailUpProcess");
 		            buttonBox.setAttribute('formmethod', "get");
+		            buttonBox.classList.add("btn");
+		            buttonBox.classList.add("btn-primary");
+		            buttonBox.classList.add("btn-sm");
 		            buttonBox.innerText = '업데이트';
 		            userDetailButtonBox.appendChild(buttonBox);
 		            
@@ -228,6 +234,9 @@ function chkTempData(selectBox2){
 	 	            buttonBox.setAttribute('formaction', "userDetailInsProcess");
 	 	            buttonBox.setAttribute('formmethod', "get");
 	 	            buttonBox.innerText = '인서트';
+	 	            buttonBox.classList.add("btn");
+	 	           	buttonBox.classList.add("btn-primary");
+	 	         	buttonBox.classList.add("btn-sm");
 	 	            userDetailButtonBox.appendChild(buttonBox);
 	            }
             }
@@ -352,7 +361,7 @@ function checkList(){
 			            	</colgroup>
 			                <tbody>
 			                	<tr>
-		                    		<th scope="row" class="table-active"><span style="color : red;"> * </span> 감정분야 선택</th>
+		                    		<th scope="row" class="table-active "><span style="color : red;"> * </span> 감정분야 선택</th>
 				                    <td>
 				                        <div class="col">
 					                        <select id="s1" name="trial_fcltt_clasifi_code" onchange="callSmallLevel(this)">
@@ -426,23 +435,23 @@ function checkList(){
 			                    <th scope="col">경력내용</th>
 			                </tr>
 			                <tr>
-			                    <th colspan="4" scope="col">소송사건 당사자 경력</th>
+			                    <th colspan="4" scope="col" class="">소송사건 당사자 경력</th>
 			                    <td scope="col">
-			                    <input type="radio" id="s31" onclick="cutOn('s4');" name="ligtn_case_carer_yn" value='y'> 예 
-			                    <input type="radio" id="s32" onclick="cutOff('s4');" name="ligtn_case_carer_yn" value='n'> 아니오 
+			                    <input type="radio" id="s31" onclick="cutOn('s4');" class="mid" name="ligtn_case_carer_yn" value='y'> 예 
+			                    <input type="radio" id="s32" onclick="cutOff('s4');" class="mid" name="ligtn_case_carer_yn" value='n'> 아니오 
 			                    </td>
 			                    <td scope="col"></td>
 			                    <td scope="col"><textarea class="form-control" id="s4" onkeyup="didUseBoard('s31', 's32', 's4');" name="ligtn_case_carer_etc"></textarea></td>
 			                </tr>
 			                <tr>
-			                    <th colspan="4" scope="col" >보험업계 자문 경력</th>
+			                    <th colspan="4" scope="col" class="" >보험업계 자문 경력</th>
 			                    <td scope="col"><input type="radio" id="s51" onclick="cutOn('s6');"  name="insrn_indst_carer_yn" value='y'> 예 
 			                    	<input type="radio" onclick="cutOff('s6');" id="s52" name="insrn_indst_carer_yn" value='n'> 아니오 </td>
 			                    <td scope="col"></td>
 			                    <td scope="col"><textarea class="form-control" id="s6" onkeyup="didUseBoard('s51', 's52', 's6')" name="insrn_indst_carer_etc"></textarea></td>
 			                </tr>
 			                <tr>
-			                    <th colspan="4" scope="col" >형사처벌 받은 경력</th>
+			                    <th colspan="4" scope="col" class="">형사처벌 받은 경력</th>
 			                    <td scope="col"><input type="radio" id="s71" onclick="cutOn('s8');" name="criminal_penalty_carer_yn" value='y'> 예
 			                     <input type="radio" id="s72" onclick="cutOff('s8');" name="criminal_penalty_carer_yn" value='n'> 아니오 </td>
 			                    <td scope="col"></td>
@@ -452,7 +461,7 @@ function checkList(){
 			            </table>
 			            <div class="row justify-content-end">
 			            	<div id="userDetailButtonBox" class="col">
-	            				<button type="submit" formaction="userDetailInsProcess" formmethod="get">인설트</button>
+	            				<button type="submit" class="btn btn-primary btn-sm" formaction="userDetailInsProcess" formmethod="get">인설트</button>
 			            	</div>
 			            </div>
 		            </div>

@@ -146,8 +146,8 @@ function uploadFile(){
             <table class="table table-bordered">
                 <thead>
                 <tr class="text-center">
-                    <th scope="col">구분</th>
-                    <th colspan="3" >제출서류명</th>
+                    <th scope="col" class="table-active">구분</th>
+                    <th colspan="3" class="table-active">제출서류명</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -189,13 +189,13 @@ function uploadFile(){
             <table class="table table-bordered">
                 <thead>
                 <tr class="text-center">
-                    <th scope="col">구분</th>
-                    <th colspan="3" >제출서류명</th>
+                    <th scope="col" class="table-active">구분</th>
+                    <th colspan="3" class="table-active" >제출서류명</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <th rowspan="4" scope="row" class="text-center">개인서류</th>
+                    <th rowspan="4" scope="row">개인서류</th>
                     <td colspan="2">이력서</td>
                     <td>
                         <input type="file" name ="file">
@@ -235,7 +235,7 @@ function uploadFile(){
         </div>
         <div class="row">
         	<div class="col d-grid">
-        		<a class="btn btn-primary btn-sm" onclick="uploadFile();" data-bs-toggle="modal"data-bs-target="#exampleModal">입력완료</a>
+        		<a class="btn btn-primary btn-sm" onclick="uploadFile();" data-bs-toggle="modal" data-bs-target="#exampleModal">입력완료</a>
        		</div>
        	</div>
        	</div>

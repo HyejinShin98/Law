@@ -52,6 +52,10 @@ body{
 		margin:5px 0;
 		background:url('../resources/img/Registration/bullet_h4.gif') no-repeat 0 35% ;
 }
+.mid{
+	vertical-align: middle;
+	text-align: -webkit-center;
+}
 
 
 </style>
@@ -212,30 +216,21 @@ window.addEventListener("DOMContentLoaded", function() {
                     <table class="table ">
                         <tbody>
                         <tr>
-                            <th scope="row" class="table-active">종목 등급 명</th>
-                            <td><div class="col">
-                                <select id="s1" name="crtfc_type">
-                                        <option value="Architectural">건축사</option>
-                                        <option value="ot">가구제작산업기사</option>
-                                        <option value="ot">가스기사</option>
-                                        <option value="ot">건설기계설비기사</option>
-                                        <option value="ot">건축산업기사</option>
-                                        <option value="ot">방재기사</option>
-                                </select>
-                                </div>
+                            <th scope="row" class="table-active mid">자격증 명</th>
+                            <td><input type="text" class="ch" name="crtfc_type" id="s1" style="width: auto;">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" class="table-active">발급기관</th>
-                            <td><div class="col"><input class="ch" id="s2" type="text" name="issue_agency"></div></td>
+                            <th scope="row" class="table-active mid">발급기관</th>
+                            <td><div class="col"><input class="ch" id="s2" type="text" name="issue_agency" style="width: auto;"></div></td>
+                        </tr>									
+						<tr>
+                            <th scope="row" class="table-active mid">자격 면허 번호</th>
+                            <td><div class="col"><input class="ch" id="s3" type="text" name="crtfc_number" style="width: auto;"></div></td>
                         </tr>
                         <tr>
-                            <th scope="row" class="table-active">자격 면허 번호</th>
-                            <td><div class="col"><input class="ch" id="s3" type="text" name="crtfc_number"></div></td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="table-active">발급일</th>
-                            <td><div class="col"><input class="ch" id="s4" type="date" name="issue_date"></div></td>
+                            <th scope="row" class="table-active mid">발급일</th>
+                            <td><div class="col"><input class="ch" id="s4" type="date" name="issue_date" style="width: auto;"></div></td>
                         </tr>
                         </tbody>
                     </table> 
@@ -245,10 +240,10 @@ window.addEventListener("DOMContentLoaded", function() {
                 	<div class="col">
                       	<c:choose>
 			            	<c:when test="${!empty count}">
-			            		<a type="button" onclick="checkList();">업데이트</a>
+			            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">업데이트</a>
 			            	</c:when>
 			            	<c:otherwise>
-			            		<a type="button" onclick="checkList();">인설트</a>
+			            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">인설트</a>
 			            	</c:otherwise>
             			</c:choose>
            			</div>

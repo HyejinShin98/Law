@@ -60,4 +60,5 @@ public interface ApplicationRegistrationMapper {
 	public Tb_010 selectVoByCodes(Tb_010 tb_010);
 	public Tb_002 selectVoByTb_010(Tb_010 tb_010);
 	
+	
 }

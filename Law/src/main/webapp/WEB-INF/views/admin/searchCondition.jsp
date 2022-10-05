@@ -15,12 +15,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script type="text/javascript" src="../resources/js/userDetailList2.js"></script>
+<style>
+ul {
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-right: 0;
+}
+
+ul li {
+    text-align: center;
+    float: left;
+}
+
+ul li a {
+    display: block;
+    font-size: 14px;
+    padding: 9px 12px;
+    border-right: solid 1px #ccc;
+    box-sizing: border-box;
+}
+
+ul li.on {
+    background: #eda712;
+}
+
+ul li.on a {
+    color: #fff;
+}
+</style>
 
 <title>조건별 조회</title>
 
 <script type="text/javascript"> 
 window.addEventListener("DOMContentLoaded" , function (){
 	allUser();
+	search();
 });
 
 function callUserDetail(e) {
@@ -162,9 +192,16 @@ function allUser(){
              var tbody = document.createElement("tbody");
              table.appendChild(tbody);
              
+             search();
+             
              for(dataList of jsonObj.list){
                  
+            	 
+            	 
 	             var bodyTr1 = document.createElement("tr");
+	             bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	             bodyTr1.setAttribute("data-bs-toggle", "modal");
+	             bodyTr1.setAttribute("data-bs-target", "#userDetail");
 	             tbody.appendChild(bodyTr1);
 	
 	             var bodyTr1Td1 = document.createElement("td");
@@ -175,9 +212,6 @@ function allUser(){
 	             var bodyTr1Td2 = document.createElement("td");
 	             bodyTr1Td2.classList.add("text-center");
 	             bodyTr1Td2.innerText = dataList.USER_NAME;
-	             bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
-	             bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
-	             bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
 	             bodyTr1.appendChild(bodyTr1Td2);
 	             
 	             var bodyTr1Td3 = document.createElement("td");
@@ -213,6 +247,7 @@ function allUser(){
 function calloption(e){
 	console.log(e.value);
 	const targetBox = document.getElementById("target");
+	
 	targetBox.innerHTML = "";
 	
 	if(e.value == "a"){
@@ -431,6 +466,9 @@ function calloption(e){
 	                for(dataList of jsonObj.list){
 	                    
 		                var bodyTr1 = document.createElement("tr");
+		                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+		                bodyTr1.setAttribute("data-bs-toggle", "modal");
+		                bodyTr1.setAttribute("data-bs-target", "#userDetail");
 		                tbody.appendChild(bodyTr1);
 	
 		                var bodyTr1Td1 = document.createElement("td");
@@ -441,9 +479,7 @@ function calloption(e){
 		                var bodyTr1Td2 = document.createElement("td");
 		                bodyTr1Td2.classList.add("text-center");
 		                bodyTr1Td2.innerText = dataList.USER_NAME;
-		                bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
-			            bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
-			            bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
+		               
 		                bodyTr1.appendChild(bodyTr1Td2);
 		                
 		                var bodyTr1Td3 = document.createElement("td");
@@ -496,6 +532,7 @@ function callUser(e){
             
             var rowBox = document.createElement("div");
             rowBox.classList.add("row");
+            
             
             var tableRow = document.createElement("div");
                tableRow.classList.add("row");
@@ -581,10 +618,16 @@ function callUser(e){
                var tbody = document.createElement("tbody");
                table.appendChild(tbody);
                
+               searchAjax();
+               
                for(dataList of jsonObj.list){
-                   
+               
+            	
                    
                 var bodyTr1 = document.createElement("tr");
+                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+                bodyTr1.setAttribute("data-bs-toggle", "modal");
+                bodyTr1.setAttribute("data-bs-target", "#userDetail");
                 tbody.appendChild(bodyTr1);
 
                 var bodyTr1Td1 = document.createElement("td");
@@ -595,9 +638,6 @@ function callUser(e){
                 var bodyTr1Td2 = document.createElement("td");
                 bodyTr1Td2.classList.add("text-center");
                 bodyTr1Td2.innerText = dataList.USER_NAME;
-                bodyTr1Td2.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
-	            bodyTr1Td2.setAttribute("data-bs-toggle", "modal");
-	            bodyTr1Td2.setAttribute("data-bs-target", "#userDetail");
                 bodyTr1.appendChild(bodyTr1Td2);
                 
                 var bodyTr1Td3 = document.createElement("td");
@@ -622,6 +662,8 @@ function callUser(e){
                
                }
                
+              
+               
                ListBox.appendChild(rowBox);        
             
         }
@@ -641,6 +683,204 @@ function callUser(e){
 	}
 	
 }
+
+//답정 너 - 가져가 붙이면됨..
+function searchAjax(){
+	
+	const userValue = document.getElementById("search").value;
+	const selectValue = document.getElementById("select");
+	const goodValue = document.getElementById("good").value;
+	console.log(userValue + selectValue + goodValue);
+	console.log(selectValue);
+	
+	
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var result = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			
+			 var ListBox = document.getElementById("list-info");
+				ListBox.innerHTML = "";
+	            
+	            
+	            var rowBox = document.createElement("div");
+	            rowBox.classList.add("row");
+	            
+	            
+	            var tableRow = document.createElement("div");
+	               tableRow.classList.add("row");
+	               tableRow.classList.add("mx-0");
+	               tableRow.classList.add("px-0");
+	               rowBox.appendChild(tableRow);
+	               
+	               var table = document.createElement("table");
+	               table.classList.add("table");
+	               table.classList.add("table-bordered");
+	               tableRow.appendChild(table);
+	               
+	               var colGroup = document.createElement("colgroup");
+	               table.appendChild(colGroup);
+
+	               var colGroupA = document.createElement("col");
+	               //colGroupA.setAttribute("width", "25%");
+	               colGroup.appendChild(colGroupA);
+
+	               var colGroupB = document.createElement("col");
+	               //colGroupB.setAttribute("width", "25%");
+	               colGroup.appendChild(colGroupB);
+
+	               var colGroupC = document.createElement("col");
+	               //colGroupC.setAttribute("width", "50%");
+	               colGroup.appendChild(colGroupC);
+	               
+	               var colGroupD = document.createElement("col");
+	               //colGroupD.setAttribute("width", "50%");
+	               colGroup.appendChild(colGroupD);
+	               
+	               var colGroupE = document.createElement("col");
+	               //colGroupE.setAttribute("width", "50%");
+	               colGroup.appendChild(colGroupE);
+	               
+	               var colGroupF = document.createElement("col");
+	               //colGroupF.setAttribute("width", "50%");
+	               colGroup.appendChild(colGroupF);
+	               
+	               var thead = document.createElement("thead");
+	               table.appendChild(thead);
+	               
+	               var theadTr = document.createElement("tr");
+	               theadTr.classList.add("text-center");
+	               thead.appendChild(theadTr);
+	               
+	               var theadTrTh1 = document.createElement("th");
+	               theadTrTh1.setAttribute("scope", "col");
+	               theadTrTh1.classList.add("table-light");
+	               theadTrTh1.innerText="번호";
+	               theadTr.appendChild(theadTrTh1);
+	               
+	               var theadTrTh2 = document.createElement("th");
+	               theadTrTh2.setAttribute("scope", "col");
+	               theadTrTh2.classList.add("table-light");
+	               theadTrTh2.innerText="이름";
+	               theadTr.appendChild(theadTrTh2);
+	               
+	               var theadTrTh3 = document.createElement("th");
+	               theadTrTh3.setAttribute("scope", "col");
+	               theadTrTh3.classList.add("table-light");
+	               theadTrTh3.innerText="신청공고";
+	               theadTr.appendChild(theadTrTh3);
+	               
+	               var theadTrTh4 = document.createElement("th");
+	               theadTrTh4.setAttribute("scope", "col");
+	               theadTrTh4.classList.add("table-light");
+	               theadTrTh4.innerText="조력자 분류";
+	               theadTr.appendChild(theadTrTh4);
+	               
+	               var theadTrTh5 = document.createElement("th");
+	               theadTrTh5.setAttribute("scope", "col");
+	               theadTrTh5.classList.add("table-light");
+	               theadTrTh5.innerText="신청일";
+	               theadTr.appendChild(theadTrTh5);
+	               
+	               var theadTrTh6 = document.createElement("th");
+	               theadTrTh6.setAttribute("scope", "col");
+	               theadTrTh6.classList.add("table-light");
+	               theadTrTh6.innerText="신청상황";
+	               theadTr.appendChild(theadTrTh6);
+	               
+	               var tbody = document.createElement("tbody");
+	               table.appendChild(tbody);
+	               
+	               
+	               for(dataList of result.list){
+	               
+	                   
+	                var bodyTr1 = document.createElement("tr");
+	                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	                bodyTr1.setAttribute("data-bs-toggle", "modal");
+	                bodyTr1.setAttribute("data-bs-target", "#userDetail");
+	                tbody.appendChild(bodyTr1);
+
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1Td1.classList.add("text-center");
+	                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+	                bodyTr1.appendChild(bodyTr1Td1);
+
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1Td2.classList.add("text-center");
+	                bodyTr1Td2.innerText = dataList.USER_NAME;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var bodyTr1Td3 = document.createElement("td");
+	                bodyTr1Td3.classList.add("text-center");
+	                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+	                bodyTr1.appendChild(bodyTr1Td3);
+	                
+	                var bodyTr1Td4 = document.createElement("td");
+	                bodyTr1Td4.classList.add("text-center");
+	                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+	                bodyTr1.appendChild(bodyTr1Td4);
+	                
+	                var bodyTr1Td5 = document.createElement("td");
+	                bodyTr1Td5.classList.add("text-center");
+	                bodyTr1Td5.innerText = moment(dataList.APLCN_DTLS_DATE).format('YYYY-MM-DD');
+	                bodyTr1.appendChild(bodyTr1Td5);
+			
+	                var bodyTr1Td6 = document.createElement("td");
+	                bodyTr1Td6.classList.add("text-center");
+	                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+	                bodyTr1.appendChild(bodyTr1Td6);
+	               
+	               }
+	               
+	              
+	               
+	               ListBox.appendChild(rowBox);        
+		}
+	}
+		
+
+	 	if(selectValue.value == "a"){
+		    xhr.open("get" , "../admin/searchUserName?user_name=" + userValue + "&trial_fcltt_proper_num=" + goodValue); //리퀘스트 세팅..
+		    //xhr.setRequestHeader("application/json"); //Post
+		    xhr.send(); //AJAX로 리퀘스트함..
+	 	}else if(selectValue.value == "c"){
+		    xhr.open("get" , "../admin/searchUserName?user_name=" + userValue + "&announce_proper_num=" + goodValue); //리퀘스트 세팅..
+		    //xhr.setRequestHeader("Content-type","application/json"); //Post
+		    xhr.send(); //AJAX로 리퀘스트함..
+		}else if(selectValue.value == "d"){
+		    xhr.open("get" , "../admin/searchUserName?user_name=" + userValue + "&aplcn_dtls_sts=" + goodValue); //리퀘스트 세팅..
+		    //xhr.setRequestHeader("Content-type","application/json"); //Post
+		    xhr.send(); //AJAX로 리퀘스트함..
+		}
+
+}
+
+
+function search(){
+	
+	var targetBox = document.getElementById("target2");
+	targetBox.innerHTML = "";
+	
+	var input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("name", "user_name");
+	input.setAttribute("id","search");
+	input.setAttribute("style","height:34px");
+	targetBox.appendChild(input);
+	
+	var a = document.createElement("a");
+	a.classList.add("btn");
+	a.classList.add("btn-outline-success");
+	a.setAttribute("type", "button");
+	a.setAttribute("onclick", "searchAjax()");
+	a.innerText="Search";
+	targetBox.appendChild(a);
+	
+}
+
+	
+
 
 </script>
 </head>
@@ -685,14 +925,29 @@ function callUser(e){
 							<option value="d">신청현황 조회</option>
 						</select>
 					</div>
-					<div id="target" class="col">
-					
+					<div id="target" class="col-3" >						 
+					</div>
+					<div class="col-7" id="target2" style="text-align: end;">
+						
 					</div>
 				</div>
 				<br>
 				<div class="row mx-0">
 					<div id="list-info" class="col"></div>
 				</div> 
+				<div class="row">
+					<div class="col-3">
+						<ul id="pagingul">확인</ul>
+					</div>
+					<div class="col-6">페이징</div>
+					<div class="col-3">
+						<select id="dataPerPage">
+					        <option value="10">10개씩보기</option>
+					        <option value="15">15개씩보기</option>
+					        <option value="20">20개씩보기</option>
+						</select>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

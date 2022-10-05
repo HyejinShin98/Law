@@ -46,4 +46,7 @@ public interface ApplicationRegistrationAdminMapper {
 		
 	// optionBox 조건별 불러오기
 	public List<Tb_010> optionBoxapp();
+	
+	//22.10.04 신우진 추가 : 활동중인 명단 중 이름 검색 기능
+	public List<Map<String, Object>> searchUserName(Map<String, Object> map);
 }

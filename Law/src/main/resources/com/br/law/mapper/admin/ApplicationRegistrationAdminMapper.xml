@@ -7,12 +7,12 @@
 	
 	
 <select id="selUserList" resultType="map">
-	select * from tb_005 t5, tb_002 t2, tb_011 t11, tb_010 t10 , tb_001 t1
+	select * from tb_005 t5, tb_002 t2, tb_010 t10 , tb_001 t1 , tb_014 t14
 	where t2.announce_proper_num = t5.announce_proper_num 
-	and t11.court_proper_num = t5.court_proper_num 
 	and t10.trial_fcltt_proper_num = t2.trial_fcltt_proper_num 
-	and t1.user_proper_num = t5.user_proper_num 
-	and t5.aplcn_dtls_sts = 'examination'
+	and t1.user_proper_num = t5.user_proper_num
+	AND t14.APLCN_DTLS_PROPER_NUM = t5.APLCN_DTLS_PROPER_NUM 
+	and t5.aplcn_dtls_sts = 'accept'
 </select>
 
 <!-- 신규 -->
@@ -98,6 +98,23 @@
 		SELECT * FROM TB_010 ORDER BY TRIAL_FCLTT_PROPER_NUM asc
 	</select>
 	
+	<!-- 22.10.04 신우진 추가 : 활동중인 명단 중 이름 검색 기능 -->
+	<select id="searchUserName" resultType="map">
+		select * from tb_005 t5, tb_002 t2, tb_010 t10 , tb_001 t1
+		where t2.announce_proper_num = t5.announce_proper_num 
+		and t10.trial_fcltt_proper_num = t2.trial_fcltt_proper_num 
+		and t1.user_proper_num = t5.user_proper_num
+		<if test="announce_proper_num !=null">
+			and t2.announce_proper_num=#{announce_proper_num}
+		</if>
+		<if test="aplcn_dtls_sts != null">
+			and t5.aplcn_dtls_sts = #{aplcn_dtls_sts}
+		</if>
+		<if test="trial_fcltt_proper_num != null">
+			and t10.trial_fcltt_proper_num=#{trial_fcltt_proper_num}
+		</if>
+		AND t1.user_name like '%'||#{user_name}||'%'
+	</select>
 	
 	
 	

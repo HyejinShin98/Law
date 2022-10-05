@@ -107,4 +107,10 @@ public class ApplicationRegistrationAdminService {
 		return applicationRegistrationAdminMapper.optionBoxapp();
 	}
 	
+	//22.10.04 신우진 추가 : 활동중인 명단 중 이름 검색 기능
+	public List<Map<String, Object>> searchUserName(Map<String, Object> map){
+		System.out.println("서비스로 오나?" + map);
+		return applicationRegistrationAdminMapper.searchUserName(map);
+	}
+	
 }
