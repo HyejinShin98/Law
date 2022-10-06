@@ -111,6 +111,7 @@ function allUser(){
 	            var form = document.createElement("form");
 	    		form.action="excel"
 	    		form.method="post"
+	    		form.classList.add("px-0");
 	    		rowBox.appendChild(form);
 	    		          
 	    		var btn = document.createElement("button");	
@@ -165,6 +166,7 @@ function allUser(){
              theadTrTh1.setAttribute("scope", "col");
              theadTrTh1.classList.add("table-light");
              theadTrTh1.innerText="번호";
+             theadTrTh1.classList.add("px-0");
              theadTr.appendChild(theadTrTh1);
              
              var theadTrTh2 = document.createElement("th");
@@ -200,7 +202,7 @@ function allUser(){
              var tbody = document.createElement("tbody");
              table.appendChild(tbody);
              
-             search();
+             
              
              for(dataList of jsonObj.list){
                  
@@ -392,6 +394,7 @@ function calloption(e){
 		            var form = document.createElement("form");
 		    		form.action="excel"
 		    		form.method="post"
+		    		form.classList.add("px-0");
 		    		rowBox.appendChild(form);
 		    		          
 		    		var btn = document.createElement("button");	
@@ -446,6 +449,7 @@ function calloption(e){
 	                theadTrTh1.setAttribute("scope", "col");
 	                theadTrTh1.classList.add("table-light");
 	                theadTrTh1.innerText="번호";
+	                theadTrTh1.classList.add("px-0");
 	                theadTr.appendChild(theadTrTh1);
 	                
 	                var theadTrTh2 = document.createElement("th");
@@ -603,6 +607,7 @@ function callUser(e){
                theadTrTh1.setAttribute("scope", "col");
                theadTrTh1.classList.add("table-light");
                theadTrTh1.innerText="번호";
+               theadTrTh1.classList.add("px-0");
                theadTr.appendChild(theadTrTh1);
                
                var theadTrTh2 = document.createElement("th");
@@ -638,7 +643,7 @@ function callUser(e){
                var tbody = document.createElement("tbody");
                table.appendChild(tbody);
                
-               searchAjax();
+               
                
                for(dataList of jsonObj.list){
                
@@ -776,6 +781,7 @@ function searchAjax(){
 	               theadTrTh1.setAttribute("scope", "col");
 	               theadTrTh1.classList.add("table-light");
 	               theadTrTh1.innerText="번호";
+	               theadTrTh1.classList.add("px-0");
 	               theadTr.appendChild(theadTrTh1);
 	               
 	               var theadTrTh2 = document.createElement("th");

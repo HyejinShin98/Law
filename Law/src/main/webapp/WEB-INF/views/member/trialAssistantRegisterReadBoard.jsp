@@ -89,11 +89,11 @@
 					</div>
 				</div>
 				<!-- 등재신청 -->
-				<div class="row mb-3">
+				<%-- <div class="row mb-3">
 					<div class="col text-center">
 						<a href="../user/announcementProcess?announce_proper_num=${trialAssistantData.tb_002.announce_proper_num }" class="text-decoration-none border bg-light text-black">등재신청</a>
 					</div>
-				</div>
+				</div> --%>
 				
 				<!-- 게시믈 부분 끝 -->
 				

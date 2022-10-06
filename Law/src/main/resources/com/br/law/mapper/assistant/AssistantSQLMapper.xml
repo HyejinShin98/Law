@@ -115,9 +115,10 @@
 	
 	<!-- 220928 하다 조건별 유저 불러오기 -->
 	<select id="callAUser" resultType="map" >
-		SELECT * FROM TB_001 t, TB_005 t2, TB_010 t3 
+		SELECT * FROM TB_001 t, TB_005 t2, TB_010 t3 , tb_002 t4
 		WHERE t.USER_PROPER_NUM = t2.USER_PROPER_NUM 
 		AND t2.TRIAL_FCLTT_PROPER_NUM = t3.TRIAL_FCLTT_PROPER_NUM
+		AND t4.ANNOUNCE_PROPER_NUM = t2.ANNOUNCE_PROPER_NUM 
 		AND t2.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
 		ORDER BY t2.APLCN_DTLS_PROPER_NUM asc
 	</select>

@@ -31,7 +31,7 @@
 				<!-- 현재위치 -->
 				<div class="row text-end">
 					<div class="col" style="font-size: 11px;">
-						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe;font-weight: bold;">감정인등재공고</span>
+						<span> 홈 > </span><span style="color: #72a8fe;font-weight: bold;">감정인등재공고</span>
 					</div>
 				</div>
 				<!-- 타이틀 -->

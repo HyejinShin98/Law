@@ -486,12 +486,17 @@ function calculationtest(){
 						   		<td scope="col"><input type='text' name='total2' disabled></td>
 						   		<td colspan="3">--점/총점</td>
 						   	</tr>
+					   		<tr>
+						   		<td colspan="2">검토의견</td>
+						   		<td colspan="5">
+						   			<textarea name="reivew_etc" style="width: 314px;"></textarea>
+						   		</td>
+						   	</tr>
 						  </tbody>
 						</table>
 						
-						<div style="text-align: left;">
-						검토의견 : <input type="text" name="review_etc">
-						<button type="submit" type="button" class="btn btn-primary">작성하기</button>
+						<div style="text-align: right;">
+							<button type="submit" type="button" class="btn btn-primary">작성하기</button>
 						</div>		
 						
 						
