@@ -47,13 +47,13 @@
 									<tbody>
 										<tr>
 											<th scope="row">질문</th>
-											<td>${data.faq_ask_content }</td>
+											<td>${data.tb_004.faq_ask_content }</td>
 										</tr>
 										<tr>
 											<th scope="row" class="totalth text-center" colspan="4">답변</th>
 										</tr>
 										<tr>
-											<th scope="row" colspan="4">${data.faq_ask_comment }</th>
+											<th scope="row" colspan="4">${data.tb_004.faq_ask_comment }</th>
 										</tr>
 									</tbody>
 								</table>
@@ -61,16 +61,22 @@
 						</div>
 						
 						<!-- 수정 및 삭제 버튼 -->
-						<c:if test="${!empty admin }">
-							<div class="row justify-content-end mt-3">
-								<div class="col-2 d-grid">
-									<a class="btn btn-primary" href="./updateFaqPage?faq_proper_num=${data.faq_proper_num }">수정</a>
-								</div>
-								<div class="col-2 d-grid">
-									<a class="btn btn-primary" href="./deleteFaqProcess?faq_proper_num=${data.faq_proper_num }">삭제</a>
-								</div>
+						<div class="row justify-content-end mt-3">
+							<div class="col-3 d-grid">
+								<a class="btn btn-secondary" href="./faqPage">목록으로</a>
 							</div>
-						</c:if>
+						</div>
+								<c:if test="${!empty admin }">
+									<div class="row justify-content-end mt-3">
+										<div class="col-2 d-grid">
+											<a class="btn btn-primary" href="./updateFaqPage?faq_proper_num=${data.tb_004.faq_proper_num }">수정</a>
+										</div>
+										<div class="col-2 d-grid">
+											<a class="btn btn-primary" href="./deleteFaqProcess?faq_proper_num=${data.tb_004.faq_proper_num }">삭제</a>
+										</div>
+									</div>
+								</c:if>
+						
 						
 					</div>
 				</div>

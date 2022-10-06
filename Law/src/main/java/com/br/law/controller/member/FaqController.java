@@ -6,7 +6,6 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.text.StringEscapeUtils;
-import org.jsoup.Connection.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.law.service.member.FaqServiceImpl;
 import com.br.law.vo.Tb_004;
-import com.br.law.vo.Tb_015;
+import com.br.law.vo.Tb_015; 
 
 @Controller
 @RequestMapping("/member/*")
