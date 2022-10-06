@@ -110,13 +110,13 @@ h4{
 					<div class="col">
 						<div class="row border-bottom border-2 border-secondary py-2">
 							<div class="col pt-1 px-0 text-center">
-								<span class="fw-bold text-info btn-pointer font-def" onclick="location.href='./identityVerificate';">내정보 관리</span>
+								<span class="fw-bold text-secondary btn-pointer font-def" onclick="location.href='./identityVerificate';">내정보 관리</span>
 							</div>
 							<div class="col pt-1">
 								<span class="fw-bold text-secondary btn-pointer font-def mx-2" onclick="location.href='./modifyPassword';">비밀번호 변경</span>
 							</div>
 							<div class="col pt-1">
-								<span class="fw-bold  text-secondary btn-pointer font-def mx-2" onclick="location.href='./withdrawal';">회원탈퇴</span>
+								<span class="fw-bold  text-info btn-pointer font-def mx-2" onclick="location.href='./withdrawal';">회원탈퇴</span>
 							</div>
 							<div class="col-6"></div>
 						</div>

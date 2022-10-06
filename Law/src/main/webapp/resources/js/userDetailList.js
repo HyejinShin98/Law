@@ -444,7 +444,7 @@ function tableFiveInfo(){
 				bodyTr3Td1.appendChild(criminalYNBox);
 				
 				var criminalYNSpan = document.createElement("span");
-				var criminalCarerYn = jsonObj.map.LIGTN_CASE_CARER_YN;
+				var criminalCarerYn = jsonObj.map.CRIMINAL_PENALTY_CARER_YN;
 				if(criminalCarerYn == 'y') {
 					criminalYNSpan.innerText = '유';
 				} else if(criminalCarerYn == 'n') {
@@ -456,7 +456,7 @@ function tableFiveInfo(){
                 bodyTr3.appendChild(bodyTr3Td2);
                 
 				var criminalCarerEtcSpan = document.createElement("span");
-				var criminalCarerEtc = jsonObj.map.LIGTN_CASE_CARER_ETC;
+				var criminalCarerEtc = jsonObj.map.CRIMINAL_PENALTY_CARER_ETC;
 				if(criminalCarerEtc == '' || criminalCarerEtc == undefined) {
 					criminalCarerEtcSpan.innerText = '';
 				} else {
@@ -1340,7 +1340,7 @@ function tableNineInfo(){
 	                bodyTr7Td2A.classList.add("text-center");
 	                bodyTr7Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.certificate.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.certificate.APLCN_ATCH_FILE_PROPER_NUM);
 	                bodyTr7Td2A.classList.add("text-decoration-none");
-	                bodyTr7Td2A.innerText = jsonObj[6].original_file_name;
+	                bodyTr7Td2A.innerText = jsonObj.certificate.original_file_name;
 	                bodyTr7Td2.appendChild(bodyTr7Td2A);
 	                bodyTr7.appendChild(bodyTr7Td2);
                 }
