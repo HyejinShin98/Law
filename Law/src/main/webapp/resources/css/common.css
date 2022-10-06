@@ -5,6 +5,11 @@
 	text-decoration:none;
 }
 
+#collapseAllMeru a {
+	color: rgba(38, 47, 59); 
+	text-decoration:none;
+}
+
 .btn-pointer {
 	cursor: pointer;
 }

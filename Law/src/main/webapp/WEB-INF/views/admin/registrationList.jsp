@@ -17,7 +17,26 @@
 <script type="text/javascript" src="../resources/js/userDetailList2.js"></script>
 <title>등재명단 조회</title>
 <style>
-	
+
+.nav a{
+	background:url('../resources/img/applicationRegistration/bg_submenu_on.gif') no-repeat 0 0; 
+	background-position: right top;
+}
+.submenu a{
+	display:
+	inline-block;
+	width:200px;
+	font-size:14px;
+	font-weight:
+	bold;
+	text-align:
+	right;
+	letter-spacing:-1px;
+	padding:8px 25px 1px 0;
+	border-bottom:1px solid #ddd;
+	color : white;
+	margin-left: 16px;
+}
 </style>
 <script>
 
@@ -227,7 +246,9 @@
 	<div class="row mt-2">
 		<!-- 사이드 네비바 -->
 		<div class="col-3 text-center" style="border-right: solid 1px #ccc;">
-			<jsp:include page="../common/assistantAdminNav.jsp"></jsp:include>
+			<div class="list-group list-group-flush nav submenu" style="margin-left:10px;">
+    			<a href="../admin/registrationList" class="list-group-item list-group-item-action">등재명단 조회</a>
+    		</div>
 		</div>
 		
 		<!-- 본문 -->

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div id="header" class="row align-items-center" style="height: 85px;">
-	<div class="col-auto">
+	<div class="col-3">
 		<a class="navbar-brand" href="../user/main"><img src="../resources/img/Main/로고.png"></a>
 	</div> 
 	<div class="col">
@@ -91,10 +91,47 @@
 		</div>
 	</div>
 </div>
-<div id="collapseAllMeru" class="collapse">
-	<div>
-		일단 확인용
-	</div>
+<div id="collapseAllMeru" class="row text-center collapse" style="font-size: 12px;">
+	<div class="col-3"></div>
+	<c:choose>
+		<c:when test="${!empty admin}">
+			<div class="col">
+				<p><a href="../admin/managementEvaluationtable"><span>평정기준표관리</span></a></p>
+				<p><a href="../admin/searchCondition"><span>조건별조회</span></a></p>
+				<p><a href="../admin/evaluationApplicantsList"><span>최종심사</span></a></p>
+			</div>
+			<div class="col">
+				<p><a href="../admin/registrationList"><span>등재명단조회</span></a></p>
+			</div>
+			<div class="col">
+				<p><a href="../member/trialAssistantRegisterBoard"><span>감정인등재공고</span></a></p>
+				<p><a href="../member/noticeBoard"><span>공지사항</span></a></p>
+				<p><a href="../member/faqPage"><span>FAQ(자주묻는질문)</span></a></p>
+			</div>
+			
+		</c:when>
+		<c:otherwise>
+			<div class="col">
+				<p onclick="testIMP()"><span>감정인등재신청</span></p>
+			</div>
+			<div class="col">
+				<p><a href="../member/systemGuide"><span>감정인신청안내</span></a></p>
+				<p><a href="../member/processGuide"><span>감정인신청절차안내</span></a></p>
+			</div>
+			<div class="col">
+				<p><a href="../user/identityVerificate"><span>내정보</span></a></p>
+				<p><a href="../user/myApplication"><span>나의등재신청내역</span></a></p>
+				<p><a href="../user/myActive"><span>나의활동내역</span></a></p>
+				<p><a href="../user/myPause"><span>중지/해제신청관리</span></a></p>
+			</div>
+			<div class="col">
+				<p><a href="../member/trialAssistantRegisterBoard"><span>감정인등재공고</span></a></p>
+				<p><a href="../member/noticeBoard"><span>공지사항</span></a></p>
+				<p><a href="../member/faqPage"><span>FAQ(자주묻는질문)</span></a></p>
+			</div>
+		</c:otherwise>
+	</c:choose>
+	<div class="col"></div>
 </div>
 <!-- 로그인 Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
