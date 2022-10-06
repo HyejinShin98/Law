@@ -61,7 +61,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col">
-						<a href="../user/applicationClause" onclick="testIMP()">
+						<a onclick="testIMP()">
 							<span>감정인등재신청</span>
 						</a>
 					</div>
@@ -190,7 +190,7 @@
     		    if (rsp.success) {
     		    	location.href = "../user/applicationClause";
     		    } else {
-    		    	alert('실패');
+    		    	alert('본인인증에 오류가 발생되었습니다. 다시 시도해주세요.');
     		    }
     		});
     }
