@@ -105,19 +105,27 @@ function allUser(){
 				ListBox.innerHTML = "";
 	            
 	            
-	            var rowBox = document.createElement("div");
+				var rowBox = document.createElement("div");
 	            rowBox.classList.add("row");
 	            
+	            var form = document.createElement("form");
+	    		form.action="excel"
+	    		form.method="post"
+	    		rowBox.appendChild(form);
+	    		          
+	    		var btn = document.createElement("button");	
+	            btn.innerText="다운로드";
+	            
 	            var tableRow = document.createElement("div");
-             tableRow.classList.add("row");
-             tableRow.classList.add("mx-0");
-             tableRow.classList.add("px-0");
-             rowBox.appendChild(tableRow);
-             
-             var table = document.createElement("table");
-             table.classList.add("table");
-             table.classList.add("table-bordered");
-             tableRow.appendChild(table);
+                tableRow.classList.add("row");
+                tableRow.classList.add("mx-0");
+                tableRow.classList.add("px-0");
+                form.appendChild(tableRow);
+                
+                var table = document.createElement("table");
+                table.classList.add("table");
+                table.classList.add("table-bordered");
+                tableRow.appendChild(table);
              
              var colGroup = document.createElement("colgroup");
              table.appendChild(colGroup);
@@ -235,6 +243,8 @@ function allUser(){
 	             bodyTr1.appendChild(bodyTr1Td6);
              
              }
+             
+             form.appendChild(btn);
              
              ListBox.appendChild(rowBox);
 	         }
@@ -379,11 +389,19 @@ function calloption(e){
 		            var rowBox = document.createElement("div");
 		            rowBox.classList.add("row");
 		            
+		            var form = document.createElement("form");
+		    		form.action="excel"
+		    		form.method="post"
+		    		rowBox.appendChild(form);
+		    		          
+		    		var btn = document.createElement("button");	
+    	            btn.innerText="다운로드";
+		            
 		            var tableRow = document.createElement("div");
 	                tableRow.classList.add("row");
 	                tableRow.classList.add("mx-0");
 	                tableRow.classList.add("px-0");
-	                rowBox.appendChild(tableRow);
+	                form.appendChild(tableRow);
 	                
 	                var table = document.createElement("table");
 	                table.classList.add("table");
@@ -503,6 +521,8 @@ function calloption(e){
 		                bodyTr1.appendChild(bodyTr1Td6);
 	                
 	                }
+	                
+	                form.appendChild(btn);
 	                
 	                ListBox.appendChild(rowBox);
 		           }
@@ -937,23 +957,32 @@ function search(){
 				<div class="row mx-0">
 					<div id="list-info" class="col"></div>
 				</div> 
-				<div class="row">
-					<div class="col-3">
-						<ul id="pagingul">확인</ul>
-					</div>
-					<div class="col-6">페이징</div>
-					<div class="col-3">
-						<select id="dataPerPage">
-					        <option value="10">10개씩보기</option>
-					        <option value="15">15개씩보기</option>
-					        <option value="20">20개씩보기</option>
-						</select>
-					</div>
-				</div>
 			</div>
+			
+			<div class="row justify-content-center" >
+			<div class="col">
+			</div>
+			<div class="col">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center" style="border: none;">
+				    <li class="page-item disabled">
+				      <a class="page-link"><i class="bi bi-arrow-left-short"></i></a>
+				    </li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item">
+				      <a class="page-link" href="#"><i class="bi bi-arrow-right-short"></i></a>
+				    </li>
+				  </ul>
+				</nav>
+			</div>
+			<div class="col"></div>	
+				
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
+</div>
 </div>
 
 <!-- User Detail Modal -->
@@ -975,8 +1004,9 @@ function search(){
 		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일</span></div>
 		        </div>
 		 		<div class="row mx-0">
-					<div id="nav-info" class="col">왜안됨</div>
-				</div> 
+					<div id="nav-info" class="col"></div>
+				</div>
+				 
 			</div>
 			<div id="userDetailButtonBox" class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
