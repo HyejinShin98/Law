@@ -32,17 +32,6 @@ public class FaqController {
 		//for(Tb_004 tb_004 : dataList) {
 		//	System.out.println("tb_004 : " + tb_004.getFaq_proper_num());
 		//}
-		/*
-		HashMap<String, Object> data = faqService.getFaqData(faq_proper_num);
-		
-		Tb_004 tb_004 = (Tb_004)data.get("tb_004");
-		String content = tb_004.getFaq_ask_content();
-		content = StringEscapeUtils.escapeHtml4(content);
-		content = content.replaceAll(" ", "&nbsp");
-		content = content.replaceAll("\n", "<br>");
-		tb_004.setFaq_ask_content(content);
-		model.addAttribute("data", data);
-		*/
 		
 		return "member/faqPage";
 	}
@@ -66,6 +55,23 @@ public class FaqController {
 		faqService.writeFaq(param);
 		
 		return "redirect:./faqPage";
+	}
+	
+	@RequestMapping("faqDetailPage")
+	public String faqDetailPage(int faq_proper_num , Model model) {
+		
+		HashMap<String, Object> data = faqService.getFaqData(faq_proper_num);
+		
+		Tb_004 tb_004 = (Tb_004)data.get("tb_004");	
+		String content = tb_004.getFaq_ask_comment();
+		content = StringEscapeUtils.escapeHtml4(content);
+		content = content.replaceAll(" ", "&nbsp");
+		content = content.replaceAll("\n", "<br>");
+		tb_004.setFaq_ask_comment(content);
+		
+		model.addAttribute("data", data);
+		
+		return "member/faqDetailPage";
 	}
 	
 	@RequestMapping("deleteFaqProcess")

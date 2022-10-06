@@ -23,89 +23,61 @@
 		
 		<img src="../resources/img/sub_topimg.gif">
 
-		<div class="row">
+		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
 			<jsp:include page="../common/localNav.jsp"></jsp:include>
 			
 			<!-- FAQ 게시판 내용 -->
-			<div class="col">
-				<div class="row">
+			<div class="col m-3">
+				<div class="row text-end">
+					<div class="col" style="font-size : 11px;">
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: hold;">공지사항</span>
+					</div>
+				</div>		
+				<!-- FAQ 제목 -->
+				<div class="row mb-3">
 					<div class="col">
-						<div class="row">
-							<div class="col">
-								
-							</div>
-						</div>
-						<!-- FAQ 제목 -->
-						<div class="row mt-5">
-							<div class="col"></div>
-							<div class="col-10">
-								<img src="../resources/img/Faq/h3_ogi430.gif">
-							</div>
-							<div class="col"></div>
-						</div>
-						
-						<!-- FAQ 리스트 -->
-						<div class="row mt-3">
-							<div class="col"></div>
-							<div class="col-10">
-							<table>
-								
-								<c:forEach items="${dataList }" var="data">
-															
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="flush-heading${data.faq_proper_num }">
-											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${data.faq_proper_num }" aria-expanded="false" aria-controls="flush-collapse${data.faq_proper_num }">
-								        		<b>Q&#46;</b>&nbsp;
-								        		${fn:replace(data.faq_ask_content, cn, br)}
-								      		</button>
-								    	</h2>
-								    	<div id="flush-collapse${data.faq_proper_num }" class="accordion-collapse collapse" aria-labelledby="flush-heading${data.faq_proper_num }" data-bs-parent="#accordionFlushExample">
-											<div class="accordion-body" style="background:#f8f9fa">
-												<b>A&#46;</b>&nbsp;
-												${fn:replace(data.faq_ask_comment, cn, br) }
-											</div>
-											
-											<div class="row">
-												<div class="col"></div>
-												<div class="col-8"></div>
-												<div class="col">
-													<!-- 수정, 삭제 버튼 -->
-													<c:if test="${!empty admin}">
-														<a href="./updateFaqPage?faq_proper_num=${data.faq_proper_num }">수정</a>
-														<a href="./deleteFaqProcess?faq_proper_num=${data.faq_proper_num }">삭제</a>
-													</c:if>
-												</div>
-											</div>
-											
-								  		</div>
-									</div>
-									
-								</c:forEach>
+						<img src="../resources/img/Faq/h3_ogi430.gif">
+					</div>
 							
+					<!-- FAQ 리스트 -->
+					<div class="row mt-3" style="font-size: 12px;">
+						<div class="col border-top border-2 border-secondary">
+							<table class="table">
+								<colgroup>
+									<col width="100%">
+									<col width="">
+								</colgroup>
+								<thead class="text-center">
+									<tr>
+										<th scope="col">질문</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${dataList }" var="data">
+										<tr>
+											<td><a style="text-decoration: none" href="./faqDetailPage?faq_proper_num=${data.faq_proper_num}">${data.faq_ask_content }</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
 							</table>
-							</div>
-							<div class="col"></div>
-					</div>
-					
-					<!-- 글쓰기 버튼 -->
-					<div class="row mt-3">
-						<div class="col"></div>
-						<div class="col"></div>
-						<div class="col">
-						<c:if test="${!empty admin}">
-							<a href="./writeFaqPage"><button class="btn btn-primary">글쓰기</button></a>
-						</c:if>							
 						</div>
 					</div>
+					<c:if test="${!empty admin }">
+						<div class="row m-3" style="font-size: 12px;">
+							<div class="col text-end">
+								<a class="btn btn-primary btn-sm" href="./writeFaqPage"> 글쓰기 </a>
+							</div>
+						</div>
+					</c:if>
 				</div>
 			</div>
+			<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
 	</div>
-</div>
 				
 
-<jsp:include page="../common/footer.jsp"></jsp:include>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>
