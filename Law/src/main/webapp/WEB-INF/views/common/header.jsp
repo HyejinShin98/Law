@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="header" class="row align-items-center" style="height: 90px;">
+<div id="header" class="row align-items-center" style="height: 85px;">
 	<div class="col-auto">
 		<a class="navbar-brand" href="../user/main"><img src="../resources/img/Main/로고.png"></a>
 	</div> 
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<!-- 메뉴 -->
-		<div class="row text-center align-items-center my-2" style="font-size: 15px;">
+		<div class="row text-center align-items-center mt-2 mb-3 fw-bold" style="font-size: 15px;">
 			<c:choose>
 				<c:when test="${!empty admin}">
 					<div class="col">
