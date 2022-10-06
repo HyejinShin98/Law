@@ -104,7 +104,7 @@
          </div>
     </div>
 </div>
-<div class="container-fluid" style="width : 960px;">
+<div class="container-fluid" style="width : 960px; ">
     <jsp:include page="../common/footer.jsp"></jsp:include>
 </div>
        
