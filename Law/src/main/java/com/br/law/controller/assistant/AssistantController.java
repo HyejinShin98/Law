@@ -1,5 +1,6 @@
 package com.br.law.controller.assistant;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.br.law.controller.admin.ApplicationRegistrationAdminController;
 import com.br.law.service.admin.ApplicationRegistrationAdminService;
 import com.br.law.service.assistant.AssistantServiceImpl;
 import com.br.law.vo.Tb_009;
+import com.br.law.vo.Tb_010;
 import com.br.law.vo.Tb_013;
 import com.br.law.vo.Tb_015;
 
@@ -144,6 +146,17 @@ public class AssistantController {
 		
 		return "admin/fileDownLoadProcess";
 	}
+	
+//	 22.10.06 병훈 등재목록 조회
+	@RequestMapping("registrationList")
+	public String registrationList(Model model) {
+		
+		model.addAttribute("t10_List", assistantServiceImpl.callTb_010());
+		model.addAttribute("t11_List", assistantServiceImpl.callTb_011());
+		
+		return "admin/registrationList";
+	}
+	
 	
 	
 }

@@ -152,4 +152,22 @@ public class RestAssistantController {
 	
 		return map;
 	}
+	
+	//1006 병훈 등재목록 유저 리스트 불러오기
+	@RequestMapping("callRegistUser")
+	public Map<String, Object> callRegistUser(
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("callRegistUser : 여기 왔니 ??");
+		
+		map.put("result", "success");
+		map.put("list", assistantServiceImpl.callRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord));
+	
+		return map;
+	}
+	
 }

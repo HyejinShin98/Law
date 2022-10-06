@@ -166,4 +166,42 @@
 	<select id="callTb_005" resultType="com.br.law.vo.Tb_005">
 		select * from Tb_005 where aplcn_dtls_proper_num = #{aplcn_dtls_proper_num}
 	</select>
+	
+	<!-- 1006 병훈 법원테이블 리스트 출력 -->
+	<select id="callTb_011" resultType="com.br.law.vo.Tb_011" >
+		SELECT * FROM TB_011 ORDER BY COURT_PROPER_NUM asc
+	</select>
+	
+	<!-- 1006 병훈 등재된 유저정보 리스트 출력 -->
+	<select id="callRegistList" resultType="map">
+		SELECT * FROM TB_001 t1,TB_005 t5,TB_010 t10,TB_011 t11, TB_014 t14
+		WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+		AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
+		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
+		AND t5.APLCN_DTLS_PROPER_NUM = t14.APLCN_DTLS_PROPER_NUM
+		<if test="trial_fcltt_proper_num != 0">
+			AND t14.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
+		</if>
+		<if test="court_proper_num != 0">
+			AND t14.COURT_PROPER_NUM = #{court_proper_num}
+		</if>
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'user_id'">
+					AND t1.USER_ID LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_name'">
+					AND t1.USER_NAME  LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_email'">
+					AND t1.USER_EMAIL  LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_phone'">
+					AND t1.USER_PHONE  LIKE '%' || #{searchWord } || '%'
+				</when>
+			</choose>
+		</if> 
+	</select>
+	
+	
 </mapper>

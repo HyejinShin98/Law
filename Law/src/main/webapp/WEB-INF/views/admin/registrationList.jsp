@@ -12,12 +12,208 @@
 	
 <!-- 외부 css 로드  -->
 <link rel="stylesheet" type="text/css" href="../resources/css/common.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="text/javascript" src="../resources/js/userDetailList2.js"></script>
 <title>등재명단 조회</title>
 <style>
 	
 </style>
 <script>
 
+	function searchList() {
+		var formData = new FormData();
+		formData.append('trial_fcltt_proper_num', document.getElementById("selectT10").value);
+		formData.append('court_proper_num', document.getElementById("selectT11").value);
+		formData.append('searchType', document.getElementById("selectSearchType").value);
+		formData.append('searchWord', document.getElementById("selectSearchWord").value);
+		
+		let entries = formData.entries();
+		for (const pair of entries) {
+		    console.log(pair[0]+ ', ' + pair[1]); 
+		}
+		
+		var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+        xhr.onreadystatechange = function () {
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+				
+				var ListBox = document.getElementById("list-info");
+				ListBox.innerHTML = "";
+	            
+	            var rowBox = document.createElement("div");
+	            rowBox.classList.add("row");
+	            
+	            var tableRow = document.createElement("div");
+	            tableRow.classList.add("row");
+	            tableRow.classList.add("mx-0");
+	            tableRow.classList.add("px-0");
+	            rowBox.appendChild(tableRow);
+	               
+	            var table = document.createElement("table");
+	            table.classList.add("table");
+	            table.classList.add("table-bordered");
+	            tableRow.appendChild(table);
+	               
+	            var colGroup = document.createElement("colgroup");
+	            table.appendChild(colGroup);
+
+	            var colGroupA = document.createElement("col");
+	            colGroup.appendChild(colGroupA);
+	            var colGroupB = document.createElement("col");
+	            colGroup.appendChild(colGroupB);
+	            var colGroupC = document.createElement("col");
+	            colGroup.appendChild(colGroupC);
+	            var colGroupD = document.createElement("col");
+	            colGroup.appendChild(colGroupD);
+	            var colGroupE = document.createElement("col");
+	            colGroup.appendChild(colGroupE);
+	            var colGroupF = document.createElement("col");
+	            colGroup.appendChild(colGroupF);
+	            var colGroupG = document.createElement("col");
+	            colGroup.appendChild(colGroupG);
+	               
+	            var thead = document.createElement("thead");
+	            table.appendChild(thead);
+	               
+	            var theadTr = document.createElement("tr");
+	            theadTr.classList.add("text-center");
+	            thead.appendChild(theadTr);
+	               
+	            var theadTrTh1 = document.createElement("th");
+	            theadTrTh1.setAttribute("scope", "col");
+	            theadTrTh1.classList.add("table-light");
+	            theadTrTh1.innerText="번호";
+	            theadTr.appendChild(theadTrTh1);
+	            var theadTrTh2 = document.createElement("th");
+	            theadTrTh2.setAttribute("scope", "col");
+	            theadTrTh2.classList.add("table-light");
+	            theadTrTh2.innerText="소속법원";
+	            theadTr.appendChild(theadTrTh2);
+	            var theadTrTh3 = document.createElement("th");
+	            theadTrTh3.setAttribute("scope", "col");
+	            theadTrTh3.classList.add("table-light");
+	            theadTrTh3.innerText="조력자분류";
+	            theadTr.appendChild(theadTrTh3);
+	            var theadTrTh4 = document.createElement("th");
+	            theadTrTh4.setAttribute("scope", "col");
+	            theadTrTh4.classList.add("table-light");
+	            theadTrTh4.innerText="이름";
+	            theadTr.appendChild(theadTrTh4);
+	            var theadTrTh5 = document.createElement("th");
+	            theadTrTh5.setAttribute("scope", "col");
+	            theadTrTh5.classList.add("table-light");
+	            theadTrTh5.innerText="연락처";
+	            theadTr.appendChild(theadTrTh5);
+	            var theadTrTh6 = document.createElement("th");
+	            theadTrTh6.setAttribute("scope", "col");
+	            theadTrTh6.classList.add("table-light");
+	            theadTrTh6.innerText="이메일";
+	            theadTr.appendChild(theadTrTh6);
+	            var theadTrTh7 = document.createElement("th");
+	            theadTrTh7.setAttribute("scope", "col");
+	            theadTrTh7.classList.add("table-light");
+	            theadTrTh7.innerText="활동여부";
+	            theadTr.appendChild(theadTrTh7);
+	            
+	            var tbody = document.createElement("tbody");
+	            table.appendChild(tbody);
+	            
+            	var i = 1;
+	            for(dataList of jsonObj.list){
+	                var bodyTr1 = document.createElement("tr");
+	                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	                bodyTr1.setAttribute("data-bs-toggle", "modal");
+	                bodyTr1.setAttribute("data-bs-target", "#userDetail");
+	                tbody.appendChild(bodyTr1);
+
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1Td1.classList.add("text-center");
+	                bodyTr1Td1.innerText = i;
+	                bodyTr1.appendChild(bodyTr1Td1);
+
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1Td2.classList.add("text-center");
+	                bodyTr1Td2.innerText = dataList.COURT_NAME;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	                
+	                var bodyTr1Td3 = document.createElement("td");
+	                bodyTr1Td3.classList.add("text-center");
+	                bodyTr1Td3.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+	                bodyTr1.appendChild(bodyTr1Td3);
+	                
+	                var bodyTr1Td4 = document.createElement("td");
+	                bodyTr1Td4.classList.add("text-center");
+	                bodyTr1Td4.innerText = dataList.USER_NAME;
+	                bodyTr1.appendChild(bodyTr1Td4);
+	                
+	                var bodyTr1Td5 = document.createElement("td");
+	                bodyTr1Td5.classList.add("text-center");
+	                bodyTr1Td5.innerText = dataList.USER_PHONE;
+	                bodyTr1.appendChild(bodyTr1Td5);
+			
+	                var bodyTr1Td6 = document.createElement("td");
+	                bodyTr1Td6.classList.add("text-center");
+	                bodyTr1Td6.innerText = dataList.USER_EMAIL;
+	                bodyTr1.appendChild(bodyTr1Td6);
+	                
+	                var bodyTr1Td7 = document.createElement("td");
+	                bodyTr1Td7.classList.add("text-center");
+	                if(dataList.ACCEPT_ACT_YN == "y"){
+		                bodyTr1Td7.innerText = "O";
+	                }else{
+	                	bodyTr1Td7.innerText = "X";
+	                }
+	                bodyTr1.appendChild(bodyTr1Td7);
+	               	i ++;
+				}
+	            ListBox.appendChild(rowBox);
+			}
+		}
+		xhr.open("post" , "../admin/callRegistUser"); //리퀘스트 세팅..
+		//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); // 콘텐츠 타입을 json으로
+		xhr.send(formData); //AJAX로 리퀘스트함..
+	}
+	
+	function callUserDetail(e) {
+		var userNo = e; 
+		tableOneInfo(userNo);
+		var navClassName ='nav-btn';
+		var navBtn = document.getElementsByClassName(navClassName);
+		for(btn of navBtn){
+			btn.addEventListener('click', function(e){
+				var addId = this.id;
+				
+				changeBtn(addId, navClassName);
+				
+				switch(addId){
+					case 'oneTab' : 
+						tableOneInfo(userNo);
+						break;
+					case 'fiveTab' : 
+						tableFiveInfo(userNo);
+						break;
+					case 'sixTab' : 
+						tableSixInfo(userNo);
+						break;
+					case 'sevenTab' : 
+						tableSevenInfo(userNo);
+						break;
+					case 'eightTab' : 
+						tableEightInfo(userNo);
+						break;
+					case 'nineTab' :
+						tableNineInfo(userNo);
+						break;
+				}
+			});
+		}
+	}
+	
+	window.addEventListener("DOMContentLoaded" , function (){
+		searchList();
+	});
+	
 </script>
 </head>
 <body>
@@ -39,7 +235,7 @@
 			<!-- 현재위치 -->
 			<div class="row text-end loc">
 				<div class="col" style="font-size: 11px;">
-					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">신청자 조회</span>
+					<span> 홈 > 재판조력자관리 > </span><span style="color: #72a8fe;font-weight: bold;">등재명단 조회</span>
 				</div>
 			</div>
 			<!-- 타이틀 -->
@@ -49,47 +245,106 @@
 					<span style="font-weight: bold;">등재명단 조회</span>
 				</div>
 			</div>
-			
 			<!-- 안내 -->
 			<div class="contentsinbox">
+				<form id="searchForm">
+					<div class= "row">
+						<div class="col-10">
+							<div class="row my-2">
+								<div class="col-2 text-center">
+									<span> 재판조력자 </span>
+								</div>
+								<div class="col-4 d-grid">
+									<select name="trial_fcltt_proper_num" id="selectT10">
+										<option selected="selected" value="0">선택</option>
+										<c:forEach items="${t10_List}" var="list">
+											<option value="${list.trial_fcltt_proper_num}">${list.trial_fcltt_description}</option>
+										</c:forEach>	
+									</select>
+								</div>
+								<div class="col-2 text-center">
+									<span> 법원 </span>
+								</div>
+								<div class="col-4 d-grid">
+									<select name="court_proper_num"  id="selectT11" >
+										<option selected="selected" value="0">선택</option>
+										<c:forEach items="${t11_List}" var="list">
+											<option value="${list.court_proper_num}">${list.court_name}</option>
+										</c:forEach>	
+									</select>
+								</div>
+							</div>
+							<div class="row my-2">
+								<div class="col-3 d-grid">
+									<select name="searchType" id="selectSearchType">
+										<option selected="selected" value="">선택</option>
+										<option value="user_id">아이디</option>
+										<option value="user_name">이름</option>
+										<option value="user_email">이메일</option>
+										<option value="user_phone">연락처</option>
+									</select>
+								</div>
+								<div class="col d-grid">
+									<input name="searchWord" id="selectSearchWord">
+								</div>
+							</div>
+						</div>
+						<div class="col-2 d-grid align-items-center">
+							<a onclick="searchList()" class="btn btn-secondary btn-sm">검색</a>
+						</div>
+					</div>
+				</form>
+				<br>
+				<div class="row mx-0">
+					<div id="list-info" class="col"></div>
+				</div> 
 				<div class="row">
-					<div class="col">
-						<form action="excel" method="post">
-							<table class="table text-center">
-								  <thead>
-								    <tr>
-								      <th scope="col">번호</th>
-								      <th scope="col">이름</th>
-								      <th scope="col">연락처</th>
-								      <th scope="col">이메일</th>
-								      <th scope="col">신청일</th>
-								      <th scope="col">신청공고</th>
-								      <th scope="col">신청현황</th>
-								    </tr>
-								  </thead>
-								  <tbody>
-								  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
-								    <tr>
-								      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
-								      <td><a href="applicantManagementDetail?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}">${applicantManagementList.USER_NAME }</a></td>
-								      <td>${applicantManagementList.USER_PHONE}</td>
-								      <td>${applicantManagementList.USER_EMAIL}</td>
-								      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
-								      <td>${applicantManagementList.ANNOUNCE_TITLE}</td>
-								      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
-								    </tr>
-								    </c:forEach>
-								  </tbody>
-								</table>
-							<button type="submit" type="button" class="btn btn-primary">다운로드</button>		
-						</form>
+					<div class="col-3">
+						<ul id="pagingul">확인</ul>
+					</div>
+					<div class="col-6">페이징</div>
+					<div class="col-3">
+						<select id="dataPerPage">
+					        <option value="10">10개씩보기</option>
+					        <option value="15">15개씩보기</option>
+					        <option value="20">20개씩보기</option>
+						</select>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
-</div>	
+</div>
+
+<!-- User Detail Modal -->
+<div class="modal fade" id="userDetail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">User Detail Modal</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<!-- 실험용 -->
+		 		<div class="row text-center my-2 mx-1"><!-- 네비바 -->            
+		            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="fiveTab"><span>신청정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sixTab"><span>학력정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="sevenTab"><span>경력정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="eightTab"><span>자격증정보</span></div>
+		            <div class="col-2 py-3 nav-btn border bg-secondary bg-opacity-10" id="nineTab"><span>첨부파일</span></div>
+		        </div>
+		 		<div class="row mx-0">
+					<div id="nav-info" class="col">왜안됨</div>
+				</div> 
+			</div>
+			<div id="userDetailButtonBox" class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </html>

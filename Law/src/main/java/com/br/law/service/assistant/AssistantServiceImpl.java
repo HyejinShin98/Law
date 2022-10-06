@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import com.br.law.mapper.assistant.AssistantSQLMapper;
 import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
+import com.br.law.vo.Tb_011;
 import com.br.law.vo.Tb_013;
 import com.br.law.vo.Tb_014;
 
@@ -120,4 +122,20 @@ public class AssistantServiceImpl {
 	public int sumTb_013 (int aplcn_dtls_proper_num) {
 		 return assistantSQLMapper.sumTb_013(aplcn_dtls_proper_num); 	
 		}
+	
+	//1006 병훈 TB_011 List
+	public ArrayList<Tb_011> callTb_011() {
+		return assistantSQLMapper.callTb_011();
+	}
+	
+	//1006 병훈 TB_011 List
+	public List<Map<String, Object>> callRegistList(
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord) {
+		System.out.println("서비스 : 여기 왔니 ??");
+		return assistantSQLMapper.callRegistList(
+				trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+	}
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="header" class="row align-items-center" style="height: 85px;">
+<div id="header" class="row align-items-center" style="height: 90px;">
 	<div class="col-auto">
 		<a class="navbar-brand" href="../user/main"><img src="../resources/img/Main/로고.png"></a>
 	</div> 
@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<!-- 메뉴 -->
-		<div class="row text-center align-items-center mt-2 mb-3 fw-bold" style="font-size: 15px;">
+		<div class="row text-center align-items-center my-2" style="font-size: 15px;">
 			<c:choose>
 				<c:when test="${!empty admin}">
 					<div class="col">
@@ -49,7 +49,7 @@
 						</a>
 					</div>
 					<div class="col">
-						<a href="">
+						<a href="../admin/registrationList">
 							<span>재판조력자관리</span>
 						</a>
 					</div>
@@ -61,7 +61,7 @@
 				</c:when>
 				<c:otherwise>
 					<div class="col">
-						<a href="../user/applicationClause">
+						<a href="../user/applicationClause" onclick="testIMP()">
 							<span>감정인등재신청</span>
 						</a>
 					</div>
@@ -97,17 +97,13 @@
 	</div>
 </div>
 <!-- 로그인 Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
       <div class="modal-body">
 		<!-- 로그인 박스 -->
 		<div class="row text-center pt-3">
-			<div class="col align-self-center p-3">
+			<div class="col align-self-center py-1 px-3">
 				<!-- 아이디 비밀번호 입력 -->
 				<form id="chkID" method="post">
 					<div class="row">
@@ -148,13 +144,13 @@
 			</div>
 		</div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
 
     //로그인 Chk
@@ -184,6 +180,20 @@
         
     }
     
+    var IMP = window.IMP; // 생략 가능
+    IMP.init("imp65022454"); // 예: imp00000000
+    	
+    function testIMP(){
+    		IMP.certification({ 
+    			
+    	  	}, function (rsp) { // callback
+    		    if (rsp.success) {
+    		    	location.href = "../user/applicationClause";
+    		    } else {
+    		    	alert('실패');
+    		    }
+    		});
+    }
 </script>
    
    

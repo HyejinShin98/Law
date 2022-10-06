@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
+import com.br.law.vo.Tb_011;
 import com.br.law.vo.Tb_013;
 import com.br.law.vo.Tb_014;
 
@@ -37,5 +40,12 @@ public interface AssistantSQLMapper {
 	public void insertTb_014(Tb_014 tb_014);
 	public Tb_005 callTb_005(int aplcn_dtls_proper_num);
 	
+	// 1006 병훈 등재된 유저 List 출력
+	public ArrayList<Tb_011> callTb_011();
+	public List<Map<String, Object>> callRegistList(
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord);
 	
 }
