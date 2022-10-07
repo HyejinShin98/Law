@@ -61,44 +61,36 @@
 						</div>
 						
 						<!-- 수정 및 삭제 버튼 -->
-						<div class="row justify-content-end mt-3">
-							<div class="col-3 d-grid">
-								<a class="btn btn-secondary" href="./faqPage">목록으로</a>
+						<div class="row justify-content-end mt-3" style="font-size: 12px;">
+							<div class="col-3 d-grid text-end">
+								<form action="./faqPage" method="post">
+									<input type="submit" value="목록으로">
+								</form>
 							</div>
 						</div>
-								<c:if test="${!empty admin }">
-									<div class="row justify-content-end mt-3">
-										<div class="col-2 d-grid">
-											<a class="btn btn-primary" href="./updateFaqPage?faq_proper_num=${data.tb_004.faq_proper_num }">수정</a>
-										</div>
-										<div class="col-2 d-grid">
-											<a class="btn btn-primary" href="./deleteFaqProcess?faq_proper_num=${data.tb_004.faq_proper_num }">삭제</a>
-										</div>
-									</div>
-								</c:if>
-						
-						
+						<div class="row justify-content-end mt-3" style="font-size: 12px;">
+							<div class="col-2 d-grid text-end">
+								<form action="./deleteFaqProcess?faq_proper_num=${data.tb_004.faq_proper_num }" method="post">
+									<c:if test="${!empty admin }">
+										<input type="submit" value="삭제">
+									</c:if>
+								</form>
+							</div>
+							<div class="col d-grid text-end">
+								<form action="./updateFaqPage?faq_proper_num=${data.tb_004.faq_proper_num }" method="post">
+									<c:if test="${!empty admin }">
+										<input type="submit" value="수정">
+									</c:if>
+								</form>
+							</div>
+						</div>
+	
 					</div>
 				</div>
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script

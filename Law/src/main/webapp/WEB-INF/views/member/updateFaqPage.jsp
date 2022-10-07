@@ -16,38 +16,67 @@
 	<div class="col container-fluid" style="width: 960px;">
 		<jsp:include page="../common/header.jsp"></jsp:include>
 		
+		<!-- 구분 이미지 -->
 		<img src="../resources/img/sub_topimg.gif">
 		
-		<div class="row">
+		<!-- 내용 -->
+		<div class="row mt-2">
 			<!-- 사이드 네비바 -->
 			<jsp:include page="../common/localNav.jsp"></jsp:include>
 				
-				<div class="col">
-					<div class="row">
-						<div class="col"><h2>FAQ 수정 페이지</h2></div>
-					</div>
-					<!-- 제목 -->
-					<div class="row">
+				<!-- 본문 -->
+				<div class="col m-3">
+					<div class="row mb-3">
 						<div class="col">
-							<form action="./updateFaqProcess" method="post">
-								<input name="faq_ask_content" value="${data.tb_004.faq_ask_content }">
-								<!-- 답변내용 -->
-								<div class="row">
-									<div class="col">
-										<textarea name="faq_ask_comment">${data.tb_004.faq_ask_comment }</textarea>
-										<input type="hidden" name="faq_proper_num" value="${data.tb_004.faq_proper_num}">
-									</div>
+							<div class="row text-end">
+								<div class="col" style="font-size: 12px;">
+									<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: bold">공지사항</span>
 								</div>
-								<div class="row">
-									<div class="col">
-										<input type="submit" value="수정하기">
-									</div>
-								</div>
-							</form>
+							</div>
+							<!-- 상세보기 내용 -->
+							<div class="row m-3" style="font-size: 12px;">
+								<div class="col  border-top border-2 border-secondary">
+									<form action="./updateFaqProcess" method="post">
+										<table class="table">
+											<colgroup>
+												<col width="17%">
+												<col width="">
+											</colgroup>
+											<tbody>
+												<tr>
+													<th scope="row">질문</th>
+													<td class="d-grid">
+														<input type="text" name="faq_ask_content" placeholder="질문" value="${data.tb_004.faq_ask_content }">
+													</td>
+												</tr>
+												<tr>
+													<th scope="row" class="totalth text-center" colspan="4">답변</th>
+												</tr>
+												<tr>
+													<td colspan="4">
+														<textarea rows="12" name="faq_ask_comment" style="width: 100%; border: none; overflow: auto; font-size: 75%/1.4em; color: #747474"">${data.tb_004.faq_ask_comment}</textarea>
+	
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="row mt-3 justify-content-end">
+											<div class="col-2 d-grid">
+												<input type="hidden" name="faq_proper_num" value="${data.tb_004.faq_proper_num}"> 
+												<input type="submit" value="수정하기">
+											</div>
+										</div>
+									</form>
+								</div>		
+								<form action="./faqPage" method="post">
+									<input type="submit" value="목록으로">
+								</form>
+							</div>
 						</div>
 					</div>
 
 				</div>
+				<jsp:include page="../common/footer.jsp"></jsp:include>
 		</div>
 	</div>
 
