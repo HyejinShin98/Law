@@ -175,7 +175,48 @@
 	
 	<!-- 1006 병훈 등재된 유저정보 리스트 출력 -->
 	<select id="callRegistList" resultType="map">
-		SELECT * FROM TB_001 t1,TB_005 t5,TB_010 t10,TB_011 t11, TB_014 t14
+		SELECT table2.* FROM(
+			SELECT table1.*, ROWNUM as rnum FROM(
+				SELECT t1.USER_NAME, t1.USER_PHONE, t1.USER_EMAIL, t5.APLCN_DTLS_PROPER_NUM, 
+					t11.COURT_NAME, t10.TRIAL_FCLTT_DESCRIPTION, t14.ACCEPT_ACT_YN
+		 		FROM TB_001 t1,TB_005 t5,TB_010 t10,TB_011 t11, TB_014 t14
+				WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+				AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
+				AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
+				AND t5.APLCN_DTLS_PROPER_NUM = t14.APLCN_DTLS_PROPER_NUM
+				<if test="trial_fcltt_proper_num != 0">
+					AND t14.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
+				</if>
+				<if test="court_proper_num != 0">
+					AND t14.COURT_PROPER_NUM = #{court_proper_num}
+				</if>
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'user_id'">
+							AND t1.USER_ID LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_name'">
+							AND t1.USER_NAME  LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_email'">
+							AND t1.USER_EMAIL  LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_phone'">
+							AND t1.USER_PHONE  LIKE '%' || #{searchWord } || '%'
+						</when>
+					</choose>
+				</if>
+				ORDER BY t14.ACCEPT_PROPER_NUM  DESC
+			)table1
+		)table2
+		<![CDATA[
+		WHERE table2.rnum >= (#{pageNum}-1)*10+1 and table2.rnum <= #{pageNum}*10
+		]]>
+	</select>
+	
+	<select id="countRegistList" resultType="int">
+		SELECT COUNT(*) 
+		FROM TB_001 t1,TB_005 t5,TB_010 t10,TB_011 t11, TB_014 t14
 		WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
 		AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
 		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
@@ -201,8 +242,7 @@
 					AND t1.USER_PHONE  LIKE '%' || #{searchWord } || '%'
 				</when>
 			</choose>
-		</if> 
+		</if>
 	</select>
-	
 	
 </mapper>

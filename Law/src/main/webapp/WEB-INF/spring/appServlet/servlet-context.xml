@@ -34,14 +34,14 @@
 	
 	
 	<!-- 인터셉터 설정... 필터 개념... -->
+	<!-- 유저 인터셉터 -->
 	<interceptors>
 		<interceptor>
-		<!-- 1 -->
-		
+			<!-- 1 -->
 			<mapping path="/user/applicationClause"/>
 			<mapping path="/user/applicationDisqualification"/>
 			
-		<!-- 2 -->
+			<!-- 2 -->
 			<mapping path="/user/userDetail"/>
 			<mapping path="/user/fileUpload"/>
 			<mapping path="/user/license"/>
@@ -56,12 +56,13 @@
 			<mapping path="/user/myActive"/>
 			<mapping path="/user/myPause"/>
 			
-		<!-- 3 -->
-		
+			<!-- 3 -->
 			<beans:bean class="com.br.law.interceptor.SessionInterceptor"></beans:bean>
+			
+			
 		</interceptor>
 	</interceptors>	
-	<!--  -->
+	<!-- 어드민 인터셉터 -->
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/selUserList"/>
@@ -71,6 +72,9 @@
 			<mapping path="/admin/managementEvaluationtable"/>
 			<mapping path="/admin/evaluationApplicantsList"/>
 			<mapping path="/admin/evaluationApplicants"/>
+			
+			<!-- 22.10.07 병훈 -->
+			<mapping path="/admin/registrationList"/>
 			
 			<beans:bean class="com.br.law.interceptor.AdminSessionInterceptor"></beans:bean>
 		</interceptor>

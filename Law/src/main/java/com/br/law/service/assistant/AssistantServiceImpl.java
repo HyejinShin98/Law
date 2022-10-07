@@ -128,14 +128,21 @@ public class AssistantServiceImpl {
 		return assistantSQLMapper.callTb_011();
 	}
 	
-	//1006 병훈 TB_011 List
+	//1006 병훈 DataList
 	public List<Map<String, Object>> callRegistList(
 			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
 			@Param("court_proper_num") Integer court_proper_num, 
 			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord,
+			@Param("pageNum") int pageNum) {
+		return assistantSQLMapper.callRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord, pageNum);
+	}
+	
+	public int countRegistList(
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
 			@Param("searchWord") String searchWord) {
-		System.out.println("서비스 : 여기 왔니 ??");
-		return assistantSQLMapper.callRegistList(
-				trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+		return assistantSQLMapper.countRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
 	}
 }

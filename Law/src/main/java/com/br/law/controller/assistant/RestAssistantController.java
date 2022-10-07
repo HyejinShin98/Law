@@ -159,13 +159,26 @@ public class RestAssistantController {
 			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
 			@Param("court_proper_num") Integer court_proper_num, 
 			@Param("searchType") String searchType, 
-			@Param("searchWord") String searchWord){
+			@Param("searchWord") String searchWord,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		System.out.println("callRegistUser : 여기 왔니 ??");
+		int boardCount = assistantServiceImpl.countRegistList(
+				trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+		int totalPageCount = (int)Math.ceil(boardCount/10.0);
+		int startPage = ((pageNum-1)/5)*5 + 1;
+		int endPage = ((pageNum-1)/5+1)*5;
+		if(endPage > totalPageCount) {
+			endPage = totalPageCount;
+		}
 		
 		map.put("result", "success");
-		map.put("list", assistantServiceImpl.callRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord));
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("currentPageNum", pageNum);
+		map.put("totalPageCount", totalPageCount);
+		map.put("list", assistantServiceImpl.callRegistList(
+				trial_fcltt_proper_num, court_proper_num, searchType, searchWord, pageNum));
 	
 		return map;
 	}

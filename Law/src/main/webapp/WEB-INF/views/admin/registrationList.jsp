@@ -40,12 +40,18 @@
 </style>
 <script>
 
-	function searchList() {
+	function searchList(page) {
 		var formData = new FormData();
 		formData.append('trial_fcltt_proper_num', document.getElementById("selectT10").value);
 		formData.append('court_proper_num', document.getElementById("selectT11").value);
 		formData.append('searchType', document.getElementById("selectSearchType").value);
 		formData.append('searchWord', document.getElementById("selectSearchWord").value);
+		
+		if(page == null){
+			formData.append('pageNum', 1);
+		}else{
+			formData.append('pageNum', page);
+		}
 		
 		let entries = formData.entries();
 		for (const pair of entries) {
@@ -187,6 +193,78 @@
 	               	i ++;
 				}
 	            ListBox.appendChild(rowBox);
+	            
+	            //페이징 네비게이션 
+	            var pagingTarget = document.getElementById("pagingTarget");
+	            pagingTarget.innerHTML = "";
+	            
+	            if(jsonObj.startPage <= 1){
+	            	var pagingLi1 = document.createElement("li");
+	            	pagingLi1.setAttribute("class", "page-item disabled");
+	            	pagingTarget.appendChild(pagingLi1);
+	            	
+	            	var Li1A = document.createElement("a");
+	            	Li1A.setAttribute("class", "page-link");
+	            	Li1A.setAttribute("onclick", "searchList("+jsonObj.startPage-1+")");
+	            	Li1A.innerText = "<";
+	            	pagingLi1.appendChild(Li1A);
+	            }else{
+	            	var pagingLi1 = document.createElement("li");
+	            	pagingLi1.setAttribute("class", "page-item");
+	            	pagingTarget.appendChild(pagingLi1);
+	            	
+	            	var Li1A = document.createElement("a");
+	            	Li1A.setAttribute("class", "page-link");
+	            	Li1A.setAttribute("onclick", "searchList("+jsonObj.startPage-1+")");
+	            	Li1A.innerText = "<";
+	            	pagingLi1.appendChild(Li1A);
+	            }
+	            
+	            for(var i = jsonObj.startPage; i <= jsonObj.endPage; i++){
+	            	if(i == jsonObj.currentPageNum){
+	            		var pagingLi = document.createElement("li");
+	            		pagingLi.setAttribute("class", "page-item active");
+		            	pagingTarget.appendChild(pagingLi);
+		            	
+		            	var LiA = document.createElement("a");
+		            	LiA.setAttribute("class", "page-link");
+		            	LiA.setAttribute("onclick", "searchList("+i+")");
+		            	LiA.innerText = i;
+		            	pagingLi.appendChild(LiA);
+	            	}else{
+	            		var pagingLi = document.createElement("li");
+	            		pagingLi.setAttribute("class", "page-item");
+		            	pagingTarget.appendChild(pagingLi);
+		            	
+		            	var LiA = document.createElement("a");
+		            	LiA.setAttribute("class", "page-link");
+		            	LiA.setAttribute("onclick", "searchList("+i+")");
+		            	LiA.innerText = i;
+		            	pagingLi.appendChild(LiA);
+	            	}
+	            }
+	            
+	            if(jsonObj.endPage >= jsonObj.totalPageCount){
+	            	var pagingLi2 = document.createElement("li");
+	            	pagingLi2.setAttribute("class", "page-item disabled");
+	            	pagingTarget.appendChild(pagingLi2);
+	            	
+	            	var Li2A = document.createElement("a");
+	            	Li2A.setAttribute("class", "page-link");
+	            	Li2A.setAttribute("onclick", "searchList("+jsonObj.startPage+1+")");
+	            	Li2A.innerText = ">";
+	            	pagingLi2.appendChild(Li2A);
+	            }else{
+	            	var pagingLi2 = document.createElement("li");
+	            	pagingLi2.setAttribute("class", "page-item");
+	            	pagingTarget.appendChild(pagingLi2);
+	            	
+	            	var Li2A = document.createElement("a");
+	            	Li2A.setAttribute("class", "page-link");
+	            	Li2A.setAttribute("onclick", "searchList("+jsonObj.startPage+1+")");
+	            	Li2A.innerText = "<";
+	            	pagingLi2.appendChild(Li2A);
+	            }
 			}
 		}
 		xhr.open("post" , "../admin/callRegistUser"); //리퀘스트 세팅..
@@ -230,7 +308,7 @@
 	}
 	
 	window.addEventListener("DOMContentLoaded" , function (){
-		searchList();
+		searchList(1);
 	});
 	
 </script>
@@ -316,20 +394,19 @@
 					</div>
 				</form>
 				<br>
+				<!-- 리스트출력 target -->
 				<div class="row mx-0">
-					<div id="list-info" class="col"></div>
-				</div> 
-				<div class="row">
-					<div class="col-3">
-						<ul id="pagingul">확인</ul>
+					<div id="list-info" class="col">
 					</div>
-					<div class="col-6">페이징</div>
-					<div class="col-3">
-						<select id="dataPerPage">
-					        <option value="10">10개씩보기</option>
-					        <option value="15">15개씩보기</option>
-					        <option value="20">20개씩보기</option>
-						</select>
+				</div>
+				
+				<!-- 페이징 target --> 
+				<div class="row">
+					<div class="col">
+						<nav aria-label="Page navigation example">
+							<ul id ="pagingTarget" class="pagination" style="place-content: center;">
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>

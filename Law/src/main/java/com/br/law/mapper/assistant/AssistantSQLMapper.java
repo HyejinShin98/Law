@@ -46,6 +46,13 @@ public interface AssistantSQLMapper {
 			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
 			@Param("court_proper_num") Integer court_proper_num, 
 			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord,
+			@Param("pageNum") int pageNum);
+	
+	public int countRegistList(
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
 			@Param("searchWord") String searchWord);
 	
 }
