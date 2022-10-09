@@ -75,6 +75,7 @@
 			
 			<!-- 22.10.07 병훈 -->
 			<mapping path="/admin/registrationList"/>
+			<mapping path="/admin/searchCondition"/>
 			
 			<beans:bean class="com.br.law.interceptor.AdminSessionInterceptor"></beans:bean>
 		</interceptor>

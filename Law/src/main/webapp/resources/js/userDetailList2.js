@@ -55,25 +55,10 @@ function tableOneInfo(userNo){
             var rowBox = document.createElement("div");
             rowBox.classList.add("row");
             
-            var subNab1 = document.createElement("div");
-            subNab1.classList.add("row");
-            subNab1.classList.add("mx-0");
-            subNab1.classList.add("border-bottom");
-            subNab1.classList.add("pb-4");
-            rowBox.appendChild(subNab1);
-
-            var subNab1Span = document.createElement("span");
-            subNab1Span.innerText="기본정보";
-            subNab1.appendChild(subNab1Span);
-
-            var subNab1SpanFromI = document.createElement("i");
-            subNab1SpanFromI.classList.add("bi");
-            subNab1SpanFromI.classList.add("bi-circle-fill");
-            subNab1Span.appendChild(subNab1SpanFromI);
-            
             var tableRowBox = document.createElement("div");
             tableRowBox.classList.add("row");
             tableRowBox.classList.add("px-0");
+            tableRowBox.classList.add("my-2");
             tableRowBox.classList.add("mx-0");
             rowBox.appendChild(tableRowBox);
 
@@ -268,26 +253,11 @@ function tableFiveInfo(userNo){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
 				tableRow.classList.add("mx-0");
+				tableRow.classList.add("my-2");
 				tableRow.classList.add("px-0");
                 rowBox.appendChild(tableRow);
 
@@ -387,31 +357,13 @@ function tableSixInfo(userNo){
 
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
-   
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
 
                 //table시작
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
                 tableRow.classList.add("mx-0");
+                tableRow.classList.add("my-2");
                 tableRow.classList.add("px-0");
                 rowBox.appendChild(tableRow);
 
@@ -538,29 +490,12 @@ function tableSevenInfo(userNo){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row"); 
                 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
                 //table시작
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
                 tableRow.classList.add("mx-0");
+                tableRow.classList.add("my-2");
                 tableRow.classList.add("px-0");
                 rowBox.appendChild(tableRow);
 
@@ -775,31 +710,12 @@ function tableEightInfo(userNo){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
                 
-                
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
-
                 //table시작
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
                 tableRow.classList.add("mx-0");
+                tableRow.classList.add("my-2");
                 tableRow.classList.add("px-0");
                 rowBox.appendChild(tableRow);
 
@@ -903,31 +819,12 @@ function tableNineInfo(userNo){
                 var rowBox = document.createElement("div");
                 rowBox.classList.add("row");
 
- 
-                var subNab1 = document.createElement("div");
-                subNab1.classList.add("row");
-                subNab1.classList.add("mx-0");
-                subNab1.classList.add("border-bottom");
-                subNab1.classList.add("pb-4");
-                rowBox.appendChild(subNab1);
-
-                var subNab1Span = document.createElement("span");
-                subNab1Span.innerText="기본정보";
-                subNab1.appendChild(subNab1Span);
-
-                var subNab1SpanFromI = document.createElement("i");
-                subNab1SpanFromI.classList.add("bi");
-                subNab1SpanFromI.classList.add("bi-circle-fill");
-                subNab1Span.appendChild(subNab1SpanFromI);
-
-                //기본정보 끝
-
-
                 //table시작
 
                 var tableRow = document.createElement("div");
                 tableRow.classList.add("row");
                 tableRow.classList.add("mx-0");
+                tableRow.classList.add("my-2");
                 tableRow.classList.add("px-0");
                 rowBox.appendChild(tableRow);
 

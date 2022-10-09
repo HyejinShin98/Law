@@ -57,8 +57,8 @@
 						<table class="table table-bordered" style="text-align : center; height: 800px; font-size:12px;">
 						  <thead>
 						  	<tr>
-						      <th colspan="3">신청인 이름 : ?</th>		     
-						      <th colspan="3">주민등록 번호 : ?</th>		      		 
+						      <th colspan="3">신청인이름</th>		     
+						      <th colspan="3">주민등록번호</th>		      		 
 						    </tr>		  
 						    <tr>
 						      <th rowspan="2">평정항목</th>		     
@@ -113,7 +113,7 @@
 						    	<td scope="col">3</td>
 						    </tr>
 						    <tr>
-						    	<td colspan="5">신청인 사무소 주소지 : ?</td>
+						    	<td colspan="5">신청인 사무소 주소지</td>
 						    </tr>
 						   	<tr>
 						   		<td rowspan="3">인성평가</td>
