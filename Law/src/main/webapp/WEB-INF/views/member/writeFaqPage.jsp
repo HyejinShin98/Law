@@ -30,7 +30,7 @@
 						<div class="col">
 							<div class="row text-end">
 								<div class="col" style="font-size: 12px;">
-									<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: bold">공지사항</span>
+									<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: bold">FAQ</span>
 								</div>
 							</div>	
 						

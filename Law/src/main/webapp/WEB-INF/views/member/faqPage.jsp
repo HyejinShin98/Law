@@ -26,7 +26,7 @@
 			<div class="col m-3">
 				<div class="row text-end">
 					<div class="col" style="font-size : 11px;">
-						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: hold;">공지사항</span>
+						<span> 홈 > 공지사항 > </span><span style="color: #72a8fe; font-weight: hold;">FAQ</span>
 					</div>
 				</div>		
 				<!-- FAQ 제목 -->
