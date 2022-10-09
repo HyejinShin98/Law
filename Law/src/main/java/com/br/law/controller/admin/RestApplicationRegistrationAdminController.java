@@ -102,6 +102,24 @@ public class RestApplicationRegistrationAdminController {
 		return map;
 
 	}
+	
+//	//1차 심사 탈락
+//	@RequestMapping("evaluationProcess")
+//	public Map<String, Object> evaluationProcess(int aplcn_dtls_proper_num) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		applicationRegistrationAdminService.evaluationCpUp(aplcn_dtls_proper_num);
+//		map.put("result", "success");
+//		return map;
+//	}
+//	
+//	//1차 심사 통과
+//	@RequestMapping("companionProcess")
+//	public Map<String, Object> companionProcess(int aplcn_dtls_proper_num) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		applicationRegistrationAdminService.companionUp(aplcn_dtls_proper_num);
+//		map.put("result", "success");
+//		return map;
+//	}
 
 	
 }

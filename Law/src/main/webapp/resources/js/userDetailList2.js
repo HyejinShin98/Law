@@ -618,12 +618,12 @@ function tableSevenInfo(userNo){
                 //테이블 시작
 
                 var tableRow2 = document.createElement("div");
-                tableRow2.setAttribute("class", "my-2");
+                tableRow2.setAttribute("class", "row my-2 px-0");
                 rowBox.appendChild(tableRow2);
 
                 var table2 = document.createElement("table");
                 table2.classList.add("table");
-                table2.classList.add("table-bordereed");
+                table2.classList.add("table-bordered");
                 tableRow2.appendChild(table2);
 
                 var colGroup2 = document.createElement("colgroup");

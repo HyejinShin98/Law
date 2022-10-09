@@ -97,16 +97,17 @@ public class ApplicationRegistrationAdminController {
 		applicationRegistrationAdminService.upComplete(aplcn_dtls_proper_num);
 		return "redirect:../user/main";
 	}
+	
 	@RequestMapping("evaluationProcess")
 	public String evaluationProcess(int aplcn_dtls_proper_num) {
 		applicationRegistrationAdminService.evaluationCpUp(aplcn_dtls_proper_num);
-		return "redirect:../admin/selUserList";
+		return "redirect:../admin/searchCondition";
 	}
 	
 	@RequestMapping("companionProcess")
 	public String companionProcess(int aplcn_dtls_proper_num) {
 		applicationRegistrationAdminService.companionUp(aplcn_dtls_proper_num);
-		return "redirect:../admin/selUserList";
+		return "redirect:../admin/searchCondition";
 	}
 	
 	@RequestMapping("fileDownLoadProcess")
