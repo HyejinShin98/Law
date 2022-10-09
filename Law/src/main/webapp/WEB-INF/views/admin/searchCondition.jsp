@@ -43,6 +43,14 @@ ul li.on {
 ul li.on a {
     color: #fff;
 }
+
+.modal-body th{
+	font-size : 14px
+}
+
+.modal-body td{
+	font-size : 13px
+}
 </style>
 
 <title>조건별 조회</title>
@@ -999,7 +1007,7 @@ function search(){
 				<h5 class="modal-title" id="staticBackdropLabel">User Detail Modal</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body m-2">
 				<!-- 실험용 -->
 		 		<div class="row text-center my-2 mx-1"><!-- 네비바 -->            
 		            <div class="col-2 py-3 nav-btn border border-bottom-0 text-primary text-opacity-50 fw-bold" id="oneTab"><span>기본정보</span></div>

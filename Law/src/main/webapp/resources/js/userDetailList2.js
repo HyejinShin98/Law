@@ -615,27 +615,10 @@ function tableSevenInfo(userNo){
                 bodyTr3Td.innerText= jsonObj.map.WORK_DESCRIPTION;
                 bodyTr3.appendChild(bodyTr3Td);
 
-
-                //기본정보 네비
-                var subNab2 = document.createElement("div");
-                subNab2.classList.add("row");
-                subNab2.classList.add("mx-0");
-                subNab2.classList.add("border-bottom");
-                subNab2.classList.add("pb-4");
-                rowBox.appendChild(subNab2);
-
-                var subNab2Span = document.createElement("span");
-                subNab2Span.innerText="기본정보";
-                subNab2.appendChild(subNab2Span);
-
-                var subNab2SpanFromI = document.createElement("i");
-                subNab2SpanFromI.classList.add("bi");
-                subNab2SpanFromI.classList.add("bi-circle-fill");
-                subNab2Span.appendChild(subNab2SpanFromI);
-
                 //테이블 시작
 
                 var tableRow2 = document.createElement("div");
+                tableRow2.setAttribute("class", "my-2");
                 rowBox.appendChild(tableRow2);
 
                 var table2 = document.createElement("table");
