@@ -75,12 +75,16 @@ function tableFiveInfo(){
 
                 var bodyTr1Th1 = document.createElement("th");
                 bodyTr1Th1.classList.add("table-light");
-                bodyTr1Th1.innerText="소송사건 당사자 경력 내용" + jsonObj.userInfo.applicantInfo.LIGTN_CASE_CARER_YN;
+                bodyTr1Th1.innerText="소송사건 당사자 경력 내용 " + jsonObj.userInfo.applicantInfo.LIGTN_CASE_CARER_YN;
                 bodyTr1.appendChild(bodyTr1Th1);
 
                 var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.innerText=jsonObj.userInfo.applicantInfo.LIGTN_CASE_CARER_ETC;
-                bodyTr1.appendChild(bodyTr1Td1);
+				if(jsonObj.userInfo.applicantInfo.LIGTN_CASE_CARER_ETC == undefined) {
+					bodyTr1Td1.innerText = '';
+				} else {
+					bodyTr1Td1.innerText=jsonObj.userInfo.applicantInfo.LIGTN_CASE_CARER_ETC;
+				}
+				bodyTr1.appendChild(bodyTr1Td1);
 
                 // var bodyTr1Th2 = document.createElement("th");
                 // bodyTr1Th2.classList.add("text-center");
@@ -106,8 +110,12 @@ function tableFiveInfo(){
                 bodyTr2.appendChild(bodyTr2Th1);
 
                 var bodyTr2Td1 = document.createElement("td");
-                bodyTr2Td1.innerText=jsonObj.userInfo.applicantInfo.INSRN_INDST_CARER_ETC;
-                bodyTr2.appendChild(bodyTr2Td1);
+				if(jsonObj.userInfo.applicantInfo.INSRN_INDST_CARER_ETC == undefined) {
+					bodyTr2Td1.innerText = '';
+				} else {
+					 bodyTr2Td1.innerText=jsonObj.userInfo.applicantInfo.INSRN_INDST_CARER_ETC;
+				}
+				 bodyTr2.appendChild(bodyTr2Td1);
 
                 var bodyTr3 = document.createElement("tr");
                 bodyTr3.setAttribute("rowspan", "2");
@@ -123,8 +131,14 @@ function tableFiveInfo(){
                 bodyTr3.appendChild(bodyTr3Th1);
 
                 var bodyTr3Td1 = document.createElement("td");
-                bodyTr3Td1.innerText= jsonObj.userInfo.applicantInfo.CRIMINAL_PENALTY_CARER_ETC;
-                bodyTr3.appendChild(bodyTr3Td1);
+				if(jsonObj.userInfo.applicantInfo.CRIMINAL_PENALTY_CARER_ETC == undefined) {
+					bodyTr3Td1.innerText = '';
+				} else {
+					  bodyTr3Td1.innerText= jsonObj.userInfo.applicantInfo.CRIMINAL_PENALTY_CARER_ETC;
+				}
+				  bodyTr3.appendChild(bodyTr3Td1);
+                
+                
                 
                 commentListBox.appendChild(rowBox);
 
@@ -697,23 +711,26 @@ function tableNineInfo(){
 
                 var bodyTr1Td1 = document.createElement("td");
                 bodyTr1Td1.classList.add("text-center");
-                bodyTr1Td1.innerText= dataList.file_type;
+                bodyTr1Td1.innerText= dataList.FILE_TYPE;
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Td2 = document.createElement("td");
                 bodyTr1Td2.classList.add("text-center");
-                bodyTr1Td2.innerText = dataList.file_code;
+                bodyTr1Td2.innerText = dataList.FILE_CODE;
                 bodyTr1.appendChild(bodyTr1Td2);
 
                 var bodyTr1Td3 = document.createElement("td");
                 bodyTr1.appendChild(bodyTr1Td3);
                 
+                if(dataList.ORIGINAL_FILE_NAME != undefined){
                 var bodyTr1Td3A = document.createElement("a");
                 bodyTr1Td3A.classList.add("text-center");
-                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
+                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +dataList.APLCN_ATCH_FILE_PROPER_NUM);
                 bodyTr1Td3A.classList.add("text-decoration-none");
-                bodyTr1Td3A.innerText = dataList.original_file_name;
+                bodyTr1Td3A.innerText = dataList.ORIGINAL_FILE_NAME;
                 bodyTr1Td3.appendChild(bodyTr1Td3A);
+                }
+                
                }
                 
                 commentListBox.appendChild(rowBox);

@@ -52,36 +52,33 @@
 			
 			<!-- 안내 -->
 			<div class="contentsinbox">
-				<div class="row">
-					<div class="col">
-						<table class="table text-center">
+				<div class="row mx-0 px-0">
+						<table class="text-center table table-bordered">
 							  <thead>
 							    <tr>
-							      <th scope="col">번호</th>
-							      <th scope="col">이름</th>
-							      <th scope="col">신청공고</th>
-							      <th scope="col">조력자 분류</th>	
-							      <th scope="col">신청일</th>
-							      <th scope="col">신청현황</th>
+							      <th scope="col" class="table-light px-0">번호</th>
+							      <th scope="col" class="table-light">이름</th>
+							      <th scope="col" class="table-light">신청공고</th>
+							      <th scope="col" class="table-light">조력자 분류</th>	
+							      <th scope="col" class="table-light">신청일</th>
+							      <th scope="col" class="table-light">신청현황</th>
 							    </tr>
 							  </thead>
 							  <tbody>
-							  
 							  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
-							  <c:if test="${applicantManagementList.APLCN_DTLS_STS == 'evaluationCp'}">
-							    <tr onclick="location.href='evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.APLCN_DTLS_PROPER_NUM}'">
-							      <th scope="row">${applicantManagementList.APLCN_DTLS_PROPER_NUM}</th>
-							      <td>${applicantManagementList.USER_NAME }</a></td>
-							       <td>${applicantManagementList.ANNOUNCE_TITLE}</td>
-							       <td>${applicantManagementList.TRIAL_FCLTT_SBCLS_CODE}</td>
-							      <td><fmt:formatDate value="${applicantManagementList.APLCN_DTLS_DATE }" pattern="yy.MM.dd"/></td>				      
-							      <td>${applicantManagementList.APLCN_DTLS_STS}</td>
+							  <c:if test="${applicantManagementList.aplcn_dtls_sts == '1차심사완료'}">
+							    <tr onclick="location.href='evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.aplcn_dtls_proper_num}'">
+							      <td>${applicantManagementList.aplcn_dtls_proper_num}</td>
+							      <td>${applicantManagementList.user_name }</td>
+							       <td>${applicantManagementList.announce_title}</td>
+							       <td>${applicantManagementList.trial_fcltt_description}</td>
+							      <td><fmt:formatDate value="${applicantManagementList.aplcn_dtls_date }" pattern="yy.MM.dd"/></td>				      
+							      <td>${applicantManagementList.aplcn_dtls_sts}</td>
 							    </tr>
 							    </c:if>
 							   </c:forEach>
 							</tbody>
 						</table>
-					</div>
 				</div>
 			</div>
 		</div>

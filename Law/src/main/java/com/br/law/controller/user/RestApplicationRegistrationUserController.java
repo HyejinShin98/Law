@@ -142,7 +142,7 @@ public class RestApplicationRegistrationUserController {
 		int i = 0;
 		for(MultipartFile file : fileList) {
 
-			String path ="C:/uploadFiles/";
+			String path ="/uploadFiles/";
 			
 			String originFileName = file.getOriginalFilename();
 			
@@ -185,6 +185,13 @@ public class RestApplicationRegistrationUserController {
 		
 		return map;
 	}
+	
+	/*
+	 * @RequestMapping("hidden") public Map<String, Object> hidden(HttpSession
+	 * session){
+	 * 
+	 * session.setAttribute(, session); }
+	 */
 	
 	
 

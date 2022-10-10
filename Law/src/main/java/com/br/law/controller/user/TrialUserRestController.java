@@ -254,7 +254,7 @@ public class TrialUserRestController {
 			Iterator<String> iter = request.getFileNames(); 
 			MultipartFile mfile = null; 
 		    String fieldName = "";
-		    String path = "C:uploadFiles/";
+		    String path = "uploadFiles/";
 		    
 		    int i=0;
 		    while (iter.hasNext()) { 
@@ -298,7 +298,7 @@ public class TrialUserRestController {
 			
 			
 			/*
-			String path = "C:uploadFiles/";
+			String path = "uploadFiles/";
 			int i=0; 
 			for(MultipartFile file : fileList) {
 				String originFileName = file.getOriginalFilename();
@@ -374,7 +374,7 @@ public class TrialUserRestController {
 			
 			int i=0;
 			for(MultipartFile file : fileList) {
-				String path = "C:uploadFiles/";
+				String path = "uploadFiles/";
 				String originFileName = file.getOriginalFilename();
 				String nameFile = System.currentTimeMillis() + originFileName;
 				File userFolder = new File(path + userNo + userName);

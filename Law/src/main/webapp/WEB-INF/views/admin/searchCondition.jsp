@@ -123,6 +123,8 @@ function allUser(){
 	    		rowBox.appendChild(form);
 	    		          
 	    		var btn = document.createElement("button");	
+	    		btn.classList.add("btn");
+	    		btn.classList.add("btn-primary");
 	            btn.innerText="다운로드";
 	            
 	            var tableRow = document.createElement("div");
@@ -217,39 +219,39 @@ function allUser(){
             	 
             	 
 	             var bodyTr1 = document.createElement("tr");
-	             bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+	             bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.aplcn_dtls_proper_num+")");
 	             bodyTr1.setAttribute("data-bs-toggle", "modal");
 	             bodyTr1.setAttribute("data-bs-target", "#userDetail");
 	             tbody.appendChild(bodyTr1);
 	
 	             var bodyTr1Td1 = document.createElement("td");
 	             bodyTr1Td1.classList.add("text-center");
-	             bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+	             bodyTr1Td1.innerText= dataList.aplcn_dtls_proper_num;
 	             bodyTr1.appendChild(bodyTr1Td1);
 	
 	             var bodyTr1Td2 = document.createElement("td");
 	             bodyTr1Td2.classList.add("text-center");
-	             bodyTr1Td2.innerText = dataList.USER_NAME;
+	             bodyTr1Td2.innerText = dataList.user_name;
 	             bodyTr1.appendChild(bodyTr1Td2);
 	             
 	             var bodyTr1Td3 = document.createElement("td");
 	             bodyTr1Td3.classList.add("text-center");
-	             bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+	             bodyTr1Td3.innerText = dataList.announce_title;
 	             bodyTr1.appendChild(bodyTr1Td3);
 	             
 	             var bodyTr1Td4 = document.createElement("td");
 	             bodyTr1Td4.classList.add("text-center");
-	             bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+	             bodyTr1Td4.innerText = dataList.trial_fcltt_description;
 	             bodyTr1.appendChild(bodyTr1Td4);
 	             
 	             var bodyTr1Td5 = document.createElement("td");
 	             bodyTr1Td5.classList.add("text-center");
-	             bodyTr1Td5.innerText = moment(dataList.APLCN_DTLS_DATE).format('YYYY-MM-DD');
+	             bodyTr1Td5.innerText = moment(dataList.aplcn_dtls_date).format('YYYY-MM-DD');
 	             bodyTr1.appendChild(bodyTr1Td5);
 			
 	             var bodyTr1Td6 = document.createElement("td");
 	             bodyTr1Td6.classList.add("text-center");
-	             bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+	             bodyTr1Td6.innerText = dataList.aplcn_dtls_sts;
 	             bodyTr1.appendChild(bodyTr1Td6);
              
              }
@@ -406,6 +408,8 @@ function calloption(e){
 		    		rowBox.appendChild(form);
 		    		          
 		    		var btn = document.createElement("button");	
+		    		btn.classList.add("btn");
+		    		btn.classList.add("btn-primary");
     	            btn.innerText="다운로드";
 		            
 		            var tableRow = document.createElement("div");
@@ -496,40 +500,40 @@ function calloption(e){
 	                for(dataList of jsonObj.list){
 	                    
 		                var bodyTr1 = document.createElement("tr");
-		                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+		                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.aplcn_dtls_proper_num+")");
 		                bodyTr1.setAttribute("data-bs-toggle", "modal");
 		                bodyTr1.setAttribute("data-bs-target", "#userDetail");
 		                tbody.appendChild(bodyTr1);
 	
 		                var bodyTr1Td1 = document.createElement("td");
 		                bodyTr1Td1.classList.add("text-center");
-		                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+		                bodyTr1Td1.innerText= dataList.aplcn_dtls_proper_num;
 		                bodyTr1.appendChild(bodyTr1Td1);
 	
 		                var bodyTr1Td2 = document.createElement("td");
 		                bodyTr1Td2.classList.add("text-center");
-		                bodyTr1Td2.innerText = dataList.USER_NAME;
+		                bodyTr1Td2.innerText = dataList.user_name;
 		               
 		                bodyTr1.appendChild(bodyTr1Td2);
 		                
 		                var bodyTr1Td3 = document.createElement("td");
 		                bodyTr1Td3.classList.add("text-center");
-		                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+		                bodyTr1Td3.innerText = dataList.announce_title;
 		                bodyTr1.appendChild(bodyTr1Td3);
 		                
 		                var bodyTr1Td4 = document.createElement("td");
 		                bodyTr1Td4.classList.add("text-center");
-		                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+		                bodyTr1Td4.innerText = dataList.trial_fcltt_description;
 		                bodyTr1.appendChild(bodyTr1Td4);
 		                
 		                var bodyTr1Td5 = document.createElement("td");
 		                bodyTr1Td5.classList.add("text-center");
-		                bodyTr1Td5.innerText = moment(dataList.APLCN_DTLS_DATE).format('YYYY-MM-DD');
+		                bodyTr1Td5.innerText = moment(dataList.aplcn_dtls_date).format('YYYY-MM-DD');
 		                bodyTr1.appendChild(bodyTr1Td5);
 				
 		                var bodyTr1Td6 = document.createElement("td");
 		                bodyTr1Td6.classList.add("text-center");
-		                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+		                bodyTr1Td6.innerText = dataList.aplcn_dtls_sts;
 		                bodyTr1.appendChild(bodyTr1Td6);
 	                
 	                }
@@ -658,39 +662,39 @@ function callUser(e){
             	
                    
                 var bodyTr1 = document.createElement("tr");
-                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.aplcn_dtls_proper_num+")");
                 bodyTr1.setAttribute("data-bs-toggle", "modal");
                 bodyTr1.setAttribute("data-bs-target", "#userDetail");
                 tbody.appendChild(bodyTr1);
 
                 var bodyTr1Td1 = document.createElement("td");
                 bodyTr1Td1.classList.add("text-center");
-                bodyTr1Td1.innerText= dataList.APLCN_DTLS_PROPER_NUM;
+                bodyTr1Td1.innerText= dataList.aplcn_dtls_proper_num;
                 bodyTr1.appendChild(bodyTr1Td1);
 
                 var bodyTr1Td2 = document.createElement("td");
                 bodyTr1Td2.classList.add("text-center");
-                bodyTr1Td2.innerText = dataList.USER_NAME;
+                bodyTr1Td2.innerText = dataList.user_name;
                 bodyTr1.appendChild(bodyTr1Td2);
                 
                 var bodyTr1Td3 = document.createElement("td");
                 bodyTr1Td3.classList.add("text-center");
-                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+                bodyTr1Td3.innerText = dataList.announce_title;
                 bodyTr1.appendChild(bodyTr1Td3);
                 
                 var bodyTr1Td4 = document.createElement("td");
                 bodyTr1Td4.classList.add("text-center");
-                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+                bodyTr1Td4.innerText = dataList.trial_fcltt_description;
                 bodyTr1.appendChild(bodyTr1Td4);
                 
                 var bodyTr1Td5 = document.createElement("td");
                 bodyTr1Td5.classList.add("text-center");
-                bodyTr1Td5.innerText = moment(dataList.APLCN_DTLS_DATE).format('YYYY-MM-DD');
+                bodyTr1Td5.innerText = moment(dataList.aplcn_dtls_date).format('YYYY-MM-DD');
                 bodyTr1.appendChild(bodyTr1Td5);
 		
                 var bodyTr1Td6 = document.createElement("td");
                 bodyTr1Td6.classList.add("text-center");
-                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+                bodyTr1Td6.innerText = dataList.aplcn_dtls_sts;
                 bodyTr1.appendChild(bodyTr1Td6);
                
                }

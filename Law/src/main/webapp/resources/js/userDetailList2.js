@@ -791,6 +791,7 @@ function tableEightInfo(userNo){
 }
 
 function tableNineInfo(userNo){
+console.log(userNo);
     var xhr = new XMLHttpRequest(); //AJAX 객체 생성
 		xhr.onreadystatechange = function () {
 			if(xhr.readyState == 4 && xhr.status == 200){

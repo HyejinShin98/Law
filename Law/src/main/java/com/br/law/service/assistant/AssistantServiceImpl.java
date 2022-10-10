@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.law.mapper.assistant.AssistantSQLMapper;
+import com.br.law.mapper.user.TrialUserMapper;
+import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_002;
 import com.br.law.vo.Tb_005;
 import com.br.law.vo.Tb_010;
@@ -23,12 +25,31 @@ public class AssistantServiceImpl {
 	@Autowired
 	private AssistantSQLMapper assistantSQLMapper;
 	
+	@Autowired
+	private TrialUserService trialUserService;
 	
 	
 	public List<Map<String, Object>> allApplicantManagement() {
+		List<Map<String, Object>> changeList = new ArrayList<Map<String, Object>>();
 		List<Map<String, Object>> applicantList = assistantSQLMapper.ApplicantList();		
 		
-		return applicantList;
+		for(Map<String, Object> search : applicantList) {
+			Map<String, Object> result = new HashMap<String ,Object>();
+			result.put("aplcn_dtls_proper_num", search.get("APLCN_DTLS_PROPER_NUM"));
+			result.put("announce_proper_num", search.get("ANNOUNCE_PROPER_NUM"));
+			result.put("court_proper_num", search.get("COURT_PROPER_NUM"));
+			result.put("aplcn_dtls_date", search.get("APLCN_DTLS_DATE"));
+			result.put("trial_fcltt_description", search.get("TRIAL_FCLTT_DESCRIPTION"));
+			result.put("user_name", search.get("USER_NAME"));
+			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
+			
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			
+			changeList.add(result);
+		}
+		
+		return changeList;
 	}
 	
 	public Map<String, Object> applicantInformation(int aplcn_dtls_proper_num) {
@@ -105,17 +126,74 @@ public class AssistantServiceImpl {
 	
 	//0928 하다 조건별 유저
 	public List<Map<String, Object>> callAUser(int trial_fcltt_proper_num){
-		return assistantSQLMapper.callAUser(trial_fcltt_proper_num);
+		List<Map<String, Object>> changeList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> applicantList = assistantSQLMapper.callAUser(trial_fcltt_proper_num);	
+		
+		for(Map<String, Object> search : applicantList) {
+			Map<String, Object> result = new HashMap<String ,Object>();
+			result.put("aplcn_dtls_proper_num", search.get("APLCN_DTLS_PROPER_NUM"));
+			result.put("announce_proper_num", search.get("ANNOUNCE_PROPER_NUM"));
+			result.put("court_proper_num", search.get("COURT_PROPER_NUM"));
+			result.put("aplcn_dtls_date", search.get("APLCN_DTLS_DATE"));
+			result.put("trial_fcltt_description", search.get("TRIAL_FCLTT_DESCRIPTION"));
+			result.put("user_name", search.get("USER_NAME"));
+			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
+			
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			
+			changeList.add(result);
+		}
+		
+		return changeList;
 	}
 	
 	//0928 하다 공고별 유저
 	public List<Map<String, Object>> callCUser(int announce_proper_num){
-		return assistantSQLMapper.callCUser(announce_proper_num);
+		List<Map<String, Object>> changeList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> applicantList = assistantSQLMapper.callCUser(announce_proper_num);
+		
+		for(Map<String, Object> search : applicantList) {
+			Map<String, Object> result = new HashMap<String ,Object>();
+			result.put("aplcn_dtls_proper_num", search.get("APLCN_DTLS_PROPER_NUM"));
+			result.put("announce_proper_num", search.get("ANNOUNCE_PROPER_NUM"));
+			result.put("court_proper_num", search.get("COURT_PROPER_NUM"));
+			result.put("aplcn_dtls_date", search.get("APLCN_DTLS_DATE"));
+			result.put("trial_fcltt_description", search.get("TRIAL_FCLTT_DESCRIPTION"));
+			result.put("user_name", search.get("USER_NAME"));
+			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
+			
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			
+			changeList.add(result);
+		}
+		
+		return changeList;
 	}
 	
 	//0928 병훈 신청현황 별 유저
 	public List<Map<String, Object>> callDUser(String aplcn_dtls_sts){
-		return assistantSQLMapper.callDUser(aplcn_dtls_sts);
+		List<Map<String, Object>> changeList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> applicantList = assistantSQLMapper.callDUser(aplcn_dtls_sts);
+		
+		for(Map<String, Object> search : applicantList) {
+			Map<String, Object> result = new HashMap<String ,Object>();
+			result.put("aplcn_dtls_proper_num", search.get("APLCN_DTLS_PROPER_NUM"));
+			result.put("announce_proper_num", search.get("ANNOUNCE_PROPER_NUM"));
+			result.put("court_proper_num", search.get("COURT_PROPER_NUM"));
+			result.put("aplcn_dtls_date", search.get("APLCN_DTLS_DATE"));
+			result.put("trial_fcltt_description", search.get("TRIAL_FCLTT_DESCRIPTION"));
+			result.put("user_name", search.get("USER_NAME"));
+			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
+			
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			
+			changeList.add(result);
+		}
+		
+		return changeList;
 	}
 	
 	//0930 하다

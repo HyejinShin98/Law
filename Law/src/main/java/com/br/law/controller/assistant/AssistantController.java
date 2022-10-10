@@ -93,7 +93,7 @@ public class AssistantController {
 		
 		
 		model.addAttribute("applicantManagementList", applicantManagementList);
-		
+		System.out.println(model);
 		return "admin/evaluationApplicantsList";
 	}	
 	

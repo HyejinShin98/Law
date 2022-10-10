@@ -63,9 +63,12 @@
 						<!-- 수정 및 삭제 버튼 -->
 						<div class="row justify-content-end mt-3" style="font-size: 12px;">
 							<div class="col-3 d-grid text-end">
+							<!--  
 								<form action="./faqPage" method="post">
 									<input type="submit" value="목록으로">
 								</form>
+							-->
+								<a href="./faqPage" class="btn btn-primary">목록으로</a>
 							</div>
 						</div>
 						<div class="row justify-content-end mt-3" style="font-size: 12px;">
