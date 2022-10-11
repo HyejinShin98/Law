@@ -1369,8 +1369,8 @@ function tableNineInfo(){
 	                bodyTr8Td3A.classList.add("text-decoration-none");
 	                bodyTr8Td3A.innerText = jsonObj.other.original_file_name;
 	                bodyTr8Td3.appendChild(bodyTr8Td3A);
-	                bodyTr8.appendChild(bodyTr8Td3);
 				}
+                bodyTr8.appendChild(bodyTr8Td3);
 				
                 /*
                for(dataList of jsonObj){
