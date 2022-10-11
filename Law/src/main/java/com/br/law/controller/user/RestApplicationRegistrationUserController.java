@@ -142,7 +142,7 @@ public class RestApplicationRegistrationUserController {
 		int i = 0;
 		for(MultipartFile file : fileList) {
 
-			String path ="/uploadFiles/";
+			String path ="C:/uploadFiles/";
 			
 			String originFileName = file.getOriginalFilename();
 			

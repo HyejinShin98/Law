@@ -861,41 +861,33 @@ console.log(userNo);
                 theadTrTh3.innerText="파일 이름";
                 theadTr.appendChild(theadTrTh3);
 
-
-
-
-
-
                 var tbody = document.createElement("tbody");
                 table.appendChild(tbody);
-				
                 
                for(dataList of jsonObj){
-             
                 
-                var bodyTr1 = document.createElement("tr");
-                tbody.appendChild(bodyTr1);
-
-
-                var bodyTr1Td1 = document.createElement("td");
-                bodyTr1Td1.classList.add("text-center");
-                bodyTr1Td1.innerText= dataList.file_type;
-                bodyTr1.appendChild(bodyTr1Td1);
-
-                var bodyTr1Td2 = document.createElement("td");
-                bodyTr1Td2.classList.add("text-center");
-                bodyTr1Td2.innerText = dataList.file_code;
-                bodyTr1.appendChild(bodyTr1Td2);
-
-                var bodyTr1Td3 = document.createElement("td");
-                bodyTr1.appendChild(bodyTr1Td3);
+	                var bodyTr1 = document.createElement("tr");
+	                tbody.appendChild(bodyTr1);
+	
+	                var bodyTr1Td1 = document.createElement("td");
+	                bodyTr1Td1.classList.add("text-center");
+	                bodyTr1Td1.innerText= dataList.file_type;
+	                bodyTr1.appendChild(bodyTr1Td1);
+	
+	                var bodyTr1Td2 = document.createElement("td");
+	                bodyTr1Td2.classList.add("text-center");
+	                bodyTr1Td2.innerText = dataList.file_code;
+	                bodyTr1.appendChild(bodyTr1Td2);
+	
+	                var bodyTr1Td3 = document.createElement("td");
+	                bodyTr1.appendChild(bodyTr1Td3);
                 
-                var bodyTr1Td3A = document.createElement("a");
-                bodyTr1Td3A.classList.add("text-center");
-                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
-                bodyTr1Td3A.classList.add("text-decoration-none");
-                bodyTr1Td3A.innerText = dataList.original_file_name;
-                bodyTr1Td3.appendChild(bodyTr1Td3A);
+                	var bodyTr1Td3A = document.createElement("a");
+	                bodyTr1Td3A.classList.add("text-center");
+	                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
+	                bodyTr1Td3A.classList.add("text-decoration-none");
+	                bodyTr1Td3A.innerText = dataList.original_file_name;
+	                bodyTr1Td3.appendChild(bodyTr1Td3A);
                }
                 
                 commentListBox.appendChild(rowBox);

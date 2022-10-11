@@ -254,7 +254,7 @@ public class TrialUserRestController {
 			Iterator<String> iter = request.getFileNames(); 
 			MultipartFile mfile = null; 
 		    String fieldName = "";
-		    String path = "uploadFiles/";
+		    String path = "C:/uploadFiles/";
 		    
 		    int i=0;
 		    while (iter.hasNext()) { 
