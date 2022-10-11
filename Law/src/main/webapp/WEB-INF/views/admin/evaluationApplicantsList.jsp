@@ -54,6 +54,14 @@
 			<div class="contentsinbox">
 				<div class="row mx-0 px-0">
 						<table class="text-center table table-bordered">
+							  <colgroup>
+							  <col width="7%"></col>
+							  <col width="10%"></col>
+							  <col width="40%"></col>
+							  <col width="18%"></col>
+							  <col width="15%"></col>
+							  <col width="10%"></col>
+							  </colgroup>
 							  <thead>
 							    <tr>
 							      <th scope="col" class="table-light px-0">번호</th>
@@ -66,7 +74,7 @@
 							  </thead>
 							  <tbody>
 							  <c:forEach items="${applicantManagementList}" var="applicantManagementList">
-							  <c:if test="${applicantManagementList.aplcn_dtls_sts == '1차심사완료'}">
+							  <c:if test="${applicantManagementList.aplcn_dtls_sts == '심사완료'}">
 							    <tr onclick="location.href='evaluationApplicants?aplcn_dtls_proper_num=${applicantManagementList.aplcn_dtls_proper_num}'">
 							      <td>${applicantManagementList.aplcn_dtls_proper_num}</td>
 							      <td>${applicantManagementList.user_name }</td>

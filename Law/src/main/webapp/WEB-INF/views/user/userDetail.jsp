@@ -433,7 +433,7 @@ function checkList(){
 			                <tbody>
 			                <tr class="table-active text-center">
 			                    <th colspan="4" scope="col">경력명</th>
-			                    <th scope="col">경 력 유 무</th>
+			                    <th scope="col">경력유무</th>
 			                    <th scope="col"></th>
 			                    <th scope="col">경력내용</th>
 			                </tr>
@@ -464,7 +464,7 @@ function checkList(){
 			            </table>
 			            <div class="row justify-content-end">
 			            	<div id="userDetailButtonBox" class="col">
-	            				<button type="submit" class="btn btn-primary btn-sm" formaction="userDetailInsProcess" formmethod="get">인설트</button>
+	            				<button type="submit" class="btn btn-primary btn-sm" formaction="userDetailInsProcess" formmethod="get">다음</button>
 			            	</div>
 			            </div>
 		            </div>

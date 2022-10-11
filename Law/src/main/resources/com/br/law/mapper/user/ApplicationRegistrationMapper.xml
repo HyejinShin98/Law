@@ -41,7 +41,7 @@ INSERT INTO tb_001 values(
 	#{insrn_indst_carer_etc},
 	#{criminal_penalty_carer_yn},
 	#{criminal_penalty_carer_etc},
-	'임시저장',
+	'ing',
 	sysdate
 ) 
 </insert>
@@ -55,7 +55,7 @@ INSERT INTO tb_001 values(
 	insrn_indst_carer_etc =  #{insrn_indst_carer_etc},
 	criminal_penalty_carer_yn = #{criminal_penalty_carer_yn},
 	criminal_penalty_carer_etc = #{criminal_penalty_carer_etc},
-	aplcn_dtls_sts = '임시저장',
+	aplcn_dtls_sts = 'ing',
 	aplcn_dtls_date = sysdate 
 	WHERE user_proper_num = #{user_proper_num}
 	and announce_proper_num = #{announce_proper_num}

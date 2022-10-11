@@ -260,10 +260,10 @@ window.addEventListener("DOMContentLoaded", function() {
                       	<div class="col">
 	                      	<c:choose>
 				            	<c:when test="${!empty count}">
-				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">업데이트</a>
+				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">다음</a>
 				            	</c:when>
 				            	<c:otherwise>
-				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">인설트</a>
+				            		<a type="button" class="btn btn-primary btn-sm" onclick="checkList();">다음</a>
 				            	</c:otherwise>
 	            			</c:choose>
             			</div>

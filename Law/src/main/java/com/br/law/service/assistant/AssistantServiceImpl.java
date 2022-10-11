@@ -44,7 +44,7 @@ public class AssistantServiceImpl {
 			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
 			
 			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
-			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			result.put("aplcn_dtls_sts", convertAplcnStsToKorean(stsEnstr));
 			
 			changeList.add(result);
 		}
@@ -140,7 +140,7 @@ public class AssistantServiceImpl {
 			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
 			
 			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
-			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			result.put("aplcn_dtls_sts", convertAplcnStsToKorean(stsEnstr));
 			
 			changeList.add(result);
 		}
@@ -164,7 +164,7 @@ public class AssistantServiceImpl {
 			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
 			
 			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
-			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			result.put("aplcn_dtls_sts", convertAplcnStsToKorean(stsEnstr));
 			
 			changeList.add(result);
 		}
@@ -188,7 +188,7 @@ public class AssistantServiceImpl {
 			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
 			
 			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
-			result.put("aplcn_dtls_sts", trialUserService.convertAplcnStsToKorean(stsEnstr));
+			result.put("aplcn_dtls_sts", convertAplcnStsToKorean(stsEnstr));
 			
 			changeList.add(result);
 		}
@@ -222,5 +222,32 @@ public class AssistantServiceImpl {
 			@Param("searchType") String searchType, 
 			@Param("searchWord") String searchWord) {
 		return assistantSQLMapper.countRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+	}
+	
+	// 등재신청 상태 en -> ko 변환 출력용 메소드
+	public String convertAplcnStsToKorean(String aplcn_dtls_sts) {
+		String stsKoStr = "";
+		
+		switch (aplcn_dtls_sts) {
+		case "ing":
+			stsKoStr = "작성중";
+			break;
+		case "examination" :
+			stsKoStr = "신청중";
+			break;
+		case "evaluationCp" :
+			stsKoStr = "심사완료";
+			break;
+		case "companion" :
+			stsKoStr = "서류보완";
+			break;
+		case "failure" :
+			stsKoStr = "불합격";
+			break;
+		case "accept" :
+			stsKoStr = "합격";
+			break;
+		}
+		return stsKoStr;
 	}
 }

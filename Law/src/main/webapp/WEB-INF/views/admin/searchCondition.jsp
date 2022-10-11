@@ -142,27 +142,27 @@ function allUser(){
              table.appendChild(colGroup);
 
              var colGroupA = document.createElement("col");
-             //colGroupA.setAttribute("width", "25%");
+             colGroupA.setAttribute("width", "7%");
              colGroup.appendChild(colGroupA);
 
              var colGroupB = document.createElement("col");
-             //colGroupB.setAttribute("width", "25%");
+             colGroupB.setAttribute("width", "10%");
              colGroup.appendChild(colGroupB);
 
              var colGroupC = document.createElement("col");
-             //colGroupC.setAttribute("width", "50%");
+             colGroupC.setAttribute("width", "40%");
              colGroup.appendChild(colGroupC);
              
              var colGroupD = document.createElement("col");
-             //colGroupD.setAttribute("width", "50%");
+             colGroupD.setAttribute("width", "18%");
              colGroup.appendChild(colGroupD);
              
              var colGroupE = document.createElement("col");
-             //colGroupE.setAttribute("width", "50%");
+             colGroupE.setAttribute("width", "15%");
              colGroup.appendChild(colGroupE);
              
              var colGroupF = document.createElement("col");
-             //colGroupF.setAttribute("width", "50%");
+             colGroupF.setAttribute("width", "10%");
              colGroup.appendChild(colGroupF);
              
              var thead = document.createElement("thead");
@@ -427,27 +427,27 @@ function calloption(e){
 	                table.appendChild(colGroup);
 
 	                var colGroupA = document.createElement("col");
-	                //colGroupA.setAttribute("width", "25%");
+	                colGroupA.setAttribute("width", "7%");
 	                colGroup.appendChild(colGroupA);
 
 	                var colGroupB = document.createElement("col");
-	                //colGroupB.setAttribute("width", "25%");
+	                colGroupB.setAttribute("width", "10%");
 	                colGroup.appendChild(colGroupB);
 
 	                var colGroupC = document.createElement("col");
-	                //colGroupC.setAttribute("width", "50%");
+	                colGroupC.setAttribute("width", "40%");
 	                colGroup.appendChild(colGroupC);
 	                
 	                var colGroupD = document.createElement("col");
-	                //colGroupD.setAttribute("width", "50%");
+	                colGroupD.setAttribute("width", "18%");
 	                colGroup.appendChild(colGroupD);
 	                
 	                var colGroupE = document.createElement("col");
-	                //colGroupE.setAttribute("width", "50%");
+	                colGroupE.setAttribute("width", "15%");
 	                colGroup.appendChild(colGroupE);
 	                
 	                var colGroupF = document.createElement("col");
-	                //colGroupF.setAttribute("width", "50%");
+	                colGroupF.setAttribute("width", "10%");
 	                colGroup.appendChild(colGroupF);
 	                
 	                var thead = document.createElement("thead");
@@ -585,27 +585,27 @@ function callUser(e){
                table.appendChild(colGroup);
 
                var colGroupA = document.createElement("col");
-               //colGroupA.setAttribute("width", "25%");
+               colGroupA.setAttribute("width", "7%");
                colGroup.appendChild(colGroupA);
 
                var colGroupB = document.createElement("col");
-               //colGroupB.setAttribute("width", "25%");
+               colGroupB.setAttribute("width", "10%");
                colGroup.appendChild(colGroupB);
 
                var colGroupC = document.createElement("col");
-               //colGroupC.setAttribute("width", "50%");
+               colGroupC.setAttribute("width", "40%");
                colGroup.appendChild(colGroupC);
                
                var colGroupD = document.createElement("col");
-               //colGroupD.setAttribute("width", "50%");
+               colGroupD.setAttribute("width", "18%");
                colGroup.appendChild(colGroupD);
                
                var colGroupE = document.createElement("col");
-               //colGroupE.setAttribute("width", "50%");
+               colGroupE.setAttribute("width", "15%");
                colGroup.appendChild(colGroupE);
                
                var colGroupF = document.createElement("col");
-               //colGroupF.setAttribute("width", "50%");
+               colGroupF.setAttribute("width", "10%");
                colGroup.appendChild(colGroupF);
                
                var thead = document.createElement("thead");
@@ -759,27 +759,27 @@ function searchAjax(){
 	               table.appendChild(colGroup);
 
 	               var colGroupA = document.createElement("col");
-	               //colGroupA.setAttribute("width", "25%");
+	               colGroupA.setAttribute("width", "7%");
 	               colGroup.appendChild(colGroupA);
 
 	               var colGroupB = document.createElement("col");
-	               //colGroupB.setAttribute("width", "25%");
+	               colGroupB.setAttribute("width", "10%");
 	               colGroup.appendChild(colGroupB);
 
 	               var colGroupC = document.createElement("col");
-	               //colGroupC.setAttribute("width", "50%");
+	               colGroupC.setAttribute("width", "40%");
 	               colGroup.appendChild(colGroupC);
 	               
 	               var colGroupD = document.createElement("col");
-	               //colGroupD.setAttribute("width", "50%");
+	               colGroupD.setAttribute("width", "18%");
 	               colGroup.appendChild(colGroupD);
 	               
 	               var colGroupE = document.createElement("col");
-	               //colGroupE.setAttribute("width", "50%");
+	               colGroupE.setAttribute("width", "15%");
 	               colGroup.appendChild(colGroupE);
 	               
 	               var colGroupF = document.createElement("col");
-	               //colGroupF.setAttribute("width", "50%");
+	               colGroupF.setAttribute("width", "10%");
 	               colGroup.appendChild(colGroupF);
 	               
 	               var thead = document.createElement("thead");
@@ -900,22 +900,37 @@ function search(){
 	var targetBox = document.getElementById("target2");
 	targetBox.innerHTML = "";
 	
-	var i = document.createElement("i");
-	i.classList.add("bi");
-	i.classList.add("bi-search");
-	i.classList.add("fs-5");
-	i.classList.add("px-2");
-	i.setAttribute("onclick", "searchAjax()");
-	targetBox.appendChild(i);
+	var row = document.createElement("div");
+	row.classList.add("row");
+	
+	var col1 = document.createElement("div");
+	col1.classList.add("col");
+	col1.classList.add("px-0");
+	col1.classList.add("pt-1");
+	row.appendChild(col1);
 	
 	var input = document.createElement("input");
 	input.setAttribute("type", "text");
 	input.setAttribute("name", "user_name");
 	input.setAttribute("id","search");
 	/* input.setAttribute("style","height:34px"); */
-	targetBox.appendChild(input);
+	col1.appendChild(input);
 	
+	var col2 = document.createElement("div");
+	col2.classList.add("col");
+	col2.classList.add("text-center");
+	row.appendChild(col2);
 	
+	var a = document.createElement("a");
+	a.classList.add("btn");
+	a.classList.add("btn-secondary");
+	a.classList.add("btn-sm");
+	a.innerText="검색";
+	a.setAttribute("onclick", "searchAjax()");
+	col2.appendChild(a);
+	
+	targetBox.appendChild(row);
+
 	
 }
 
@@ -965,11 +980,8 @@ function search(){
 							<option value="d">신청현황 조회</option>
 						</select>
 					</div>
-					<div id="target" class="col-6" >						 
-					</div>
-					<div class="col-4" id="target2" style="text-align: end;">
-						
-					</div>
+					<div id="target" class="col-6" ></div>						 
+					<div class="col-4" id="target2" style="text-align: end;"></div>
 				</div>
 				<br>
 				<div class="row mx-0">

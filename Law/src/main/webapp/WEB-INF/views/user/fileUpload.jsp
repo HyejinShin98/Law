@@ -140,8 +140,8 @@ function uploadFile(){
         <div class="contentsinbox">
         
         <div class="row">
-            <div class="row border-bottom mt-5 mx-0">
-                공통 증빙서류
+            <div class="row mt-5 mx-0">
+                <h4>공통 증빙서류</h4>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -152,7 +152,7 @@ function uploadFile(){
                 </thead>
                 <tbody>
                 <tr>
-                    <th rowspan="3" scope="row" class="text-center">공통서류</th>
+                    <th rowspan="3" scope="row" class="text-center" style="vertical-align: middle;">공통서류</th>
                     <td colspan="2">사업자등록증</td>
                     <td>
                         <input type="file" name ="file">
@@ -184,7 +184,7 @@ function uploadFile(){
 
         <div class="row">
             <div class="row border-bottom mt-5 mx-0">
-                개인 증빙서류
+                <h4>개인 증빙서류</h4>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -195,7 +195,7 @@ function uploadFile(){
                 </thead>
                 <tbody>
                 <tr>
-                    <th rowspan="4" scope="row">개인서류</th>
+                    <th rowspan="4" scope="row" style="text-align: center; vertical-align: middle;">개인서류</th>
                     <td colspan="2">이력서</td>
                     <td>
                         <input type="file" name ="file">
@@ -234,16 +234,19 @@ function uploadFile(){
             </table>
         </div>
         <div class="row">
-        	<div class="col d-grid">
-        		<a class="btn btn-primary btn-sm" onclick="uploadFile();" data-bs-toggle="modal" data-bs-target="#exampleModal">입력완료</a>
-       		</div>
+        		<div class="col"></div>
+        		<div class="col"></div>
+        		<div class="col"></div>
+        		<div class="col d-grid">
+        			<a href="#" class="btn btn-primary" role="button" onclick="uploadFile();" data-bs-toggle="modal" data-bs-target="#exampleModal">입력완료</a>
+       			</div>
        	</div>
        	</div>
         </form>
     </div>
     </div>
 		<div class="row">
-			<div class="col">이건 실험용</div>
+			<div class="col"></div>
 			<div class="col">
 				<!-- Button trigger modal --
 
