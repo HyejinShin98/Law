@@ -1,5 +1,6 @@
 package com.br.law.controller.admin;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,9 +50,16 @@ public class TrialAdminController {
 			return "redirect:" + request.getHeader("referer");
 		}
 	}
+	
+	// 하다 수정 10-11 로그아웃시 메세지 출력
 	@RequestMapping("logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletResponse response) throws IOException {
 		session.invalidate();
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<script>alert('로그아웃 되었습니다.'); location.href='../user/main' </script> ");
+		out.flush();
+		out.close();
 		return "redirect:../user/main";
 	}
 	
