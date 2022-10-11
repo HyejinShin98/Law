@@ -63,13 +63,13 @@
 										<div class="row mt-3 justify-content-end">
 											<div class="col-2 d-grid">
 												<input type="hidden" name="faq_proper_num" value="${data.tb_004.faq_proper_num}"> 
-												<input type="submit" value="수정하기">
+												<input class="btn btn-primary" type="submit" value="수정하기">
 											</div>
 										</div>
 									</form>
 								</div>		
 								<form action="./faqPage" method="post">
-									<input type="submit" value="목록으로">
+									<input class="btn btn-primary" type="submit" value="목록으로">
 								</form>
 							</div>
 						</div>

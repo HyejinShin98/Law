@@ -63,14 +63,14 @@
 										<!-- 글쓰기 버튼 -->
 										<div class="row mt-3 justify-content-end">
 											<div class="col-2 d-grid">
-												<input type="submit" value="글쓰기">
+												<input class="btn btn-primary" type="submit" value="글쓰기">
 											</div>
 										</div>
 									</form>
 								</div>		
 								<!-- 목록가기 버튼 -->
 								<form action="./faqPage" method="post">
-									<input type="submit" value="목록으로">
+									<input class="btn btn-primary" type="submit" value="목록으로">
 								</form>
 							</div>
 					</div>
