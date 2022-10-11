@@ -54,25 +54,25 @@
 			<div class="contentsinbox">
 				<div class="row">
 					<div class="col">
-						<table class="table table-bordered" style="text-align : center; height: 800px; font-size:12px;">
-						  <thead>
+						<table class="table table-bordered" style="height: 800px; font-size:12px;">
+						  <thead style="text-align : center; vertical-align : middle;">
 						  	<tr>
-						      <th colspan="3">신청인이름</th>		     
-						      <th colspan="3">주민등록번호</th>		      		 
+						      <td colspan="3">신청인이름</td>		     
+						      <td colspan="3">주민등록번호</td>		      		 
 						    </tr>		  
 						    <tr>
-						      <th rowspan="2">평정항목</th>		     
-						      <th rowspan="2">세부항목</th>
-						      <th rowspan="2">배점</th>
-						      <th colspan="3">내용</th>		  
+						      <td rowspan="2">평정항목</td>		     
+						      <td rowspan="2">세부항목</td>
+						      <td rowspan="2">배점</td>
+						      <td colspan="3">내용</td>		  
 						    </tr>
 						    <tr>
-						      <th scope="col">구분</th>
-						      <th scope="col">기준</th>
-						      <th scope="col">배점</th>		  
+						      <td scope="col">구분</td>
+						      <td scope="col">기준</td>
+						      <td scope="col">배점</td>		  
 						    </tr>
 						  </thead>
-						  <tbody>
+						  <tbody style="text-align : center; vertical-align : middle;">
 						    <tr>
 						      <td rowspan="9" >기본평정</td>
 						      <td rowspan="6">경력점수</td>
