@@ -138,7 +138,7 @@ h4{
 									</div>	
 									<div class="row pt-2">
 										<div class="col-2 fw-bold pt-1 font-def"><span>비밀번호</span></div>
-										<div class="col-3" style="width: 210px;">
+										<div class="col-3" style="width: 31%;">
 											<input type="password" placeholder="비밀번호 입력" id="user_pw" style="float:left;">
 											<input type="button" class="mx-2" value="확인" onclick="chkPassword();" style="float:left;">
 										</div>

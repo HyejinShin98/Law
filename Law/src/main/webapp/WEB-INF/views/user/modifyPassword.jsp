@@ -182,7 +182,7 @@ function chkVal() {
 									<div class="col">
 										<div class="row">
 											<div class="col-2 fw-bold pt-1 text"><span>현재 비밀번호</span></div>
-											<div class="col-3"><input class="" type="password" id="current_pw"></div>
+											<div class="col-3"><input class="" type="password" id="current_pw" placeholder="현재 비밀번호 입력"></div>
 										</div>
 										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
 									</div>
@@ -192,7 +192,7 @@ function chkVal() {
 									<div class="col">
 										<div class="row">
 											<div class="col-2 fw-bold pt-1 text"><span>새 비밀번호</span></div>
-											<div class="col-3"><input class="" type="password" id="new_pw" name="new_pw"></div>
+											<div class="col-3"><input class="" type="password" id="new_pw" name="new_pw" placeholder="새 비밀번호 입력"></div>
 										</div> 
 										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>		
 									</div>
@@ -202,8 +202,11 @@ function chkVal() {
 									<div class="col">
 										<div class="row">
 											<div class="col-2 fw-bold pt-1 text"><span>새 비밀번호 확인</span></div>
-											<div class="col-3" style="width:140px;"><input class="" type="password" id="new_chk_pw"></div>
-											<div class="col"><input type="button" class="" onclick="modifyPassword();" value="변경하기"></div>
+											<div class="col-3" style="width:40%;">
+												<input type="password" id="new_chk_pw" placeholder="새 비밀번호 확인" style="float:left;">
+												<input type="button" class="mx-2" onclick="modifyPassword();" value="변경하기" style="float:left;">
+											</div>
+											<!-- <div class="col"><input type="button" class="" onclick="modifyPassword();" value="변경하기"></div> -->
 										</div> 
 										<div class="row mb-2"><div class="col-2"></div><div class="col"><span class="mx-1 msg"></span></div></div>	
 									</div>

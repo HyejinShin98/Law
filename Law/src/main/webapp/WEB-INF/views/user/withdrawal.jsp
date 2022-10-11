@@ -144,7 +144,7 @@ h4{
 										</div>	
 										<div class="row pt-2">
 											<div class="col-2 fw-bold pt-1"><span>비밀번호</span></div>
-											<div class="col-3" style="width: 230px;">
+											<div class="col-3" style="width: 34%;">
 												<input type="password" class="" placeholder="비밀번호 입력" id="user_pw" style="float:left;">
 												<input type="button" class="mx-2" value="탈퇴하기" onclick="withdrawal();" style="float:left;">
 											</div>
