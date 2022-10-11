@@ -62,32 +62,21 @@
 						
 						<!-- 수정 및 삭제 버튼 -->
 						<div class="row justify-content-end mt-3" style="font-size: 12px;">
-							<div class="col-3 d-grid text-end">
-							<!--  
-								<form action="./faqPage" method="post">
-									<input type="submit" value="목록으로">
-								</form>
-							-->
-								<a href="./faqPage" class="btn btn-primary">목록으로</a>
-							</div>
-						</div>
-						<div class="row justify-content-end mt-3" style="font-size: 12px;">
-							<div class="col-2 d-grid text-end">
-								<form action="./deleteFaqProcess?faq_proper_num=${data.tb_004.faq_proper_num }" method="post">
-									<c:if test="${!empty admin }">
-										<input type="submit" value="삭제">
-									</c:if>
-								</form>
-							</div>
 							<div class="col d-grid text-end">
 								<form action="./updateFaqPage?faq_proper_num=${data.tb_004.faq_proper_num }" method="post">
 									<c:if test="${!empty admin }">
-										<input type="submit" value="수정">
+										<input class="btn btn-primary" type="submit" value="수정">
+									</c:if>
+								</form>
+							</div>
+							<div class="col-1 d-grid text-end" style="margin-right: 37px;">
+								<form action="./deleteFaqProcess?faq_proper_num=${data.tb_004.faq_proper_num }" method="post">
+									<c:if test="${!empty admin }">
+										<input class="btn btn-primary" type="submit" value="삭제">
 									</c:if>
 								</form>
 							</div>
 						</div>
-	
 					</div>
 				</div>
 			</div>

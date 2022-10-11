@@ -224,7 +224,7 @@ function chkTempData(selectBox2){
 		            buttonBox.classList.add("btn");
 		            buttonBox.classList.add("btn-primary");
 		            buttonBox.classList.add("btn-sm");
-		            buttonBox.innerText = '업데이트';
+		            buttonBox.innerText = '다움';
 		            userDetailButtonBox.appendChild(buttonBox);
 		            
 	            }else{
@@ -233,7 +233,7 @@ function chkTempData(selectBox2){
 	 	            buttonBox.setAttribute('type', "submit");
 	 	            buttonBox.setAttribute('formaction', "userDetailInsProcess");
 	 	            buttonBox.setAttribute('formmethod', "get");
-	 	            buttonBox.innerText = '인서트';
+	 	            buttonBox.innerText = '다음';
 	 	            buttonBox.classList.add("btn");
 	 	           	buttonBox.classList.add("btn-primary");
 	 	         	buttonBox.classList.add("btn-sm");

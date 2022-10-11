@@ -205,50 +205,48 @@ window.addEventListener("DOMContentLoaded", function() {
 	            	</c:otherwise>
        			</c:choose>		
           	<div class="contentsinbox">
-				<div class="col border-bottom mt-5">
-                    <div class="row ms-0 mb-2"><h4>학력사항</h4></div>
+				<div class="row border-bottom mt-5">
+                    <div class="col ms-0 mb-2"><h4>학력사항</h4></div>
                 </div>
-                <div class="col">
-                    <div class="row">
+                <div class="row">
                     <table class="table ">
                         <tbody>
                         <tr>
-                            <th scope="row" class="table-active mid">회사명/활동기관 명</th>
-                            <td><div class="col"><input class="ch" type="text" id="s1" name="company_name"></div></td>
+                            <th class="table-active mid">회사명/활동기관 명</th>
+                            <td><input class="ch" type="text" id="s1" name="company_name"></td>
                             <th class="table-active mid">수행업무</th>
-                            <td><div class="col"><input class="ch" type="text"id="s5" name="work_description"></div></td>
+                            <td><input class="ch" type="text"id="s5" name="work_description"></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active mid">근무 시작 일자</th>
-                            <td><div class="col"><input class="ch" type="date" id="s3" name="work_start_date"></div></td>
+                            <td><input class="ch" type="date" id="s3" name="work_start_date"></td>
                             <th class="table-active mid">근무 종료 일자</th>
-                            <td><div class="col"><input class="ch" type="date" id="s4" name="work_end_date"></div></td>
+                            <td><input class="ch" type="date" id="s4" name="work_end_date"></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active mid">부서</th>
-                            <td><div class="col"><input class="ch" type="text" id="s6" name="work_department"></div></td>
+                            <td><input class="ch" type="text" id="s6" name="work_department"></td>
                             <th class="table-active mid">직책</th>
-                            <td><div class="col"><input class="ch" type="text" id="s7" name="work_position"></div></td>
+                            <td><input class="ch" type="text" id="s7" name="work_position"></td>
                         </tr>
                         <tr>
                             <th scope="row" class="table-active mid">경력구분</th>
-                            <td><div class="col">
+                            <td>
                                 <select id="s2" name="carer_type">
                                 		<option value= "x">--경력 X--</option>
                                         <option value="ca">법원감정인 경력</option>
                                         <option value="ot">기타 경력</option>
                                 </select>
-                                </div>
                             </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
-                    
                 </div>
-                <div class="col border-bottom mt-5">
-                    <div class="row ms-0 mb-2"><h4>학력사항</h4></div>
+                <div class="row border-bottom mt-5">
+                    <div class="col ms-0 mb-2"><h4>학력사항</h4></div>
                 </div>
-                <div class="row">
                     <table class="table ">
                         <tbody>
                         <tr>
@@ -257,11 +255,10 @@ window.addEventListener("DOMContentLoaded", function() {
                         </tr>
                         </tbody>
                     </table>
-                </div>
                 <div class="col border-bottom mt-5">
                     <div class="row ms-0 mb-2 "><h4>특이사항</h4></div>
                 </div>
-                <div class="row">
+                
                     <table class="table ">
                         <tbody>
                         <tr>
@@ -270,7 +267,7 @@ window.addEventListener("DOMContentLoaded", function() {
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                
             </div>
             <div class="row">
             	<div class="col">

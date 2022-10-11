@@ -64,7 +64,7 @@
 						<div class="row m-3" style="font-size: 12px;">
 							<div class="col text-end">
 								<c:if test="${!empty admin }">
-									<input type="submit" value="글쓰기">
+									<input class="btn btn-primary" type="submit" value="글쓰기">
 								</c:if>
 							</div>
 						</div>

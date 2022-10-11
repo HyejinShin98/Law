@@ -234,12 +234,12 @@ function uploadFile(){
             </table>
         </div>
         <div class="row">
-        		<div class="col"></div>
-        		<div class="col"></div>
-        		<div class="col"></div>
         		<div class="col d-grid">
         			<a href="#" class="btn btn-primary" role="button" onclick="uploadFile();" data-bs-toggle="modal" data-bs-target="#exampleModal">입력완료</a>
        			</div>
+        		<div class="col"></div>
+        		<div class="col"></div>
+        		<div class="col"></div>
        	</div>
        	</div>
         </form>
