@@ -250,4 +250,10 @@ public class AssistantServiceImpl {
 		}
 		return stsKoStr;
 	}
+	
+	public List<Map<String, Object>> excelList(){
+		List<Map<String, Object>> applicantList = assistantSQLMapper.ApplicantList();
+		
+		return applicantList;
+	}
 }
