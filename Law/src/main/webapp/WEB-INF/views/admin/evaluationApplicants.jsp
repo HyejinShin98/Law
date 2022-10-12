@@ -489,7 +489,7 @@ function calculationtest(){
 					   		<tr>
 						   		<td colspan="2">검토의견</td>
 						   		<td colspan="5">
-						   			<textarea name="reivew_etc" style="width: 314px;"></textarea>
+						   			<textarea name="review_etc" style="width: 314px;"></textarea>
 						   		</td>
 						   	</tr>
 						  </tbody>

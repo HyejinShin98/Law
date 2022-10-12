@@ -28,7 +28,7 @@ function tableOneInfo(userNo){
 			var userDetailButtonBox = document.getElementById("userDetailButtonBox");
 			userDetailButtonBox.innerHTML = "";
 			
-			if(jsonObj.map.APLCN_DTLS_STS == '신청중'){
+			if(jsonObj.map.APLCN_DTLS_STS == 'examination'){
 				var buttonBox2 = document.createElement("a");
 				buttonBox2.setAttribute("href", "../admin/evaluationProcess?aplcn_dtls_proper_num=" + jsonObj.map.APLCN_DTLS_PROPER_NUM);
 				buttonBox2.setAttribute("class", "btn btn-primary");

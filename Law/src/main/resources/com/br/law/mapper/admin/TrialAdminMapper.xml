@@ -16,6 +16,4 @@
 	<select id="selectByNo" resultType="com.br.law.vo.Tb_015">
 		SELECT * FROM tb_015 WHERE admin_proper_num = #{admin_proper_num}
 	</select>
-	
-	
 </mapper>
