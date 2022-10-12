@@ -1199,12 +1199,13 @@ function tableNineInfo(){
                	if(jsonObj.businesslicense != undefined) {
 	               	var bodyTr1Td3A = document.createElement("a");
 	                bodyTr1Td3A.classList.add("text-center");
-	                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.businesslicense.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.businesslicense.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr1Td3A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.businesslicense.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.businesslicense.aplcn_atch_file_proper_num);
 	                bodyTr1Td3A.classList.add("text-decoration-none");
 	                bodyTr1Td3A.innerText = jsonObj.businesslicense.original_file_name;
 	                bodyTr1Td3.appendChild(bodyTr1Td3A);
 	                bodyTr1.appendChild(bodyTr1Td3);
                 }
+                
                 
                 // 업무관련 등록신고서류
                	var bodyTr2 = document.createElement("tr");
@@ -1221,7 +1222,7 @@ function tableNineInfo(){
                 if(jsonObj.businessreport != undefined) {
 	                var bodyTr2Td2A = document.createElement("a");
 	                bodyTr2Td2A.classList.add("text-center");
-	                bodyTr2Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.businessreport.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.businessreport.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr2Td2A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.businessreport.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.businessreport.aplcn_atch_file_proper_num);
 	                bodyTr2Td2A.classList.add("text-decoration-none");
 	                bodyTr2Td2A.innerText = jsonObj.businessreport.original_file_name;
 	                bodyTr2Td2.appendChild(bodyTr2Td2A);
@@ -1243,7 +1244,7 @@ function tableNineInfo(){
                 if(jsonObj.taxconfirm != undefined) {
 	                var bodyTr3Td2A = document.createElement("a");
 	                bodyTr3Td2A.classList.add("text-center");
-	                bodyTr3Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.taxconfirm.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.taxconfirm.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr3Td2A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.taxconfirm.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.taxconfirm.aplcn_atch_file_proper_num);
 	                bodyTr3Td2A.classList.add("text-decoration-none");
 	                bodyTr3Td2A.innerText = jsonObj.taxconfirm.original_file_name;
 	                bodyTr3Td2.appendChild(bodyTr3Td2A);
@@ -1272,7 +1273,7 @@ function tableNineInfo(){
                	if(jsonObj.resume != undefined) {
 	               	var bodyTr4Td3A = document.createElement("a");
 	                bodyTr4Td3A.classList.add("text-center");
-	                bodyTr4Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.resume.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.resume.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr4Td3A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.resume.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.resume.aplcn_atch_file_proper_num);
 	                bodyTr4Td3A.classList.add("text-decoration-none");
 	                bodyTr4Td3A.innerText = jsonObj.resume.original_file_name;
 	                bodyTr4Td3.appendChild(bodyTr4Td3A);
@@ -1294,7 +1295,7 @@ function tableNineInfo(){
                 if(jsonObj.educationlevel != undefined) {
 	                var bodyTr5Td2A = document.createElement("a");
 	                bodyTr5Td2A.classList.add("text-center");
-	                bodyTr5Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.educationlevel.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.educationlevel.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr5Td2A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.educationlevel.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.educationlevel.aplcn_atch_file_proper_num);
 	                bodyTr5Td2A.classList.add("text-decoration-none");
 	                bodyTr5Td2A.innerText = jsonObj.educationlevel.original_file_name;
 	                bodyTr5Td2.appendChild(bodyTr5Td2A);
@@ -1316,7 +1317,7 @@ function tableNineInfo(){
             	if(jsonObj.carrer != undefined) {
 	            	var bodyTr6Td2A = document.createElement("a");
 	                bodyTr6Td2A.classList.add("text-center");
-	                bodyTr6Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.carrer.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.carrer.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr6Td2A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.carrer.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.carrer.aplcn_atch_file_proper_num);
 	                bodyTr6Td2A.classList.add("text-decoration-none");
 	                bodyTr6Td2A.innerText = jsonObj.carrer.original_file_name;
 	                bodyTr6Td2.appendChild(bodyTr6Td2A);
@@ -1338,7 +1339,7 @@ function tableNineInfo(){
             	if(jsonObj.certificate != undefined) {
 	            	var bodyTr7Td2A = document.createElement("a");
 	                bodyTr7Td2A.classList.add("text-center");
-	                bodyTr7Td2A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.certificate.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.certificate.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr7Td2A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.certificate.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.certificate.aplcn_atch_file_proper_num);
 	                bodyTr7Td2A.classList.add("text-decoration-none");
 	                bodyTr7Td2A.innerText = jsonObj.certificate.original_file_name;
 	                bodyTr7Td2.appendChild(bodyTr7Td2A);
@@ -1365,7 +1366,7 @@ function tableNineInfo(){
                	if(jsonObj.other != undefined) {
 	               	var bodyTr8Td3A = document.createElement("a");
 	                bodyTr8Td3A.classList.add("text-center");
-	                bodyTr8Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.other.APLCN_DTLS_PROPER_NUM+ "&aplcn_atch_file_proper_num=" +jsonObj.other.APLCN_ATCH_FILE_PROPER_NUM);
+	                bodyTr8Td3A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +jsonObj.other.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +jsonObj.other.aplcn_atch_file_proper_num);
 	                bodyTr8Td3A.classList.add("text-decoration-none");
 	                bodyTr8Td3A.innerText = jsonObj.other.original_file_name;
 	                bodyTr8Td3.appendChild(bodyTr8Td3A);
@@ -1395,7 +1396,7 @@ function tableNineInfo(){
                 
                 var bodyTr1Td3A = document.createElement("a");
                 bodyTr1Td3A.classList.add("text-center");
-                bodyTr1Td3A.setAttribute("href", "fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
+                bodyTr1Td3A.setAttribute("href", "../admin/fileDownLoadProcess?aplcn_dtls_proper_num=" +dataList.aplcn_dtls_proper_num+ "&aplcn_atch_file_proper_num=" +dataList.aplcn_atch_file_proper_num);
                 bodyTr1Td3A.classList.add("text-decoration-none");
                 bodyTr1Td3A.innerText = dataList.original_file_name;
                 bodyTr1Td3.appendChild(bodyTr1Td3A);

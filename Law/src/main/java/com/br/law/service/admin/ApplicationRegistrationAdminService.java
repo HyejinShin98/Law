@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.law.controller.user.TrialUserController;
 import com.br.law.mapper.admin.ApplicationRegistrationAdminMapper;
+import com.br.law.service.assistant.AssistantServiceImpl;
 import com.br.law.service.user.TrialUserService;
 import com.br.law.vo.Tb_001;
 import com.br.law.vo.Tb_005;
@@ -27,6 +28,8 @@ public class ApplicationRegistrationAdminService {
 	ApplicationRegistrationAdminMapper applicationRegistrationAdminMapper;
 	@Autowired
 	TrialUserService trialUserService;
+	@Autowired
+	AssistantServiceImpl assistantServiceImpl;
 	
 	public List<Map<String, Object>> selUserList(){
 		return applicationRegistrationAdminMapper.selUserList();
@@ -130,8 +133,28 @@ public class ApplicationRegistrationAdminService {
 	
 	//22.10.04 신우진 추가 : 활동중인 명단 중 이름 검색 기능
 	public List<Map<String, Object>> searchUserName(Map<String, Object> map){
+		List<Map<String, Object>> changeList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> searchList = applicationRegistrationAdminMapper.searchUserName(map);
 		System.out.println("서비스로 오나?" + map);
-		return applicationRegistrationAdminMapper.searchUserName(map);
+		 
+		for(Map<String, Object> search : searchList) {
+			Map<String, Object> result = new HashMap<String ,Object>();
+			result.put("aplcn_dtls_proper_num", search.get("APLCN_DTLS_PROPER_NUM"));
+			result.put("announce_proper_num", search.get("ANNOUNCE_PROPER_NUM"));
+			result.put("court_proper_num", search.get("COURT_PROPER_NUM"));
+			result.put("aplcn_dtls_date", search.get("APLCN_DTLS_DATE"));
+			result.put("trial_fcltt_description", search.get("TRIAL_FCLTT_DESCRIPTION"));
+			result.put("user_name", search.get("USER_NAME"));
+			result.put("announce_title", search.get("ANNOUNCE_TITLE"));
+			
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			result.put("aplcn_dtls_sts", assistantServiceImpl.convertAplcnStsToKorean(stsEnstr));
+			
+			changeList.add(result);
+		}
+		
+		return changeList;
+		
 	}
 	
 }

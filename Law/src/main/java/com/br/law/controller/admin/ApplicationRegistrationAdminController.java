@@ -114,6 +114,8 @@ public class ApplicationRegistrationAdminController {
 	public String fileDownLoadProcess(HttpServletResponse response, 
 			@Param("aplcn_dtls_proper_num")int aplcn_dtls_proper_num,
 			@Param("aplcn_atch_file_proper_num")int aplcn_atch_file_proper_num) {
+		System.out.println("확인" + aplcn_atch_file_proper_num);
+		System.out.println("확인" + aplcn_dtls_proper_num);
 		Map<String, Object> map = new HashMap<>();
 		//유저 넘버
 		int fiveNo =  applicationRegistrationAdminService.userDetailPk(aplcn_dtls_proper_num);
@@ -129,7 +131,6 @@ public class ApplicationRegistrationAdminController {
 		String sum = userNo + userName;
 		System.out.println("확인방법?" + sum);
 		
-//		String uploadPath = Paths.get("C:", "uploadFiles", sum).toString();
 
 		
 		String filename = nine.getOriginal_file_name();

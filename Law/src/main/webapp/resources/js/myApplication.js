@@ -2353,6 +2353,7 @@ function tableNineInfo(){
 	              	bodyTr2Td2Span.setAttribute("onclick", "fileDownload('"+jsonObj.businessreport.aplcn_dtls_proper_num+"', '"+jsonObj.businessreport.aplcn_atch_file_proper_num+"');");
 	              	bodyTr2Td2Span.classList.add("text-decoration-none");
 	                bodyTr2Td2Span.innerText = jsonObj.businessreport.original_file_name;
+	                bodyTr2Td2.appendChild(bodyTr2Td2Span);
 	                
 	                 var bodyTr2Td2MofBtn = document.createElement("input");
 	                bodyTr2Td2MofBtn.type = "button";
