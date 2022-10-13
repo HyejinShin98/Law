@@ -267,6 +267,9 @@
 				<if test="court_proper_num != 0">
 					AND t5.COURT_PROPER_NUM = #{court_proper_num}
 				</if>
+				<if test="aplcn_dtls_sts != '선택'">
+					AND t5.APLCN_DTLS_STS = #{aplcn_dtls_sts}
+				</if>
 				<if test="searchType != null and searchWord != null">
 					<choose>
 						<when test="searchType == 'user_id'">
@@ -306,6 +309,9 @@
 		</if>
 		<if test="court_proper_num != 0">
 			AND t5.COURT_PROPER_NUM = #{court_proper_num}
+		</if>
+		<if test="aplcn_dtls_sts != '선택'">
+			AND t5.APLCN_DTLS_STS = #{aplcn_dtls_sts}
 		</if>
 		<if test="searchType != null and searchWord != null">
 			<choose>
