@@ -56,11 +56,6 @@ ul li.on a {
 <title>조건별 조회</title>
 
 <script type="text/javascript"> 
-window.addEventListener("DOMContentLoaded" , function (){
-	allUser();
-	search();
-});
-
 function callUserDetail(e) {
 	var userNo = e; 
 	tableOneInfo(userNo);
@@ -930,12 +925,247 @@ function search(){
 	col2.appendChild(a);
 	
 	targetBox.appendChild(row);
-
 	
 }
 
+//22.10.13 임병훈 리스트 검색 및 페이징 
+function searchList(page) {
+	var formData = new FormData();
+	formData.append('announce_proper_num', document.getElementById("selectT2").value);
+	formData.append('trial_fcltt_proper_num', document.getElementById("selectT10").value);
+	formData.append('court_proper_num', document.getElementById("selectT11").value);
+	formData.append('searchType', document.getElementById("selectSearchType").value);
+	formData.append('searchWord', document.getElementById("selectSearchWord").value);
 	
+	if(page == null){
+		formData.append('pageNum', 1);
+	}else{
+		formData.append('pageNum', page);
+	}
+	
+	let entries = formData.entries();
+	for (const pair of entries) {
+	    console.log(pair[0]+ ', ' + pair[1]); 
+	}
+	
+	var xhr = new XMLHttpRequest(); //AJAX 객체 생성
+    xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var jsonObj = JSON.parse(xhr.responseText); //xhr.responseText = 응답 결과 텍스트(JSON)
+			
+			var ListBox = document.getElementById("list-info");
+			ListBox.innerHTML = "";
+            
+            var rowBox = document.createElement("div");
+            rowBox.classList.add("row");
+          
+            var form = document.createElement("form");
+    		form.action="excel"
+    		form.method="post"
+    		form.classList.add("px-0");
+    		rowBox.appendChild(form);
+    		          
+    		var tableRow = document.createElement("div");
+            tableRow.classList.add("row");
+            tableRow.classList.add("mx-0");
+            tableRow.classList.add("px-0");
+            form.appendChild(tableRow);
+            
+            var table = document.createElement("table");
+            table.classList.add("table");
+            table.classList.add("table-bordered");
+            tableRow.appendChild(table);
+               
+            var colGroup = document.createElement("colgroup");
+            table.appendChild(colGroup);
 
+            var colGroupA = document.createElement("col");
+            colGroupA.setAttribute("width", "7%");
+            colGroup.appendChild(colGroupA);
+            var colGroupB = document.createElement("col");
+            colGroupB.setAttribute("width", "10%");
+            colGroup.appendChild(colGroupB);
+            var colGroupC = document.createElement("col");
+            colGroupC.setAttribute("width", "40%");
+            colGroup.appendChild(colGroupC);
+            var colGroupD = document.createElement("col");
+            colGroupD.setAttribute("width", "18%");
+            colGroup.appendChild(colGroupD);
+            var colGroupE = document.createElement("col");
+            colGroupE.setAttribute("width", "15%");
+            colGroup.appendChild(colGroupE);
+            var colGroupF = document.createElement("col");
+            colGroupF.setAttribute("width", "10%");
+            colGroup.appendChild(colGroupF);
+               
+            var thead = document.createElement("thead");
+            table.appendChild(thead);
+               
+            var theadTr = document.createElement("tr");
+            theadTr.classList.add("text-center");
+            thead.appendChild(theadTr);
+               
+            var theadTrTh1 = document.createElement("th");
+            theadTrTh1.setAttribute("scope", "col");
+            theadTrTh1.classList.add("table-light");
+            theadTrTh1.innerText="번호";
+            theadTr.appendChild(theadTrTh1);
+            var theadTrTh2 = document.createElement("th");
+            theadTrTh2.setAttribute("scope", "col");
+            theadTrTh2.classList.add("table-light");
+            theadTrTh2.innerText="이름";
+            theadTr.appendChild(theadTrTh2);
+            var theadTrTh3 = document.createElement("th");
+            theadTrTh3.setAttribute("scope", "col");
+            theadTrTh3.classList.add("table-light");
+            theadTrTh3.innerText="신청공고";
+            theadTr.appendChild(theadTrTh3);
+            var theadTrTh4 = document.createElement("th");
+            theadTrTh4.setAttribute("scope", "col");
+            theadTrTh4.classList.add("table-light");
+            theadTrTh4.innerText="조력자 분류";
+            theadTr.appendChild(theadTrTh4);
+            var theadTrTh5 = document.createElement("th");
+            theadTrTh5.setAttribute("scope", "col");
+            theadTrTh5.classList.add("table-light");
+            theadTrTh5.innerText="신청일";
+            theadTr.appendChild(theadTrTh5);
+            var theadTrTh6 = document.createElement("th");
+            theadTrTh6.setAttribute("scope", "col");
+            theadTrTh6.classList.add("table-light");
+            theadTrTh6.innerText="신청현황";
+            theadTr.appendChild(theadTrTh6);
+            
+            var tbody = document.createElement("tbody");
+            table.appendChild(tbody);
+            
+            for(dataList of jsonObj.list){
+                var bodyTr1 = document.createElement("tr");
+                bodyTr1.setAttribute("onclick", "callUserDetail("+dataList.APLCN_DTLS_PROPER_NUM+")");
+                bodyTr1.setAttribute("data-bs-toggle", "modal");
+                bodyTr1.setAttribute("data-bs-target", "#userDetail");
+                tbody.appendChild(bodyTr1);
+
+                var bodyTr1Td1 = document.createElement("td");
+                bodyTr1Td1.classList.add("text-center");
+                bodyTr1Td1.innerText = dataList.APLCN_DTLS_PROPER_NUM;
+                bodyTr1.appendChild(bodyTr1Td1);
+
+                var bodyTr1Td2 = document.createElement("td");
+                bodyTr1Td2.classList.add("text-center");
+                bodyTr1Td2.innerText = dataList.USER_NAME;
+                bodyTr1.appendChild(bodyTr1Td2);
+                
+                var bodyTr1Td3 = document.createElement("td");
+                bodyTr1Td3.classList.add("text-center");
+                bodyTr1Td3.innerText = dataList.ANNOUNCE_TITLE;
+                bodyTr1.appendChild(bodyTr1Td3);
+                
+                var bodyTr1Td4 = document.createElement("td");
+                bodyTr1Td4.classList.add("text-center");
+                bodyTr1Td4.innerText = dataList.TRIAL_FCLTT_DESCRIPTION;
+                bodyTr1.appendChild(bodyTr1Td4);
+                
+                var bodyTr1Td5 = document.createElement("td");
+                bodyTr1Td5.classList.add("text-center");
+                bodyTr1Td5.innerText = moment(dataList.aplcn_dtls_date).format('YYYY-MM-DD');
+                bodyTr1.appendChild(bodyTr1Td5);
+		
+                var bodyTr1Td6 = document.createElement("td");
+                bodyTr1Td6.classList.add("text-center");
+                bodyTr1Td6.innerText = dataList.APLCN_DTLS_STS;
+                bodyTr1.appendChild(bodyTr1Td6);
+			}
+            
+            var btn = document.createElement("button");	
+    		btn.classList.add("btn");
+    		btn.classList.add("btn-primary");
+            btn.innerText="다운로드";
+            
+            form.appendChild(btn);
+            ListBox.appendChild(rowBox);
+            
+            //페이징 네비게이션 
+            var pagingTarget = document.getElementById("pagingTarget");
+            pagingTarget.innerHTML = "";
+            
+            if(jsonObj.startPage <= 1){
+            	var pagingLi1 = document.createElement("li");
+            	pagingLi1.setAttribute("class", "page-item disabled");
+            	pagingTarget.appendChild(pagingLi1);
+            	
+            	var Li1A = document.createElement("a");
+            	Li1A.setAttribute("class", "page-link");
+            	Li1A.setAttribute("onclick", "searchList("+jsonObj.startPage-1+")");
+            	Li1A.innerText = "<";
+            	pagingLi1.appendChild(Li1A);
+            }else{
+            	var pagingLi1 = document.createElement("li");
+            	pagingLi1.setAttribute("class", "page-item");
+            	pagingTarget.appendChild(pagingLi1);
+            	
+            	var Li1A = document.createElement("a");
+            	Li1A.setAttribute("class", "page-link");
+            	Li1A.setAttribute("onclick", "searchList("+jsonObj.startPage-1+")");
+            	Li1A.innerText = "<";
+            	pagingLi1.appendChild(Li1A);
+            }
+            
+            for(var i = jsonObj.startPage; i <= jsonObj.endPage; i++){
+            	if(i == jsonObj.currentPageNum){
+            		var pagingLi = document.createElement("li");
+            		pagingLi.setAttribute("class", "page-item active");
+	            	pagingTarget.appendChild(pagingLi);
+	            	
+	            	var LiA = document.createElement("a");
+	            	LiA.setAttribute("class", "page-link");
+	            	LiA.setAttribute("onclick", "searchList("+i+")");
+	            	LiA.innerText = i;
+	            	pagingLi.appendChild(LiA);
+            	}else{
+            		var pagingLi = document.createElement("li");
+            		pagingLi.setAttribute("class", "page-item");
+	            	pagingTarget.appendChild(pagingLi);
+	            	
+	            	var LiA = document.createElement("a");
+	            	LiA.setAttribute("class", "page-link");
+	            	LiA.setAttribute("onclick", "searchList("+i+")");
+	            	LiA.innerText = i;
+	            	pagingLi.appendChild(LiA);
+            	}
+            }
+            
+            if(jsonObj.endPage >= jsonObj.totalPageCount){
+            	var pagingLi2 = document.createElement("li");
+            	pagingLi2.setAttribute("class", "page-item disabled");
+            	pagingTarget.appendChild(pagingLi2);
+            	
+            	var Li2A = document.createElement("a");
+            	Li2A.setAttribute("class", "page-link");
+            	Li2A.setAttribute("onclick", "searchList("+jsonObj.startPage+1+")");
+            	Li2A.innerText = ">";
+            	pagingLi2.appendChild(Li2A);
+            }else{
+            	var pagingLi2 = document.createElement("li");
+            	pagingLi2.setAttribute("class", "page-item");
+            	pagingTarget.appendChild(pagingLi2);
+            	
+            	var Li2A = document.createElement("a");
+            	Li2A.setAttribute("class", "page-link");
+            	Li2A.setAttribute("onclick", "searchList("+jsonObj.startPage+1+")");
+            	Li2A.innerText = "<";
+            	pagingLi2.appendChild(Li2A);
+            }
+		}
+	}
+	xhr.open("post" , "../admin/callConditionList"); //리퀘스트 세팅..
+	//xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded"); // 콘텐츠 타입을 json으로
+	xhr.send(formData); //AJAX로 리퀘스트함..
+}
+	
+window.addEventListener("DOMContentLoaded" , function (){
+	searchList(1);
+});
 
 </script>
 </head>
@@ -970,49 +1200,87 @@ function search(){
 			</div>
 			<!-- 안내 -->
 			<div class="contentsinbox">
-				<div class="row align-items-center" >
-					<div class="col-2">
-						<select id="select" onchange="calloption(this)" >
-							<option value="all">전체</option>
-							<option value="a">조력자별 조회</option>
-<!-- 							<option value="b">기간별 조회</option> -->
-							<option value="c">공고별 조회</option>
-							<option value="d">신청현황 조회</option>
-						</select>
+				<form id="searchForm">
+					<div class= "row">
+						<div class="col-10">
+							<div class="row my-2">
+								<div class="col-2 text-center">
+									<span> 재판조력자 </span>
+								</div>
+								<div class="col-4 d-grid">
+									<select name="trial_fcltt_proper_num" id="selectT10">
+										<option selected="selected" value="0">선택</option>
+										<c:forEach items="${t10_List}" var="list">
+											<option value="${list.trial_fcltt_proper_num}">${list.trial_fcltt_description}</option>
+										</c:forEach>	
+									</select>
+								</div>
+								<div class="col-2 text-center">
+									<span> 법원 </span>
+								</div>
+								<div class="col-4 d-grid">
+									<select name="court_proper_num"  id="selectT11" >
+										<option selected="selected" value="0">선택</option>
+										<c:forEach items="${t11_List}" var="list">
+											<option value="${list.court_proper_num}">${list.court_name}</option>
+										</c:forEach>	
+									</select>
+								</div>
+							</div>
+							<div class="row my-2">
+								<div class="col-3 text-center">
+									<span> 공고 </span>
+								</div>
+								<div class="col d-grid">
+									<select name="announce_proper_num"  id="selectT2" >
+										<option selected="selected" value="0">선택</option>
+										<c:forEach items="${t2_List}" var="list">
+											<option value="${list.announce_proper_num}">${list.announce_title}</option>
+										</c:forEach>	
+									</select>
+								</div>
+							</div>
+							<div class="row my-2">
+								<div class="col-3 d-grid">
+									<select name="searchType" id="selectSearchType">
+										<option selected="selected" value="">선택</option>
+										<option value="user_id">아이디</option>
+										<option value="user_name">이름</option>
+										<option value="user_email">이메일</option>
+										<option value="user_phone">연락처</option>
+									</select>
+								</div>
+								<div class="col d-grid">
+									<input name="searchWord" id="selectSearchWord">
+								</div>
+							</div>
+						</div>
+						<div class="col-2 d-grid align-items-center">
+							<a onclick="searchList()" class="btn btn-secondary btn-sm">검색</a>
+						</div>
 					</div>
-					<div id="target" class="col-6" ></div>						 
-					<div class="col-4" id="target2" style="text-align: end;"></div>
-				</div>
+				</form>
 				<br>
+				<!-- 리스트출력 target -->
 				<div class="row mx-0">
-					<div id="list-info" class="col"></div>
-				</div> 
+					<div id="list-info" class="col">
+					</div>
+				</div>
+				
+				<!-- 페이징 target --> 
+				<div class="row">
+					<div class="col">
+						<nav aria-label="Page navigation example">
+							<ul id ="pagingTarget" class="pagination" style="place-content: center; border: none;">
+							</ul>
+						</nav>
+					</div>
+				</div>
 			</div>
-			
-			<div class="row justify-content-center" >
-			<div class="col">
-			</div>
-			<div class="col">
-				<nav aria-label="Page navigation example">
-				  <ul class="pagination justify-content-center" style="border: none;">
-				    <li class="page-item disabled">
-				      <a class="page-link"><i class="bi bi-arrow-left-short"></i></a>
-				    </li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
-				      <a class="page-link" href="#"><i class="bi bi-arrow-right-short"></i></a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
-			<div class="col"></div>	
 				
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
-</div>
 </div>
 
 <!-- User Detail Modal -->

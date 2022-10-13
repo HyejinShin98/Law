@@ -245,4 +245,84 @@
 		</if>
 	</select>
 	
+	<!-- 1013 병훈 현황조회 리스트 출력 -->
+	<select id="callConditionList" resultType="map">
+		SELECT table2.* FROM(
+			SELECT table1.*, ROWNUM as rnum FROM(
+				SELECT t1.USER_NAME, t1.USER_PHONE, t1.USER_EMAIL,
+					t2.ANNOUNCE_TITLE, t5.APLCN_DTLS_PROPER_NUM,
+					t5.APLCN_DTLS_DATE, t5.APLCN_DTLS_STS,
+					t10.TRIAL_FCLTT_DESCRIPTION, t11.COURT_NAME
+		 		FROM TB_001 t1, TB_002 t2, TB_005 t5, TB_010 t10, TB_011 t11
+				WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+				AND t5.ANNOUNCE_PROPER_NUM  = t2.ANNOUNCE_PROPER_NUM 
+				AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
+				AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
+				<if test="announce_proper_num != 0">
+					AND t5.ANNOUNCE_PROPER_NUM = #{announce_proper_num}
+				</if>
+				<if test="trial_fcltt_proper_num != 0">
+					AND t5.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
+				</if>
+				<if test="court_proper_num != 0">
+					AND t5.COURT_PROPER_NUM = #{court_proper_num}
+				</if>
+				<if test="searchType != null and searchWord != null">
+					<choose>
+						<when test="searchType == 'user_id'">
+							AND t1.USER_ID LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_name'">
+							AND t1.USER_NAME  LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_email'">
+							AND t1.USER_EMAIL  LIKE '%' || #{searchWord } || '%'
+						</when>
+						<when test="searchType == 'user_phone'">
+							AND t1.USER_PHONE  LIKE '%' || #{searchWord } || '%'
+						</when>
+					</choose>
+				</if>
+				ORDER BY t5.APLCN_DTLS_PROPER_NUM  DESC
+			)table1
+		)table2
+		<![CDATA[
+		WHERE table2.rnum >= (#{pageNum}-1)*10+1 and table2.rnum <= #{pageNum}*10
+		]]>
+	</select>
+	
+	<select id="countcallConditionList" resultType="int">
+		SELECT COUNT(*) 
+		FROM TB_001 t1, TB_002 t2, TB_005 t5, TB_010 t10, TB_011 t11
+		WHERE t1.USER_PROPER_NUM = t5.USER_PROPER_NUM 
+		AND t5.ANNOUNCE_PROPER_NUM  = t2.ANNOUNCE_PROPER_NUM 
+		AND t5.TRIAL_FCLTT_PROPER_NUM = t10.TRIAL_FCLTT_PROPER_NUM
+		AND t5.COURT_PROPER_NUM = t11.COURT_PROPER_NUM 
+		<if test="announce_proper_num != 0">
+			AND t5.ANNOUNCE_PROPER_NUM = #{announce_proper_num}
+		</if>
+		<if test="trial_fcltt_proper_num != 0">
+			AND t5.TRIAL_FCLTT_PROPER_NUM = #{trial_fcltt_proper_num}
+		</if>
+		<if test="court_proper_num != 0">
+			AND t5.COURT_PROPER_NUM = #{court_proper_num}
+		</if>
+		<if test="searchType != null and searchWord != null">
+			<choose>
+				<when test="searchType == 'user_id'">
+					AND t1.USER_ID LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_name'">
+					AND t1.USER_NAME  LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_email'">
+					AND t1.USER_EMAIL  LIKE '%' || #{searchWord } || '%'
+				</when>
+				<when test="searchType == 'user_phone'">
+					AND t1.USER_PHONE  LIKE '%' || #{searchWord } || '%'
+				</when>
+			</choose>
+		</if>
+	</select>
+	
 </mapper>

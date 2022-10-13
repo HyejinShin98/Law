@@ -55,4 +55,20 @@ public interface AssistantSQLMapper {
 			@Param("searchType") String searchType, 
 			@Param("searchWord") String searchWord);
 	
+	// 1013 병훈 신청한 유저 List 출력
+	public List<Map<String, Object>> callConditionList(
+			@Param("announce_proper_num") Integer announce_proper_num,
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord,
+			@Param("pageNum") int pageNum);
+	
+	public int countcallConditionList(
+			@Param("announce_proper_num") Integer announce_proper_num,
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord);
+	
 }

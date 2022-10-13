@@ -183,4 +183,36 @@ public class RestAssistantController {
 		return map;
 	}
 	
+	
+	//1006 병훈 등재목록 유저 리스트 불러오기
+	@RequestMapping("callConditionList")
+	public Map<String, Object> callConditionList(
+			@Param("announce_proper_num") Integer announce_proper_num, 
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord,
+			@RequestParam(value="pageNum", defaultValue="1") int pageNum){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int boardCount = assistantServiceImpl.countcallConditionList(
+				announce_proper_num, trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+		int totalPageCount = (int)Math.ceil(boardCount/10.0);
+		int startPage = ((pageNum-1)/5)*5 + 1;
+		int endPage = ((pageNum-1)/5+1)*5;
+		if(endPage > totalPageCount) {
+			endPage = totalPageCount;
+		}
+		
+		map.put("result", "success");
+		map.put("startPage", startPage);
+		map.put("endPage", endPage);
+		map.put("currentPageNum", pageNum);
+		map.put("totalPageCount", totalPageCount);
+		map.put("list", assistantServiceImpl.callConditionList(
+				announce_proper_num, trial_fcltt_proper_num, court_proper_num, searchType, searchWord, pageNum));
+		
+		return map;
+	}
+	
 }

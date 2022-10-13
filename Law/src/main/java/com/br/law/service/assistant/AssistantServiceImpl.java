@@ -224,6 +224,33 @@ public class AssistantServiceImpl {
 		return assistantSQLMapper.countRegistList(trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
 	}
 	
+	//1013 병훈 DataList
+	public List<Map<String, Object>> callConditionList(
+			@Param("announce_proper_num") Integer announce_proper_num,
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord,
+			@Param("pageNum") int pageNum) {
+		
+		List<Map<String, Object>> dataList = assistantSQLMapper.callConditionList(announce_proper_num, trial_fcltt_proper_num, court_proper_num, searchType, searchWord, pageNum);
+		for(Map<String, Object> search : dataList) {
+			String stsEnstr = (String)search.get("APLCN_DTLS_STS");
+			search.put("APLCN_DTLS_STS", convertAplcnStsToKorean(stsEnstr));
+		}
+		
+		return dataList;
+	}
+	
+	public int countcallConditionList(
+			@Param("announce_proper_num") Integer announce_proper_num,
+			@Param("trial_fcltt_proper_num") Integer trial_fcltt_proper_num, 
+			@Param("court_proper_num") Integer court_proper_num, 
+			@Param("searchType") String searchType, 
+			@Param("searchWord") String searchWord) {
+		return assistantSQLMapper.countcallConditionList(announce_proper_num, trial_fcltt_proper_num, court_proper_num, searchType, searchWord);
+	}
+	
 	// 등재신청 상태 en -> ko 변환 출력용 메소드
 	public String convertAplcnStsToKorean(String aplcn_dtls_sts) {
 		String stsKoStr = "";

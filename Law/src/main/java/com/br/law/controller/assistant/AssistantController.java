@@ -84,6 +84,10 @@ public class AssistantController {
 		List<Map<String, Object>> trial_fclttList = assistantServiceImpl.trial_fcltt();
 		model.addAttribute("trial", trial_fclttList);
 		
+		model.addAttribute("t2_List", assistantServiceImpl.callTb_002());
+		model.addAttribute("t10_List", assistantServiceImpl.callTb_010());
+		model.addAttribute("t11_List", assistantServiceImpl.callTb_011());
+		
 		return "admin/searchCondition";
 	}
 	
@@ -112,7 +116,6 @@ public class AssistantController {
 				
 		List<Map<String, Object>> certificateList = assistantServiceImpl.certificateList(aplcn_dtls_proper_num);
 		model.addAttribute("certificateList", certificateList);
-		
 		
 		return "admin/evaluationApplicants";
 	}
